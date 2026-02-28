@@ -1,0 +1,196 @@
+# Website Design - YAML Format
+# Voor Holistische Huisarts / Auteur website
+
+site_name: "Richard - Holistische Huisarts"
+site_description: "Geneeskunde met hart en wijsheid"
+primary_color: "#2C5F4F"  # Groen (gezondheid)
+secondary_color: "#D4A574"  # Warm goud
+accent_color: "#E8F5F3"
+
+pages:
+  - id: homepage
+    title: "Home"
+    slug: "/"
+    sections:
+      
+      # HERO SECTION
+      - type: hero
+        id: hero_main
+        background_color: "#2C5F4F"
+        text_color: "white"
+        height: large
+        content:
+          title: "Welkom bij Richard"
+          subtitle: "Holistische Geneeskunde met Wijsheid en Compassie"
+          cta_button:
+            text: "Afspraak maken"
+            link: "/contact"
+            style: "primary"  
+          background_image: true
+          overlay_opacity: 0.3
+      
+      # ABOUT SECTION
+      - type: section
+        id: about_intro
+        background_color: "white"
+        padding: "large"
+        layout: "two_column"
+        content:
+          left:
+            type: text
+            title: "Over Mij"
+            text: |
+              Met meer dan [X] jaar ervaring combineer ik klassieke geneeskunde 
+              met holistische benaderingen. Mijn doel is niet alleen ziektes te 
+              genezen, maar de hele mens beter te begrijpen en gezond te houden.
+            font_size: "large"
+          right:
+            type: image
+            imagePlaceholder: "portrait.jpg"
+            width: "400px"
+      
+      # SERVICES SECTION
+      - type: section
+        id: services
+        background_color: "#F9F7F4"
+        padding: "large"
+        layout: "grid"
+        grid_columns: 3
+        title: "Mijn Diensten"
+        cards:
+          - icon: "heart"
+            title: "Holistische Diagnose"
+            description: "Grondige analyse van lichaam, geest en ziel"
+            color: "primary"
+          
+          - icon: "leaf"
+            title: "Kruiden & Voeding"
+            description: "Natuurlijke behandelingen op basis van traditionele kennis"
+            color: "secondary"
+          
+          - icon: "book"
+            title: "Coaching & Begeleiding"
+            description: "Persoonlijke begeleiding naar gezondheid en welzijn"
+            color: "accent"
+      
+      # TESTIMONIALS SECTION
+      - type: section
+        id: testimonials
+        background_color: "white"
+        padding: "large"
+        title: "Wat Mijn Patiënten Zeggen"
+        layout: "carousel"
+        items:
+          - name: "Maria K."
+            text: "Richard heeft me geholpen mijn gezondheid op een totaal nieuw niveau te brengen."
+            rating: 5
+          
+          - name: "Johan T."
+            text: "De holistische aanpak maakte echt het verschil voor mij."
+            rating: 5
+          
+          - name: "Eva M."
+            text: "Eindelijk iemand die naar mij luistert als mens, niet alleen lichaam."
+            rating: 5
+      
+      # CTA SECTION
+      - type: cta
+        id: cta_contact
+        background_color: "#2C5F4F"
+        text_color: "white"
+        title: "Klaar voor Verandering?"
+        description: "Neem contact op voor uw eerste afspraak"
+        button:
+          text: "Contact Opnemen"
+          link: "/contact"
+          style: "light"
+      
+      # FOOTER
+      - type: footer
+        background_color: "#1a3a33"
+        text_color: "#cccccc"
+        columns:
+          - title: "Over"
+            links:
+              - text: "Over Richard"
+                link: "/over"
+              - text: "Blog"
+                link: "/blog"
+          
+          - title: "Contact"
+            content:
+              - "Email: richard@example.com"
+              - "Tel: +31 (0)6 12345678"
+          
+          - title: "Volgen"
+            socials:
+              - platform: "instagram"
+              - platform: "facebook"
+              - platform: "linkedin"
+
+  # CONTACT PAGE
+  - id: contact
+    title: "Contact"
+    slug: "/contact"
+    sections:
+      - type: hero
+        title: "Contact Opnemen"
+        subtitle: "Laten we samen aan uw gezondheid werken"
+        background_color: "#2C5F4F"
+      
+      - type: contact_form
+        fields:
+          - name: "full_name"
+            label: "Volledige Naam"
+            type: "text"
+            required: true
+          
+          - name: "email"
+            label: "Email"
+            type: "email"
+            required: true
+          
+          - name: "phone"
+            label: "Telefoonnummer"
+            type: "tel"
+          
+          - name: "message"
+            label: "Uw bericht"
+            type: "textarea"
+            required: true
+          
+          - name: "service"
+            label: "Interesse in"
+            type: "select"
+            options:
+              - "Consultatatie"
+              - "Kruiden advies"
+              - "Coaching"
+              - "Overig"
+        
+        submit_button: "Versturen"
+        redirect_to: "/thank-you"
+
+# STYLING DEFAULTS
+typography:
+  headings:
+    font_family: "Poppins"
+    font_size: "32px"
+    color: "#2C5F4F"
+    weight: "bold"
+  
+  body:
+    font_family: "Open Sans"
+    font_size: "16px"
+    color: "#333333"
+    weight: "normal"
+  
+  accent:
+    font_family: "Playfair Display"
+    font_size: "24px"
+    color: "#D4A574"
+
+spacing:
+  default: "20px"
+  large: "60px"
+  small: "10px"

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Combinator - Dokter Richard</title>
+    <style>
+        @font-face { font-family: 'Bilmond'; src: url('fonts/Bilmond-Light.woff2') format('woff2'), url('fonts/Bilmond-Light.woff') format('woff'); font-weight: 300; font-display: swap; }
+        @font-face { font-family: 'Bilmond'; src: url('fonts/Bilmond-Regular.woff2') format('woff2'), url('fonts/Bilmond-Regular.woff') format('woff'); font-weight: 400; font-display: swap; }
+        @font-face { font-family: 'Bilmond'; src: url('fonts/Bilmond-Medium.woff2') format('woff2'), url('fonts/Bilmond-Medium.woff') format('woff'); font-weight: 500; font-display: swap; }
+        @font-face { font-family: 'Bilmond'; src: url('fonts/Bilmond-SemiBold.woff2') format('woff2'), url('fonts/Bilmond-SemiBold.woff') format('woff'); font-weight: 600; font-display: swap; }
+        @font-face { font-family: 'Meditera'; src: url('fonts/Meditera-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Canpile Drawn'; src: url('fonts/CanpileDrawn-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Quano'; src: url('fonts/Quano.woff2') format('woff2'), url('fonts/Quano.woff') format('woff'); font-display: swap; }
+        @font-face { font-family: 'Mantul'; src: url('fonts/Mantul.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Wayang'; src: url('fonts/Wayang.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Saluna'; src: url('fonts/Saluna-Medium.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Bosten'; src: url('fonts/Bosten.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Lenia Sans'; src: url('fonts/LeniaSans-Regular.ttf') format('truetype'); font-display: swap; }
+        @font-face { font-family: 'Konfus'; src: url('fonts/Konfus-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Maxima Nouva'; src: url('fonts/MaximaNouva-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'New Black'; src: url('fonts/NewBlackTypeface-Regular.otf') format('opentype'); font-display: swap; }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #354A32;
+            --cream: #f8eee4;
+            --cream-muted: rgba(248, 238, 228, 0.85);
+            --border: rgba(248, 238, 228, 0.15);
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Bilmond', sans-serif; font-weight: 500; font-size: 17px; background: #2a2a2a; color: var(--cream-muted); -webkit-font-smoothing: antialiased; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        /* ===== TOOLBAR 2x2 GRID ===== */
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: #111;
+            border-bottom: 2px solid #333;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .toolbar-block {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .toolbar-block:nth-child(1) { border-right: 1px solid #282828; border-bottom: 1px solid #282828; }
+        .toolbar-block:nth-child(2) { border-bottom: 1px solid #282828; }
+        .toolbar-block:nth-child(3) { border-right: 1px solid #282828; }
+        .toolbar-label {
+            font-family: 'Bilmond', sans-serif;
+            font-size: 10px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-right: 4px;
+            white-space: nowrap;
+            width: 100%;
+            margin-bottom: 2px;
+        }
+        .tb-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.55);
+            padding: 4px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .tb-btn:hover {
+            border-color: rgba(255,255,255,0.5);
+            color: #fff;
+        }
+        .tb-btn.active {
+            background: #fff;
+            color: #111;
+            border-color: #fff;
+        }
+
+        /* Device icons in block 4 */
+        .device-icons {
+            display: flex;
+            gap: 4px;
+        }
+        .device-icon {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+        }
+        .device-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: rgba(255,255,255,0.4);
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: stroke 0.15s;
+        }
+        .device-icon:hover { border-color: rgba(255,255,255,0.5); }
+        .device-icon:hover svg { stroke: rgba(255,255,255,0.8); }
+        .device-icon.active {
+            background: #fff;
+            border-color: #fff;
+        }
+        .device-icon.active svg { stroke: #111; }
+
+        /* ===== DEVICE FRAME ===== */
+        .device-frame {
+            margin: 0 auto;
+            transition: max-width 0.4s ease, box-shadow 0.4s ease;
+        }
+        .device-frame.desktop { max-width: 100%; }
+        .device-frame.tablet { max-width: 810px; box-shadow: -20px 0 60px rgba(0,0,0,0.4), 20px 0 60px rgba(0,0,0,0.4); }
+        .device-frame.mobile { max-width: 390px; box-shadow: -16px 0 50px rgba(0,0,0,0.4), 16px 0 50px rgba(0,0,0,0.4); }
+
+        .device-label {
+            text-align: center;
+            font-family: 'Bilmond', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 20px 0 8px;
+            display: none;
+        }
+        .device-frame.tablet .device-label,
+        .device-frame.mobile .device-label { display: block; }
+
+        /* ===== HOMEPAGE ===== */
+        .page-wrapper {
+            background: var(--bg);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 28px 48px; border-bottom: 2px solid var(--border); }
+        .logo { font-size: 28px; font-weight: 400; color: var(--cream); text-transform: uppercase; }
+        .nav { display: flex; list-style: none; align-items: center; gap: 8px; }
+        .nav li { display: flex; align-items: center; gap: 8px; }
+        .nav li:not(:last-child)::after { content: '/'; color: var(--cream-muted); font-size: 14px; }
+        .nav a { font-size: 15px; font-weight: 400; color: var(--cream); }
+
+        .hero { padding: 80px 48px 100px; text-align: center; }
+        .hero h1 { font-size: clamp(30px, 4vw, 56px); font-weight: 400; color: var(--cream); line-height: 1.2; max-width: 900px; margin: 0 auto 36px; }
+        .hero p { font-size: 15px; color: var(--cream-muted); max-width: 620px; margin: 0 auto; line-height: 1.8; }
+
+        .projects { padding: 0 48px; }
+        .project-section { margin-bottom: 48px; }
+        .project-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; margin-bottom: 20px; }
+        .project-grid.reverse { grid-template-columns: 1fr 1.4fr; }
+        .project-img { overflow: hidden; aspect-ratio: 4/3; }
+        .project-img-wide { aspect-ratio: 16/10; }
+        .project-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .project-img:hover img { transform: scale(1.04); }
+        .project-title { font-size: 16px; font-weight: 400; color: var(--cream); padding: 16px 0 32px; }
+
+        .banner { position: relative; margin: 32px 48px; overflow: hidden; height: 400px; }
+        .banner img { width: 100%; height: 100%; object-fit: cover; }
+        .banner-overlay { position: absolute; inset: 0; background: rgba(30, 40, 25, 0.55); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; }
+        .banner h2 { font-size: clamp(32px, 5vw, 56px); font-weight: 400; color: var(--cream); line-height: 1.15; margin-bottom: 28px; }
+        .banner-link { font-size: 14px; color: var(--cream); border-bottom: 1px solid var(--cream); padding-bottom: 4px; letter-spacing: 0.05em; }
+
+        .contact-row { display: flex; justify-content: center; align-items: center; gap: 40px; padding: 48px; }
+        .contact-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--cream); }
+        .contact-icon { width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+        .footer { border-top: 1px solid var(--border); padding: 48px; }
+        .footer-inner { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: start; }
+        .footer-logo { font-size: 28px; font-weight: 400; color: var(--cream); text-transform: uppercase; }
+        .footer-col { font-size: 13px; line-height: 1.9; color: var(--cream-muted); }
+        .footer-col strong { font-weight: 500; color: var(--cream); }
+
+        /* ===== CREAM SECTION ===== */
+        .cream-section {
+            background: #e8ddd0;
+            padding: 100px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cream-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(135deg, transparent 40%, rgba(53,74,50,0.06) 40.5%, rgba(53,74,50,0.06) 41%, transparent 41.5%),
+                linear-gradient(225deg, transparent 55%, rgba(53,74,50,0.05) 55.5%, rgba(53,74,50,0.05) 56%, transparent 56.5%),
+                linear-gradient(170deg, transparent 30%, rgba(53,74,50,0.04) 30.3%, rgba(53,74,50,0.04) 30.6%, transparent 30.9%),
+                linear-gradient(200deg, transparent 65%, rgba(53,74,50,0.05) 65.3%, rgba(53,74,50,0.05) 65.6%, transparent 65.9%),
+                linear-gradient(150deg, transparent 20%, rgba(53,74,50,0.03) 20.2%, rgba(53,74,50,0.03) 20.5%, transparent 20.8%),
+                linear-gradient(185deg, transparent 75%, rgba(53,74,50,0.04) 75.2%, rgba(53,74,50,0.04) 75.5%, transparent 75.8%),
+                linear-gradient(160deg, transparent 48%, rgba(53,74,50,0.03) 48.2%, rgba(53,74,50,0.03) 48.5%, transparent 48.8%);
+            pointer-events: none;
+        }
+        .cream-section .cream-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .cream-section h2 {
+            font-size: clamp(28px, 3.5vw, 48px);
+            font-weight: 400;
+            color: #2a3b26;
+            line-height: 1.2;
+            margin-bottom: 32px;
+        }
+        .cream-section p {
+            font-size: 16px;
+            color: rgba(42,59,38,0.7);
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        .cream-section .cream-link {
+            font-size: 14px;
+            color: #2a3b26;
+            border-bottom: 1px solid #2a3b26;
+            padding-bottom: 4px;
+            letter-spacing: 0.05em;
+        }
+        .cream-section .cream-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 32px;
+            margin-top: 60px;
+            text-align: left;
+        }
+        .cream-section .cream-card h3 {
+            font-size: 20px;
+            font-weight: 400;
+            color: #2a3b26;
+            margin-bottom: 12px;
+        }
+        .cream-section .cream-card p {
+            font-size: 14px;
+            color: rgba(42,59,38,0.6);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* ===== TABLET ===== */
+        .device-tablet .header { padding: 24px 32px; }
+        .device-tablet .logo { font-size: 24px; }
+        .device-tablet .nav { gap: 6px; }
+        .device-tablet .nav a { font-size: 13px; }
+        .device-tablet .hero { padding: 60px 32px 80px; }
+        .device-tablet .hero h1 { font-size: 44px; margin-bottom: 28px; }
+        .device-tablet .hero p { font-size: 14px; }
+        .device-tablet .projects { padding: 0 32px; }
+        .device-tablet .project-grid { gap: 12px; }
+        .device-tablet .banner { margin: 24px 32px; height: 300px; }
+        .device-tablet .banner h2 { font-size: 36px; }
+        .device-tablet .contact-row { padding: 36px 32px; gap: 28px; }
+        .device-tablet .footer { padding: 36px 32px; }
+        .device-tablet .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+        .device-tablet .footer-logo { font-size: 24px; }
+        .device-tablet .cream-section { padding: 72px 32px; }
+        .device-tablet .cream-section .cream-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+
+        /* ===== MOBILE ===== */
+        .device-mobile .header { padding: 20px 20px; flex-direction: column; gap: 16px; align-items: flex-start; }
+        .device-mobile .logo { font-size: 22px; }
+        .device-mobile .nav { gap: 4px; flex-wrap: wrap; }
+        .device-mobile .nav a { font-size: 12px; }
+        .device-mobile .nav li:not(:last-child)::after { font-size: 11px; }
+        .device-mobile .hero { padding: 48px 20px 60px; }
+        .device-mobile .hero h1 { font-size: 32px; margin-bottom: 20px; }
+        .device-mobile .hero p { font-size: 14px; line-height: 1.7; }
+        .device-mobile .projects { padding: 0 20px; }
+        .device-mobile .project-grid { grid-template-columns: 1fr; gap: 10px; }
+        .device-mobile .project-grid.reverse { grid-template-columns: 1fr; }
+        .device-mobile .project-img { aspect-ratio: 16/10; }
+        .device-mobile .project-title { font-size: 14px; padding: 12px 0 28px; }
+        .device-mobile .banner { margin: 20px; height: 260px; }
+        .device-mobile .banner h2 { font-size: 26px; margin-bottom: 20px; }
+        .device-mobile .banner-overlay { padding: 24px; }
+        .device-mobile .contact-row { flex-direction: column; gap: 16px; padding: 32px 20px; align-items: flex-start; }
+        .device-mobile .contact-item { font-size: 13px; }
+        .device-mobile .footer { padding: 32px 20px; }
+        .device-mobile .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+        .device-mobile .footer-logo { font-size: 22px; }
+        .device-mobile .cream-section { padding: 56px 20px; }
+        .device-mobile .cream-section h2 { font-size: 26px; }
+        .device-mobile .cream-section .cream-grid { grid-template-columns: 1fr; gap: 20px; }
+    </style>
+</head>
+<body>
+
+<!-- ===== TOOLBAR 2x2 ===== -->
+<div class="toolbar" id="toolbar">
+    <!-- LINKSBOVEN: Logo -->
+    <div class="toolbar-block">
+        <span class="toolbar-label">Logo</span>
+        <button class="tb-btn logo-btn active" style="font-family:'Mantul',sans-serif;font-size:14px;text-transform:uppercase" onclick="switchLogo('Mantul',this)">Mantul</button>
+        <button class="tb-btn logo-btn" style="font-family:'Quano',sans-serif;font-size:14px;text-transform:uppercase" onclick="switchLogo('Quano',this)">Quano</button>
+        <button class="tb-btn logo-btn" style="font-family:'Bosten',sans-serif;font-size:14px;text-transform:uppercase" onclick="switchLogo('Bosten',this)">Bosten</button>
+    </div>
+    <!-- RECHTSBOVEN: Headers -->
+    <div class="toolbar-block">
+        <span class="toolbar-label">Headers</span>
+        <button class="tb-btn header-btn active" style="font-family:'Meditera',sans-serif" onclick="switchHeader('Meditera',this)">Meditera</button>
+        <button class="tb-btn header-btn" style="font-family:'Canpile Drawn',sans-serif" onclick="switchHeader('Canpile Drawn',this)">Canpile</button>
+        <button class="tb-btn header-btn" style="font-family:'Quano',sans-serif" onclick="switchHeader('Quano',this)">Quano</button>
+        <button class="tb-btn header-btn" style="font-family:'Mantul',sans-serif" onclick="switchHeader('Mantul',this)">Mantul</button>
+        <button class="tb-btn header-btn" style="font-family:'Wayang',sans-serif" onclick="switchHeader('Wayang',this)">Wayang</button>
+        <button class="tb-btn header-btn" style="font-family:'Saluna',sans-serif" onclick="switchHeader('Saluna',this)">Saluna</button>
+        <button class="tb-btn header-btn" style="font-family:'Bosten',sans-serif" onclick="switchHeader('Bosten',this)">Bosten</button>
+        <button class="tb-btn header-btn" style="font-family:'Lenia Sans',sans-serif" onclick="switchHeader('Lenia Sans',this)">Lenia Sans</button>
+        <button class="tb-btn header-btn" style="font-family:'Konfus',sans-serif" onclick="switchHeader('Konfus',this)">Konfus</button>
+        <button class="tb-btn header-btn" style="font-family:'Maxima Nouva',sans-serif" onclick="switchHeader('Maxima Nouva',this)">Maxima N.</button>
+        <button class="tb-btn header-btn" style="font-family:'New Black',sans-serif" onclick="switchHeader('New Black',this)">New Black</button>
+        <button class="tb-btn header-btn" style="font-family:'Bilmond',sans-serif;font-weight:400" onclick="switchHeader('Bilmond',this)">Bilmond</button>
+    </div>
+    <!-- LINKSONDER: Body -->
+    <div class="toolbar-block">
+        <span class="toolbar-label">Body</span>
+        <button class="tb-btn body-btn active" style="font-family:'Bilmond',sans-serif;font-weight:500" onclick="switchBody('Bilmond',500,this)">Bilmond M</button>
+        <button class="tb-btn body-btn" style="font-family:'Bilmond',sans-serif;font-weight:300" onclick="switchBody('Bilmond',300,this)">Bilmond L</button>
+        <button class="tb-btn body-btn" style="font-family:'Meditera',sans-serif" onclick="switchBody('Meditera',400,this)">Meditera</button>
+        <button class="tb-btn body-btn" style="font-family:'Mantul',sans-serif" onclick="switchBody('Mantul',400,this)">Mantul</button>
+        <button class="tb-btn body-btn" style="font-family:'Wayang',sans-serif" onclick="switchBody('Wayang',400,this)">Wayang</button>
+        <button class="tb-btn body-btn" style="font-family:'Saluna',sans-serif" onclick="switchBody('Saluna',400,this)">Saluna</button>
+        <button class="tb-btn body-btn" style="font-family:'Lenia Sans',sans-serif" onclick="switchBody('Lenia Sans',400,this)">Lenia Sans</button>
+        <button class="tb-btn body-btn" style="font-family:'Maxima Nouva',sans-serif" onclick="switchBody('Maxima Nouva',400,this)">Maxima N.</button>
+        <button class="tb-btn body-btn" style="font-family:'New Black',sans-serif" onclick="switchBody('New Black',400,this)">New Black</button>
+    </div>
+    <!-- RECHTSONDER: Device -->
+    <div class="toolbar-block">
+        <span class="toolbar-label">Responsive</span>
+        <div class="device-icons">
+            <button class="device-icon active" onclick="switchDevice('desktop',this)" title="Desktop">
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </button>
+            <button class="device-icon" onclick="switchDevice('tablet',this)" title="Tablet">
+                <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+            </button>
+            <button class="device-icon" onclick="switchDevice('mobile',this)" title="Mobiel">
+                <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="10.5" y1="18" x2="13.5" y2="18"/></svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== HOMEPAGE ===== -->
+<div class="device-frame desktop" id="deviceFrame">
+<div class="page-wrapper" id="page">
+    <header class="header">
+        <a class="logo logo-text" style="font-family:'Mantul',sans-serif;">dokter richard</a>
+        <ul class="nav body-text">
+            <li><a href="#">Over</a></li>
+            <li><a href="#">Diensten</a></li>
+            <li><a href="#">Zelfscan</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </header>
+
+    <section class="hero">
+        <h1 class="header-text" style="font-family:'Meditera',sans-serif;">Het maakt niet uit of je uit balans raakt, als je de weg terug maar weet te vinden</h1>
+        <p class="body-text">Ik combineer mijn passie voor holistische geneeskunde met aandacht voor lichaam, geest en ziel. Als huisarts, leefstijlarts en coach begeleid ik mensen naar balans en gezondheid.</p>
+    </section>
+
+    <section class="projects">
+        <div class="project-section">
+            <div class="project-grid">
+                <div class="project-img"><img src="Rich Tas 2.jpeg" alt="Dokter Richard onderweg"></div>
+                <div class="project-img"><img src="richard huisarts.jpg" alt="Richard in de praktijk"></div>
+            </div>
+            <div class="project-title body-text"><a href="#">Holistische Praktijk +</a></div>
+        </div>
+
+        <div class="project-section">
+            <div class="project-grid reverse">
+                <div class="project-img project-img-wide"><img src="richard huisarts.jpg" alt="Richard aan het werk"></div>
+                <div class="project-img project-img-wide"><img src="Richard thot 2.jpg" alt="Inspiratie en wijsheid"></div>
+            </div>
+            <div class="project-title body-text"><a href="#">Coaching &amp; Leefstijl +</a></div>
+        </div>
+
+        <div class="project-section">
+            <div class="project-grid">
+                <div class="project-img"><img src="IMG_5835.jpeg" alt="Richard Hoofs portret"></div>
+                <div class="project-img"><img src="Richard thot 2.jpg" alt="Richard op reis"></div>
+            </div>
+            <div class="project-title body-text"><a href="#">Boeken &amp; Publicaties +</a></div>
+        </div>
+    </section>
+
+    <!-- ===== CREAM SECTION ===== -->
+    <section class="cream-section">
+        <div class="cream-inner">
+            <h2 class="header-text" style="font-family:'Meditera',sans-serif;">Een holistische blik op gezondheid</h2>
+            <p class="body-text">Ik geloof dat echte genezing verder gaat dan symptoombestrijding. Door lichaam, geest en ziel als geheel te benaderen, vinden we samen de weg naar duurzame gezondheid.</p>
+            <a href="#" class="cream-link body-text">Meer over mijn aanpak</a>
+            <div class="cream-grid">
+                <div class="cream-card">
+                    <h3 class="header-text" style="font-family:'Meditera',sans-serif;">Huisartsgeneeskunde</h3>
+                    <p class="body-text">Persoonlijke zorg met aandacht voor het hele plaatje. Niet alleen de klacht, maar ook de mens erachter.</p>
+                </div>
+                <div class="cream-card">
+                    <h3 class="header-text" style="font-family:'Meditera',sans-serif;">Leefstijlgeneeskunde</h3>
+                    <p class="body-text">Voeding, beweging, slaap en stress als pijlers van gezondheid. Kleine veranderingen, groot verschil.</p>
+                </div>
+                <div class="cream-card">
+                    <h3 class="header-text" style="font-family:'Meditera',sans-serif;">Coaching</h3>
+                    <p class="body-text">Samen ontdekken wat jou in balans brengt. Bewustwording als eerste stap naar verandering.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="banner">
+        <img src="Rich Tas 2.jpeg" alt="Dokter Richard">
+        <div class="banner-overlay">
+            <h2 class="header-text" style="font-family:'Meditera',sans-serif;">Doe de gratis<br>Gezondheid Zelfscan</h2>
+            <a href="#" class="banner-link body-text">Aanvragen</a>
+        </div>
+    </section>
+
+    <div class="contact-row">
+        <a href="#" class="contact-item body-text">
+            <span class="contact-icon">&rarr;</span>
+            +31 6 1234 5678
+        </a>
+        <a href="#" class="contact-item body-text">
+            <span class="contact-icon">&rarr;</span>
+            info@dokterrichard.nl
+        </a>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div><div class="footer-logo logo-text" style="font-family:'Mantul',sans-serif;">dokter richard</div></div>
+            <div class="footer-col body-text"><strong>Dokter Richard Hoofs</strong><br>Huisarts, leefstijlarts &amp; coach<br><br>Amsterdam<br>Nederland</div>
+            <div class="footer-col body-text">Wil je samenwerken of heb je een vraag?<br>Stuur een mail naar <a href="#">info@dokterrichard.nl</a></div>
+        </div>
+    </footer>
+</div>
+</div>
+
+<script>
+function switchLogo(fontName, btn) {
+    document.querySelectorAll('.logo-text').forEach(el => {
+        el.style.fontFamily = "'" + fontName + "', sans-serif";
+    });
+    document.querySelectorAll('.logo-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+function switchHeader(fontName, btn) {
+    document.querySelectorAll('.header-text').forEach(el => {
+        el.style.fontFamily = "'" + fontName + "', sans-serif";
+    });
+    document.querySelectorAll('.header-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+function switchDevice(device, btn) {
+    var frame = document.getElementById('deviceFrame');
+    var page = document.getElementById('page');
+    frame.className = 'device-frame ' + device;
+    page.classList.remove('device-tablet', 'device-mobile');
+    if (device === 'tablet') page.classList.add('device-tablet');
+    if (device === 'mobile') page.classList.add('device-mobile');
+    document.querySelectorAll('.device-icon').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+}
+
+function switchBody(fontName, weight, btn) {
+    document.querySelectorAll('.body-text').forEach(el => {
+        el.style.fontFamily = "'" + fontName + "', sans-serif";
+        el.style.fontWeight = weight;
+    });
+    document.querySelectorAll('.body-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+window.addEventListener('load', function() {
+    document.body.style.paddingTop = document.getElementById('toolbar').offsetHeight + 'px';
+});
+window.addEventListener('resize', function() {
+    document.body.style.paddingTop = document.getElementById('toolbar').offsetHeight + 'px';
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Dokter Richard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-dark: #1E3028;
+            --bg-section: #243832;
+            --bg-card: #2E4A42;
+            --bg-light: #F5F0E8;
+            --primary: #4A8B7F;
+            --primary-light: #5EA99A;
+            --sage: #6B9E82;
+            --accent: #4A8B7F;
+            --accent-light: #5EA99A;
+            --text-heading: #F8EEE4;
+            --text-body: #C8BFB0;
+            --text-muted: #7A9A8A;
+            --dark-text: #1E2D21;
+            --border: rgba(248, 238, 228, 0.12);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif; background: var(--bg-dark);
+            color: var(--text-body); line-height: 1.7; overflow-x: hidden;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif; color: var(--text-heading);
+            font-weight: 500; line-height: 1.3;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+        /* NAV */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 24px 40px; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(30, 48, 40, 0.95); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--text-heading); }
+        .nav-logo span { color: var(--text-heading); }
+        .nav-links { display: flex; list-style: none; gap: 40px; }
+        .nav-links li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .nav-links li:not(:last-child)::after {
+            content: '/';
+            color: var(--text-muted);
+            font-size: 14px;
+            opacity: 0.5;
+        }
+        .nav-links a {
+            font-size: 16px; color: var(--text-heading); letter-spacing: 0.01em;
+            position: relative; transition: color 0.3s ease;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 1px; background: var(--text-heading); transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--text-heading); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; padding: 5px; }
+        .nav-hamburger span { width: 28px; height: 1.5px; background: var(--text-heading); transition: all 0.3s ease; }
+
+        /* PAGE HERO */
+        .page-hero {
+            padding: 160px 0 80px; text-align: center;
+            background: linear-gradient(180deg, var(--bg-section) 0%, var(--bg-dark) 100%);
+        }
+        .page-hero-label {
+            font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--primary); margin-bottom: 20px; font-weight: 500;
+        }
+        .page-hero h1 { font-size: clamp(36px, 4vw, 56px); margin-bottom: 20px; }
+        .page-hero p {
+            font-size: 18px; color: var(--text-body); max-width: 560px;
+            margin: 0 auto; font-weight: 300; line-height: 1.8;
+        }
+
+        /* CONTACT LAYOUT */
+        .contact-section { padding: 80px 0 120px; }
+
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+        }
+
+        /* CONTACT INFO */
+        .contact-info-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 4px; padding: 48px; margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-card:hover {
+            border-color: rgba(74, 139, 127, 0.3);
+        }
+
+        .contact-info-label {
+            font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--primary); margin-bottom: 12px; font-weight: 500;
+        }
+
+        .contact-info-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px; color: var(--text-heading); font-weight: 500;
+        }
+
+        .contact-info-value a {
+            transition: color 0.3s ease;
+        }
+        .contact-info-value a:hover { color: var(--primary); }
+
+        .contact-extra {
+            margin-top: 48px; padding-top: 48px; border-top: 1px solid var(--border);
+        }
+
+        .contact-extra h3 {
+            font-size: 24px; margin-bottom: 16px;
+        }
+
+        .contact-extra p {
+            font-size: 15px; line-height: 1.8; color: var(--text-muted);
+        }
+
+        .contact-socials {
+            display: flex; gap: 16px; margin-top: 24px;
+        }
+
+        .contact-socials a {
+            width: 48px; height: 48px; border: 1px solid var(--border);
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; color: var(--text-muted);
+            font-size: 14px; transition: all 0.3s ease;
+        }
+        .contact-socials a:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* CONTACT FORM */
+        .contact-form h2 {
+            font-size: 32px; margin-bottom: 12px;
+        }
+
+        .contact-form > p {
+            font-size: 16px; color: var(--text-muted); margin-bottom: 40px;
+        }
+
+        .form-group { margin-bottom: 28px; }
+
+        .form-group label {
+            display: block; margin-bottom: 8px;
+            font-size: 13px; font-weight: 500;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: var(--sage);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%; padding: 16px 20px;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 2px; color: var(--text-heading);
+            font-family: 'Inter', sans-serif; font-size: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none; border-color: var(--primary);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group textarea {
+            resize: vertical; min-height: 140px;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B8577' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: var(--bg-dark); color: var(--text-heading);
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 12px;
+            padding: 16px 40px; font-size: 13px; font-weight: 500;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            border: none; cursor: pointer;
+            transition: all 0.4s ease; font-family: 'Inter', sans-serif;
+        }
+        .btn-primary { background: var(--primary); color: var(--bg-dark); }
+        .btn-primary:hover {
+            background: var(--primary-light); transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(74, 139, 127, 0.2);
+        }
+        .btn-full { width: 100%; justify-content: center; }
+
+        .form-note {
+            margin-top: 16px; font-size: 13px; color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* FOOTER */
+        .footer { background: var(--bg-dark); border-top: 1px solid var(--border); padding: 80px 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+        .footer-brand p { font-size: 15px; margin-top: 16px; line-height: 1.8; color: var(--text-muted); max-width: 300px; }
+        .footer h4 { font-size: 14px; font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-heading); margin-bottom: 24px; }
+        .footer ul { list-style: none; }
+        .footer ul li { margin-bottom: 12px; }
+        .footer ul a { font-size: 15px; color: var(--text-muted); transition: color 0.3s ease; }
+        .footer ul a:hover { color: var(--primary); }
+        .footer-contact-item { font-size: 15px; color: var(--text-muted); margin-bottom: 12px; }
+        .footer-bottom { padding-top: 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .footer-bottom p { font-size: 13px; color: var(--text-muted); }
+        .footer-socials { display: flex; gap: 20px; }
+        .footer-socials a { width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 14px; transition: all 0.3s ease; }
+        .footer-socials a:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* ANIMATIONS */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(30, 48, 40, 0.98); flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+            .nav-links.open { display: flex; }
+            .nav-links a { font-size: 18px; }
+            .nav-links li::after { display: none; }
+            .nav-hamburger { display: flex; z-index: 1001; }
+            .container { padding: 0 24px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">Dokter <span>Richard</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#over">Over</a></li>
+            <li><a href="diensten.html">Diensten</a></li>
+            <li><a href="index.html#zelfscan">Zelfscan</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-label fade-in">Neem contact op</div>
+            <h1 class="fade-in">Contact</h1>
+            <p class="fade-in">
+                Laten we samen aan jouw gezondheid werken.
+                Neem gerust contact op voor een vrijblijvend gesprek.
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+
+                <!-- LEFT: FORM -->
+                <div class="contact-form fade-in">
+                    <h2>Stuur een bericht</h2>
+                    <p>Vul het formulier in en ik neem zo snel mogelijk contact met je op.</p>
+
+                    <form onsubmit="return false;">
+                        <div class="form-group">
+                            <label for="name">Volledige naam</label>
+                            <input type="text" id="name" name="full_name" placeholder="Je naam" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-mailadres</label>
+                            <input type="email" id="email" name="email" placeholder="je@email.nl" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Telefoonnummer</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+31 6 ..." >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Interesse in</label>
+                            <select id="service" name="service">
+                                <option value="">Selecteer een dienst...</option>
+                                <option value="intake">Intake Consult</option>
+                                <option value="diagnose">Holistische Diagnose</option>
+                                <option value="leefstijl">Leefstijladvies</option>
+                                <option value="coaching">Coaching Traject</option>
+                                <option value="kruiden">Kruiden & Voedingsadvies</option>
+                                <option value="online">Online Consult</option>
+                                <option value="zelfscan">Gezondheid Zelfscan</option>
+                                <option value="overig">Overig</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Je bericht</label>
+                            <textarea id="message" name="message" placeholder="Vertel kort wat je situatie is en waar je naar zoekt..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">
+                            Versturen <span>&rarr;</span>
+                        </button>
+                        <p class="form-note">Ik reageer meestal binnen 24 uur.</p>
+                    </form>
+                </div>
+
+                <!-- RIGHT: INFO -->
+                <div>
+                    <div class="contact-info-card fade-in fade-in-delay-1">
+                        <div class="contact-info-label">E-mail</div>
+                        <div class="contact-info-value">
+                            <a href="mailto:info@dokterrichard.nl">info@dokterrichard.nl</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card fade-in fade-in-delay-1">
+                        <div class="contact-info-label">Telefoon</div>
+                        <div class="contact-info-value">
+                            <a href="tel:+31612345678">+31 (0)6 1234 5678</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card fade-in fade-in-delay-2">
+                        <div class="contact-info-label">Locatie</div>
+                        <div class="contact-info-value">Amsterdam, Nederland</div>
+                    </div>
+
+                    <div class="contact-info-card fade-in fade-in-delay-2">
+                        <div class="contact-info-label">Bereikbaar</div>
+                        <div class="contact-info-value">Ma &ndash; Vr, 9:00 &ndash; 17:00</div>
+                    </div>
+
+                    <div class="contact-extra fade-in">
+                        <h3>Direct contact</h3>
+                        <p>
+                            Liever direct bellen of een bericht via WhatsApp sturen?
+                            Dat kan ook. Ik sta voor je klaar.
+                        </p>
+                        <div class="contact-socials">
+                            <a href="#" aria-label="WhatsApp">WA</a>
+                            <a href="#" aria-label="Instagram">IG</a>
+                            <a href="#" aria-label="Facebook">FB</a>
+                            <a href="#" aria-label="LinkedIn">LI</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">Dokter <span>Richard</span></a>
+                    <p>Holistische geneeskunde met aandacht voor de hele mens.</p>
+                </div>
+                <div>
+                    <h4>Navigatie</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="diensten.html">Diensten</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Diensten</h4>
+                    <ul>
+                        <li><a href="diensten.html">Intake Consult</a></li>
+                        <li><a href="diensten.html">Holistische Diagnose</a></li>
+                        <li><a href="diensten.html">Coaching Traject</a></li>
+                        <li><a href="index.html#zelfscan">Gratis Zelfscan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <div class="footer-contact-item">info@dokterrichard.nl</div>
+                    <div class="footer-contact-item">+31 (0)6 12345678</div>
+                    <div class="footer-contact-item">Amsterdam, Nederland</div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Dokter Richard. Alle rechten voorbehouden.</p>
+                <div class="footer-socials">
+                    <a href="#">IG</a><a href="#">FB</a><a href="#">LI</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+            document.getElementById('hamburger').classList.toggle('active');
+        }
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+                document.getElementById('hamburger').classList.remove('active');
+            });
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
