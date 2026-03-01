@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokter Richard - Holistische Huisarts</title>
+    <style>
+        @font-face {
+            font-family: 'Bilmond';
+            src: url('../fonts/Bilmond-Light.woff2') format('woff2'),
+                 url('../fonts/Bilmond-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Bilmond';
+            src: url('../fonts/Bilmond-Regular.woff2') format('woff2'),
+                 url('../fonts/Bilmond-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Bilmond';
+            src: url('../fonts/Bilmond-Medium.woff2') format('woff2'),
+                 url('../fonts/Bilmond-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Bilmond';
+            src: url('../fonts/Bilmond-SemiBold.woff2') format('woff2'),
+                 url('../fonts/Bilmond-SemiBold.woff') format('woff');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Jubble Thin';
+            src: url('../fonts/JubbleThin-Thin.woff2') format('woff2'),
+                 url('../fonts/JubbleThin-Thin.woff') format('woff');
+            font-weight: 100;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Meditera';
+            src: url('../fonts/Meditera-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Meditera';
+            src: url('../fonts/Meditera-Italic.otf') format('opentype');
+            font-weight: 400;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Canpile Drawn';
+            src: url('../fonts/CanpileDrawn-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Canpile Drawn';
+            src: url('../fonts/CanpileDrawn-Italic.otf') format('opentype');
+            font-weight: 400;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Quano';
+            src: url('../fonts/Quano.woff2') format('woff2'),
+                 url('../fonts/Quano.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face { font-family: 'Mantul'; src: url('../fonts/Mantul.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Wayang'; src: url('../fonts/Wayang.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Saluna'; src: url('../fonts/Saluna-Medium.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Bosten'; src: url('../fonts/Bosten.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Lenia Sans'; src: url('../fonts/LeniaSans-Regular.ttf') format('truetype'); font-display: swap; }
+        @font-face { font-family: 'Konfus'; src: url('../fonts/Konfus-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Maxima Nouva'; src: url('../fonts/MaximaNouva-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'New Black'; src: url('../fonts/NewBlackTypeface-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Colossia'; src: url('../fonts/Colossia.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Neue Montreal'; src: url('../fonts/NeueMontreal-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Milky Croffle'; src: url('../fonts/MilkyCroffle.woff2') format('woff2'), url('../fonts/MilkyCroffle.woff') format('woff'); font-display: swap; }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #354A32;
+            --bg-dark: #3B4530;
+            --cream: #f8eee4;
+            --cream-muted: rgba(248, 238, 228, 0.85);
+            --border: rgba(248, 238, 228, 0.15);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lenia Sans', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            background: var(--bg);
+            color: var(--cream-muted);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        h1 {
+            font-family: 'Quano', Georgia, serif;
+            font-weight: 400;
+            color: var(--cream);
+        }
+
+        h2 {
+            font-family: 'Mantul', Georgia, serif;
+            font-weight: 400;
+            color: var(--cream);
+        }
+
+        h3 {
+            font-family: 'Mantul', Georgia, serif;
+            font-weight: 400;
+            color: var(--cream);
+        }
+
+        h4 {
+            font-family: 'Mantul', Georgia, serif;
+            font-weight: 400;
+            color: var(--cream);
+        }
+
+        /* ============ HEADER ============ */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 32px 64px;
+            border-bottom: 2px solid rgba(248, 238, 228, 0.15);
+            background: var(--bg);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: 'Bosten', Georgia, serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--cream);
+            text-transform: uppercase;
+            transform: scaleX(1.15);
+            transform-origin: left center;
+        }
+
+        .nav {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav li:not(:last-child)::after {
+            content: '/';
+            color: var(--cream-muted);
+            font-size: 14px;
+        }
+
+        .nav a {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--cream);
+            position: relative;
+            padding-bottom: 2px;
+            transition: opacity 0.3s;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 1px;
+            background: var(--cream);
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after { width: 100%; }
+
+        .nav a.nav-cta {
+            padding: 10px 28px 11px;
+            border: 1px solid var(--cream);
+            border-radius: 999px;
+            transition: background 0.3s, color 0.3s;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        .nav a.nav-cta:hover { background: var(--cream); color: var(--bg); }
+        .nav a.nav-cta::after { display: none !important; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 26px; height: 1.5px;
+            background: var(--cream);
+            transition: all 0.3s;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            padding: 80px 64px 100px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 64px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('../images/zonnebloempatroon-donker.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero > * { position: relative; z-index: 1; }
+
+        .hero-content { text-align: left; display: flex; flex-direction: column; align-items: flex-start; }
+
+        .hero h1 {
+            font-size: 50px;
+            line-height: 1.15;
+            margin-bottom: 36px;
+            width: 100%;
+        }
+
+        .hero p {
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--cream-muted);
+            line-height: 1.8;
+            width: 100%;
+        }
+
+        .hero-img { border-radius: 12px; overflow: hidden; }
+        .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; aspect-ratio: 3/4; border-radius: 12px; }
+
+        /* ============ PROJECT SECTIONS (Dremus-style) ============ */
+        .projects {
+            padding: 0 64px;
+        }
+
+        .project-section {
+            margin-bottom: 80px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .project-grid.reverse {
+            grid-template-columns: 1fr 1.4fr;
+        }
+
+        .project-grid.three-col {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .project-img {
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.6s ease;
+            display: block;
+        }
+
+        .project-img:hover img {
+            transform: scale(1.04);
+        }
+
+        .project-img-tall {
+            aspect-ratio: 4/3;
+        }
+
+        .project-img-wide {
+            aspect-ratio: 16/10;
+        }
+
+        .project-img-square {
+            aspect-ratio: 1/1;
+        }
+
+        .project-title h2 {
+            font-size: clamp(18px, 2.5vw, 24px);
+            padding: 16px 0 0;
+            margin: 0;
+        }
+
+        .project-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-family: inherit;
+            font-size: inherit;
+            padding: 0;
+        }
+
+        .project-toggle:hover {
+            opacity: 0.7;
+        }
+
+        .project-toggle .toggle-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--cream);
+            border-radius: 50%;
+            font-size: 16px;
+            line-height: 1;
+            transition: transform 0.3s;
+        }
+
+        .project-section.open .toggle-icon {
+            /* icon text changes via JS */
+        }
+
+        .project-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0;
+        }
+
+        .project-section.open .project-body {
+            max-height: 800px;
+            padding: 8px 0 32px;
+        }
+
+        .project-body p {
+            font-family: 'Lenia Sans', sans-serif;
+            font-size: 16px;
+            color: var(--cream-muted);
+            line-height: 1.7;
+            max-width: 700px;
+        }
+
+        .project-section[style*="text-align: right"] .project-body p {
+            margin-left: auto;
+        }
+
+        .book-feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .book-info h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .book-info p {
+            max-width: 100%;
+        }
+
+        .book-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+            padding: 12px 32px;
+            border: 1px solid var(--cream);
+            border-radius: 999px;
+            color: var(--cream);
+            font-family: 'Lenia Sans', sans-serif;
+            font-size: 16px;
+            background: transparent;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            text-decoration: none;
+        }
+
+        .book-cta:hover {
+            background: var(--cream);
+            color: var(--bg);
+        }
+
+        .book-cover {
+            width: 100%;
+            max-width: 300px;
+            margin-left: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .book-feature {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                text-align: center;
+            }
+            .book-cover {
+                margin: 0 auto;
+                max-width: 220px;
+                order: -1;
+            }
+        }
+
+        /* ============ ZELFSCAN CTA ============ */
+        .cta-section {
+            padding: 0 64px 80px;
+        }
+
+        .cta-inner {
+            background: #dcd4c6;
+            border-radius: 24px;
+            padding: 72px 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-inner::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -60px;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: rgba(53, 74, 50, 0.06);
+        }
+
+        .cta-inner::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: 30%;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(53, 74, 50, 0.04);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(26px, 3vw, 40px);
+            line-height: 1.2;
+            margin-bottom: 12px;
+            color: var(--bg);
+        }
+
+        .cta-content p {
+            font-size: 16px;
+            color: rgba(53, 74, 50, 0.7);
+            max-width: 460px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        .btn-cream {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--bg);
+            color: var(--cream);
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-cream:hover {
+            opacity: 0.85;
+        }
+
+        .btn-cream svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .btn-outline-cream {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: transparent;
+            color: var(--bg);
+            border: 1.5px solid rgba(53, 74, 50, 0.3);
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-cream:hover {
+            border-color: var(--bg);
+        }
+
+        /* ============ CONSULTEN ============ */
+        .consulten {
+            padding: 100px 64px;
+        }
+
+        .consulten-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .consulten-header h2 {
+            font-size: clamp(28px, 4vw, 48px);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .consulten-header p {
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--cream-muted);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .consulten-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 32px;
+        }
+
+        .consult-card {
+            border: 1px solid var(--border);
+            padding: 48px 36px;
+            border-radius: 12px;
+            transition: border-color 0.3s;
+        }
+
+        .consult-card:hover {
+            border-color: rgba(248, 238, 228, 0.35);
+        }
+
+        .consult-label {
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--cream-muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .consult-title {
+            font-size: 20px;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .consult-desc {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--cream-muted);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .consult-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .consult-price {
+            font-family: 'Quano', Georgia, serif;
+            font-size: 22px;
+            color: var(--cream);
+        }
+
+        .consult-duration {
+            font-size: 13px;
+            color: var(--cream-muted);
+        }
+
+        .consult-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            font-family: 'Mantul', Georgia, serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--cream);
+            letter-spacing: 0.02em;
+            transition: opacity 0.3s;
+        }
+
+        .consult-cta:hover { opacity: 0.7; }
+
+        .consult-cta .arrow-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--cream);
+            border-radius: 50%;
+            transition: background 0.3s, color 0.3s;
+            flex-shrink: 0;
+        }
+
+        .consult-cta .arrow-circle svg {
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .consult-cta:hover .arrow-circle {
+            background: var(--cream);
+            color: var(--bg);
+        }
+
+        @media (max-width: 768px) {
+            .consulten { padding: 48px 24px; }
+            .consulten-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ============ CONTACT ROW ============ */
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            padding: 64px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--cream);
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .contact-item:hover .contact-icon {
+            border-color: var(--cream);
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 64px;
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .footer-logo {
+            font-family: 'Bosten', Georgia, serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--cream);
+            text-transform: uppercase;
+            transform: scaleX(1.15);
+            transform-origin: left center;
+        }
+
+        .footer-col {
+            font-size: 13px;
+            line-height: 1.9;
+            color: var(--cream-muted);
+        }
+
+        .footer-col a {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: opacity 0.3s;
+        }
+
+        .footer-col a:hover { opacity: 0.7; }
+
+        .footer-col strong {
+            font-weight: 500;
+            color: var(--cream);
+        }
+
+        .newsletter-row {
+            display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+        }
+        .newsletter-row label {
+            font-size: 14px; color: var(--cream); white-space: nowrap;
+        }
+        .newsletter-input {
+            padding: 10px 16px; font-size: 14px; font-family: inherit;
+            background: rgba(248,238,228,0.1); border: 1px solid rgba(248,238,228,0.25);
+            border-radius: 8px; color: var(--cream); outline: none; min-width: 200px;
+        }
+        .newsletter-input::placeholder { color: rgba(248,238,228,0.4); }
+        .newsletter-input:focus { border-color: rgba(248,238,228,0.5); }
+        .newsletter-btn {
+            padding: 10px 24px; font-size: 13px; font-weight: 500;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--bg); background: var(--cream);
+            border: none; border-radius: 8px; cursor: pointer;
+            transition: opacity 0.3s; font-family: inherit;
+        }
+        .newsletter-btn:hover { opacity: 0.8; }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .header { padding: 20px 24px; }
+
+            .nav {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(73, 85, 61, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 24px;
+                z-index: 100;
+            }
+
+            .nav.open { display: flex; }
+            .nav li::after { display: none !important; }
+            .nav a { font-size: 22px; }
+            .hamburger { display: flex; z-index: 101; }
+
+            .hero { padding: 48px 24px 64px; grid-template-columns: 1fr; }
+            .hero-img { max-height: 300px; }
+            .projects { padding: 0 24px; }
+
+            .project-grid,
+            .project-grid.reverse,
+            .project-grid.three-col {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section { padding: 0 24px 48px; }
+            .cta-inner { padding: 48px 32px; flex-direction: column; text-align: center; }
+            .cta-content p { max-width: 100%; }
+            .cta-buttons { justify-content: center; }
+            .contact-row { flex-direction: column; gap: 20px; padding: 32px 24px; }
+            .footer { padding: 32px 24px; }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../toolbar.css">
+</head>
+<body>
+
+    <div class="device-frame desktop" id="deviceFrame">
+    <div class="page-wrapper" id="page">
+
+    <!-- ============ HEADER ============ -->
+    <header class="header">
+        <a href="index.html" class="logo logo-text">dokter richard</a>
+        <ul class="nav" id="nav">
+            <li><a href="#over" class="body-text">Over Mij</a></li>
+            <li><a href="#" class="body-text">Coaching</a></li>
+            <li><a href="#" class="body-text">Contact</a></li>
+            <li><a href="#" class="body-text">Boeken</a></li>
+            <li><a href="#zelfscan" class="body-text">Trainingstraject</a></li>
+            <li><a href="#" class="body-text nav-cta">Consult aanvragen</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="document.getElementById('nav').classList.toggle('open');this.classList.toggle('active')">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="header-text h1-text">Het maakt niet uit of je uit balans raakt, als je de weg terug maar weet te vinden</h1>
+            <p class="body-text">Ik combineer mijn passie voor holistische geneeskunde met aandacht voor lichaam, geest en ziel. Als huisarts, leefstijlarts en coach begeleid ik mensen naar balans en gezondheid.</p>
+        </div>
+        <div class="hero-img">
+            <img src="../images/richard-huisarts.jpg" alt="Dokter Richard Hoofs">
+        </div>
+    </section>
+
+    <!-- ============ HOLISTISCHE PRAKTIJK ============ -->
+    <section class="projects" id="over">
+        <div class="project-section">
+            <div class="project-grid">
+                <div class="project-img project-img-tall">
+                    <img src="../images/rich-tas-2.jpeg" alt="Dokter Richard onderweg">
+                </div>
+                <div class="project-img project-img-tall">
+                    <img src="../images/richard-huisarts.jpg" alt="Richard in de praktijk">
+                </div>
+            </div>
+            <div class="project-title">
+                <h2><button class="project-toggle header-text" onclick="toggleSection(this)">Holistische Praktijk <span class="toggle-icon">+</span></button></h2>
+            </div>
+            <div class="project-body">
+                <p class="body-text">Als holistisch arts kijk ik verder dan alleen het lichaam. Ik combineer westerse geneeskunde met natuurlijke therapieën, acupunctuur en energetisch werk om tot de kern van je klachten te komen. Samen werken we aan herstel op fysiek, mentaal en emotioneel niveau.</p>
+                <a href="#" class="consult-cta body-text"><span class="arrow-circle"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span> Ga naar consult</a>
+            </div>
+        </div>
+
+        <!-- ============ COACHING & LEEFSTIJL ============ -->
+        <div class="project-section" style="text-align: right;">
+            <div class="project-grid reverse">
+                <div class="project-img project-img-wide">
+                    <img src="../images/richard-huisarts.jpg" alt="Richard aan het werk">
+                </div>
+                <div class="project-img project-img-wide">
+                    <img src="../images/richard-thot-2.jpg" alt="Inspiratie en wijsheid">
+                </div>
+            </div>
+            <div class="project-title">
+                <h2><button class="project-toggle header-text" onclick="toggleSection(this)">Coaching &amp; Leefstijl <span class="toggle-icon">+</span></button></h2>
+            </div>
+            <div class="project-body">
+                <p class="body-text">Mijn coaching trajecten richten zich op duurzame verandering in je leefstijl. Van voeding en beweging tot stressmanagement en slaap — we bouwen samen aan gewoontes die passen bij jouw leven en gezondheid.</p>
+                <a href="#" class="consult-cta body-text"><span class="arrow-circle"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span> Ga naar coaching</a>
+            </div>
+        </div>
+
+        <!-- ============ BOEKEN & PUBLICATIES ============ -->
+        <div class="project-section">
+            <div class="project-grid">
+                <div class="project-img project-img-tall">
+                    <img src="../images/IMG_5835.jpeg" alt="Richard Hoofs portret">
+                </div>
+                <div class="project-img project-img-tall">
+                    <img src="../images/richard-thot-2.jpg" alt="Richard op reis">
+                </div>
+            </div>
+            <div class="project-title">
+                <h2><button class="project-toggle header-text" onclick="toggleSection(this)">Boeken &amp; Publicaties <span class="toggle-icon">+</span></button></h2>
+            </div>
+            <div class="project-body">
+                <div class="book-feature">
+                    <div class="book-info">
+                        <h3 class="header-text">Bezield Leven</h3>
+                        <p class="body-text">Een praktische gids over holistisch welzijn, geschreven vanuit jarenlange ervaring als arts. Ontdek hoe je lichaam, geest en ziel weer in balans brengt en bouw aan een leven vol vitaliteit en betekenis.</p>
+                        <a href="#" class="book-cta body-text">Koop het boek &rarr;</a>
+                    </div>
+                    <img src="../images/bezieldleven.jpg" alt="Bezield Leven — boek van Dokter Richard" class="book-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CONSULTEN ============ -->
+    <section class="consulten" id="consulten">
+        <div class="consulten-header">
+            <h2 class="header-text">Consulten &amp; Coaching</h2>
+            <p class="body-text">Persoonlijke begeleiding op het snijvlak van westerse geneeskunde, leefstijlgeneeskunde en holistische therapie.</p>
+        </div>
+        <div class="consulten-grid">
+            <div class="consult-card">
+                <div class="consult-label body-text">Consult</div>
+                <h3 class="consult-title header-text">Persoonlijk Consult</h3>
+                <p class="consult-desc body-text">Een uitgebreid gesprek waarin we kijken naar lichaam, geest en leefstijl. Met aandacht voor ademhaling, lichaamsbewustzijn, energie en mindfulness.</p>
+                <div class="consult-meta">
+                    <span class="consult-price">€120</span>
+                    <span class="consult-duration body-text">75 – 90 min</span>
+                </div>
+                <a href="#" class="consult-cta body-text"><span class="arrow-circle"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span> Afspraak maken</a>
+            </div>
+            <div class="consult-card">
+                <div class="consult-label body-text">Traject</div>
+                <h3 class="consult-title header-text">Coaching Traject</h3>
+                <p class="consult-desc body-text">Een traject van 3 tot 5 sessies gericht op persoonlijke groei. We werken aan blokkerende patronen en transformeren belemmerende overtuigingen.</p>
+                <div class="consult-meta">
+                    <span class="consult-price">€100</span>
+                    <span class="consult-duration body-text">per sessie</span>
+                </div>
+                <a href="#" class="consult-cta body-text"><span class="arrow-circle"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span> Meer informatie</a>
+            </div>
+            <div class="consult-card">
+                <div class="consult-label body-text">Acupunctuur</div>
+                <h3 class="consult-title header-text">Acupunctuur &amp; Healing</h3>
+                <p class="consult-desc body-text">Behandeling gericht op energiebalans, chakra's en meridianen. Gecombineerd met Ayurveda en ademwerk voor diep herstel.</p>
+                <div class="consult-meta">
+                    <span class="consult-price">€120</span>
+                    <span class="consult-duration body-text">60 – 90 min</span>
+                </div>
+                <a href="#" class="consult-cta body-text"><span class="arrow-circle"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span> Afspraak maken</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ZELFSCAN CTA ============ -->
+    <section class="cta-section" id="zelfscan">
+        <div class="cta-inner">
+            <div class="cta-content">
+                <h2 class="header-text">Doe de gratis Gezondheid Zelfscan</h2>
+                <p class="body-text">Krijg in 15-20 minuten inzicht in je gezondheid op vier pijlers: SES, Body, Mind en Soul. Volledig gratis en vrijblijvend.</p>
+            </div>
+            <div class="cta-buttons" style="flex-direction:column; gap:12px; align-items:flex-start;">
+                <p class="body-text" style="font-size:13px; color:#263A2A; margin:0;">Schrijf je in voor de nieuwsbrief en krijg direct toegang tot de zelfscan.</p>
+                <div style="display:flex; gap:10px; width:100%;">
+                    <input type="email" class="body-text" placeholder="je@email.nl" style="padding:12px 18px; font-size:14px; font-family:inherit; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); border-radius:8px; color:var(--bg); outline:none; flex:1; min-width:180px;">
+                    <button class="btn-cream body-text" style="border:none; cursor:pointer; font-family:inherit; white-space:nowrap;">
+                        Start zelfscan
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT ROW ============ -->
+    <div class="contact-row">
+        <a href="tel:+31612345678" class="contact-item body-text">
+            <span class="contact-icon">&rarr;</span>
+            +31 6 1234 5678
+        </a>
+        <a href="mailto:info@dokterrichard.nl" class="contact-item body-text">
+            <span class="contact-icon">&rarr;</span>
+            info@dokterrichard.nl
+        </a>
+    </div>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div><div class="footer-logo logo-text">dokter richard</div></div>
+            <div class="footer-col body-text">
+                <strong>Richard Hoofs</strong><br>
+                Arts, coach, acupuncturist<br><br>
+                Amsterdam<br>
+                Nederland
+            </div>
+            <div class="footer-col body-text">
+                Afspraken en contact mail naar<br>
+                <a href="mailto:info@dokterrichard.nl">info@dokterrichard.nl</a>
+                <div class="newsletter-row" style="margin-top:24px;">
+                    <label class="body-text">Meld je aan voor mijn nieuwsbrief</label>
+                    <input type="email" class="newsletter-input body-text" placeholder="je@email.nl">
+                    <button class="newsletter-btn body-text">Aanmelden &rarr;</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.nav a').forEach(a => {
+            a.addEventListener('click', () => {
+                document.getElementById('nav').classList.remove('open');
+                document.getElementById('hamburger').classList.remove('active');
+            });
+        });
+
+        function toggleSection(btn) {
+            var section = btn.closest('.project-section');
+            section.classList.toggle('open');
+            var icon = btn.querySelector('.toggle-icon');
+            icon.textContent = section.classList.contains('open') ? '−' : '+';
+        }
+    </script>
+    <script src="../toolbar.js"></script>
+</body>
+</html>

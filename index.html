@@ -3,566 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dokter Richard - Holistische Huisarts</title>
+    <title>Dokter Richard — Versies</title>
     <style>
-        @font-face {
-            font-family: 'Bilmond';
-            src: url('fonts/Bilmond-Light.woff2') format('woff2'),
-                 url('fonts/Bilmond-Light.woff') format('woff');
-            font-weight: 300;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Bilmond';
-            src: url('fonts/Bilmond-Regular.woff2') format('woff2'),
-                 url('fonts/Bilmond-Regular.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Bilmond';
-            src: url('fonts/Bilmond-Medium.woff2') format('woff2'),
-                 url('fonts/Bilmond-Medium.woff') format('woff');
-            font-weight: 500;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Bilmond';
-            src: url('fonts/Bilmond-SemiBold.woff2') format('woff2'),
-                 url('fonts/Bilmond-SemiBold.woff') format('woff');
-            font-weight: 600;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Jubble Thin';
-            src: url('fonts/JubbleThin-Thin.woff2') format('woff2'),
-                 url('fonts/JubbleThin-Thin.woff') format('woff');
-            font-weight: 100;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Meditera';
-            src: url('fonts/Meditera-Regular.otf') format('opentype');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Meditera';
-            src: url('fonts/Meditera-Italic.otf') format('opentype');
-            font-weight: 400;
-            font-style: italic;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Canpile Drawn';
-            src: url('fonts/CanpileDrawn-Regular.otf') format('opentype');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Canpile Drawn';
-            src: url('fonts/CanpileDrawn-Italic.otf') format('opentype');
-            font-weight: 400;
-            font-style: italic;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Quano';
-            src: url('fonts/Quano.woff2') format('woff2'),
-                 url('fonts/Quano.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'Coldesac';
-            src: url('fonts/Coldesac.otf') format('opentype');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #111; font-family: -apple-system, BlinkMacSystemFont, sans-serif; overflow: hidden; height: 100vh; }
 
-        :root {
-            --bg: #354A32;
-            --bg-dark: #3B4530;
-            --cream: #f8eee4;
-            --cream-muted: rgba(248, 238, 228, 0.85);
-            --border: rgba(248, 238, 228, 0.15);
+        .toast {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(20px);
+            background: #fff; color: #111; padding: 10px 24px;
+            border-radius: 999px; font-size: 13px; font-weight: 600;
+            opacity: 0; transition: all 0.3s; pointer-events: none; z-index: 99999;
         }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Bilmond', sans-serif;
-            font-weight: 600;
-            font-size: 17px;
-            background: var(--bg);
-            color: var(--cream-muted);
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a { color: inherit; text-decoration: none; }
-        img { max-width: 100%; display: block; }
-
-        /* ============ HEADER ============ */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 28px 48px;
-            border-bottom: 2px solid rgba(248, 238, 228, 0.15);
-        }
-
-        .logo {
-            font-family: 'Coldesac', sans-serif;
-            font-size: 28px;
-            font-weight: 400;
-            color: var(--cream);
-            text-transform: uppercase;
-        }
-
-        .nav {
-            display: flex;
-            list-style: none;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav li {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav li:not(:last-child)::after {
-            content: '/';
-            color: var(--cream-muted);
-            font-size: 14px;
-        }
-
-        .nav a {
-            font-size: 15px;
-            font-weight: 400;
-            color: var(--cream);
-            position: relative;
-            padding-bottom: 2px;
-            transition: opacity 0.3s;
-        }
-
-        .nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 0; height: 1px;
-            background: var(--cream);
-            transition: width 0.3s ease;
-        }
-
-        .nav a:hover::after { width: 100%; }
-
-        .hamburger {
+        .version-frame {
             display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
+            width: 100%; height: 100vh;
+            border: none;
         }
-
-        .hamburger span {
-            width: 26px; height: 1.5px;
-            background: var(--cream);
-            transition: all 0.3s;
-        }
-
-        /* ============ HERO ============ */
-        .hero {
-            padding: 80px 48px 100px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-family: 'Coldesac', sans-serif;
-            font-size: clamp(36px, 6vw, 80px);
-            font-weight: 400;
-            color: var(--cream);
-            line-height: 1.15;
-            max-width: 800px;
-            margin: 0 auto 36px;
-        }
-
-        .hero p {
-            font-size: 15px;
-            font-weight: 300;
-            color: var(--cream-muted);
-            max-width: 620px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        /* ============ PROJECT SECTIONS (Dremus-style) ============ */
-        .projects {
-            padding: 0 48px;
-        }
-
-        .project-section {
-            margin-bottom: 48px;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-
-        .project-grid.reverse {
-            grid-template-columns: 1fr 1.4fr;
-        }
-
-        .project-grid.three-col {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        .project-img {
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .project-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-            display: block;
-        }
-
-        .project-img:hover img {
-            transform: scale(1.04);
-        }
-
-        .project-img-tall {
-            aspect-ratio: 4/3;
-        }
-
-        .project-img-wide {
-            aspect-ratio: 16/10;
-        }
-
-        .project-img-square {
-            aspect-ratio: 1/1;
-        }
-
-        .project-title {
-            font-family: 'Bilmond', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--cream);
-            padding: 16px 0 32px;
-        }
-
-        .project-title a {
-            transition: opacity 0.3s;
-        }
-
-        .project-title a:hover {
-            opacity: 0.7;
-        }
-
-        /* ============ BANNER (Shop-style CTA) ============ */
-        .banner {
-            position: relative;
-            margin: 32px 48px;
-            overflow: hidden;
-            height: 400px;
-        }
-
-        .banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .banner-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(30, 40, 25, 0.55);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px;
-        }
-
-        .banner h2 {
-            font-family: 'Coldesac', sans-serif;
-            font-size: clamp(32px, 5vw, 56px);
-            font-weight: 400;
-            color: var(--cream);
-            line-height: 1.15;
-            margin-bottom: 28px;
-        }
-
-        .banner-link {
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--cream);
-            border-bottom: 1px solid var(--cream);
-            padding-bottom: 4px;
-            letter-spacing: 0.05em;
-            transition: opacity 0.3s;
-        }
-
-        .banner-link:hover { opacity: 0.7; }
-
-        /* ============ CONTACT ROW ============ */
-        .contact-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            padding: 48px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            color: var(--cream);
-        }
-
-        .contact-icon {
-            width: 36px;
-            height: 36px;
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-
-        .contact-item:hover .contact-icon {
-            border-color: var(--cream);
-        }
-
-        /* ============ FOOTER ============ */
-        .footer {
-            border-top: 1px solid var(--border);
-            padding: 48px;
-        }
-
-        .footer-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        .footer-logo {
-            font-family: 'Coldesac', sans-serif;
-            font-size: 28px;
-            font-weight: 400;
-            color: var(--cream);
-            text-transform: uppercase;
-        }
-
-        .footer-col {
-            font-size: 13px;
-            line-height: 1.9;
-            color: var(--cream-muted);
-        }
-
-        .footer-col a {
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            transition: opacity 0.3s;
-        }
-
-        .footer-col a:hover { opacity: 0.7; }
-
-        .footer-col strong {
-            font-weight: 500;
-            color: var(--cream);
-        }
-
-        /* ============ RESPONSIVE ============ */
-        @media (max-width: 768px) {
-            .header { padding: 20px 24px; }
-
-            .nav {
-                display: none;
-                position: fixed;
-                inset: 0;
-                background: rgba(73, 85, 61, 0.98);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 24px;
-                z-index: 100;
-            }
-
-            .nav.open { display: flex; }
-            .nav li::after { display: none !important; }
-            .nav a { font-size: 22px; }
-            .hamburger { display: flex; z-index: 101; }
-
-            .hero { padding: 48px 24px 64px; }
-            .projects { padding: 0 24px; }
-
-            .project-grid,
-            .project-grid.reverse,
-            .project-grid.three-col {
-                grid-template-columns: 1fr;
-            }
-
-            .banner { margin: 24px; height: 300px; }
-            .contact-row { flex-direction: column; gap: 20px; padding: 32px 24px; }
-            .footer { padding: 32px 24px; }
-
-            .footer-inner {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-        }
+        .version-frame.active { display: block; }
     </style>
 </head>
 <body>
+    <div class="toast" id="toast"></div>
 
-    <!-- ============ HEADER ============ -->
-    <header class="header">
-        <a href="index.html" class="logo">dokter richard</a>
-        <ul class="nav" id="nav">
-            <li><a href="#over">Over</a></li>
-            <li><a href="diensten.html">Diensten</a></li>
-            <li><a href="#zelfscan">Zelfscan</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="hamburger" id="hamburger" onclick="document.getElementById('nav').classList.toggle('open');this.classList.toggle('active')">
-            <span></span><span></span><span></span>
-        </div>
-    </header>
-
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-        <h1>Het maakt niet uit of je uit balans raakt, als je de weg terug maar weet te vinden</h1>
-        <p>
-            Ik combineer mijn passie voor holistische geneeskunde met aandacht voor
-            lichaam, geest en ziel. Als huisarts, leefstijlarts en coach begeleid ik
-            mensen naar balans en gezondheid.
-        </p>
-    </section>
-
-    <!-- ============ HOLISTISCHE PRAKTIJK ============ -->
-    <section class="projects" id="over">
-        <div class="project-section">
-            <div class="project-grid">
-                <div class="project-img project-img-tall">
-                    <img src="Rich Tas 2.jpeg" alt="Dokter Richard onderweg">
-                </div>
-                <div class="project-img project-img-tall">
-                    <img src="richard huisarts.jpg" alt="Richard in de praktijk">
-                </div>
-            </div>
-            <div class="project-title"><a href="diensten.html">Holistische Praktijk +</a></div>
-        </div>
-
-        <!-- ============ COACHING & LEEFSTIJL ============ -->
-        <div class="project-section">
-            <div class="project-grid reverse">
-                <div class="project-img project-img-wide">
-                    <img src="richard huisarts.jpg" alt="Richard aan het werk">
-                </div>
-                <div class="project-img project-img-wide">
-                    <img src="Richard thot 2.jpg" alt="Inspiratie en wijsheid">
-                </div>
-            </div>
-            <div class="project-title"><a href="diensten.html">Coaching &amp; Leefstijl +</a></div>
-        </div>
-
-        <!-- ============ BOEKEN & PUBLICATIES ============ -->
-        <div class="project-section">
-            <div class="project-grid">
-                <div class="project-img project-img-tall">
-                    <img src="IMG_5835.jpeg" alt="Richard Hoofs portret">
-                </div>
-                <div class="project-img project-img-tall">
-                    <img src="Richard thot 2.jpg" alt="Richard op reis">
-                </div>
-            </div>
-            <div class="project-title"><a href="#">Boeken &amp; Publicaties +</a></div>
-        </div>
-    </section>
-
-    <!-- ============ BANNER (Zelfscan CTA) ============ -->
-    <section class="banner" id="zelfscan">
-        <img src="Rich Tas 2.jpeg" alt="Dokter Richard">
-        <div class="banner-overlay">
-            <h2>Doe de gratis<br>Gezondheid Zelfscan</h2>
-            <a href="#" class="banner-link">Aanvragen</a>
-        </div>
-    </section>
-
-    <!-- ============ CONTACT ROW ============ -->
-    <div class="contact-row">
-        <a href="tel:+31612345678" class="contact-item">
-            <span class="contact-icon">&rarr;</span>
-            +31 6 1234 5678
-        </a>
-        <a href="mailto:info@dokterrichard.nl" class="contact-item">
-            <span class="contact-icon">&rarr;</span>
-            info@dokterrichard.nl
-        </a>
-    </div>
-
-    <!-- ============ FOOTER ============ -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <div>
-                <div class="footer-logo">dokter richard</div>
-            </div>
-            <div class="footer-col">
-                <strong>Dokter Richard Hoofs</strong><br>
-                Huisarts, leefstijlarts &amp; coach<br><br>
-                Amsterdam<br>
-                Nederland<br>
-                <a href="https://dokterrichard.nl">Website</a>
-            </div>
-            <div class="footer-col">
-                Wil je samenwerken of heb je een vraag?<br>
-                Stuur een mail naar <a href="mailto:info@dokterrichard.nl">info@dokterrichard.nl</a>
-            </div>
-        </div>
-    </footer>
+    <iframe class="version-frame active" id="frame-v1" src="v1/index.html"></iframe>
+    <iframe class="version-frame" id="frame-v2"></iframe>
+    <iframe class="version-frame" id="frame-v3"></iframe>
 
     <script>
-        document.querySelectorAll('.nav a').forEach(a => {
-            a.addEventListener('click', () => {
-                document.getElementById('nav').classList.remove('open');
-                document.getElementById('hamburger').classList.remove('active');
-            });
+        var currentVersion = 'v1';
+
+        function switchVersion(v) {
+            currentVersion = v;
+            document.querySelectorAll('.version-frame').forEach(function(f) { f.classList.remove('active'); });
+            var frame = document.getElementById('frame-' + v);
+            frame.src = v + '/index.html';
+            frame.classList.add('active');
+        }
+
+        function shareVersion() {
+            var frame = document.getElementById('frame-' + currentVersion);
+            var state = {};
+            try {
+                state = frame.contentWindow._tbGetState ? frame.contentWindow._tbGetState() : {};
+            } catch(e) {}
+
+            var params = ['share'];
+            if (state.logo)       params.push('logo=' + encodeURIComponent(state.logo) + '&logoW=' + state.logoWeight);
+            if (state.h1)         params.push('h1=' + encodeURIComponent(state.h1) + '&h1W=' + state.h1Weight);
+            if (state.header)     params.push('header=' + encodeURIComponent(state.header) + '&headerW=' + state.headerWeight);
+            if (state.body)       params.push('body=' + encodeURIComponent(state.body) + '&bodyW=' + state.bodyWeight);
+            if (state.h1Size)     params.push('h1Size=' + state.h1Size);
+            if (state.headerSize) params.push('headerSize=' + state.headerSize);
+            if (state.bodySize)   params.push('bodySize=' + state.bodySize);
+
+            var base = window.location.href.split('?')[0].replace(/\/?index\.html$/, '').replace(/\/$/, '');
+            var shareUrl = base + '/' + currentVersion + '/index.html?' + params.join('&');
+            navigator.clipboard.writeText(shareUrl).then(function() {
+                showToast('Link gekopieerd!');
+            }).catch(function() {});
+            window.open(shareUrl, '_blank');
+        }
+
+        function showToast(msg) {
+            var t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(function() { t.classList.remove('show'); }, 2000);
+        }
+
+        // Listen for messages from iframe toolbar
+        window.addEventListener('message', function(e) {
+            if (!e.data || !e.data.type) return;
+            if (e.data.type === 'switchVersion') {
+                switchVersion(e.data.version);
+            } else if (e.data.type === 'shareVersion') {
+                shareVersion();
+            }
         });
     </script>
 </body>

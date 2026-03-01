@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V1 - Dokter Richard (Donker Groen)</title>
+    <style>
+        /* ===== FONT FACES ===== */
+        @font-face { font-family: 'Bilmond'; src: url('../fonts/Bilmond-Light.woff2') format('woff2'), url('../fonts/Bilmond-Light.woff') format('woff'); font-weight: 300; font-display: swap; }
+        @font-face { font-family: 'Bilmond'; src: url('../fonts/Bilmond-Regular.woff2') format('woff2'), url('../fonts/Bilmond-Regular.woff') format('woff'); font-weight: 400; font-display: swap; }
+        @font-face { font-family: 'Bilmond'; src: url('../fonts/Bilmond-Medium.woff2') format('woff2'), url('../fonts/Bilmond-Medium.woff') format('woff'); font-weight: 500; font-display: swap; }
+        @font-face { font-family: 'Bilmond'; src: url('../fonts/Bilmond-SemiBold.woff2') format('woff2'), url('../fonts/Bilmond-SemiBold.woff') format('woff'); font-weight: 600; font-display: swap; }
+        @font-face { font-family: 'Meditera'; src: url('../fonts/Meditera-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Canpile Drawn'; src: url('../fonts/CanpileDrawn-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Quano'; src: url('../fonts/Quano.woff2') format('woff2'), url('../fonts/Quano.woff') format('woff'); font-display: swap; }
+        @font-face { font-family: 'Mantul'; src: url('../fonts/Mantul.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Wayang'; src: url('../fonts/Wayang.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Saluna'; src: url('../fonts/Saluna-Medium.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Bosten'; src: url('../fonts/Bosten.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Lenia Sans'; src: url('../fonts/LeniaSans-Regular.ttf') format('truetype'); font-display: swap; }
+        @font-face { font-family: 'Konfus'; src: url('../fonts/Konfus-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Maxima Nouva'; src: url('../fonts/MaximaNouva-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'New Black'; src: url('../fonts/NewBlackTypeface-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Colossia'; src: url('../fonts/Colossia.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Neue Montreal'; src: url('../fonts/NeueMontreal-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Milky Croffle'; src: url('../fonts/MilkyCroffle.woff2') format('woff2'), url('../fonts/MilkyCroffle.woff') format('woff'); font-display: swap; }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #354A32;
+            --cream: #f8eee4;
+            --cream-muted: rgba(248, 238, 228, 0.85);
+            --border: rgba(248, 238, 228, 0.15);
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Bilmond', sans-serif; font-weight: 600; font-size: 22px; background: #2a2a2a; color: var(--cream-muted); -webkit-font-smoothing: antialiased; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        /* ===== PAGE ===== */
+        .page-wrapper { background: var(--bg); }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 32px 64px;
+            border-bottom: 2px solid rgba(248, 238, 228, 0.15);
+        }
+
+        .logo, .logo-text { text-transform: uppercase; }
+        .logo-text.bosten-active { transform: scaleX(1.15); transform-origin: left; display: inline-block; }
+        .logo {
+            font-family: 'Bosten', Georgia, serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--cream);
+            text-transform: uppercase;
+            transform: scaleX(1.15);
+            transform-origin: left center;
+        }
+
+        .nav { display: flex; list-style: none; align-items: center; gap: 8px; }
+        .nav li { display: flex; align-items: center; gap: 8px; }
+        .nav li:not(:last-child)::after { content: '/'; color: var(--cream-muted); font-size: 14px; }
+        .nav a {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--cream);
+            position: relative;
+            padding-bottom: 2px;
+            transition: opacity 0.3s;
+        }
+        .nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--cream); transition: width 0.3s ease; }
+        .nav a:hover::after { width: 100%; }
+
+        .nav a.nav-cta {
+            padding: 10px 28px 11px;
+            border: 1px solid var(--cream);
+            border-radius: 999px;
+            transition: background 0.3s, color 0.3s;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        .nav a.nav-cta:hover { background: var(--cream); color: var(--bg); }
+        .nav a.nav-cta::after { display: none !important; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 26px; height: 1.5px;
+            background: var(--cream);
+            transition: all 0.3s;
+        }
+
+        .hero { padding: 80px 64px 100px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
+        .hero-content { text-align: left; }
+        .hero h1 { font-family: 'Quano', Georgia, serif; font-size: 50px; font-weight: 400; color: var(--cream); line-height: 1.15; margin-bottom: 36px; }
+        .hero p { font-size: 18px; font-weight: 300; color: var(--cream-muted); line-height: 1.8; }
+        .hero-img { border-radius: 12px; overflow: hidden; }
+        .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; aspect-ratio: 3/4; border-radius: 12px; }
+
+        .projects { padding: 0 48px; }
+        .project-section { margin-bottom: 64px; }
+        .project-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; margin-bottom: 20px; }
+        .project-grid.reverse { grid-template-columns: 1fr 1.4fr; }
+        .project-img { overflow: hidden; position: relative; cursor: pointer; border-radius: 12px; }
+        .project-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.6s ease; display: block; }
+        .project-img:hover img { transform: scale(1.04); }
+        .project-img-tall { aspect-ratio: 4/3; }
+        .project-img-wide { aspect-ratio: 16/10; }
+        .project-title { font-family: 'Bilmond', sans-serif; font-size: 16px; font-weight: 400; color: var(--cream); padding: 16px 0 32px; }
+        .project-title a { transition: opacity 0.3s; }
+        .project-title a:hover { opacity: 0.7; }
+
+        .banner { position: relative; margin: 32px 48px; overflow: hidden; height: auto; min-height: 340px; background: #2a3b26; border-radius: 20px; display: flex; align-items: center; }
+        .banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.4; }
+        .banner-overlay { position: relative; z-index: 1; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 60px 56px; gap: 40px; }
+        .banner-text { flex: 1; }
+        .banner h2 { font-family: Georgia, serif; font-size: clamp(28px, 4vw, 48px); font-weight: 400; color: var(--cream); line-height: 1.15; margin-bottom: 12px; }
+        .banner-sub { font-size: 15px; color: rgba(248, 238, 228, 0.7); line-height: 1.7; max-width: 400px; }
+        .banner-card { background: rgba(248, 238, 228, 0.15); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(248, 238, 228, 0.2); border-radius: 16px; padding: 28px; min-width: 340px; flex-shrink: 0; }
+        .banner-card-label { font-size: 13px; font-weight: 500; letter-spacing: 0.05em; color: var(--cream); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .banner-card-label svg { width: 16px; height: 16px; stroke: var(--cream); fill: none; stroke-width: 1.5; }
+        .banner-card-form { display: flex; gap: 0; border-radius: 10px; overflow: hidden; }
+        .banner-card-form input { flex: 1; padding: 14px 16px; border: none; background: rgba(248, 238, 228, 0.95); color: #2a3b26; font-family: 'Bilmond', sans-serif; font-size: 14px; outline: none; min-width: 0; }
+        .banner-card-form input::placeholder { color: rgba(42, 59, 38, 0.45); }
+        .banner-card-form button { padding: 14px 24px; border: none; background: #2a3b26; color: var(--cream); font-family: 'Bilmond', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: opacity 0.3s; white-space: nowrap; }
+        .banner-card-form button:hover { opacity: 0.8; }
+
+        /* ===== CREAM SECTION (EDITORIAL) ===== */
+        .cream-section { background: #e8ddd0; padding: 180px 80px 180px 80px; position: relative; overflow: hidden; min-height: 700px; display: flex; align-items: center; margin: 80px 0; }
+        .cream-inner { width: 100%; position: relative; z-index: 1; display: flex; align-items: flex-start; gap: 0; }
+        .cream-heading-area { flex: 1; }
+        .cream-section h2 { font-size: clamp(48px, 7vw, 96px); font-weight: 400; color: #2a3b26; line-height: 1.05; letter-spacing: -0.02em; text-align: left; }
+        .cream-year { position: absolute; top: 48px; right: 48px; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(42,59,38,0.35); }
+        .cream-vertical { position: absolute; right: 48px; top: 50%; transform: translateY(-50%) rotate(90deg); transform-origin: center center; white-space: nowrap; font-size: 14px; color: rgba(42,59,38,0.5); letter-spacing: 0.04em; line-height: 1.6; max-width: none; width: auto; }
+        .cream-vertical span { display: block; }
+        .cream-bottom-link { position: absolute; bottom: 48px; left: 80px; font-size: 13px; color: #2a3b26; border-bottom: 1px solid #2a3b26; padding-bottom: 3px; letter-spacing: 0.1em; text-transform: uppercase; transition: opacity 0.3s; border-radius: 8px; }
+        .cream-bottom-link:hover { opacity: 0.5; }
+        .cream-label { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(42,59,38,0.4); margin-bottom: 28px; }
+
+        .device-tablet .cream-section { padding: 80px 32px; min-height: 450px; }
+        .device-tablet .cream-section h2 { font-size: 48px; }
+        .device-tablet .cream-vertical { right: 32px; font-size: 13px; }
+        .device-tablet .cream-bottom-link { left: 32px; bottom: 32px; }
+        .device-mobile .cream-section { padding: 60px 20px; min-height: auto; }
+        .device-mobile .cream-section h2 { font-size: 34px; }
+        .device-mobile .cream-vertical { position: relative; right: auto; top: auto; transform: none; margin-top: 32px; font-size: 14px; white-space: normal; max-width: 280px; }
+        .device-mobile .cream-bottom-link { position: relative; left: auto; bottom: auto; margin-top: 28px; display: inline-block; }
+
+        .contact-row { display: flex; justify-content: center; align-items: center; gap: 40px; padding: 80px 48px; }
+        .contact-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--cream); }
+        .contact-icon { width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: border-color 0.3s; }
+        .contact-item:hover .contact-icon { border-color: var(--cream); }
+
+        .footer { border-top: 1px solid var(--border); padding: 80px 48px; }
+        .footer-inner { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: start; }
+        .footer-logo { font-family: Georgia, serif; font-size: 28px; font-weight: 400; color: var(--cream); text-transform: uppercase; }
+        .footer-col { font-size: 13px; line-height: 1.9; color: var(--cream-muted); }
+        .footer-col a { text-decoration: underline; text-underline-offset: 3px; transition: opacity 0.3s; }
+        .footer-col a:hover { opacity: 0.7; }
+        .footer-col strong { font-weight: 500; color: var(--cream); }
+        .footer-cta { display: inline-block; padding: 12px 28px; font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bg); background: var(--cream); text-decoration: none; transition: opacity 0.3s; border-radius: 8px; }
+        .footer-cta:hover { opacity: 0.8; }
+        .palette-mauro .footer-cta { color: #253A2A; background: #f8eee4; }
+
+        /* ===== MAURO PALETTE ===== */
+        .palette-mauro { background: #E2E2DA; }
+        .palette-mauro .header { background: #253A2A; border-bottom-color: rgba(164, 213, 177, 0.15); }
+        .palette-mauro .logo { color: #f8eee4; }
+        .palette-mauro .nav a { color: #f8eee4; }
+        .palette-mauro .nav a::after { background: #f8eee4; }
+        .palette-mauro .nav li:not(:last-child)::after { color: rgba(248, 238, 228, 0.5); }
+        .palette-mauro .hero h1 { color: #253A2A; }
+        .palette-mauro .hero p { color: rgba(37, 58, 42, 0.6); }
+        .palette-mauro .project-title { color: #253A2A; }
+        .palette-mauro .project-title a { color: #253A2A; }
+        .palette-mauro .cream-section { background: #A4D5B1; }
+        .palette-mauro .cream-section h2 { color: #253A2A; }
+        .palette-mauro .cream-year { color: rgba(37, 58, 42, 0.3); }
+        .palette-mauro .cream-vertical { color: rgba(37, 58, 42, 0.45); }
+        .palette-mauro .cream-label { color: rgba(37, 58, 42, 0.4); }
+        .palette-mauro .cream-bottom-link { color: #253A2A; border-bottom-color: #253A2A; }
+        .palette-mauro .banner { background: #253A2A; }
+        .palette-mauro .banner-card-form button { background: #253A2A; }
+        .palette-mauro .banner h2 { color: #f8eee4; }
+        .palette-mauro .banner-link { color: #f8eee4; border-bottom-color: #f8eee4; }
+        .palette-mauro .contact-row { border-top: 1px solid rgba(37, 58, 42, 0.1); }
+        .palette-mauro .contact-item { color: #253A2A; }
+        .palette-mauro .contact-icon { border-color: rgba(37, 58, 42, 0.2); color: #253A2A; }
+        .palette-mauro .contact-item:hover .contact-icon { border-color: #253A2A; }
+        .palette-mauro .footer { background: #253A2A; border-top-color: rgba(164, 213, 177, 0.15); }
+        .palette-mauro .footer-logo { color: #f8eee4; }
+        .palette-mauro .footer-col { color: rgba(248, 238, 228, 0.7); }
+        .palette-mauro .footer-col a { color: #f8eee4; }
+        .palette-mauro .footer-col strong { color: #f8eee4; }
+
+        /* ===== MOBILE NAV ===== */
+        @media (max-width: 768px) {
+            .header { padding: 20px 24px; }
+
+            .nav {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(73, 85, 61, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 24px;
+                z-index: 100;
+            }
+
+            .nav.open { display: flex; }
+            .nav li::after { display: none !important; }
+            .nav a { font-size: 22px; }
+            .hamburger { display: flex; z-index: 101; }
+        }
+
+        /* ===== DEVICE: TABLET ===== */
+        .device-tablet .header { padding: 24px 32px; }
+        .device-tablet .logo { font-size: 24px; }
+        .device-tablet .nav { gap: 6px; }
+        .device-tablet .nav a { font-size: 13px; }
+        .device-tablet .hero { padding: 60px 32px 80px; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .device-tablet .hero h1 { font-size: 36px; }
+        .device-tablet .projects { padding: 0 32px; }
+        .device-tablet .banner { margin: 24px 32px; }
+        .device-tablet .banner-overlay { padding: 40px 32px; flex-direction: column; align-items: flex-start; }
+        .device-tablet .banner-card { min-width: 100%; }
+        .device-tablet .contact-row { padding: 36px 32px; gap: 28px; }
+        .device-tablet .footer { padding: 36px 32px; }
+        .device-tablet .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+
+        /* ===== DEVICE: MOBILE ===== */
+        .device-mobile .header { padding: 20px 20px; flex-direction: column; gap: 16px; align-items: flex-start; }
+        .device-mobile .logo { font-size: 22px; }
+        .device-mobile .nav { gap: 4px; flex-wrap: wrap; }
+        .device-mobile .nav a { font-size: 12px; }
+        .device-mobile .nav li:not(:last-child)::after { font-size: 11px; }
+        .device-mobile .hero { padding: 48px 20px 60px; grid-template-columns: 1fr; gap: 32px; }
+        .device-mobile .hero h1 { font-size: 32px; margin-bottom: 20px; }
+        .device-mobile .hero p { font-size: 14px; }
+        .device-mobile .hero-img { max-height: 300px; }
+        .device-mobile .projects { padding: 0 20px; }
+        .device-mobile .project-grid, .device-mobile .project-grid.reverse { grid-template-columns: 1fr; }
+        .device-mobile .project-img-tall { aspect-ratio: 16/10; }
+        .device-mobile .project-title { font-size: 14px; padding: 12px 0 28px; }
+        .device-mobile .banner { margin: 20px; }
+        .device-mobile .banner h2 { font-size: 24px; }
+        .device-mobile .banner-overlay { padding: 32px 20px; flex-direction: column; align-items: flex-start; gap: 24px; }
+        .device-mobile .banner-card { min-width: 100%; padding: 20px; }
+        .device-mobile .banner-card-form { flex-direction: column; }
+        .device-mobile .banner-card-form button { padding: 14px; }
+        .device-mobile .contact-row { flex-direction: column; gap: 16px; padding: 32px 20px; align-items: flex-start; }
+        .device-mobile .footer { padding: 32px 20px; }
+        .device-mobile .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+        .device-mobile .footer-logo { font-size: 22px; }
+    </style>
+    <link rel="stylesheet" href="../toolbar.css">
+</head>
+<body>
+
+<!-- ===== PAGE ===== -->
+<div class="device-frame desktop" id="deviceFrame">
+<div class="page-wrapper" id="page">
+
+    <header class="header">
+        <a href="index.html" class="logo logo-text">dokter richard</a>
+        <ul class="nav" id="nav">
+            <li><a href="#over" class="body-text">Over Mij</a></li>
+            <li><a href="#" class="body-text">Coaching</a></li>
+            <li><a href="#" class="body-text">Contact</a></li>
+            <li><a href="#" class="body-text">Boeken</a></li>
+            <li><a href="#zelfscan" class="body-text">Trainingstraject</a></li>
+            <li><a href="#" class="body-text nav-cta">Consult aanvragen</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="document.getElementById('nav').classList.toggle('open');this.classList.toggle('active')">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="header-text h1-text">Het maakt niet uit of je uit balans raakt, als je de weg terug maar weet te vinden</h1>
+            <p class="body-text">Ik combineer mijn passie voor holistische geneeskunde met aandacht voor lichaam, geest en ziel. Als huisarts, leefstijlarts en coach begeleid ik mensen naar balans en gezondheid.</p>
+        </div>
+        <div class="hero-img">
+            <img src="../images/richard-huisarts.jpg" alt="Dokter Richard Hoofs">
+        </div>
+    </section>
+
+    <section class="projects" id="over">
+        <div class="project-section">
+            <div class="project-grid">
+                <div class="project-img project-img-tall"><img src="../images/rich-tas-2.jpeg" alt="Dokter Richard onderweg"></div>
+                <div class="project-img project-img-tall"><img src="../images/richard-huisarts.jpg" alt="Richard in de praktijk"></div>
+            </div>
+            <div class="project-title body-text"><a href="#">Coaching +</a></div>
+        </div>
+        <div class="project-section">
+            <div class="project-grid reverse">
+                <div class="project-img project-img-wide"><img src="../images/richard-huisarts.jpg" alt="Richard aan het werk"></div>
+                <div class="project-img project-img-wide"><img src="../images/richard-thot-2.jpg" alt="Inspiratie en wijsheid"></div>
+            </div>
+            <div class="project-title body-text"><a href="#">Trainingstraject +</a></div>
+        </div>
+        <div class="project-section">
+            <div class="project-grid">
+                <div class="project-img project-img-tall"><img src="../images/img-richard.jpeg" alt="Richard Hoofs portret"></div>
+                <div class="project-img project-img-tall"><img src="../images/richard-thot-2.jpg" alt="Richard op reis"></div>
+            </div>
+            <div class="project-title body-text"><a href="#">Boeken +</a></div>
+        </div>
+    </section>
+
+    <!-- CREAM SECTION (EDITORIAL) -->
+    <section class="cream-section">
+        <div class="cream-year body-text">2025</div>
+        <div class="cream-inner">
+            <div class="cream-heading-area">
+                <div class="cream-label body-text">Holistisch</div>
+                <h2 class="header-text" style="font-family:Georgia, serif;">Passie leidt<br>tot vakmanschap,<br>en vakmanschap<br>leidt tot genezing</h2>
+            </div>
+        </div>
+        <div class="cream-vertical body-text">
+            <span>Jij bent lichaam, persoon en ziel. Samen. Als één eenheid.</span>
+            <span>De verbinding tussen Oost en West met behoud</span>
+            <span>van het beste van beiden vormt de basis van mijn werk.</span>
+        </div>
+        <a href="#" class="cream-bottom-link body-text">Meer over mijn aanpak &rarr;</a>
+    </section>
+
+    <section class="banner" id="zelfscan">
+        <img src="../images/richard-thot-2.jpg" alt="Egyptische tekens">
+        <div class="banner-overlay">
+            <div class="banner-text">
+                <h2 class="header-text" style="font-family:Georgia, serif;">Doe de gratis<br>Gezondheid Zelfscan</h2>
+                <p class="banner-sub body-text">Hoe gaat het nu eigenlijk met mij? Ontvang een persoonlijk overzicht van je gezondheid.</p>
+            </div>
+            <div class="banner-card">
+                <div class="banner-card-label"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Je e-mailadres</div>
+                <form class="banner-card-form" onsubmit="return false;">
+                    <input type="email" placeholder="je@email.nl" required>
+                    <button type="submit">Aanmelden</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="contact-row">
+        <a href="mailto:medischepraktijkmondesir@live.nl" class="contact-item body-text"><span class="contact-icon">&rarr;</span> medischepraktijkmondesir@live.nl</a>
+        <a href="#" class="contact-item body-text"><span class="contact-icon">&rarr;</span> Vughterstraat 187, 5211 GC 's-Hertogenbosch</a>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div><div class="footer-logo logo-text" style="font-family:'Bosten', sans-serif; transform: scaleX(1.15); transform-origin: left center; display: inline-block;">dokter richard</div></div>
+            <div class="footer-col body-text"><strong>Richard Hoofs</strong><br>Arts, coach, acupuncturist<br><br>Vughterstraat 187<br>5211 GC 's-Hertogenbosch</div>
+            <div class="footer-col body-text">Afspraken en contact mail naar<br><a href="mailto:medischepraktijkmondesir@live.nl">medischepraktijkmondesir@live.nl</a>
+                <div style="margin-top:24px;"><a href="#" class="footer-cta body-text">Meld je aan voor mijn nieuwsbrief &rarr;</a></div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+</div>
+
+<script>
+    document.querySelectorAll('.nav a').forEach(a => {
+        a.addEventListener('click', () => {
+            document.getElementById('nav').classList.remove('open');
+            document.getElementById('hamburger').classList.remove('active');
+        });
+    });
+</script>
+<script src="../toolbar.js"></script>
+</body>
+</html>
