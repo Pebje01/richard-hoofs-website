@@ -3,85 +3,1168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dokter Richard — Versies</title>
+    <title>Dokter Richard — Holistische Geneeskunde</title>
     <style>
+        /* ===== FONT FACES ===== */
+        @font-face { font-family: 'Bilmond'; src: url('fonts/Bilmond-Light.woff2') format('woff2'), url('fonts/Bilmond-Light.woff') format('woff'); font-weight: 300; font-display: swap; }
+        @font-face { font-family: 'Bilmond'; src: url('fonts/Bilmond-Regular.woff2') format('woff2'), url('fonts/Bilmond-Regular.woff') format('woff'); font-weight: 400; font-display: swap; }
+        @font-face { font-family: 'Bilmond'; src: url('fonts/Bilmond-Medium.woff2') format('woff2'), url('fonts/Bilmond-Medium.woff') format('woff'); font-weight: 500; font-display: swap; }
+        @font-face { font-family: 'Bilmond'; src: url('fonts/Bilmond-SemiBold.woff2') format('woff2'), url('fonts/Bilmond-SemiBold.woff') format('woff'); font-weight: 600; font-display: swap; }
+        @font-face { font-family: 'Meditera'; src: url('fonts/Meditera-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Canpile Drawn'; src: url('fonts/CanpileDrawn-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Quano'; src: url('fonts/Quano.woff2') format('woff2'), url('fonts/Quano.woff') format('woff'); font-display: swap; }
+        @font-face { font-family: 'Mantul'; src: url('fonts/Mantul.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Wayang'; src: url('fonts/Wayang.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Saluna'; src: url('fonts/Saluna-Medium.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Bosten'; src: url('fonts/Bosten.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Lenia Sans'; src: url('fonts/LeniaSans-Regular.ttf') format('truetype'); font-display: swap; }
+        @font-face { font-family: 'Konfus'; src: url('fonts/Konfus-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Maxima Nouva'; src: url('fonts/MaximaNouva-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'New Black'; src: url('fonts/NewBlackTypeface-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Colossia'; src: url('fonts/Colossia.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Neue Montreal'; src: url('fonts/NeueMontreal-Regular.otf') format('opentype'); font-display: swap; }
+        @font-face { font-family: 'Milky Croffle'; src: url('fonts/MilkyCroffle.woff2') format('woff2'), url('fonts/MilkyCroffle.woff') format('woff'); font-display: swap; }
+
+        .header-text { font-family: 'Milky Croffle', Georgia, serif; }
+        .body-text { font-family: 'Neue Montreal', Georgia, sans-serif; }
+
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #111; font-family: -apple-system, BlinkMacSystemFont, sans-serif; overflow: hidden; height: 100vh; }
 
-        .toast {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(20px);
-            background: #fff; color: #111; padding: 10px 24px;
-            border-radius: 999px; font-size: 13px; font-weight: 600;
-            opacity: 0; transition: all 0.3s; pointer-events: none; z-index: 99999;
+        :root {
+            --bg: #fdf0e7;
+            --bg-alt: #f7ebe1;
+            --green: #888C79;
+            --green-dark: #3a3d32;
+            --accent: #C1774F;
+            --sage: #a0a496;
+            --teal: #C1774F;
+            --cream: #fffcf8;
+            --white: #ffffff;
+            --text: #2a2d24;
+            --text-body: #3a3d32;
+            --text-muted: #a0a496;
+            --border: rgba(136, 140, 121, 0.15);
         }
-        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        .version-frame {
-            display: none;
-            width: 100%; height: 100vh;
-            border: none;
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Neue Montreal', 'Bilmond', Georgia, serif;
+            font-weight: 400;
+            font-size: 16px;
+            background: var(--bg);
+            color: var(--text-body);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.7;
         }
-        .version-frame.active { display: block; }
+
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        .page-wrapper { background: var(--bg); position: relative; }
+
+        /* ===== NAVIGATION (Serenya-style centered pill nav) ===== */
+        .nav {
+            position: relative; top: 0; left: 0; right: 0; z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 48px;
+            background: var(--bg);
+        }
+        .nav-logo {
+            font-family: 'Bosten', Georgia, serif;
+            font-size: 26px;
+            color: var(--green-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            position: absolute;
+            left: 48px;
+        }
+        .nav-center {
+            display: flex; align-items: center; gap: 6px;
+            background: var(--bg-alt); border-radius: 999px; padding: 5px 6px;
+        }
+        .nav-center a {
+            font-size: 15px; font-weight: 400; color: var(--text-muted);
+            padding: 10px 24px; border-radius: 999px; transition: all 0.3s;
+            text-decoration: none;
+        }
+        .nav-center a:hover { color: var(--green-dark); }
+        .nav-center a.active {
+            background: var(--white); color: var(--green-dark);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            font-weight: 500;
+        }
+        .nav-cta {
+            position: absolute; right: 48px;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 24px; background: var(--green-dark); color: #fff;
+            border-radius: 999px; font-size: 14px; font-weight: 500;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover { background: var(--accent); }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+        .hamburger svg { width: 28px; height: 28px; stroke: var(--green-dark); stroke-width: 2; fill: none; }
+
+        /* ===== HERO (Serenya-style: foto links, tekst rechts) ===== */
+        .hero { padding: 0 48px; position: relative; overflow: hidden; background: var(--bg); }
+        .hero-split {
+            display: grid; grid-template-columns: 1.1fr 1fr;
+            gap: 64px; min-height: 85vh; align-items: center;
+            padding: 40px 0 60px;
+        }
+        .hero-text {
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 0;
+            order: 2;
+        }
+        .hero h1 {
+            font-family: 'Milky Croffle', Georgia, serif;
+            font-size: clamp(38px, 4.5vw, 64px); font-weight: 400; color: var(--green-dark);
+            line-height: 1.1; margin-bottom: 28px;
+        }
+        .hero h1 em {
+            font-style: italic; font-family: 'Meditera', Georgia, serif;
+        }
+        .hero-sub { font-size: 17px; color: var(--text-muted); line-height: 1.8; max-width: 440px; margin-bottom: 20px; }
+        .hero-cta {
+            display: inline-flex; align-items: center; gap: 0;
+            padding: 6px 6px 6px 28px; background: var(--bg-alt); color: var(--green-dark);
+            border-radius: 999px; font-size: 16px; font-weight: 500;
+            transition: all 0.3s; border: 1.5px solid var(--border); width: fit-content;
+        }
+        .hero-cta:hover { border-color: var(--accent); }
+        .hero-cta .cta-arrow {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--accent); display: flex;
+            align-items: center; justify-content: center;
+            margin-left: 20px; transition: background 0.3s;
+        }
+        .hero-cta:hover .cta-arrow { background: var(--green-dark); }
+        .hero-cta svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; }
+        .hero-image-card {
+            position: relative; overflow: hidden;
+            border-radius: 24px;
+            order: 1;
+            aspect-ratio: 3/4;
+            max-height: 75vh;
+        }
+        .hero-image-card img {
+            width: 100%; height: 100%; object-fit: cover; object-position: center top;
+        }
+        .hero-roles {
+            display: grid; grid-template-columns: repeat(6, 1fr);
+            border-top: 1px solid var(--border);
+            padding: 0 48px;
+            background: var(--bg);
+        }
+        .hero-role {
+            padding: 28px 20px 28px 0;
+            border-left: 1px solid var(--border);
+            padding-left: 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .hero-role:first-child { border-left: none; padding-left: 0; }
+        .hero-role:hover { background: var(--bg-alt); }
+        .hero-role h4 { font-family: Georgia, serif; font-size: 16px; font-weight: 400; color: var(--green-dark); margin-bottom: 4px; }
+        .hero-role p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        /* ===== CARD GRID (Zenflow - image cards with overlays) ===== */
+        .services-cards { padding: 64px 48px 0; }
+        .services-cards-header {
+            display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px;
+        }
+        .services-cards-header h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(28px, 3.5vw, 40px); font-weight: 400; color: var(--green-dark);
+            line-height: 1.2; max-width: 400px;
+        }
+        .services-cards-header p { font-size: 14px; color: var(--text-muted); max-width: 340px; line-height: 1.7; }
+        .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .card-item {
+            position: relative; border-radius: 20px; overflow: hidden;
+            aspect-ratio: 3/4; background: var(--bg-alt);
+        }
+        .card-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .card-item:hover img { transform: scale(1.04); }
+        .card-item-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 20px;
+            background: linear-gradient(to top, rgba(38,58,42,0.6), transparent);
+            display: flex; justify-content: space-between; align-items: flex-end;
+        }
+        .card-item-text h3 { font-family: Georgia, serif; font-size: 18px; color: #fff; font-weight: 400; }
+        .card-item-text span { font-size: 13px; color: rgba(255,255,255,0.7); }
+        .card-arrow {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(255,255,255,0.2); backdrop-filter: blur(6px);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: background 0.3s;
+        }
+        .card-arrow:hover { background: rgba(255,255,255,0.4); }
+        .card-arrow svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .card-item.card-text {
+            background: var(--green); display: flex; flex-direction: column;
+            justify-content: space-between; padding: 32px 28px;
+        }
+        .card-text h3 { font-family: Georgia, serif; font-size: clamp(24px,2.5vw,32px); font-weight: 400; color: #fff; line-height: 1.25; }
+        .card-text p { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+
+        /* ===== ABOUT + QUOTE ROW (Zenflow style) ===== */
+        .about-quote-section {
+            padding: 80px 48px; display: grid; grid-template-columns: 1fr 1fr;
+            gap: 40px; align-items: start;
+        }
+        .about-left { padding-right: 20px; }
+        .about-pill {
+            display: inline-block; padding: 6px 16px; background: var(--bg-alt);
+            border-radius: 999px; font-size: 13px; color: var(--text-muted); margin-bottom: 24px;
+        }
+        .about-left h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(28px,3.5vw,40px); font-weight: 400; color: var(--green-dark);
+            line-height: 1.2; margin-bottom: 24px;
+        }
+        .about-left p { font-size: 15px; color: var(--text-body); line-height: 1.8; }
+        .quote-card {
+            background: var(--green); border-radius: 24px; padding: 40px 36px; position: relative;
+        }
+        .quote-pill {
+            display: inline-block; padding: 6px 16px;
+            background: rgba(255,255,255,0.12); border-radius: 999px;
+            font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 24px;
+        }
+        .quote-dots { position: absolute; top: 36px; right: 36px; display: flex; gap: 6px; }
+        .quote-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.25); }
+        .quote-dot.active { background: rgba(255,255,255,0.7); }
+        .quote-card blockquote {
+            font-size: 17px; color: rgba(255,255,255,0.9); line-height: 1.7;
+            font-style: normal; margin-bottom: 28px;
+        }
+        .quote-author { display: flex; align-items: center; justify-content: space-between; }
+        .quote-author-info { display: flex; align-items: center; gap: 12px; }
+        .quote-avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.15); display: flex; align-items: center;
+            justify-content: center; font-size: 16px; color: #fff; font-weight: 500;
+        }
+        .quote-author-name { font-size: 15px; font-weight: 500; color: #fff; }
+        .quote-author-role { font-size: 13px; color: rgba(255,255,255,0.5); }
+        .quote-cta {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 14px; color: rgba(255,255,255,0.7); transition: color 0.3s;
+        }
+        .quote-cta:hover { color: #fff; }
+        .quote-cta .card-arrow { width: 32px; height: 32px; }
+
+        /* ===== JOURNEY / FEATURES SECTION ===== */
+        .journey-section {
+            padding: 40px 48px 80px; display: grid; grid-template-columns: 1.2fr 1fr;
+            gap: 60px; align-items: center;
+        }
+        .journey-image { border-radius: 24px; overflow: hidden; }
+        .journey-image img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+        .journey-content h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(28px,3.5vw,44px); font-weight: 400; color: var(--green-dark);
+            line-height: 1.2; margin-bottom: 24px;
+        }
+        .journey-content p { font-size: 15px; color: var(--text-body); line-height: 1.8; margin-bottom: 32px; }
+        .journey-features { display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px; }
+        .journey-feature { display: flex; align-items: flex-start; gap: 16px; }
+        .journey-feature-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            background: rgba(74,122,110,0.1); display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0;
+        }
+        .journey-feature-icon svg { width: 22px; height: 22px; stroke: var(--teal); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .journey-feature-text h4 { font-size: 16px; font-weight: 500; color: var(--green-dark); margin-bottom: 4px; }
+        .journey-feature-text p { font-size: 14px; color: var(--text-muted); margin-bottom: 0; line-height: 1.6; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 32px; background: var(--accent); color: #fff;
+            border-radius: 999px; font-size: 15px; font-weight: 500; transition: all 0.3s;
+        }
+        .btn-primary:hover { background: var(--green-dark); }
+        .btn-primary svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+        /* ===== FOUR PILLARS (Zenflow trainer-style portrait cards) ===== */
+        .pillars-section { padding: 80px 48px; background: var(--bg-alt); }
+        .pillars-header {
+            display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;
+        }
+        .pillars-header h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(28px,3.5vw,40px); font-weight: 400; color: var(--green-dark); line-height: 1.2;
+        }
+        .pillars-header-link {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 14px; color: var(--teal); transition: color 0.3s;
+        }
+        .pillars-header-link:hover { color: var(--green); }
+        .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .pillar-card {
+            position: relative; border-radius: 20px; overflow: hidden;
+            aspect-ratio: 3/4; background: var(--bg);
+        }
+        .pillar-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .pillar-card:hover img { transform: scale(1.04); }
+        .pillar-card-info {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 20px;
+            background: linear-gradient(to top, rgba(38,58,42,0.6), transparent);
+            display: flex; justify-content: space-between; align-items: flex-end;
+        }
+        .pillar-card-info h3 { font-family: Georgia, serif; font-size: 18px; color: #fff; font-weight: 400; }
+        .pillar-card-info span { font-size: 12px; color: rgba(255,255,255,0.7); }
+
+        /* ===== PRICING ===== */
+        .pricing-section { padding: 80px 48px; }
+        .pricing-header { text-align: center; margin-bottom: 48px; }
+        .pricing-header h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(28px,3.5vw,42px); font-weight: 400; color: var(--green-dark);
+            line-height: 1.2; margin-bottom: 12px;
+        }
+        .pricing-header p { font-size: 15px; color: var(--text-muted); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .pricing-card {
+            background: var(--cream); border-radius: 24px; padding: 40px 32px;
+            border: 1px solid var(--border); transition: all 0.35s; position: relative;
+        }
+        .pricing-card:hover { box-shadow: 0 12px 40px rgba(38,58,42,0.08); transform: translateY(-4px); }
+        .pricing-card.featured { background: var(--green); border-color: var(--green); }
+        .pricing-card.featured h3,
+        .pricing-card.featured .pricing-price,
+        .pricing-card.featured .pricing-features li { color: #fff; }
+        .pricing-card.featured .pricing-desc,
+        .pricing-card.featured .pricing-duration { color: rgba(255,255,255,0.6); }
+        .pricing-card.featured .pricing-features li svg { stroke: var(--teal); }
+        .pricing-card.featured .pricing-duration { border-bottom-color: rgba(255,255,255,0.12); }
+        .pricing-popular {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            padding: 4px 18px; background: var(--teal); color: #fff;
+            border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+        }
+        .pricing-card h3 { font-family: Georgia, serif; font-size: 24px; font-weight: 400; color: var(--green-dark); margin-bottom: 8px; }
+        .pricing-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; }
+        .pricing-price { font-family: Georgia, serif; font-size: 32px; color: var(--green-dark); margin-bottom: 4px; }
+        .pricing-price span { font-family: 'Bilmond', Georgia, serif; font-size: 15px; color: var(--text-muted); }
+        .pricing-duration { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+        .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+        .pricing-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-body); }
+        .pricing-features li svg { width: 18px; height: 18px; stroke: var(--teal); fill: none; stroke-width: 2; flex-shrink: 0; }
+        .pricing-btn {
+            display: block; text-align: center; padding: 14px 32px;
+            border-radius: 999px; font-size: 15px; font-weight: 500; transition: all 0.3s;
+        }
+        .pricing-btn-outline { border: 1.5px solid var(--border); color: var(--green-dark); background: transparent; }
+        .pricing-btn-outline:hover { border-color: var(--green); }
+        .pricing-btn-white { border: 1.5px solid rgba(255,255,255,0.3); background: #fff; color: var(--green-dark); }
+        .pricing-btn-white:hover { background: var(--bg); }
+
+        /* ===== CTA ===== */
+        .cta-section { padding: 0 48px 80px; }
+        .cta-inner {
+            background: var(--green); border-radius: 24px; padding: 72px 64px;
+            display: flex; justify-content: space-between; align-items: center;
+            gap: 40px; position: relative; overflow: hidden;
+        }
+        .cta-inner::before {
+            content: ''; position: absolute; top: -80px; right: -60px;
+            width: 280px; height: 280px; border-radius: 50%; background: rgba(74,122,110,0.15);
+        }
+        .cta-inner::after {
+            content: ''; position: absolute; bottom: -60px; left: 30%;
+            width: 180px; height: 180px; border-radius: 50%; background: rgba(123,137,127,0.1);
+        }
+        .cta-content { position: relative; z-index: 1; }
+        .cta-content h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(26px,3vw,40px); font-weight: 400; color: #fff;
+            line-height: 1.2; margin-bottom: 12px;
+        }
+        .cta-content p { font-size: 15px; color: rgba(255,255,255,0.65); max-width: 460px; line-height: 1.7; }
+        .cta-buttons { position: relative; z-index: 1; display: flex; gap: 16px; flex-shrink: 0; }
+        .btn-white {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 32px; background: #fff; color: var(--green-dark);
+            border-radius: 999px; font-size: 15px; font-weight: 500; transition: all 0.3s;
+        }
+        .btn-white:hover { background: var(--bg); }
+        .btn-white svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+        .btn-outline-white {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 32px; background: transparent; color: #fff;
+            border: 1.5px solid rgba(255,255,255,0.3); border-radius: 999px;
+            font-size: 15px; font-weight: 500; transition: all 0.3s;
+        }
+        .btn-outline-white:hover { border-color: #fff; }
+
+        /* ===== FOOTER ===== */
+        .footer { padding: 56px 48px 28px; border-top: 1px solid var(--border); }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+        .footer-logo { font-family: 'Bosten', Georgia, serif; font-size: 22px; color: var(--green-dark); margin-bottom: 14px; text-transform: uppercase; }
+        .footer-brand p { font-size: 14px; color: var(--text-muted); line-height: 1.7; max-width: 280px; }
+        .footer-social { display: flex; gap: 10px; margin-top: 20px; }
+        .footer-social a {
+            width: 38px; height: 38px; border-radius: 10px;
+            background: rgba(38,58,42,0.06); display: flex; align-items: center;
+            justify-content: center; transition: all 0.3s;
+        }
+        .footer-social a:hover { background: var(--green); }
+        .footer-social a svg { width: 16px; height: 16px; fill: var(--green); transition: fill 0.3s; }
+        .footer-social a:hover svg { fill: #fff; }
+        .footer-col h4 { font-size: 13px; font-weight: 600; color: var(--green-dark); margin-bottom: 14px; letter-spacing: 0.04em; text-transform: uppercase; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .footer-col a { font-size: 14px; color: var(--text-muted); transition: color 0.3s; }
+        .footer-col a:hover { color: var(--green); }
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 20px; border-top: 1px solid var(--border);
+        }
+        .footer-bottom p { font-size: 13px; color: var(--text-muted); }
+
+        /* ===== ZELFSCAN BANNER ===== */
+        .zelfscan-banner { padding: 0 48px; margin-top: 40px; }
+        .zelfscan-banner-inner {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 28px 40px; background: var(--accent); border-radius: 16px;
+            gap: 32px;
+        }
+        .zelfscan-banner-text h3 { font-family: Georgia, serif; font-size: 22px; color: #fff; font-weight: 400; margin-bottom: 4px; }
+        .zelfscan-banner-text p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.6; max-width: 480px; }
+        .zelfscan-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 32px; background: #fff; color: var(--green-dark);
+            border-radius: 999px; font-size: 15px; font-weight: 500;
+            transition: all 0.3s; white-space: nowrap;
+        }
+        .zelfscan-btn:hover { background: var(--bg); }
+
+        /* ===== BOOK SECTION ===== */
+        .book-section { padding: 80px 48px; background: var(--bg-alt); }
+        .book-inner { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: center; }
+        .book-image { text-align: center; }
+        .book-image img { max-width: 320px; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.12); margin: 0 auto; }
+        .book-content h2 { font-family: Georgia, serif; font-size: clamp(28px,3.5vw,40px); font-weight: 400; color: var(--green-dark); line-height: 1.2; margin-bottom: 16px; }
+        .book-content p { font-size: 15px; color: var(--text-body); line-height: 1.8; margin-bottom: 24px; }
+        .book-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--accent); color: #fff; border-radius: 999px; font-size: 15px; font-weight: 500; transition: all 0.3s; }
+        .book-btn:hover { background: var(--green-dark); }
+        .book-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+        /* ===== MEDIA + REVIEWS SECTION ===== */
+        .media-reviews-section { padding: 64px 48px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .media-reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .media-side h3, .reviews-side h3 { font-family: Georgia, serif; font-size: 20px; font-weight: 400; color: var(--green-dark); margin-bottom: 24px; }
+        .media-carousel { display: flex; flex-wrap: wrap; gap: 12px; }
+        .media-logo-item {
+            display: inline-block; padding: 10px 20px; background: var(--bg-alt);
+            border-radius: 999px; font-family: Georgia, serif; font-size: 15px;
+            color: var(--sage); transition: all 0.3s; border: 1px solid var(--border);
+        }
+        .media-logo-item:hover { color: var(--green-dark); border-color: var(--accent); background: var(--cream); }
+        .review-card { display: none; }
+        .review-card.active { display: block; }
+        .review-card blockquote { font-size: 16px; color: var(--text-body); line-height: 1.8; font-style: italic; margin-bottom: 16px; }
+        .review-author { font-size: 14px; color: var(--accent); font-weight: 500; }
+        .reviews-dots { display: flex; gap: 8px; margin-top: 20px; }
+        .review-dot {
+            width: 10px; height: 10px; border-radius: 50%; border: none;
+            background: var(--border); cursor: pointer; transition: all 0.3s; padding: 0;
+        }
+        .review-dot.active { background: var(--accent); }
+
+        /* ===== AGENDA SECTION ===== */
+        .agenda-section { padding: 80px 48px; }
+        .agenda-section h2 { font-family: Georgia, serif; font-size: clamp(28px,3.5vw,40px); font-weight: 400; color: var(--green-dark); line-height: 1.2; margin-bottom: 32px; }
+        .agenda-list { display: flex; flex-direction: column; gap: 16px; }
+        .agenda-item { display: flex; justify-content: space-between; align-items: center; padding: 24px 28px; background: var(--cream); border-radius: 16px; border: 1px solid var(--border); transition: all 0.3s; }
+        .agenda-item:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.04); }
+        .agenda-item-date { font-size: 14px; color: var(--teal); font-weight: 500; min-width: 120px; }
+        .agenda-item-title { font-family: Georgia, serif; font-size: 17px; color: var(--green-dark); flex: 1; margin: 0 24px; }
+        .agenda-item-location { font-size: 14px; color: var(--text-muted); }
+
+        /* ===== PUBLICATIES SECTION ===== */
+        .publicaties-section { padding: 80px 48px; background: var(--bg-alt); }
+        .publicaties-section h2 { font-family: Georgia, serif; font-size: clamp(28px,3.5vw,40px); font-weight: 400; color: var(--green-dark); line-height: 1.2; margin-bottom: 32px; }
+        .publicaties-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .publicatie-item { padding: 24px 28px; background: var(--cream); border-radius: 16px; border: 1px solid var(--border); }
+        .publicatie-item h4 { font-family: Georgia, serif; font-size: 17px; font-weight: 400; color: var(--green-dark); margin-bottom: 6px; }
+        .publicatie-item p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+        .publicatie-item .pub-source { font-size: 13px; color: var(--teal); margin-top: 8px; font-weight: 500; }
+
+        /* ===== NEWSLETTER SECTION ===== */
+        .newsletter-section { padding: 64px 48px; background: var(--green); }
+        .newsletter-inner { max-width: 560px; margin: 0 auto; text-align: center; }
+        .newsletter-inner h2 { font-family: Georgia, serif; font-size: clamp(24px,3vw,36px); font-weight: 400; color: #fff; line-height: 1.2; margin-bottom: 12px; }
+        .newsletter-inner p { font-size: 15px; color: rgba(255,255,255,0.65); margin-bottom: 28px; line-height: 1.7; }
+        .newsletter-form { display: flex; gap: 12px; max-width: 460px; margin: 0 auto; }
+        .newsletter-form input { flex: 1; padding: 14px 20px; border: 1.5px solid rgba(255,255,255,0.25); border-radius: 999px; background: rgba(255,255,255,0.08); color: #fff; font-size: 15px; font-family: inherit; outline: none; }
+        .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
+        .newsletter-form input:focus { border-color: rgba(255,255,255,0.5); }
+        .newsletter-form button { padding: 14px 28px; background: #fff; color: var(--green-dark); border: none; border-radius: 999px; font-size: 15px; font-weight: 500; font-family: inherit; cursor: pointer; transition: all 0.3s; }
+        .newsletter-form button:hover { background: var(--bg); }
+
+        /* ===== CONSULT FORM ===== */
+        .consult-section { padding: 80px 48px; }
+        .consult-inner { max-width: 640px; margin: 0 auto; }
+        .consult-inner h2 { font-family: Georgia, serif; font-size: clamp(28px,3.5vw,40px); font-weight: 400; color: var(--green-dark); line-height: 1.2; margin-bottom: 12px; text-align: center; }
+        .consult-inner > p { font-size: 15px; color: var(--text-muted); text-align: center; margin-bottom: 36px; line-height: 1.7; }
+        .consult-form { display: flex; flex-direction: column; gap: 24px; }
+        .form-group label { display: block; font-size: 15px; font-weight: 500; color: var(--green-dark); margin-bottom: 8px; }
+        .form-group label span { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+        .form-group textarea, .form-group input, .form-group select {
+            width: 100%; padding: 14px 18px; border: 1.5px solid var(--border); border-radius: 14px;
+            background: var(--cream); font-size: 15px; font-family: inherit; color: var(--text-body);
+            outline: none; resize: vertical; transition: border-color 0.3s;
+        }
+        .form-group textarea:focus, .form-group input:focus { border-color: var(--green); }
+        .form-group textarea { min-height: 100px; }
+        .form-sub { margin-top: -16px; }
+        .form-sub label { font-size: 14px; font-weight: 400; color: var(--text-muted); }
+        .consult-submit { display: block; width: 100%; padding: 16px; background: var(--accent); color: #fff; border: none; border-radius: 999px; font-size: 16px; font-weight: 500; font-family: inherit; cursor: pointer; transition: all 0.3s; margin-top: 8px; }
+        .consult-submit:hover { background: var(--green-dark); }
+
+        /* ===== RESPONSIVE ADDITIONS ===== */
+        @media (max-width: 768px) {
+            .book-inner { grid-template-columns: 1fr; gap: 32px; }
+            .book-image img { max-width: 240px; }
+            .book-section { padding: 48px 20px; }
+            .media-reviews-section { padding: 40px 20px; }
+            .media-reviews-grid { grid-template-columns: 1fr; gap: 40px; }
+            .zelfscan-banner { padding: 0 20px; }
+            .zelfscan-banner-inner { flex-direction: column; text-align: center; padding: 24px 20px; }
+            .agenda-section { padding: 48px 20px; }
+            .agenda-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .agenda-item-title { margin: 0; }
+            .publicaties-section { padding: 48px 20px; }
+            .publicaties-list { grid-template-columns: 1fr; }
+            .newsletter-section { padding: 48px 20px; }
+            .newsletter-form { flex-direction: column; }
+            .consult-section { padding: 48px 20px; }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== MOBILE NAV ===== */
+        .mobile-nav {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--bg); z-index: 150;
+            flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+        }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a { font-family: Georgia, serif; font-size: 28px; color: var(--green-dark); }
+        .mobile-nav a:hover { color: var(--teal); }
+        .mobile-nav-close { position: absolute; top: 20px; right: 24px; background: none; border: none; cursor: pointer; }
+        .mobile-nav-close svg { width: 32px; height: 32px; stroke: var(--green-dark); stroke-width: 2; fill: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .nav { padding: 18px 32px; }
+            .nav-center { display: none; }
+            .nav-cta { display: none; }
+            .nav-logo { position: static; }
+            .hamburger { display: block; position: absolute; right: 32px; }
+            .hero { padding: 0 32px; }
+            .hero-split { min-height: auto; gap: 32px; grid-template-columns: 1fr; padding: 24px 0 40px; }
+            .hero-image-card { order: 1; max-height: 50vh; }
+            .hero-text { order: 2; }
+            .hero-roles { padding: 0 32px; grid-template-columns: repeat(3, 1fr); }
+            .hero-role { padding: 20px 16px 20px 0; }
+            .hero-role:not(:first-child) { padding-left: 16px; }
+            .services-cards { padding: 48px 32px 0; }
+            .card-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-quote-section { padding: 64px 32px; }
+            .journey-section { padding: 40px 32px 64px; gap: 40px; }
+            .pillars-section { padding: 64px 32px; }
+            .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-section { padding: 64px 32px; }
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .cta-section { padding: 0 32px 64px; }
+            .cta-inner { padding: 56px 40px; flex-direction: column; text-align: center; }
+            .cta-content p { max-width: 100%; }
+            .footer { padding: 44px 32px 24px; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+        }
+        @media (max-width: 768px) {
+            .nav { padding: 16px 20px; }
+            .hero { padding: 0 20px; }
+            .hero-split { grid-template-columns: 1fr; min-height: auto; gap: 24px; padding: 16px 0 32px; }
+            .hero-text { order: 2; }
+            .hero-image-card { min-height: 320px; order: 1; }
+            .hero h1 { font-size: 36px; }
+            .hero-sub { font-size: 15px; }
+            .hero-roles { grid-template-columns: repeat(2, 1fr); padding: 0 20px; }
+            .hero-role { padding: 16px 12px 16px 0; }
+            .hero-role:nth-child(odd) { border-left: none; padding-left: 0; }
+            .hero-role:nth-child(even) { border-left: 1px solid var(--border); padding-left: 12px; }
+            .hero-role:nth-child(-n+4) { border-bottom: 1px solid var(--border); }
+            .services-cards { padding: 40px 20px 0; }
+            .services-cards-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+            .card-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+            .about-quote-section { padding: 48px 20px; grid-template-columns: 1fr; }
+            .journey-section { padding: 32px 20px 48px; grid-template-columns: 1fr; gap: 32px; }
+            .pillars-section { padding: 48px 20px; }
+            .pillars-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+            .pillars-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+            .pricing-section { padding: 48px 20px; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .cta-section { padding: 0 20px 48px; }
+            .cta-inner { padding: 44px 24px; border-radius: 18px; }
+            .cta-buttons { flex-direction: column; width: 100%; }
+            .cta-buttons a { text-align: center; justify-content: center; }
+            .footer { padding: 36px 20px 20px; }
+            .footer-top { grid-template-columns: 1fr; gap: 24px; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .hero-image-card { min-height: 300px; }
+            .hero-text { padding: 0 16px 24px; }
+            .hero h1 { font-size: 30px; }
+            .hero-roles { grid-template-columns: 1fr 1fr; padding: 0 16px; }
+            .hero-role h4 { font-size: 15px; }
+            .hero-role p { font-size: 12px; }
+        }
     </style>
 </head>
 <body>
-    <div class="toast" id="toast"></div>
 
-    <iframe class="version-frame active" id="frame-v1" src="v1/index.html"></iframe>
-    <iframe class="version-frame" id="frame-v2"></iframe>
-    <iframe class="version-frame" id="frame-v3"></iframe>
+<!-- ===== PAGE ===== -->
+<div class="device-frame desktop" id="deviceFrame">
+<div class="page-wrapper" id="page">
 
-    <script>
-        var currentVersion = 'v1';
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" onclick="closeMobileNav()">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <a href="#over" onclick="closeMobileNav()">Over Richard</a>
+        <a href="#boek" onclick="closeMobileNav()">Boeken</a>
+        <a href="#diensten" onclick="closeMobileNav()">Coaching</a>
+        <a href="#blog" onclick="closeMobileNav()">Blog</a>
+        <a href="#agenda" onclick="closeMobileNav()">Events</a>
+        <a href="#contact" onclick="closeMobileNav()">Contact</a>
+        <a href="#consult" onclick="closeMobileNav()" style="margin-top:16px;padding:14px 32px;background:var(--accent);color:#fff;border-radius:999px;font-family:'Bilmond',sans-serif;font-size:15px;">Consult aanvragen</a>
+    </div>
 
-        function switchVersion(v) {
-            currentVersion = v;
-            document.querySelectorAll('.version-frame').forEach(function(f) { f.classList.remove('active'); });
-            var frame = document.getElementById('frame-' + v);
-            frame.src = v + '/index.html';
-            frame.classList.add('active');
-        }
+    <!-- NAVIGATION (Serenya-style centered pill nav) -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-text" style="font-family:'Bosten', Georgia, serif; transform: scaleX(1.15); transform-origin: left center; display: inline-block;">Dokter Richard</span>
+        </a>
+        <div class="nav-center body-text">
+            <a href="#" class="active">Home</a>
+            <a href="#over">Over Richard</a>
+            <a href="#boek">Boeken</a>
+            <a href="#diensten">Coaching</a>
+            <a href="#blog">Blog</a>
+            <a href="#agenda">Events</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <a href="#consult" class="nav-cta body-text">Consult aanvragen</a>
+        <button class="hamburger" onclick="openMobileNav()">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </nav>
 
-        function shareVersion() {
-            var frame = document.getElementById('frame-' + currentVersion);
-            var state = {};
-            try {
-                state = frame.contentWindow._tbGetState ? frame.contentWindow._tbGetState() : {};
-            } catch(e) {}
+    <!-- HERO -->
+    <section class="hero fade-in">
+        <div class="hero-split">
+            <div class="hero-image-card">
+                <img src="images/Web-hero.avif" alt="Richard Hoofs met zijn boek">
+            </div>
+            <div class="hero-text">
+                <h1 class="header-text h1-text">Bezield Leven op Doktersrecept</h1>
+                <p class="hero-sub body-text" style="font-style:italic; font-size:17px; color:var(--green-dark); margin-bottom:8px; font-family: 'Meditera', Georgia, serif;">Het maakt niet uit of je uit balans raakt, als je de weg terug maar weet te vinden.</p>
+                <p class="hero-sub body-text" style="font-style:italic; font-size:15px; color:var(--sage); margin-bottom:24px;">Balans in jezelf, balans in je leven</p>
+                <p class="hero-sub body-text">Huisarts, leefstijlcoach en auteur. Coaching, leefstijlgeneeskunde en acupunctuur om blokkades los te laten, patronen te doorbreken en te leven vanuit innerlijke rust.</p>
+                <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap; margin-top:16px;">
+                    <a href="#" class="hero-cta body-text">
+                        Bestel het boek — €24,99
+                        <span class="cta-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    </a>
+                    <a href="#consult" class="body-text" style="font-size:15px; color:var(--accent); font-weight:500; transition:all 0.3s;">Consult aanvragen →</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-roles">
+            <a href="#over" class="hero-role">
+                <h4 class="header-text">Over Richard</h4>
+                <p class="body-text">Huisarts, coach en auteur in Den Bosch.</p>
+            </a>
+            <a href="#boek" class="hero-role">
+                <h4 class="header-text">Boeken</h4>
+                <p class="body-text">Bezield Leven op Doktersrecept en meer.</p>
+            </a>
+            <a href="#diensten" class="hero-role">
+                <h4 class="header-text">Coaching</h4>
+                <p class="body-text">Persoonlijke begeleiding naar balans.</p>
+            </a>
+            <a href="#blog" class="hero-role">
+                <h4 class="header-text">Blog</h4>
+                <p class="body-text">Artikelen over gezondheid en leefstijl.</p>
+            </a>
+            <a href="#agenda" class="hero-role">
+                <h4 class="header-text">Events</h4>
+                <p class="body-text">Lezingen en workshops.</p>
+            </a>
+            <a href="#contact" class="hero-role">
+                <h4 class="header-text">Contact</h4>
+                <p class="body-text">Neem vrijblijvend contact op.</p>
+            </a>
+        </div>
+    </section>
 
-            var params = ['share'];
-            if (state.logo)       params.push('logo=' + encodeURIComponent(state.logo) + '&logoW=' + state.logoWeight);
-            if (state.h1)         params.push('h1=' + encodeURIComponent(state.h1) + '&h1W=' + state.h1Weight);
-            if (state.header)     params.push('header=' + encodeURIComponent(state.header) + '&headerW=' + state.headerWeight);
-            if (state.body)       params.push('body=' + encodeURIComponent(state.body) + '&bodyW=' + state.bodyWeight);
-            if (state.h1Size)     params.push('h1Size=' + state.h1Size);
-            if (state.headerSize) params.push('headerSize=' + state.headerSize);
-            if (state.bodySize)   params.push('bodySize=' + state.bodySize);
+    <!-- ZELFSCAN BANNER (boven de vouw) -->
+    <section class="zelfscan-banner fade-in">
+        <div class="zelfscan-banner-inner">
+            <div class="zelfscan-banner-text">
+                <h3 class="header-text">Gratis Gezondheid Zelfscan</h3>
+                <p class="body-text">Ontdek in 5 minuten hoe het met jouw balans staat op vier pijlers: SES, Body, Mind en Soul. Ontvang je persoonlijke resultaat per mail.</p>
+            </div>
+            <div class="zelfscan-banner-actions">
+                <a href="#zelfscan" class="zelfscan-btn body-text">
+                    Start de zelfscan
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
 
-            var base = window.location.href.split('?')[0].replace(/\/?index\.html$/, '').replace(/\/$/, '');
-            var shareUrl = base + '/' + currentVersion + '/index.html?' + params.join('&');
-            navigator.clipboard.writeText(shareUrl).then(function() {
-                showToast('Link gekopieerd!');
-            }).catch(function() {});
-            window.open(shareUrl, '_blank');
-        }
+    <!-- ABOUT + QUOTE -->
+    <section class="about-quote-section" id="over">
+        <div class="about-left fade-in">
+            <div class="about-pill body-text">Over mij</div>
+            <h2 class="header-text">Vind je balans: de kracht van holistische zorg</h2>
+            <p class="body-text">Echt welzijn komt van binnenuit. Mijn aanpak is ontworpen om je te helpen opnieuw in contact te komen met je lichaam, geest en ziel. Als huisarts en leefstijlcoach begeleid ik je naar duurzame gezondheid.</p>
+        </div>
+        <div class="fade-in" id="ervaringen">
+            <div class="quote-card">
+                <div class="quote-pill body-text">Visie</div>
+                <blockquote class="body-text" style="font-size:20px; line-height:1.6;">Bezield leven staat centraal in mijn praktijk. Als huisarts en coach kijk ik naar het hele plaatje: lichaam, geest en ziel. Mijn praktijk is in eerste instantie een coaching praktijk met ook trainings&shy;trajecten.</blockquote>
+                <div class="quote-author">
+                    <div class="quote-author-info">
+                        <div class="quote-avatar">R</div>
+                        <div>
+                            <div class="quote-author-name body-text">Richard Hoofs</div>
+                            <div class="quote-author-role body-text">Huisarts & Coach</div>
+                        </div>
+                    </div>
+                    <a href="#consult" class="quote-cta body-text">
+                        Consult aanvragen
+                        <div class="card-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function showToast(msg) {
-            var t = document.getElementById('toast');
-            t.textContent = msg;
-            t.classList.add('show');
-            setTimeout(function() { t.classList.remove('show'); }, 2000);
-        }
+    <!-- JOURNEY SECTION -->
+    <section class="journey-section">
+        <div class="journey-image fade-in">
+            <img src="images/img-richard.jpeg" alt="Dokter Richard">
+        </div>
+        <div class="journey-content fade-in">
+            <h2 class="header-text">Jouw reis naar balans en vitaliteit</h2>
+            <p class="body-text">Ik combineer mijn passie voor holistische geneeskunde met aandacht voor lichaam, geest en ziel. Als huisarts, leefstijlarts en coach begeleid ik mensen naar duurzame gezondheid.</p>
+            <div class="journey-features">
+                <div class="journey-feature">
+                    <div class="journey-feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <div class="journey-feature-text">
+                        <h4 class="body-text">SES & Body</h4>
+                        <p class="body-text">Sociaal-emotioneel systeem en lichamelijke gezondheid</p>
+                    </div>
+                </div>
+                <div class="journey-feature">
+                    <div class="journey-feature-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                    </div>
+                    <div class="journey-feature-text">
+                        <h4 class="body-text">Mind & Soul</h4>
+                        <p class="body-text">Mentale balans en spirituele verbinding</p>
+                    </div>
+                </div>
+                <div class="journey-feature">
+                    <div class="journey-feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div class="journey-feature-text">
+                        <h4 class="body-text">Kruiden & Voeding</h4>
+                        <p class="body-text">Natuurlijke ondersteuning en voedingsadvies</p>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn-primary body-text">
+                Bekijk alle diensten
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+        </div>
+    </section>
 
-        // Listen for messages from iframe toolbar
-        window.addEventListener('message', function(e) {
-            if (!e.data || !e.data.type) return;
-            if (e.data.type === 'switchVersion') {
-                switchVersion(e.data.version);
-            } else if (e.data.type === 'shareVersion') {
-                shareVersion();
-            }
-        });
-    </script>
+    <!-- FOUR PILLARS (portrait cards like Zenflow trainers) -->
+    <section class="pillars-section">
+        <div class="pillars-header">
+            <h2 class="header-text">De vier pijlers van gezondheid</h2>
+            <a href="#" class="pillars-header-link body-text">
+                Alle diensten bekijken
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+        </div>
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <img src="images/richard-huisarts.jpg" alt="SES">
+                <div class="pillar-card-info">
+                    <div>
+                        <h3 class="header-text">SES</h3>
+                        <span class="body-text">Sociaal Emotioneel</span>
+                    </div>
+                    <a href="#" class="card-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+                </div>
+            </div>
+            <div class="pillar-card">
+                <img src="images/rich-tas-2.jpeg" alt="Body">
+                <div class="pillar-card-info">
+                    <div>
+                        <h3 class="header-text">Body</h3>
+                        <span class="body-text">Lichamelijke Gezondheid</span>
+                    </div>
+                    <a href="#" class="card-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+                </div>
+            </div>
+            <div class="pillar-card">
+                <img src="images/richard-thot-2.jpg" alt="Mind">
+                <div class="pillar-card-info">
+                    <div>
+                        <h3 class="header-text">Mind</h3>
+                        <span class="body-text">Mentale Balans</span>
+                    </div>
+                    <a href="#" class="card-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+                </div>
+            </div>
+            <div class="pillar-card">
+                <img src="images/img-richard.jpeg" alt="Soul">
+                <div class="pillar-card-info">
+                    <div>
+                        <h3 class="header-text">Soul</h3>
+                        <span class="body-text">Spirituele Verbinding</span>
+                    </div>
+                    <a href="#" class="card-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOK SECTION -->
+    <section class="book-section" id="boek">
+        <div class="book-inner">
+            <div class="book-image fade-in">
+                <img src="images/9789493282483-920x960.avif" alt="Bezield Leven op Doktersrecept">
+            </div>
+            <div class="book-content fade-in">
+                <h2 class="header-text">Bezield Leven op Doktersrecept</h2>
+                <p class="body-text">In dit boek neemt Richard Hoofs je mee op een reis naar holistische gezondheid. Als huisarts en leefstijlcoach deelt hij zijn unieke visie op genezing, waarbij lichaam, geest en ziel samenkomen.</p>
+                <p class="body-text">Een praktische gids voor iedereen die op zoek is naar balans en duurzaam welzijn.</p>
+                <a href="#" class="book-btn body-text">
+                    Bestel het boek
+                    <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEDIA + REVIEWS -->
+    <section class="media-reviews-section fade-in">
+        <div class="media-reviews-grid">
+            <div class="media-side">
+                <h3 class="header-text">In de media</h3>
+                <div class="media-carousel">
+                    <a href="#" class="media-logo-item body-text">Medisch Contact</a>
+                    <a href="#" class="media-logo-item body-text">Trouw</a>
+                    <a href="#" class="media-logo-item body-text">Brabants Dagblad</a>
+                    <a href="#" class="media-logo-item body-text">De Limburger</a>
+                    <a href="#" class="media-logo-item body-text">Leeuwarder Courant</a>
+                    <a href="#" class="media-logo-item body-text">Spiegelbeeld</a>
+                    <a href="#" class="media-logo-item body-text">Paravisie</a>
+                    <a href="#" class="media-logo-item body-text">De Gelderlander</a>
+                </div>
+            </div>
+            <div class="reviews-side">
+                <h3 class="header-text">Ervaringen</h3>
+                <div class="reviews-carousel" id="reviewsCarousel">
+                    <div class="review-card active">
+                        <blockquote class="body-text">"Dokter Richard kijkt écht naar het hele plaatje. Na jaren van klachten heb ik eindelijk het gevoel dat ik begrepen word."</blockquote>
+                        <div class="review-author body-text">— Maria V., Coaching Traject</div>
+                    </div>
+                    <div class="review-card">
+                        <blockquote class="body-text">"De combinatie van reguliere geneeskunde en holistische aanpak maakt het zo bijzonder. Ik voel me weer in balans."</blockquote>
+                        <div class="review-author body-text">— Peter K., Trainingstraject</div>
+                    </div>
+                    <div class="review-card">
+                        <blockquote class="body-text">"Richard luistert echt en neemt de tijd. Zijn aanpak heeft mijn leven veranderd."</blockquote>
+                        <div class="review-author body-text">— Sandra B., Intake Consult</div>
+                    </div>
+                </div>
+                <div class="reviews-dots">
+                    <button class="review-dot active" onclick="showReview(0)"></button>
+                    <button class="review-dot" onclick="showReview(1)"></button>
+                    <button class="review-dot" onclick="showReview(2)"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PUBLICATIES -->
+    <section class="publicaties-section" id="publicaties">
+        <h2 class="header-text fade-in">Wetenschappelijke & medische publicaties</h2>
+        <div class="publicaties-list">
+            <div class="publicatie-item fade-in">
+                <h4 class="header-text">Holistische geneeskunde in de huisartsenpraktijk</h4>
+                <p class="body-text">Over de integratie van complementaire behandelingen in de reguliere zorg.</p>
+                <div class="pub-source body-text">Medisch Contact</div>
+            </div>
+            <div class="publicatie-item fade-in">
+                <h4 class="header-text">Leefstijlgeneeskunde als basis</h4>
+                <p class="body-text">Hoe leefstijlinterventies chronische klachten kunnen verminderen.</p>
+                <div class="pub-source body-text">Trouw</div>
+            </div>
+            <div class="publicatie-item fade-in">
+                <h4 class="header-text">De kracht van acupunctuur</h4>
+                <p class="body-text">Wetenschappelijke onderbouwing van energetische geneeswijzen.</p>
+                <div class="pub-source body-text">Brabants Dagblad</div>
+            </div>
+            <div class="publicatie-item fade-in">
+                <h4 class="header-text">Bezield leven: van theorie naar praktijk</h4>
+                <p class="body-text">Interview over het boek en de filosofie achter holistische zorg.</p>
+                <div class="pub-source body-text">Paravisie</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AGENDA -->
+    <section class="agenda-section" id="agenda">
+        <h2 class="header-text fade-in">Events & lezingen</h2>
+        <div class="agenda-list">
+            <div class="agenda-item fade-in">
+                <span class="agenda-item-date body-text">Binnenkort</span>
+                <span class="agenda-item-title">Nieuwe data worden binnenkort aangekondigd</span>
+                <span class="agenda-item-location body-text">—</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing-section" id="tarieven">
+        <div class="pricing-header fade-in">
+            <h2 class="header-text">Kies het traject dat bij je past</h2>
+            <p class="body-text">Transparante tarieven voor elke stap op je pad naar holistische gezondheid.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card fade-in">
+                <h3 class="header-text">Intake Consult</h3>
+                <p class="pricing-desc body-text">Een uitgebreid kennismakingsgesprek waarin we samen kijken naar jouw gezondheid, klachten en doelen.</p>
+                <div class="pricing-price header-text">&euro;95 <span class="body-text">- &euro;150</span></div>
+                <div class="pricing-duration body-text">60 - 90 minuten</div>
+                <ul class="pricing-features body-text">
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Uitgebreide anamnese</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Holistische diagnose</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Persoonlijk behandeladvies</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Schriftelijke terugkoppeling</li>
+                </ul>
+                <a href="#" class="pricing-btn pricing-btn-outline body-text">Afspraak maken</a>
+            </div>
+            <div class="pricing-card featured fade-in">
+                <div class="pricing-popular body-text">MEEST GEKOZEN</div>
+                <h3 class="header-text">Coaching</h3>
+                <p class="pricing-desc body-text">Persoonlijke begeleiding waarbij we structureel werken aan jouw balans, leefstijl en welzijn.</p>
+                <div class="pricing-price header-text">&euro;250 <span class="body-text" style="color:rgba(255,255,255,0.5)">- &euro;400</span></div>
+                <div class="pricing-duration body-text">6 - 12 sessies</div>
+                <ul class="pricing-features body-text">
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Intake consult inbegrepen</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Persoonlijke coaching sessies</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Voortgangsmonitoring</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> WhatsApp ondersteuning</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Leefstijladvies op maat</li>
+                </ul>
+                <a href="#" class="pricing-btn pricing-btn-white body-text">Afspraak maken</a>
+            </div>
+            <div class="pricing-card fade-in">
+                <h3 class="header-text">Trainingstraject</h3>
+                <p class="pricing-desc body-text">Een intensief begeleidingstraject voor wie diepgaand en duurzaam wil werken aan gezondheid en transformatie.</p>
+                <div class="pricing-price header-text">&euro;500 <span class="body-text">- &euro;750</span></div>
+                <div class="pricing-duration body-text">3 - 6 maanden</div>
+                <ul class="pricing-features body-text">
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Alles van Coaching</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Kruiden- & voedingsadvies</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Maandelijkse evaluatie</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Acupunctuur sessies</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Onbeperkt contact</li>
+                </ul>
+                <a href="#" class="pricing-btn pricing-btn-outline body-text">Afspraak maken</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-inner fade-in">
+            <div class="cta-content">
+                <h2 class="header-text">Doe de gratis Gezondheid Zelfscan</h2>
+                <p class="body-text">Krijg in 15-20 minuten inzicht in je gezondheid op vier pijlers: SES, Body, Mind en Soul. Volledig gratis en vrijblijvend.</p>
+            </div>
+            <div class="cta-buttons">
+                <a href="#" class="btn-white body-text">
+                    Start zelfscan
+                    <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a href="#" class="btn-outline-white body-text">Meer info</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONSULT FORM -->
+    <section class="consult-section" id="consult">
+        <div class="consult-inner fade-in">
+            <h2 class="header-text">Consult aanvragen</h2>
+            <p class="body-text">Vul onderstaand formulier in en ik neem zo snel mogelijk contact met je op.</p>
+            <form class="consult-form" action="https://formspree.io/f/placeholder" method="POST">
+                <div class="form-group">
+                    <label class="body-text">1. Waar loop je tegenaan in je leven?</label>
+                    <textarea name="vraag1" class="body-text" placeholder="Beschrijf je situatie..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="body-text">2. Heb je medische klachten? Welke?</label>
+                    <textarea name="vraag2" class="body-text" placeholder="Beschrijf je klachten..."></textarea>
+                </div>
+                <div class="form-group form-sub">
+                    <label class="body-text">Word je hiervoor behandeld?</label>
+                    <select name="vraag2b" class="body-text">
+                        <option value="">Selecteer...</option>
+                        <option value="ja">Ja</option>
+                        <option value="nee">Nee</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="body-text">3. Gebruik je medicatie?</label>
+                    <textarea name="vraag3" class="body-text" placeholder="Welke medicatie gebruik je?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="body-text">4. Wat denk je dat de oorzaak is?</label>
+                    <textarea name="vraag4" class="body-text" placeholder="Je eigen inzicht..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="body-text">5. Hoe ben je bij mij terecht gekomen?</label>
+                    <textarea name="vraag5" class="body-text" placeholder="Via een kennis, online, social media..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="body-text">Je naam</label>
+                    <input type="text" name="naam" class="body-text" placeholder="Volledige naam" required>
+                </div>
+                <div class="form-group">
+                    <label class="body-text">E-mailadres</label>
+                    <input type="email" name="email" class="body-text" placeholder="je@email.nl" required>
+                </div>
+                <div class="form-group">
+                    <label class="body-text">Telefoonnummer <span>(optioneel)</span></label>
+                    <input type="tel" name="telefoon" class="body-text" placeholder="+31 6 ...">
+                </div>
+                <button type="submit" class="consult-submit body-text">Verstuur aanvraag</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section">
+        <div class="newsletter-inner fade-in">
+            <h2 class="header-text">Blijf op de hoogte</h2>
+            <p class="body-text">Schrijf je in voor de nieuwsbrief en ontvang tips over holistische gezondheid, leefstijl en balans.</p>
+            <form class="newsletter-form" action="https://formspree.io/f/placeholder" method="POST">
+                <input type="email" name="email" class="body-text" placeholder="Je e-mailadres" required>
+                <button type="submit" class="body-text">Inschrijven</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contact">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo logo-text" style="font-family:'Bosten', Georgia, serif; transform: scaleX(1.15); transform-origin: left center; display: inline-block;">Dokter Richard</div>
+                <p class="body-text">Holistisch huisarts, leefstijlcoach en auteur. Begeleiding naar balans en gezondheid van lichaam, geest en ziel.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                    <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4 class="body-text">Pagina's</h4>
+                <ul>
+                    <li><a href="#over" class="body-text">Over Richard</a></li>
+                    <li><a href="#boek" class="body-text">Boeken</a></li>
+                    <li><a href="#diensten" class="body-text">Coaching</a></li>
+                    <li><a href="#blog" class="body-text">Blog</a></li>
+                    <li><a href="#agenda" class="body-text">Events</a></li>
+                    <li><a href="#contact" class="body-text">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="body-text">Diensten</h4>
+                <ul>
+                    <li><a href="#" class="body-text">Intake Consult</a></li>
+                    <li><a href="#" class="body-text">Coaching</a></li>
+                    <li><a href="#" class="body-text">Leefstijladvies</a></li>
+                    <li><a href="#" class="body-text">Online Consult</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="body-text">Contact</h4>
+                <ul>
+                    <li><a href="mailto:medischepraktijkmondesir@live.nl" class="body-text">medischepraktijkmondesir@live.nl</a></li>
+                    <li><span class="body-text" style="color:var(--text-muted);font-size:14px">Den Bosch, Nederland</span></li>
+                    <li><span class="body-text" style="color:var(--text-muted);font-size:14px">Medische Praktijk Mondesir</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="body-text">&copy; 2026 Dokter Richard Hoofs. Alle rechten voorbehouden.</p>
+            <p class="body-text">Ontworpen met zorg voor gezondheid</p>
+        </div>
+    </footer>
+
+</div>
+</div>
+
+<script>
+function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); }
+function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
+
+function showReview(idx) {
+    var cards = document.querySelectorAll('.review-card');
+    var dots = document.querySelectorAll('.review-dot');
+    cards.forEach(function(c, i) { c.classList.toggle('active', i === idx); });
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+}
+// Auto-rotate reviews
+var currentReview = 0;
+setInterval(function() {
+    var cards = document.querySelectorAll('.review-card');
+    if (cards.length > 0) {
+        currentReview = (currentReview + 1) % cards.length;
+        showReview(currentReview);
+    }
+}, 5000);
+
+var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+</script>
 </body>
 </html>
