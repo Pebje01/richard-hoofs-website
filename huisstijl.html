@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huisstijl — Dokter Richard Hoofs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Bosten';
+            src: url('fonts/Bosten.woff2') format('woff2'),
+                 url('fonts/Bosten.woff') format('woff'),
+                 url('fonts/Bosten.otf') format('opentype');
+            font-display: swap;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            /* === PRIMAIRE KLEUREN === */
+            --bg: #FFFAF8;
+            --bg-alt: #f7f0eb;
+            --green: #63746B;
+            --green-dark: #3a3d32;
+            --accent: #C1774F;
+
+            /* === SECUNDAIRE KLEUREN === */
+            --sage: #a0a496;
+            --cream: #fffcf8;
+            --white: #ffffff;
+
+            /* === TEKST KLEUREN === */
+            --text: #2a2d24;
+            --text-body: #3a3d32;
+            --text-muted: #a0a496;
+
+            /* === UI KLEUREN === */
+            --border: rgba(136, 140, 121, 0.15);
+            --border-strong: rgba(136, 140, 121, 0.3);
+
+            /* === TYPOGRAFIE === */
+            --font-heading: 'Montserrat', -apple-system, sans-serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --font-logo: 'Bosten', Georgia, serif;
+
+            /* === RADIUS === */
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 999px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: #fff;
+            color: var(--text-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .brand-page { max-width: 1200px; margin: 0 auto; padding: 60px 40px; }
+
+        .brand-header {
+            text-align: center;
+            padding: 80px 0 60px;
+            border-bottom: 2px solid var(--green-dark);
+            margin-bottom: 80px;
+        }
+        .brand-header .logo-preview {
+            font-family: var(--font-logo);
+            font-size: 36px;
+            font-weight: 400;
+            color: var(--green);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .brand-header .logo-preview .sol {
+            width: 38px; height: 38px;
+        }
+        .brand-header .logo-preview .sol circle {
+            fill: none; stroke: var(--green); stroke-width: 0.8;
+        }
+        .brand-header p {
+            font-size: 18px;
+            color: var(--text-muted);
+        }
+
+        .section { margin-bottom: 80px; }
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: -0.02em;
+        }
+        .section-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        /* COLOR SWATCHES */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .color-card {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .color-swatch {
+            height: 120px;
+            display: flex;
+            align-items: flex-end;
+            padding: 12px;
+        }
+        .color-info {
+            padding: 16px;
+            background: #fff;
+        }
+        .color-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--green-dark);
+            margin-bottom: 2px;
+        }
+        .color-var {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+        .color-hex {
+            font-size: 13px;
+            color: var(--text-body);
+            font-family: monospace;
+            margin-top: 4px;
+        }
+        .color-usage {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        /* TYPOGRAPHY */
+        .type-sample {
+            padding: 32px;
+            background: var(--bg);
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+        }
+        .type-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+        .type-specs {
+            font-size: 13px;
+            color: var(--sage);
+            font-family: monospace;
+            margin-top: 8px;
+        }
+
+        /* BUTTONS */
+        .button-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 22px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 600;
+            font-family: var(--font-body);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s, border-color 0.3s;
+            z-index: 1;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scaleX(1);
+            transform-origin: right;
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+        .btn:hover::before { transform: scaleX(0); transform-origin: left; }
+        .btn:hover::after { transform: scaleX(1); transform-origin: right; }
+        .btn .btn-arrow {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 22px; height: 22px; border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
+            flex-shrink: 0;
+        }
+        .btn:hover .btn-arrow { transform: translateX(3px); background: rgba(255,255,255,0.3); }
+        .btn .btn-arrow svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+        .btn-accent { background: transparent; color: #fff; }
+        .btn-accent::before { background: var(--accent); }
+        .btn-accent::after { background: var(--green-dark); }
+
+        .btn-dark { background: transparent; color: #fff; }
+        .btn-dark::before { background: var(--green-dark); }
+        .btn-dark::after { background: var(--accent); }
+
+        .btn-outline { background: transparent; color: var(--green-dark); border: 1.5px solid var(--border-strong); }
+        .btn-outline::before { background: transparent; }
+        .btn-outline::after { background: var(--accent); }
+        .btn-outline:hover { color: #fff; border-color: var(--accent); }
+
+        .btn-ghost { background: none; color: var(--accent); padding: 12px 0; overflow: visible; }
+        .btn-ghost::before, .btn-ghost::after { display: none; }
+        .btn-ghost:hover { color: var(--green-dark); }
+        .btn-ghost .btn-arrow { background: rgba(193,119,79,0.1); }
+
+        .btn-pill-demo { background: var(--bg-alt); color: var(--text-muted); padding: 8px 18px; border-radius: var(--radius-full); font-size: 13px; font-weight: 500; border: none; cursor: pointer; }
+        .btn-pill-demo.active { background: #fff; color: var(--green-dark); box-shadow: 0 1px 4px rgba(0,0,0,0.06); font-weight: 600; }
+
+        /* SPACING */
+        .spacing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        .spacing-item {
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+        }
+        .spacing-bar {
+            height: 8px;
+            background: var(--accent);
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        .spacing-label { font-size: 13px; font-weight: 600; color: var(--green-dark); }
+        .spacing-value { font-size: 12px; color: var(--text-muted); font-family: monospace; }
+
+        /* RADIUS */
+        .radius-grid {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .radius-item {
+            width: 100px;
+            height: 100px;
+            background: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 13px;
+            font-family: monospace;
+        }
+
+        /* SEED OF LIFE */
+        .seed-demo {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .seed-card {
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .seed-card svg {
+            opacity: 0.12;
+        }
+        .seed-card p {
+            position: relative;
+            z-index: 1;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* CARD EXAMPLES */
+        .card-examples {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .example-card {
+            background: var(--cream);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            border: 1px solid var(--border);
+        }
+        .example-card h4 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+        .example-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+        .example-card-featured {
+            background: var(--green);
+            border-color: var(--green);
+        }
+        .example-card-featured h4,
+        .example-card-featured p { color: #fff; }
+        .example-card-featured p { opacity: 0.7; }
+
+        @media (max-width: 768px) {
+            .brand-page { padding: 32px 20px; }
+            .brand-header .logo-preview { font-size: 24px; }
+            .color-grid { grid-template-columns: repeat(2, 1fr); }
+            .card-examples { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="brand-page">
+
+    <header class="brand-header">
+        <div class="logo-preview">
+            <svg class="sol" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/>
+                <circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/>
+                <circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/>
+            </svg>
+            Dokter Richard
+        </div>
+        <p>Huisstijl & Brand Guidelines</p>
+    </header>
+
+    <!-- LOGO -->
+    <div class="section">
+        <h2 class="section-title">Logo</h2>
+        <p class="section-desc">Het logo bestaat uit de tekst "DOKTER RICHARD" in het Bosten font (uppercase) met het Seed of Life (Zaad des Levens) symbool als icoon. De kleur is altijd --green (#63746B).</p>
+
+        <div style="display:flex; gap:48px; flex-wrap:wrap; align-items:center; margin-top:24px;">
+            <div style="padding:32px 48px; background:var(--bg); border-radius:var(--radius-md);">
+                <div style="font-family:'Bosten',Georgia,serif; font-size:28px; color:var(--green); text-transform:uppercase; letter-spacing:0.02em; display:flex; align-items:center; gap:10px;">
+                    <svg width="32" height="32" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                        <circle cx="20" cy="11" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                        <circle cx="20" cy="29" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                        <circle cx="27.794" cy="15.5" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                        <circle cx="27.794" cy="24.5" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                        <circle cx="12.206" cy="15.5" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                        <circle cx="12.206" cy="24.5" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                    </svg>
+                    Dokter Richard
+                </div>
+                <div class="type-specs" style="margin-top:12px;">font: Bosten 28px | color: #63746B | uppercase | letter-spacing: 0.02em</div>
+            </div>
+            <div style="padding:32px 48px; background:var(--green); border-radius:var(--radius-md);">
+                <div style="font-family:'Bosten',Georgia,serif; font-size:20px; color:#fff; text-transform:uppercase; letter-spacing:0.02em;">
+                    Dokter Richard
+                </div>
+                <div class="type-specs" style="margin-top:12px; color:rgba(255,255,255,0.5);">Footer variant: 20px, wit</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KLEUREN -->
+    <div class="section">
+        <h2 class="section-title">Kleurenpalet</h2>
+        <p class="section-desc">Warme, rustige kleuren die professionaliteit en holistische zorg uitstralen. De beige basis is uitnodigend, het sage groen staat voor natuur en genezing, de terracotta accent voegt warmte toe.</p>
+
+        <h3 style="font-size:14px; font-weight:700; font-family:var(--font-heading); color:var(--green-dark); margin-bottom:16px; margin-top:24px;">Primaire kleuren</h3>
+        <div class="color-grid">
+            <div class="color-card">
+                <div class="color-swatch" style="background:#FFFAF8;"></div>
+                <div class="color-info">
+                    <div class="color-name">Background</div>
+                    <div class="color-var">--bg</div>
+                    <div class="color-hex">#FFFAF8</div>
+                    <div class="color-usage">Hoofdachtergrond van de website</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background:#f7f0eb;"></div>
+                <div class="color-info">
+                    <div class="color-name">Background Alt</div>
+                    <div class="color-var">--bg-alt</div>
+                    <div class="color-hex">#f7f0eb</div>
+                    <div class="color-usage">Alternatieve achtergrond, secties, nav-pill, page hero</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background:#63746B;"></div>
+                <div class="color-info">
+                    <div class="color-name">Sage Green</div>
+                    <div class="color-var">--green</div>
+                    <div class="color-hex">#63746B</div>
+                    <div class="color-usage">Groene vlakken, quote card, featured pricing, footer, Seed of Life secties</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background:#3a3d32; color:#fff;"></div>
+                <div class="color-info">
+                    <div class="color-name">Dark Green</div>
+                    <div class="color-var">--green-dark</div>
+                    <div class="color-hex">#3a3d32</div>
+                    <div class="color-usage">Headers, titels, nav-tekst, button hover state</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background:#C1774F;"></div>
+                <div class="color-info">
+                    <div class="color-name">Terracotta Accent</div>
+                    <div class="color-var">--accent</div>
+                    <div class="color-hex">#C1774F</div>
+                    <div class="color-usage">CTA buttons, links, labels, zelfscan banner, nav CTA</div>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="font-size:14px; font-weight:700; font-family:var(--font-heading); color:var(--green-dark); margin-bottom:16px; margin-top:32px;">Secundaire & UI kleuren</h3>
+        <div class="color-grid">
+            <div class="color-card">
+                <div class="color-swatch" style="background:#a0a496;"></div>
+                <div class="color-info">
+                    <div class="color-name">Sage / Muted</div>
+                    <div class="color-var">--sage / --text-muted</div>
+                    <div class="color-hex">#a0a496</div>
+                    <div class="color-usage">Subtiele tekst, labels, muted elementen</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background:#fffcf8; border: 1px solid #eee;"></div>
+                <div class="color-info">
+                    <div class="color-name">Cream</div>
+                    <div class="color-var">--cream</div>
+                    <div class="color-hex">#fffcf8</div>
+                    <div class="color-usage">Cards, formulier achtergronden, book sectie</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background:#2a2d24; color:#fff;"></div>
+                <div class="color-info">
+                    <div class="color-name">Text Primary</div>
+                    <div class="color-var">--text</div>
+                    <div class="color-hex">#2a2d24</div>
+                    <div class="color-usage">Primaire body tekst (donkerst)</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background:rgba(136,140,121,0.15); border:1px solid rgba(136,140,121,0.3);"></div>
+                <div class="color-info">
+                    <div class="color-name">Border</div>
+                    <div class="color-var">--border / --border-strong</div>
+                    <div class="color-hex">rgba(136,140,121, 0.15 / 0.3)</div>
+                    <div class="color-usage">Scheidingslijnen, card borders</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TYPOGRAFIE -->
+    <div class="section">
+        <h2 class="section-title">Typografie</h2>
+        <p class="section-desc">Drie font-families: Bosten (logo), Montserrat (headings) en Inter (body tekst).</p>
+
+        <div class="type-sample">
+            <div class="type-label">Logo Font — Bosten</div>
+            <div style="font-family:'Bosten',Georgia,serif; font-size:28px; color:var(--green); text-transform:uppercase; letter-spacing:0.02em;">
+                Dokter Richard
+            </div>
+            <div class="type-specs">font-family: 'Bosten' | weight: 400 | size: 28px | uppercase | color: --green</div>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">Heading H1 — Montserrat Bold</div>
+            <div style="font-family:var(--font-heading); font-size:48px; color:var(--green-dark); font-weight:700; line-height:1.1; letter-spacing:-0.025em;">
+                Bezield Leven op Doktersrecept
+            </div>
+            <div class="type-specs">font-family: 'Montserrat' | weight: 700 | size: clamp(34px, 3.8vw, 52px) | line-height: 1.1</div>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">Heading H2 — Montserrat Bold</div>
+            <div style="font-family:var(--font-heading); font-size:36px; color:var(--green-dark); font-weight:700; line-height:1.15; letter-spacing:-0.025em;">
+                Jouw reis naar balans en vitaliteit
+            </div>
+            <div class="type-specs">font-family: 'Montserrat' | weight: 700 | size: clamp(26px, 3vw, 38px) | line-height: 1.15</div>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">Body Text — Inter Regular</div>
+            <div style="font-family:var(--font-body); font-size:15px; color:var(--text-body); line-height:1.75;">
+                Coaching, leefstijlgeneeskunde en acupunctuur om blokkades los te laten, patronen te doorbreken en te leven vanuit innerlijke rust. Een holistische aanpak voor duurzame gezondheid.
+            </div>
+            <div class="type-specs">font-family: 'Inter' | weight: 400 | size: 15px | line-height: 1.75 | color: --text-body</div>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">Label / Overline — Inter SemiBold</div>
+            <div style="font-family:var(--font-body); font-size:11px; color:var(--accent); font-weight:600; text-transform:uppercase; letter-spacing:0.1em; display:flex; align-items:center; gap:8px;">
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);"></span>
+                Huisarts, Coach & Auteur
+            </div>
+            <div class="type-specs">font: Inter 11px 600 | uppercase | letter-spacing: 0.1em | color: --accent | met dot prefix</div>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">Nav Text — Inter Medium</div>
+            <div style="font-family:var(--font-body); font-size:13px; color:var(--text-muted); font-weight:500;">
+                Home &nbsp;&nbsp; Over Richard &nbsp;&nbsp; Boeken &nbsp;&nbsp; Coaching &nbsp;&nbsp; Blog &nbsp;&nbsp; Events &nbsp;&nbsp; Contact
+            </div>
+            <div class="type-specs">font: Inter 13px 500 | color: --text-muted (active: --green-dark 600)</div>
+        </div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="section">
+        <h2 class="section-title">Buttons & Interactie</h2>
+        <p class="section-desc">Buttons hebben een slide-effect met ::before/::after pseudo-elementen (scaleX transform). Border-radius: 12px. Inclusief circulair pijltje (btn-arrow).</p>
+
+        <h3 style="font-size:14px; font-weight:700; font-family:var(--font-heading); color:var(--green-dark); margin:0 0 16px;">Primaire buttons (met slide effect)</h3>
+        <div class="button-row">
+            <button class="btn btn-accent">Bestel het boek <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+            <button class="btn btn-dark">Consult aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+            <button class="btn btn-outline">Meer info <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        </div>
+        <div class="button-row">
+            <span class="btn btn-ghost">Ghost link <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></span>
+        </div>
+
+        <h3 style="font-size:14px; font-weight:700; font-family:var(--font-heading); color:var(--green-dark); margin:24px 0 12px;">Navigatie Pills</h3>
+        <div class="button-row" style="background:var(--bg-alt); border-radius:var(--radius-full); padding:4px; display:inline-flex;">
+            <span class="btn-pill-demo active">Home</span>
+            <span class="btn-pill-demo">Over Richard</span>
+            <span class="btn-pill-demo">Boeken</span>
+            <span class="btn-pill-demo">Coaching</span>
+        </div>
+        <div class="type-specs" style="margin-top:8px;">Pill nav: bg-alt container, radius-full, active state: white bg + shadow</div>
+    </div>
+
+    <!-- SEED OF LIFE -->
+    <div class="section">
+        <h2 class="section-title">Seed of Life (Zaad des Levens)</h2>
+        <p class="section-desc">Het Seed of Life symbool (heilige geometrie, 7 overlappende cirkels) wordt gebruikt als logo-icoon en als decoratief watermark in groene secties. Altijd als outline SVG, nooit gevuld.</p>
+
+        <div class="seed-demo">
+            <div>
+                <svg width="80" height="80" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                    <circle cx="20" cy="11" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                    <circle cx="20" cy="29" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                    <circle cx="27.794" cy="15.5" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                    <circle cx="27.794" cy="24.5" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                    <circle cx="12.206" cy="15.5" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                    <circle cx="12.206" cy="24.5" r="9" fill="none" stroke="#63746B" stroke-width="0.8"/>
+                </svg>
+                <div class="type-specs" style="margin-top:8px;">Logo icoon: 32px, stroke: --green, width: 0.8</div>
+            </div>
+            <div class="seed-card" style="background:var(--green); width:280px;">
+                <svg style="position:absolute;top:-30px;right:-40px;width:200px;height:200px;" viewBox="0 0 40 40">
+                    <circle cx="20" cy="20" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <circle cx="20" cy="11" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <circle cx="20" cy="29" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <circle cx="27.794" cy="15.5" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <circle cx="27.794" cy="24.5" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <circle cx="12.206" cy="15.5" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <circle cx="12.206" cy="24.5" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                </svg>
+                <p style="color:#fff;">Watermark in groene secties</p>
+                <div class="type-specs" style="color:rgba(255,255,255,0.5);">opacity: 0.07, stroke: #fff, width: 0.5</div>
+            </div>
+            <div class="seed-card" style="background:var(--accent); width:280px;">
+                <svg style="position:absolute;bottom:-30px;left:-40px;width:200px;height:200px;" viewBox="0 0 40 40">
+                    <circle cx="20" cy="20" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <circle cx="20" cy="11" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <circle cx="20" cy="29" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <circle cx="27.794" cy="15.5" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <circle cx="27.794" cy="24.5" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <circle cx="12.206" cy="15.5" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                    <circle cx="12.206" cy="24.5" r="9" fill="none" stroke="#fff" stroke-width="0.5"/>
+                </svg>
+                <p style="color:#fff;">Watermark in accent secties</p>
+                <div class="type-specs" style="color:rgba(255,255,255,0.5);">Zelfscan banner variant</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SPACING -->
+    <div class="section">
+        <h2 class="section-title">Spacing & Layout</h2>
+        <p class="section-desc">Consistente spacing voor een rustig en gestructureerd design.</p>
+
+        <div class="spacing-grid">
+            <div class="spacing-item"><div class="spacing-bar" style="width:10%;"></div><div class="spacing-label">XS</div><div class="spacing-value">8px</div></div>
+            <div class="spacing-item"><div class="spacing-bar" style="width:20%;"></div><div class="spacing-label">SM</div><div class="spacing-value">16px</div></div>
+            <div class="spacing-item"><div class="spacing-bar" style="width:30%;"></div><div class="spacing-label">MD</div><div class="spacing-value">24px</div></div>
+            <div class="spacing-item"><div class="spacing-bar" style="width:50%;"></div><div class="spacing-label">LG</div><div class="spacing-value">48px</div></div>
+            <div class="spacing-item"><div class="spacing-bar" style="width:70%;"></div><div class="spacing-label">XL</div><div class="spacing-value">56px</div></div>
+            <div class="spacing-item"><div class="spacing-bar" style="width:100%;"></div><div class="spacing-label">XXL (section)</div><div class="spacing-value">100px</div></div>
+        </div>
+
+        <h3 style="font-size:14px; font-weight:700; font-family:var(--font-heading); color:var(--green-dark); margin:32px 0 12px;">Pagina layout</h3>
+        <div class="spacing-grid">
+            <div class="spacing-item"><div class="spacing-label">Max content breedte</div><div class="spacing-value">1200px (--max-width)</div></div>
+            <div class="spacing-item"><div class="spacing-label">Pagina padding</div><div class="spacing-value">48px (desktop) / 20px (mobiel)</div></div>
+            <div class="spacing-item"><div class="spacing-label">Sectie padding</div><div class="spacing-value">100px verticaal (--section-padding)</div></div>
+            <div class="spacing-item"><div class="spacing-label">Breakpoints</div><div class="spacing-value">1024px / 768px / 480px</div></div>
+        </div>
+    </div>
+
+    <!-- BORDER RADIUS -->
+    <div class="section">
+        <h2 class="section-title">Border Radius</h2>
+        <div class="radius-grid">
+            <div class="radius-item" style="border-radius:6px;">6px<br><small>--radius-sm</small></div>
+            <div class="radius-item" style="border-radius:12px;">12px<br><small>--radius-md</small></div>
+            <div class="radius-item" style="border-radius:16px;">16px<br><small>--radius-lg</small></div>
+            <div class="radius-item" style="border-radius:999px; width:120px;">999px<br><small>--radius-full</small></div>
+        </div>
+    </div>
+
+    <!-- CARD STIJLEN -->
+    <div class="section">
+        <h2 class="section-title">Card Stijlen</h2>
+        <p class="section-desc">Drie card varianten die door de website worden gebruikt.</p>
+        <div class="card-examples">
+            <div class="example-card">
+                <h4>Standaard Card</h4>
+                <p>Cream achtergrond met subtiele border. Gebruikt voor pricing, publicaties, agenda items.</p>
+            </div>
+            <div class="example-card example-card-featured">
+                <h4>Featured / Green Card</h4>
+                <p>Sage green achtergrond met Seed of Life watermark. Visie/quote card, featured pricing, footer.</p>
+            </div>
+            <div class="example-card" style="background:var(--accent); border-color:var(--accent);">
+                <h4 style="color:#fff;">Accent Card</h4>
+                <p style="color:rgba(255,255,255,0.8);">Terracotta achtergrond met Seed of Life. Zelfscan banner, CTA secties.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOEPASSINGSREGELS -->
+    <div class="section">
+        <h2 class="section-title">Toepassingsregels</h2>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+            <div style="padding:24px; background:var(--bg); border-radius:var(--radius-md);">
+                <h4 style="font-family:var(--font-heading); font-size:15px; font-weight:700; color:var(--green-dark); margin-bottom:12px;">Buttons</h4>
+                <ul style="font-size:14px; color:var(--text-body); line-height:2; list-style:none;">
+                    <li>Primaire CTA: <strong style="color:var(--accent);">--accent</strong> (terracotta)</li>
+                    <li>Secundaire CTA: <strong style="color:var(--green-dark);">--green-dark</strong></li>
+                    <li>Hover: slide-effect (::before scaleX(0), ::after scaleX(1))</li>
+                    <li>Shape: border-radius 12px + btn-arrow cirkel</li>
+                </ul>
+            </div>
+            <div style="padding:24px; background:var(--bg); border-radius:var(--radius-md);">
+                <h4 style="font-family:var(--font-heading); font-size:15px; font-weight:700; color:var(--green-dark); margin-bottom:12px;">Tekst</h4>
+                <ul style="font-size:14px; color:var(--text-body); line-height:2; list-style:none;">
+                    <li>Headers: <strong>Montserrat 700</strong> + --green-dark</li>
+                    <li>Body: <strong>Inter 400</strong> + --text-body</li>
+                    <li>Labels: <strong>Inter 600 11px</strong> uppercase + --accent</li>
+                    <li>Muted: Inter 400 + --text-muted</li>
+                </ul>
+            </div>
+            <div style="padding:24px; background:var(--bg); border-radius:var(--radius-md);">
+                <h4 style="font-family:var(--font-heading); font-size:15px; font-weight:700; color:var(--green-dark); margin-bottom:12px;">Vlakken & Secties</h4>
+                <ul style="font-size:14px; color:var(--text-body); line-height:2; list-style:none;">
+                    <li>Achtergrond: <strong>#FFFAF8</strong> (warm beige)</li>
+                    <li>Alt secties: <strong>#f7f0eb</strong> (donkerder beige)</li>
+                    <li>Groene vlakken: <strong>#63746B</strong> + Seed of Life watermark</li>
+                    <li>Accent vlakken: <strong>#C1774F</strong> (terracotta)</li>
+                </ul>
+            </div>
+            <div style="padding:24px; background:var(--bg); border-radius:var(--radius-md);">
+                <h4 style="font-family:var(--font-heading); font-size:15px; font-weight:700; color:var(--green-dark); margin-bottom:12px;">Afbeeldingen</h4>
+                <ul style="font-size:14px; color:var(--text-body); line-height:2; list-style:none;">
+                    <li>Border radius: <strong>16px</strong> (groot), <strong>12px</strong> (kaarten)</li>
+                    <li>Object-fit: cover, center top</li>
+                    <li>Hero aspect ratio: 5/4</li>
+                    <li>Schaduwen: 0 16-20px 40-50px rgba(0,0,0,0.1)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGINASTRUCTUUR -->
+    <div class="section">
+        <h2 class="section-title">Paginastructuur</h2>
+        <p class="section-desc">De website bestaat uit de volgende pagina's:</p>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:16px;">
+            <div style="padding:16px; background:var(--bg); border-radius:var(--radius-sm); display:flex; align-items:center; gap:12px;">
+                <strong style="font-size:13px; color:var(--accent); font-family:monospace; min-width:110px;">index.html</strong>
+                <span style="font-size:13px; color:var(--text-body);">Homepage (alle secties)</span>
+            </div>
+            <div style="padding:16px; background:var(--bg); border-radius:var(--radius-sm); display:flex; align-items:center; gap:12px;">
+                <strong style="font-size:13px; color:var(--accent); font-family:monospace; min-width:110px;">over.html</strong>
+                <span style="font-size:13px; color:var(--text-body);">Over Richard</span>
+            </div>
+            <div style="padding:16px; background:var(--bg); border-radius:var(--radius-sm); display:flex; align-items:center; gap:12px;">
+                <strong style="font-size:13px; color:var(--accent); font-family:monospace; min-width:110px;">boeken.html</strong>
+                <span style="font-size:13px; color:var(--text-body);">Boeken</span>
+            </div>
+            <div style="padding:16px; background:var(--bg); border-radius:var(--radius-sm); display:flex; align-items:center; gap:12px;">
+                <strong style="font-size:13px; color:var(--accent); font-family:monospace; min-width:110px;">coaching.html</strong>
+                <span style="font-size:13px; color:var(--text-body);">Coaching & Tarieven</span>
+            </div>
+            <div style="padding:16px; background:var(--bg); border-radius:var(--radius-sm); display:flex; align-items:center; gap:12px;">
+                <strong style="font-size:13px; color:var(--accent); font-family:monospace; min-width:110px;">blog.html</strong>
+                <span style="font-size:13px; color:var(--text-body);">Blog</span>
+            </div>
+            <div style="padding:16px; background:var(--bg); border-radius:var(--radius-sm); display:flex; align-items:center; gap:12px;">
+                <strong style="font-size:13px; color:var(--accent); font-family:monospace; min-width:110px;">events.html</strong>
+                <span style="font-size:13px; color:var(--text-body);">Events & Agenda</span>
+            </div>
+            <div style="padding:16px; background:var(--bg); border-radius:var(--radius-sm); display:flex; align-items:center; gap:12px;">
+                <strong style="font-size:13px; color:var(--accent); font-family:monospace; min-width:110px;">contact.html</strong>
+                <span style="font-size:13px; color:var(--text-body);">Contact (Web3Forms)</span>
+            </div>
+            <div style="padding:16px; background:var(--bg); border-radius:var(--radius-sm); display:flex; align-items:center; gap:12px;">
+                <strong style="font-size:13px; color:var(--accent); font-family:monospace; min-width:110px;">consult.html</strong>
+                <span style="font-size:13px; color:var(--text-body);">Consult aanvragen (Web3Forms)</span>
+            </div>
+            <div style="padding:16px; background:var(--bg); border-radius:var(--radius-sm); display:flex; align-items:center; gap:12px;">
+                <strong style="font-size:13px; color:var(--accent); font-family:monospace; min-width:110px;">huisstijl.html</strong>
+                <span style="font-size:13px; color:var(--text-body);">Brand guidelines (dit document)</span>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:40px 0; border-top:1px solid var(--border); color:var(--text-muted); font-size:13px;">
+        Huisstijl Dokter Richard Hoofs &mdash; Medische Praktijk Mondesir, Den Bosch<br>
+        Opgesteld maart 2026
+    </footer>
+
+</div>
+</body>
+</html>
