@@ -1098,43 +1098,55 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
 
     // Laposta subscribe via hidden iframe (geen redirect, geen CORS)
     function subscribeLaposta(naam, email) {
-        var iframeName = 'laposta-iframe';
-        var iframe = document.createElement('iframe');
-        iframe.name = iframeName;
-        iframe.style.cssText = 'position:absolute;top:-9999px;left:-9999px;width:0;height:0;border:0;';
-        document.body.appendChild(iframe);
+        var apiKey = 'FqSl0KJvMZ0a69BuMyfR';
+        var listId = 'pzqhbu8wwj';
 
-        var form = document.createElement('form');
-        form.method = 'POST';
-        form.action = 'https://dokter-richard.email-provider.eu/subscribe/post/index.php';
-        form.target = iframeName;
-        form.acceptCharset = 'utf-8';
+        var body = new URLSearchParams();
+        body.append('list_id', listId);
+        body.append('ip', '0.0.0.0');
+        body.append('email', email);
+        body.append('source_url', window.location.href);
+        body.append('custom_fields[voornaam]', naam.split(' ')[0]);
+        body.append('custom_fields[achternaam]', naam.split(' ').slice(1).join(' '));
 
-        var fields = {
-            'a': 'szg9g1odij',
-            'l': 'pzqhbu8wwj',
-            '6Gw9jS4cU3': email,
-            'zdQEcmorrk': naam.split(' ')[0],
-            'Rlr1KfNFwu': naam.split(' ').slice(1).join(' '),
-            'next': ''
-        };
+        fetch('https://api.laposta.nl/v2/member', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Basic ' + btoa(apiKey + ':'),
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: body.toString()
+        }).then(function(r) {
+            console.log('Laposta response:', r.status);
+        }).catch(function(e) {
+            console.log('Laposta fallback via form');
+            // Fallback: hidden iframe methode
+            var iframe = document.createElement('iframe');
+            iframe.name = 'laposta-iframe';
+            iframe.style.cssText = 'position:absolute;top:-9999px;left:-9999px;width:0;height:0;border:0;';
+            document.body.appendChild(iframe);
 
-        for (var key in fields) {
-            var input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = fields[key];
-            form.appendChild(input);
-        }
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'https://dokter-richard.email-provider.eu/subscribe/post/index.php';
+            form.target = 'laposta-iframe';
+            form.acceptCharset = 'utf-8';
 
-        document.body.appendChild(form);
-        form.submit();
-
-        // Opruimen na 5 seconden
-        setTimeout(function() {
-            if (form.parentNode) form.parentNode.removeChild(form);
-            if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
-        }, 5000);
+            var fields = {'a':'szg9g1odij','l':'pzqhbu8wwj','6Gw9jS4cU3':email,'zdQEcmorrk':naam.split(' ')[0],'Rlr1KfNFwu':naam.split(' ').slice(1).join(' '),'next':''};
+            for (var key in fields) {
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = fields[key];
+                form.appendChild(input);
+            }
+            document.body.appendChild(form);
+            form.submit();
+            setTimeout(function() {
+                if (form.parentNode) form.parentNode.removeChild(form);
+                if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+            }, 5000);
+        });
     }
 
     window.zelfscanNext = function() {
