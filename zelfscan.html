@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gezondheid Zelfscan — Dokter Richard</title>
+    <meta name="description" content="Breng je gezondheid in kaart met de Zelfscan van Dokter Richard. Ontdek hoe je scoort op sociaal, lichamelijk, mentaal en spiritueel vlak.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
+    <style>
+        /* ===== ZELFSCAN PAGE STYLES ===== */
+
+        .zelfscan-container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        /* ===== PROGRESS BAR ===== */
+        .progress-section {
+            padding: 32px 24px 0;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .progress-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 16px;
+        }
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+            max-width: 120px;
+        }
+        .progress-step-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-alt);
+            border: 2px solid var(--border-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .progress-step.active .progress-step-dot {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .progress-step.completed .progress-step-dot {
+            background: var(--green);
+            border-color: var(--green);
+            color: #fff;
+        }
+        .progress-step-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 8px;
+            text-align: center;
+            white-space: nowrap;
+            transition: color 0.3s;
+        }
+        .progress-step.active .progress-step-label {
+            color: var(--accent);
+        }
+        .progress-step.completed .progress-step-label {
+            color: var(--green);
+        }
+        .progress-line {
+            flex: 1;
+            height: 2px;
+            background: var(--border-strong);
+            margin: 0 -4px;
+            position: relative;
+            top: -14px;
+            z-index: 1;
+            max-width: 60px;
+        }
+        .progress-line.filled {
+            background: var(--green);
+        }
+        .progress-bar-track {
+            width: 100%;
+            height: 4px;
+            background: var(--bg-alt);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green), var(--accent));
+            border-radius: 2px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+        .progress-text {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* ===== STEP CONTAINER ===== */
+        .step {
+            display: none;
+            animation: fadeInStep 0.35s ease;
+        }
+        .step.active {
+            display: block;
+        }
+        @keyframes fadeInStep {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== STEP 1: PERSONAL INFO ===== */
+        .form-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            margin-top: 32px;
+        }
+        .form-card h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(24px, 3vw, 32px);
+            color: var(--green-dark);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        .form-card .form-subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--green-dark);
+            margin-bottom: 8px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            background: var(--bg);
+            color: var(--text-body);
+            font-size: 15px;
+            font-family: var(--font-body);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus {
+            border-color: var(--accent);
+        }
+        .form-group input.error {
+            border-color: #d9534f;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Radio group */
+        .radio-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .radio-option {
+            position: relative;
+        }
+        .radio-option input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .radio-option label {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 20px;
+            border: 1.5px solid var(--border-strong);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-body);
+            transition: all 0.2s;
+            margin-bottom: 0;
+        }
+        .radio-option input:checked + label {
+            border-color: var(--accent);
+            background: rgba(193,119,79,0.08);
+            color: var(--accent);
+        }
+
+        /* Checkbox */
+        .scan-privacy {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            text-align: center;
+            max-width: 480px;
+            margin: 0 auto 8px;
+        }
+
+        /* ===== QUESTION STEP ===== */
+        .question-step-header {
+            text-align: center;
+            margin-bottom: 8px;
+            margin-top: 32px;
+        }
+        .question-step-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(24px, 3vw, 32px);
+            color: var(--green-dark);
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+        .question-step-header p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .question-counter {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 24px;
+        }
+
+        /* Subcategory label */
+        .subcategory-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            margin-top: 8px;
+        }
+        .subcategory-label::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.4;
+        }
+
+        /* Question card */
+        .question-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .question-card.answered {
+            border-color: rgba(122, 139, 130, 0.3);
+        }
+        .question-text {
+            font-size: 15px;
+            color: var(--green-dark);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .question-number {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        /* Score selector */
+        .score-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .score-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .score-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+        }
+        .score-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--border-strong);
+            background: var(--bg);
+            color: var(--text-body);
+            font-size: 14px;
+            font-weight: 600;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .score-btn:hover {
+            border-color: var(--accent);
+            background: rgba(193,119,79,0.06);
+            color: var(--accent);
+        }
+        .score-btn.selected {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            transform: scale(1.1);
+            box-shadow: 0 2px 8px rgba(193,119,79,0.3);
+        }
+
+        /* ===== NAVIGATION BUTTONS ===== */
+        .step-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        .step-nav .btn {
+            min-width: 140px;
+            justify-content: center;
+        }
+        .btn-prev {
+            background: var(--bg-alt);
+            color: var(--text-body);
+            border: 1px solid var(--border-strong);
+        }
+        .btn-prev:hover {
+            background: var(--border-strong);
+        }
+        .btn-next {
+            background: var(--accent);
+            color: #fff;
+        }
+        .btn-next:hover:not(:disabled) {
+            background: #d4885e;
+        }
+        .btn-next:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .btn-start {
+            width: 100%;
+            justify-content: center;
+            padding: 14px 24px;
+            font-size: 15px;
+            background: var(--accent);
+            color: #fff;
+        }
+        .btn-start:hover {
+            background: #d4885e;
+        }
+
+        /* ===== RESULTS ===== */
+        .results-section {
+            margin-top: 32px;
+        }
+        .results-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .results-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(26px, 3.5vw, 38px);
+            color: var(--green-dark);
+            margin-bottom: 8px;
+        }
+        .results-header p {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Radar chart */
+        .radar-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 48px;
+        }
+        .radar-chart {
+            width: 340px;
+            height: 340px;
+        }
+        .radar-chart text {
+            font-family: var(--font-body);
+        }
+
+        /* Category result cards */
+        .category-results {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+        .category-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+        .category-card-header {
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .category-card-header:hover {
+            background: var(--bg-alt);
+        }
+        .category-card-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .category-score-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .score-low { background: #d9734e; }
+        .score-mid { background: #d4a843; }
+        .score-high { background: var(--green); }
+        .category-card-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--green-dark);
+        }
+        .category-card-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .category-toggle {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+        .category-card.open .category-toggle {
+            transform: rotate(180deg);
+        }
+        .category-card-body {
+            display: none;
+            padding: 0 24px 20px;
+            border-top: 1px solid var(--border);
+        }
+        .category-card.open .category-card-body {
+            display: block;
+        }
+        .subcategory-result {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .subcategory-result:last-child {
+            border-bottom: none;
+        }
+        .subcategory-result-name {
+            font-size: 14px;
+            color: var(--text-body);
+        }
+        .subcategory-result-score {
+            font-size: 14px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+        }
+        .score-badge-low {
+            background: rgba(217,115,78,0.12);
+            color: #d9734e;
+        }
+        .score-badge-mid {
+            background: rgba(212,168,67,0.12);
+            color: #b8922e;
+        }
+        .score-badge-high {
+            background: rgba(122,139,130,0.15);
+            color: var(--green);
+        }
+
+        /* CTA section */
+        .results-cta {
+            background: var(--green-dark);
+            border-radius: var(--radius-lg);
+            padding: 48px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .results-cta h3 {
+            font-family: var(--font-heading);
+            font-size: clamp(20px, 2.5vw, 26px);
+            color: #fff;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .results-cta p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+            max-width: 520px;
+            margin: 0 auto 28px;
+        }
+        .results-cta-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .zelfscan-container {
+                padding: 0 16px 60px;
+            }
+            .progress-section {
+                padding: 24px 16px 0;
+            }
+            .progress-step-label {
+                font-size: 9px;
+            }
+            .progress-step-dot {
+                width: 30px;
+                height: 30px;
+                font-size: 11px;
+            }
+            .progress-line {
+                top: -12px;
+            }
+            .form-card {
+                padding: 24px 20px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .question-card {
+                padding: 20px;
+            }
+            .score-buttons {
+                gap: 4px;
+            }
+            .score-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
+            .category-results {
+                grid-template-columns: 1fr;
+            }
+            .results-cta {
+                padding: 32px 24px;
+            }
+            .radar-chart {
+                width: 280px;
+                height: 280px;
+            }
+        }
+        @media (max-width: 480px) {
+            .score-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 11px;
+                border-width: 1.5px;
+            }
+            .score-buttons {
+                gap: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<main>
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <h1>Gezondheid Zelfscan</h1>
+        <p>Breng in kaart hoe het werkelijk met je gaat. Deze scan geeft je inzicht in vier dimensies van je gezondheid: sociaal, lichamelijk, mentaal en spiritueel.</p>
+    </section>
+
+    <!-- PROGRESS -->
+    <div class="progress-section" id="progressSection">
+        <div class="progress-steps" id="progressSteps"></div>
+        <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+        </div>
+        <div class="progress-text" id="progressText"></div>
+    </div>
+
+    <div class="zelfscan-container">
+        <!-- STEP 1: Personal Info -->
+        <div class="step active" id="step-1">
+            <div class="form-card">
+                <h2>Persoonlijke gegevens</h2>
+                <p class="form-subtitle">Vul je gegevens in om de zelfscan te starten. Je resultaten worden naar je e-mailadres gestuurd.</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="naam">Naam *</label>
+                        <input type="text" id="naam" placeholder="Je volledige naam" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mailadres *</label>
+                        <input type="email" id="email" placeholder="naam@voorbeeld.nl" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Geslacht</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="geslacht" id="geslacht-man" value="man">
+                                <label for="geslacht-man">Man</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="geslacht" id="geslacht-vrouw" value="vrouw">
+                                <label for="geslacht-vrouw">Vrouw</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="geslacht" id="geslacht-anders" value="anders">
+                                <label for="geslacht-anders">Anders</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="geboortejaar">Geboortejaar</label>
+                        <input type="number" id="geboortejaar" placeholder="Bijv. 1982" min="1920" max="2010">
+                    </div>
+                </div>
+
+                <button class="btn btn-start" onclick="startScan()">
+                    Start de zelfscan
+                    <span class="btn-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </button>
+                <p class="scan-privacy">Je schrijft je hiermee in voor de nieuwsbrief. Uitschrijven kan altijd.</p>
+            </div>
+        </div>
+
+        <!-- STEP 2-5: Questions (rendered by JS) -->
+        <div class="step" id="step-2"></div>
+        <div class="step" id="step-3"></div>
+        <div class="step" id="step-4"></div>
+        <div class="step" id="step-5"></div>
+
+        <!-- STEP 6: Results -->
+        <div class="step" id="step-6">
+            <div class="results-section" id="resultsSection"></div>
+        </div>
+    </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="nav.js"></script>
+<script>
+var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
+</script>
+<script src="footer.js"></script>
+
+<script>
+/* ===== ZELFSCAN APPLICATION ===== */
+(function() {
+    'use strict';
+
+    // ===== DATA =====
+    var stepNames = ['Gegevens', 'SES', 'Body', 'Mind', 'Soul', 'Resultaten'];
+
+    var categories = [
+        {
+            key: 'ses',
+            title: 'SES',
+            fullTitle: 'Sociaal Economische Situatie',
+            step: 2,
+            subcategories: [
+                {
+                    name: 'Sociaal',
+                    questions: [
+                        'Ik heb voldoende sociale contacten.',
+                        'Mijn sociale contacten geven mij voldoende steun.',
+                        'Mijn sociale contacten zijn fijn. Ik kan er voldoende dingen mee delen en ondernemen.',
+                        'Ik ervaar voldoende fysiek contact in mijn dagelijks leven.'
+                    ]
+                },
+                {
+                    name: 'Wonen',
+                    questions: [
+                        'Mijn woonplek is veilig, prettig en gezond.',
+                        'Mijn woonomgeving past bij mij.',
+                        'Mijn woonsituatie stemt mij tevreden.'
+                    ]
+                },
+                {
+                    name: 'Werk',
+                    questions: [
+                        'Ik ben tevreden over mijn werk en/of dagelijkse invulling.',
+                        'Mijn dagelijkse (werk)situatie geeft mij voldoening.',
+                        'Ik ben tevreden over de invulling van mijn dagen.'
+                    ]
+                },
+                {
+                    name: 'Financieel',
+                    questions: [
+                        'Mijn financi\u00eble plaatje is tiptop in orde.',
+                        'Mijn financi\u00eble situatie maakt mogelijk dat ik kan doen wat ik wil.',
+                        'Ik heb geen zorgen over mijn financi\u00eble situatie.'
+                    ]
+                }
+            ]
+        },
+        {
+            key: 'body',
+            title: 'Body',
+            fullTitle: 'Lichaam',
+            step: 3,
+            subcategories: [
+                {
+                    name: 'Lichamelijke klachten',
+                    questions: [
+                        'Doordat ik geen lichamelijke klachten heb, kan ik alles doen wat ik wil.',
+                        'Ik ervaar nauwelijks tot geen lichamelijke klachten in mijn dagelijks leven.'
+                    ]
+                },
+                {
+                    name: 'Bewegen',
+                    questions: [
+                        'Ik ben blij met hoeveel ik per dag beweeg.',
+                        'Ik beweeg voldoende in mijn dagelijks leven.',
+                        'Mijn mogelijkheden om te bewegen maken dat ik mij lichamelijk goed voel.'
+                    ]
+                },
+                {
+                    name: 'Voeding',
+                    questions: [
+                        'Mijn voedingspatroon is gezond en gevarieerd.',
+                        'Mijn voeding geeft mij de bouwstoffen en energie die ik nodig heb.',
+                        'Ik ben tevreden over mijn huidige voedingspatroon.'
+                    ]
+                },
+                {
+                    name: 'Slaap',
+                    questions: [
+                        'Ik slaap goed.',
+                        'Ik word meestal uitgerust wakker in de ochtend.',
+                        'Ik ben tevreden over de kwaliteit en duur van mijn slaap.'
+                    ]
+                },
+                {
+                    name: 'Energie',
+                    questions: [
+                        'Ik heb voldoende energie om te doen wat ik wil.',
+                        'Ik weet welke dingen mij energie opleveren en wat mij energie kost.',
+                        'Ik ben tevreden over de hoeveelheid energie die ik iedere dag heb.'
+                    ]
+                }
+            ]
+        },
+        {
+            key: 'mind',
+            title: 'Mind',
+            fullTitle: 'Geest',
+            step: 4,
+            subcategories: [
+                {
+                    name: 'Concentratie & geheugen',
+                    questions: [
+                        'Mijn vermogen tot concentratie in mijn dagelijkse leven is goed.',
+                        'Mijn geheugen is goed.',
+                        'Ik kan de taken die ik heb goed uitvoeren.',
+                        'Ik ben tevreden over mijn geheugen, concentratie en taakuitvoerend vermogen.'
+                    ]
+                },
+                {
+                    name: 'Stress & stemming',
+                    questions: [
+                        'Ik ervaar nauwelijks stress in mijn dagelijks leven.',
+                        'Bij stressvolle situaties weet ik hoe ik me weer kan ontspannen.',
+                        'Mijn stemming is goed. Ik voel me vaak opgewekt, vrolijk en/of tevreden.',
+                        'Ik voel mij gelukkig.',
+                        'Ik ervaar veel kwaliteit van leven.'
+                    ]
+                },
+                {
+                    name: 'Eigenwaarde',
+                    questions: [
+                        'Ik weet mijn kwaliteiten en waar mijn kracht ligt.',
+                        'Ik weet waar ik minder sterk in ben en wat mijn valkuilen zijn.',
+                        'Ik zorg goed voor mezelf.',
+                        'Ik ben lief voor mijzelf.',
+                        'Ik hou van mijzelf.'
+                    ]
+                },
+                {
+                    name: 'Veerkracht',
+                    questions: [
+                        { text: 'Ik ervaar veel stress bij een tegenslag.', reverse: true },
+                        'Ik weet wat mij helpt om mijn rust terug te vinden bij een tegenslag.',
+                        'Ik ben tevreden over mijn veerkracht.'
+                    ]
+                }
+            ]
+        },
+        {
+            key: 'soul',
+            title: 'Soul',
+            fullTitle: 'Ziel',
+            step: 5,
+            subcategories: [
+                {
+                    name: 'Authenticiteit',
+                    questions: [
+                        'Ik voel me vrij genoeg om volledig mezelf te zijn.',
+                        'Ik weet wat ik uit het leven wil halen.',
+                        'Ik voel mij vrij om mijn opvattingen en meningen uit te dragen.',
+                        'Ik voel mij vrij om mijn eigen keuzes te maken.',
+                        'Voor de keuzes die ik maak, neem ik mijn verantwoordelijkheid.',
+                        'Ik weet waar mijn passie ligt.'
+                    ]
+                },
+                {
+                    name: 'Zingeving',
+                    questions: [
+                        'Ik ervaar bezieling in wat ik doe in mijn leven.',
+                        'Ik ervaar dat mijn leven zin en waarde heeft.',
+                        'Ik voel zinvolle verbindingen met andere mensen in mijn leven.',
+                        'Ik ervaar kippenvel momenten en transcendentie in mijn leven.',
+                        'Ik ervaar zingeving uit mijn persoonlijke ontwikkeling.',
+                        'Ik ervaar zingeving uit het spirituele.',
+                        'Ik leef met hart en ziel, vanuit eigenwaarde en passie.',
+                        'Er is dankbaarheid in mij voor het leven zoals het nu is.',
+                        'Ik weet waarvoor ik iedere ochtend weer mijn bed uitkom.',
+                        'Ik weet wat wezenlijk belangrijk voor mij is in het leven.'
+                    ]
+                }
+            ]
+        }
+    ];
+
+    // ===== STATE =====
+    var currentStep = 1;
+    var answers = {}; // key: "step-subcatIdx-qIdx" => score (1-10)
+
+    // ===== HELPERS =====
+    function getQuestionText(q) {
+        return typeof q === 'object' ? q.text : q;
+    }
+    function isReverse(q) {
+        return typeof q === 'object' && q.reverse;
+    }
+    function getTotalQuestions(cat) {
+        var total = 0;
+        cat.subcategories.forEach(function(sub) { total += sub.questions.length; });
+        return total;
+    }
+    function getAnsweredCount(stepNum) {
+        var count = 0;
+        Object.keys(answers).forEach(function(key) {
+            if (key.startsWith(stepNum + '-')) count++;
+        });
+        return count;
+    }
+    function getScoreClass(score) {
+        if (score <= 4) return 'low';
+        if (score <= 7) return 'mid';
+        return 'high';
+    }
+    function getScoreBadgeClass(score) {
+        if (score <= 4) return 'score-badge-low';
+        if (score <= 7) return 'score-badge-mid';
+        return 'score-badge-high';
+    }
+
+    // ===== PROGRESS =====
+    function renderProgress() {
+        var stepsEl = document.getElementById('progressSteps');
+        var html = '';
+        for (var i = 0; i < stepNames.length; i++) {
+            var cls = '';
+            if (i + 1 === currentStep) cls = 'active';
+            else if (i + 1 < currentStep) cls = 'completed';
+            html += '<div class="progress-step ' + cls + '">';
+            html += '<div class="progress-step-dot">';
+            if (i + 1 < currentStep) {
+                html += '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+            } else {
+                html += (i + 1);
+            }
+            html += '</div>';
+            html += '<div class="progress-step-label">' + stepNames[i] + '</div>';
+            html += '</div>';
+            if (i < stepNames.length - 1) {
+                html += '<div class="progress-line' + (i + 1 < currentStep ? ' filled' : '') + '"></div>';
+            }
+        }
+        stepsEl.innerHTML = html;
+
+        // Progress bar
+        var fill = document.getElementById('progressBarFill');
+        var text = document.getElementById('progressText');
+        if (currentStep === 1) {
+            fill.style.width = '0%';
+            text.textContent = '';
+        } else if (currentStep === 6) {
+            fill.style.width = '100%';
+            text.textContent = 'Scan voltooid';
+        } else {
+            var cat = categories[currentStep - 2];
+            var total = getTotalQuestions(cat);
+            var answered = getAnsweredCount(currentStep);
+            var overallProgress = ((currentStep - 2) * 25) + (answered / total * 25);
+            fill.style.width = overallProgress + '%';
+            text.textContent = 'Vraag ' + answered + ' van ' + total + ' — ' + cat.fullTitle;
+        }
+    }
+
+    // ===== RENDER QUESTION STEP =====
+    function renderQuestionStep(stepNum) {
+        var cat = categories[stepNum - 2];
+        var container = document.getElementById('step-' + stepNum);
+        var html = '';
+        html += '<div class="question-step-header">';
+        html += '<h2>' + cat.title + '</h2>';
+        html += '<p>' + cat.fullTitle + '</p>';
+        html += '</div>';
+
+        var qIndex = 0;
+        var totalQ = getTotalQuestions(cat);
+
+        cat.subcategories.forEach(function(sub, subIdx) {
+            html += '<div class="subcategory-label">' + sub.name + '</div>';
+            sub.questions.forEach(function(q, qIdx) {
+                qIndex++;
+                var key = stepNum + '-' + subIdx + '-' + qIdx;
+                var selectedVal = answers[key] || 0;
+                var answeredClass = selectedVal ? ' answered' : '';
+                var questionText = getQuestionText(q);
+                var rev = isReverse(q);
+
+                html += '<div class="question-card' + answeredClass + '" id="qcard-' + key + '">';
+                html += '<div class="question-number">Vraag ' + qIndex + ' van ' + totalQ + '</div>';
+                html += '<div class="question-text">' + questionText + '</div>';
+                html += '<div class="score-selector">';
+                html += '<div class="score-labels">';
+                if (rev) {
+                    html += '<span>Helemaal</span><span>Helemaal niet</span>';
+                } else {
+                    html += '<span>Helemaal niet</span><span>Helemaal</span>';
+                }
+                html += '</div>';
+                html += '<div class="score-buttons">';
+                for (var s = 1; s <= 10; s++) {
+                    var selClass = (selectedVal === s) ? ' selected' : '';
+                    html += '<button class="score-btn' + selClass + '" data-key="' + key + '" data-score="' + s + '" data-reverse="' + (rev ? '1' : '0') + '" onclick="window.zelfscanSelectScore(this)">' + s + '</button>';
+                }
+                html += '</div></div></div>';
+            });
+        });
+
+        // Navigation
+        html += '<div class="step-nav">';
+        html += '<button class="btn btn-prev" onclick="window.zelfscanPrev()">Vorige</button>';
+        var allAnswered = getAnsweredCount(stepNum) >= totalQ;
+        html += '<button class="btn btn-next" id="nextBtn-' + stepNum + '"' + (allAnswered ? '' : ' disabled') + ' onclick="window.zelfscanNext()">Volgende <span class="btn-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>';
+        html += '</div>';
+
+        container.innerHTML = html;
+    }
+
+    // ===== SCORE SELECTION =====
+    window.zelfscanSelectScore = function(btn) {
+        var key = btn.getAttribute('data-key');
+        var score = parseInt(btn.getAttribute('data-score'));
+        answers[key] = score;
+
+        // Update UI for this question
+        var card = document.getElementById('qcard-' + key);
+        card.classList.add('answered');
+        var btns = card.querySelectorAll('.score-btn');
+        btns.forEach(function(b) {
+            b.classList.remove('selected');
+        });
+        btn.classList.add('selected');
+
+        // Check if we can enable next
+        var cat = categories[currentStep - 2];
+        var totalQ = getTotalQuestions(cat);
+        var answeredCount = getAnsweredCount(currentStep);
+        var nextBtn = document.getElementById('nextBtn-' + currentStep);
+        if (nextBtn) {
+            nextBtn.disabled = answeredCount < totalQ;
+        }
+
+        // Update progress
+        renderProgress();
+    };
+
+    // ===== NAVIGATION =====
+    function showStep(num) {
+        document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+        var target = document.getElementById('step-' + num);
+        // Re-add active with a small delay for animation
+        setTimeout(function() {
+            target.classList.add('active');
+        }, 10);
+        currentStep = num;
+        renderProgress();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.startScan = function() {
+        var naam = document.getElementById('naam').value.trim();
+        var email = document.getElementById('email').value.trim();
+
+        // Reset error states
+        document.getElementById('naam').classList.remove('error');
+        document.getElementById('email').classList.remove('error');
+
+        var valid = true;
+        if (!naam) {
+            document.getElementById('naam').classList.add('error');
+            valid = false;
+        }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            document.getElementById('email').classList.add('error');
+            valid = false;
+        }
+        if (!valid) return;
+
+        // Laposta nieuwsbrief inschrijving
+        subscribeLaposta(naam, email);
+
+        renderQuestionStep(2);
+        showStep(2);
+    };
+
+    // Laposta subscribe via hidden iframe (geen redirect, geen CORS)
+    function subscribeLaposta(naam, email) {
+        var iframeName = 'laposta-iframe';
+        var iframe = document.createElement('iframe');
+        iframe.name = iframeName;
+        iframe.style.cssText = 'position:absolute;top:-9999px;left:-9999px;width:0;height:0;border:0;';
+        document.body.appendChild(iframe);
+
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'https://dokter-richard.email-provider.eu/subscribe/post/index.php';
+        form.target = iframeName;
+        form.acceptCharset = 'utf-8';
+
+        var fields = {
+            'a': 'szg9g1odij',
+            'l': 'pzqhbu8wwj',
+            '6Gw9jS4cU3': email,
+            'zdQEcmorrk': naam.split(' ')[0],
+            'Rlr1KfNFwu': naam.split(' ').slice(1).join(' '),
+            'next': ''
+        };
+
+        for (var key in fields) {
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = fields[key];
+            form.appendChild(input);
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+
+        // Opruimen na 5 seconden
+        setTimeout(function() {
+            if (form.parentNode) form.parentNode.removeChild(form);
+            if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+        }, 5000);
+    }
+
+    window.zelfscanNext = function() {
+        if (currentStep < 5) {
+            renderQuestionStep(currentStep + 1);
+            showStep(currentStep + 1);
+        } else if (currentStep === 5) {
+            renderResults();
+            showStep(6);
+        }
+    };
+
+    window.zelfscanPrev = function() {
+        if (currentStep > 1) {
+            if (currentStep >= 2 && currentStep <= 5) {
+                // Re-render previous step to preserve answers
+                if (currentStep - 1 >= 2) {
+                    renderQuestionStep(currentStep - 1);
+                }
+            }
+            showStep(currentStep - 1);
+        }
+    };
+
+    // ===== CALCULATE SCORES =====
+    function calculateScores() {
+        var results = [];
+        categories.forEach(function(cat) {
+            var catScores = [];
+            var subResults = [];
+            cat.subcategories.forEach(function(sub, subIdx) {
+                var subScores = [];
+                sub.questions.forEach(function(q, qIdx) {
+                    var key = cat.step + '-' + subIdx + '-' + qIdx;
+                    var val = answers[key] || 5;
+                    // Reverse scoring
+                    if (isReverse(q)) {
+                        val = 11 - val;
+                    }
+                    subScores.push(val);
+                    catScores.push(val);
+                });
+                var subAvg = subScores.reduce(function(a, b) { return a + b; }, 0) / subScores.length;
+                subResults.push({ name: sub.name, score: Math.round(subAvg * 10) / 10 });
+            });
+            var catAvg = catScores.reduce(function(a, b) { return a + b; }, 0) / catScores.length;
+            results.push({
+                key: cat.key,
+                title: cat.title,
+                fullTitle: cat.fullTitle,
+                score: Math.round(catAvg * 10) / 10,
+                subcategories: subResults
+            });
+        });
+        return results;
+    }
+
+    // ===== RADAR CHART (SVG) =====
+    function renderRadarChart(results) {
+        var size = 340;
+        var cx = size / 2;
+        var cy = size / 2;
+        var maxR = 130;
+        var levels = 5;
+        var axes = results.length;
+        var angleStep = (2 * Math.PI) / axes;
+        var startAngle = -Math.PI / 2; // top
+
+        var svg = '<svg class="radar-chart" viewBox="0 0 ' + size + ' ' + size + '" xmlns="http://www.w3.org/2000/svg">';
+
+        // Grid circles
+        for (var l = 1; l <= levels; l++) {
+            var r = (maxR / levels) * l;
+            svg += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="rgba(136,140,121,0.12)" stroke-width="1"/>';
+        }
+
+        // Grid labels (2, 4, 6, 8, 10)
+        for (var l = 1; l <= levels; l++) {
+            var r = (maxR / levels) * l;
+            var val = l * 2;
+            svg += '<text x="' + (cx + 4) + '" y="' + (cy - r + 4) + '" font-size="9" fill="rgba(136,140,121,0.5)">' + val + '</text>';
+        }
+
+        // Axis lines
+        for (var i = 0; i < axes; i++) {
+            var angle = startAngle + i * angleStep;
+            var x2 = cx + maxR * Math.cos(angle);
+            var y2 = cy + maxR * Math.sin(angle);
+            svg += '<line x1="' + cx + '" y1="' + cy + '" x2="' + x2 + '" y2="' + y2 + '" stroke="rgba(136,140,121,0.15)" stroke-width="1"/>';
+        }
+
+        // Data polygon
+        var points = '';
+        for (var i = 0; i < axes; i++) {
+            var angle = startAngle + i * angleStep;
+            var val = results[i].score / 10;
+            var px = cx + maxR * val * Math.cos(angle);
+            var py = cy + maxR * val * Math.sin(angle);
+            points += px + ',' + py + ' ';
+        }
+        svg += '<polygon points="' + points.trim() + '" fill="rgba(193,119,79,0.15)" stroke="' + 'var(--accent)' + '" stroke-width="2.5"/>';
+
+        // Data points + labels
+        for (var i = 0; i < axes; i++) {
+            var angle = startAngle + i * angleStep;
+            var val = results[i].score / 10;
+            var px = cx + maxR * val * Math.cos(angle);
+            var py = cy + maxR * val * Math.sin(angle);
+            svg += '<circle cx="' + px + '" cy="' + py + '" r="5" fill="var(--accent)" stroke="#fff" stroke-width="2"/>';
+
+            // Labels outside
+            var labelR = maxR + 24;
+            var lx = cx + labelR * Math.cos(angle);
+            var ly = cy + labelR * Math.sin(angle);
+            var anchor = 'middle';
+            if (Math.cos(angle) > 0.3) anchor = 'start';
+            else if (Math.cos(angle) < -0.3) anchor = 'end';
+            var dy = Math.sin(angle) > 0.3 ? 14 : (Math.sin(angle) < -0.3 ? -4 : 4);
+
+            svg += '<text x="' + lx + '" y="' + (ly + dy) + '" text-anchor="' + anchor + '" font-size="13" font-weight="600" fill="var(--green-dark)">' + results[i].title + '</text>';
+            svg += '<text x="' + lx + '" y="' + (ly + dy + 16) + '" text-anchor="' + anchor + '" font-size="12" font-weight="700" fill="var(--accent)">' + results[i].score.toFixed(1) + '</text>';
+        }
+
+        svg += '</svg>';
+        return svg;
+    }
+
+    // ===== RENDER RESULTS =====
+    function renderResults() {
+        var results = calculateScores();
+        var container = document.getElementById('resultsSection');
+        var naam = document.getElementById('naam').value.trim();
+        var html = '';
+
+        html += '<div class="results-header">';
+        html += '<h2>Jouw resultaten' + (naam ? ', ' + naam : '') + '</h2>';
+        html += '<p>Hieronder zie je een overzicht van jouw scores per categorie. Klik op een categorie om de details te bekijken.</p>';
+        html += '</div>';
+
+        // Radar chart
+        html += '<div class="radar-wrapper">';
+        html += renderRadarChart(results);
+        html += '</div>';
+
+        // Category cards
+        html += '<div class="category-results">';
+        results.forEach(function(cat, idx) {
+            var scoreClass = getScoreClass(cat.score);
+            html += '<div class="category-card" id="catCard-' + idx + '">';
+            html += '<div class="category-card-header" onclick="window.zelfscanToggleCard(' + idx + ')">';
+            html += '<div class="category-card-info">';
+            html += '<div class="category-score-circle score-' + scoreClass + '">' + cat.score.toFixed(1) + '</div>';
+            html += '<div><div class="category-card-title">' + cat.title + '</div>';
+            html += '<div class="category-card-subtitle">' + cat.fullTitle + '</div></div>';
+            html += '</div>';
+            html += '<div class="category-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>';
+            html += '</div>';
+            html += '<div class="category-card-body">';
+            cat.subcategories.forEach(function(sub) {
+                var badgeClass = getScoreBadgeClass(sub.score);
+                html += '<div class="subcategory-result">';
+                html += '<span class="subcategory-result-name">' + sub.name + '</span>';
+                html += '<span class="subcategory-result-score ' + badgeClass + '">' + sub.score.toFixed(1) + '</span>';
+                html += '</div>';
+            });
+            html += '</div></div>';
+        });
+        html += '</div>';
+
+        // CTA
+        html += '<div class="results-cta">';
+        html += '<h3>En nu?</h3>';
+        html += '<p>Nu je iets meer duidelijkheid hebt gekregen over jouw gezondheidssituatie, kan het zijn dat je daar verder op in wil gaan. Richard helpt je graag op weg naar meer balans en vitaliteit.</p>';
+        html += '<div class="results-cta-buttons">';
+        html += '<a href="consult.html" class="btn btn-accent">Consult aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>';
+        html += '<a href="boeken.html" class="btn btn-outline-white">Bekijk het boek <span class="btn-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>';
+        html += '</div></div>';
+
+        container.innerHTML = html;
+    }
+
+    window.zelfscanToggleCard = function(idx) {
+        var card = document.getElementById('catCard-' + idx);
+        card.classList.toggle('open');
+    };
+
+    // ===== INIT =====
+    renderProgress();
+
+})();
+</script>
+</body>
+</html>

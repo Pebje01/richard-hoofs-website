@@ -8,10 +8,11 @@
             <h2>Blijf op de hoogte</h2>
             <p>Schrijf je in voor de nieuwsbrief en ontvang tips over holistische gezondheid, leefstijl en balans.</p>
         </div>
-        <form class="newsletter-form" action="https://formspree.io/f/placeholder" method="POST">
+        <form class="newsletter-form" onsubmit="return footerNewsletterSubmit(this)">
             <input type="email" name="email" placeholder="Je e-mailadres" required>
             <button type="submit">Inschrijven</button>
         </form>
+        <iframe name="laposta-footer-iframe" style="position:absolute;top:-9999px;left:-9999px;width:0;height:0;border:0;"></iframe>
     </div>
 
     <!-- Footer links -->
