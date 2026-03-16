@@ -1194,10 +1194,10 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
 
     // ===== RADAR CHART (SVG) =====
     function renderRadarChart(results) {
-        var size = 340;
+        var size = 420;
         var cx = size / 2;
         var cy = size / 2;
-        var maxR = 130;
+        var maxR = 140;
         var levels = 5;
         var axes = results.length;
         var angleStep = (2 * Math.PI) / axes;
@@ -1246,7 +1246,7 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
             svg += '<circle cx="' + px + '" cy="' + py + '" r="5" fill="var(--accent)" stroke="#fff" stroke-width="2"/>';
 
             // Labels outside
-            var labelR = maxR + 24;
+            var labelR = maxR + 40;
             var lx = cx + labelR * Math.cos(angle);
             var ly = cy + labelR * Math.sin(angle);
             var anchor = 'middle';
@@ -1254,8 +1254,8 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
             else if (Math.cos(angle) < -0.3) anchor = 'end';
             var dy = Math.sin(angle) > 0.3 ? 14 : (Math.sin(angle) < -0.3 ? -4 : 4);
 
-            svg += '<text x="' + lx + '" y="' + (ly + dy) + '" text-anchor="' + anchor + '" font-size="13" font-weight="600" fill="var(--green-dark)">' + results[i].title + '</text>';
-            svg += '<text x="' + lx + '" y="' + (ly + dy + 16) + '" text-anchor="' + anchor + '" font-size="12" font-weight="700" fill="var(--accent)">' + results[i].score.toFixed(1) + '</text>';
+            svg += '<text x="' + lx + '" y="' + (ly + dy) + '" text-anchor="' + anchor + '" font-size="16" font-weight="700" fill="var(--green-dark)">' + results[i].title + '</text>';
+            svg += '<text x="' + lx + '" y="' + (ly + dy + 22) + '" text-anchor="' + anchor + '" font-size="20" font-weight="800" fill="var(--accent)">' + results[i].score.toFixed(1) + '</text>';
         }
 
         svg += '</svg>';
@@ -1307,7 +1307,7 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
         // CTA
         html += '<div class="results-cta">';
         html += '<h3>En nu?</h3>';
-        html += '<p>Nu je iets meer duidelijkheid hebt gekregen over jouw gezondheidssituatie, kan het zijn dat je daar verder op in wil gaan. Richard helpt je graag op weg naar meer balans en vitaliteit.</p>';
+        html += '<p>Nu je iets meer duidelijkheid hebt gekregen over jouw gezondheidssituatie, kan het zijn dat je daar verder op in wil gaan. Ik help je graag op weg naar meer balans en vitaliteit.</p>';
         html += '<div class="results-cta-buttons">';
         html += '<a href="consult.html" class="btn btn-accent">Consult aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>';
         html += '<a href="boeken.html" class="btn btn-outline-white">Bekijk het boek <span class="btn-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>';
