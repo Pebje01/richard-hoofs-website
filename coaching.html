@@ -407,6 +407,9 @@
             padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06);
         }
         .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.3); }
+        .footer-seed-watermark { position: absolute; right: -80px; bottom: -80px; width: 500px; height: 500px; fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 0.3; pointer-events: none; }
+        .footer-bottom a { color: rgba(255,255,255,0.5); text-decoration: underline; }
+        .footer-bottom a:hover { color: #fff; }
 
         /* ===== ANIMATIONS ===== */
         .fade-in { opacity: 0; transform: translateY(14px); transition: opacity 0.35s ease, transform 0.35s ease; }
@@ -450,7 +453,7 @@
             .cta-inner { flex-direction: column; text-align: center; padding: 40px 32px; }
             .cta-content p { max-width: 100%; }
             .footer-newsletter { grid-template-columns: 1fr; gap: 24px; }
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
         }
 
         @media (max-width: 768px) {
@@ -464,7 +467,7 @@
             .journey-section, .pillars-section, .pricing-section, .cta-section { padding-left: 20px; padding-right: 20px; }
             .pricing-grid { grid-template-columns: 1fr; }
             .pillars-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 20px; font-size: 13px; }
             .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
             .cta-inner { padding: 32px 20px; }
             .cta-buttons { flex-direction: column; width: 100%; }
@@ -481,266 +484,19 @@
 </head>
 <body>
 
-<!-- Mobile Nav -->
-<div class="mobile-nav" id="mobileNav">
-    <button class="mobile-nav-close" onclick="closeMobileNav()">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <a href="over.html" onclick="closeMobileNav()">Over Richard</a>
-    <a href="boeken.html" onclick="closeMobileNav()">Boeken</a>
-    <a href="coaching.html" onclick="closeMobileNav()">Coaching</a>
-    <a href="blog.html" onclick="closeMobileNav()">Blog</a>
-    <a href="events.html" onclick="closeMobileNav()">Events</a>
-    <a href="contact.html" onclick="closeMobileNav()">Contact</a>
-    <a href="consult.html" onclick="closeMobileNav()" class="mobile-nav-cta">Consult aanvragen</a>
-</div>
+<div id="nav-placeholder"></div>
 
-<!-- NAV -->
-<nav class="nav">
-    <a href="index.html" class="nav-logo">
-        <svg class="seed-of-life" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="20" cy="20" r="9"/>
-            <circle cx="20" cy="11" r="9"/>
-            <circle cx="20" cy="29" r="9"/>
-            <circle cx="27.794" cy="15.5" r="9"/>
-            <circle cx="27.794" cy="24.5" r="9"/>
-            <circle cx="12.206" cy="15.5" r="9"/>
-            <circle cx="12.206" cy="24.5" r="9"/>
-        </svg>
-        Dokter Richard
-    </a>
-    <div class="nav-center">
-        <a href="index.html">Home</a>
-        <a href="over.html">Over Richard</a>
-        <a href="boeken.html">Boeken</a>
-        <a href="coaching.html" class="active">Coaching</a>
-        <a href="blog.html">Blog</a>
-        <a href="events.html">Events</a>
-        <a href="contact.html">Contact</a>
-    </div>
-    <a href="consult.html" class="nav-cta">Consult aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-    <button class="hamburger" onclick="openMobileNav()" aria-label="Menu">
-        <svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-</nav>
-
-<!-- PAGE HERO -->
-<section class="page-hero fade-in">
-    <div class="label"><span class="label-dot"></span> Coaching & Begeleiding</div>
-    <h1>Coaching & Begeleiding</h1>
-    <p>Persoonlijke begeleiding naar balans in lichaam, geest en ziel door een ervaren huisarts en leefstijlcoach.</p>
-</section>
-
-<!-- JOURNEY -->
-<section class="journey-section">
-    <div class="journey-grid">
-        <div class="journey-image fade-in">
-            <img src="images/img-richard.jpeg" alt="Dokter Richard" loading="lazy">
-        </div>
-        <div class="journey-content fade-in fade-in-d1">
-            <div class="label"><span class="label-dot"></span> Aanpak</div>
-            <h2>Jouw reis naar balans en vitaliteit</h2>
-            <p>Ik combineer mijn passie voor holistische geneeskunde met aandacht voor lichaam, geest en ziel. Als huisarts, leefstijlarts en coach begeleid ik mensen naar duurzame gezondheid.</p>
-            <div class="journey-features">
-                <div class="journey-feature">
-                    <div class="journey-feature-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-                    <div><h4>SES & Body</h4><p>Sociaal-emotioneel systeem en lichamelijke gezondheid</p></div>
-                </div>
-                <div class="journey-feature">
-                    <div class="journey-feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
-                    <div><h4>Mind & Soul</h4><p>Mentale balans en spirituele verbinding</p></div>
-                </div>
-                <div class="journey-feature">
-                    <div class="journey-feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                    <div><h4>Kruiden & Voeding</h4><p>Natuurlijke ondersteuning en voedingsadvies</p></div>
-                </div>
-            </div>
-            <a href="consult.html" class="btn btn-accent">Consult aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        </div>
-    </div>
-</section>
-
-<!-- FOUR PILLARS -->
-<section class="pillars-section">
-    <div class="pillars-container">
-        <div class="pillars-header fade-in">
-            <div>
-                <div class="label" style="margin-bottom:12px;"><span class="label-dot"></span> Vier pijlers</div>
-                <h2>De vier pijlers van gezondheid</h2>
-            </div>
-            <a href="index.html#diensten" class="btn btn-ghost">Alle diensten <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        </div>
-        <div class="pillars-grid">
-            <div class="pillar-card fade-in">
-                <img src="images/richard-huisarts.jpg" alt="SES" loading="lazy">
-                <div class="pillar-card-info">
-                    <div><h3>SES</h3><span>Sociaal Emotioneel</span></div>
-                    <a href="#" class="pillar-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-                </div>
-            </div>
-            <div class="pillar-card fade-in fade-in-d1">
-                <img src="images/rich-tas-2.jpeg" alt="Body" loading="lazy">
-                <div class="pillar-card-info">
-                    <div><h3>Body</h3><span>Lichamelijke Gezondheid</span></div>
-                    <a href="#" class="pillar-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-                </div>
-            </div>
-            <div class="pillar-card fade-in fade-in-d2">
-                <img src="images/richard-thot-2.jpg" alt="Mind" loading="lazy">
-                <div class="pillar-card-info">
-                    <div><h3>Mind</h3><span>Mentale Balans</span></div>
-                    <a href="#" class="pillar-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-                </div>
-            </div>
-            <div class="pillar-card fade-in fade-in-d3">
-                <img src="images/img-richard.jpeg" alt="Soul" loading="lazy">
-                <div class="pillar-card-info">
-                    <div><h3>Soul</h3><span>Spirituele Verbinding</span></div>
-                    <a href="#" class="pillar-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- PRICING -->
-<section class="pricing-section" id="tarieven">
-    <div class="pricing-container">
-        <div class="pricing-header fade-in">
-            <div class="label" style="justify-content:center; margin:0 auto 16px;"><span class="label-dot"></span> Tarieven</div>
-            <h2>Kies het traject dat bij je past</h2>
-            <p>Transparante tarieven voor elke stap op je pad naar holistische gezondheid.</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card fade-in">
-                <h3>Intake Consult</h3>
-                <p class="pricing-desc">Een uitgebreid kennismakingsgesprek waarin we samen kijken naar jouw gezondheid, klachten en doelen.</p>
-                <div class="pricing-price">&euro;95 <span>- &euro;150</span></div>
-                <div class="pricing-duration">60 - 90 minuten</div>
-                <ul class="pricing-features">
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Uitgebreide anamnese</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Holistische diagnose</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Persoonlijk behandeladvies</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Schriftelijke terugkoppeling</li>
-                </ul>
-                <a href="consult.html" class="pricing-btn pricing-btn-outline">Afspraak maken <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-            </div>
-            <div class="pricing-card featured fade-in fade-in-d1 has-seed-bg">
-                <svg class="seed-bg seed-bg-center" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
-                <div class="pricing-popular">MEEST GEKOZEN</div>
-                <h3>Coaching</h3>
-                <p class="pricing-desc">Persoonlijke begeleiding waarbij we structureel werken aan jouw balans, leefstijl en welzijn.</p>
-                <div class="pricing-price">&euro;250 <span style="color:rgba(255,255,255,0.45)">- &euro;400</span></div>
-                <div class="pricing-duration">6 - 12 sessies</div>
-                <ul class="pricing-features">
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Intake consult inbegrepen</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Persoonlijke coaching sessies</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Voortgangsmonitoring</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> WhatsApp ondersteuning</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Leefstijladvies op maat</li>
-                </ul>
-                <a href="consult.html" class="pricing-btn pricing-btn-white">Afspraak maken <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-            </div>
-            <div class="pricing-card fade-in fade-in-d2">
-                <h3>Trainingstraject</h3>
-                <p class="pricing-desc">Een intensief begeleidingstraject voor wie diepgaand en duurzaam wil werken aan gezondheid en transformatie.</p>
-                <div class="pricing-price">&euro;500 <span>- &euro;750</span></div>
-                <div class="pricing-duration">3 - 6 maanden</div>
-                <ul class="pricing-features">
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Alles van Coaching</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Kruiden- & voedingsadvies</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Maandelijkse evaluatie</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Acupunctuur sessies</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Onbeperkt contact</li>
-                </ul>
-                <a href="consult.html" class="pricing-btn pricing-btn-outline">Afspraak maken <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-    <div class="cta-inner fade-in has-seed-bg">
-        <svg class="seed-bg seed-bg-right" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
-        <svg class="seed-bg seed-bg-left" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
-        <div class="cta-content">
-            <h2>Doe de gratis Gezondheid Zelfscan</h2>
-            <p>Krijg in 15-20 minuten inzicht in je gezondheid op vier pijlers: SES, Body, Mind en Soul. Volledig gratis en vrijblijvend.</p>
-        </div>
-        <div class="cta-buttons">
-            <a href="#" class="btn btn-white">Start zelfscan <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-            <a href="#" class="btn btn-outline-white">Meer info <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        </div>
-    </div>
-</section>
+<!-- CONTENT -->
+<main style="min-height: 60vh;"></main>
 
 <!-- FOOTER -->
-<footer class="unified-footer has-seed-bg">
-    <svg class="seed-bg seed-bg-right" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
-    <svg class="seed-bg seed-bg-left" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
+<div id="footer-placeholder"></div>
 
-    <div class="footer-newsletter fade-in">
-        <div class="footer-newsletter-text">
-            <h2>Blijf op de hoogte</h2>
-            <p>Schrijf je in voor de nieuwsbrief en ontvang tips over holistische gezondheid, leefstijl en balans.</p>
-        </div>
-        <form class="newsletter-form" action="https://formspree.io/f/placeholder" method="POST">
-            <input type="email" name="email" placeholder="Je e-mailadres" required>
-            <button type="submit">Inschrijven</button>
-        </form>
-    </div>
-
-    <div class="footer-grid">
-        <div class="footer-brand">
-            <div class="footer-logo">Dokter Richard</div>
-            <p>Holistisch huisarts, leefstijlcoach en auteur. Begeleiding naar balans en gezondheid van lichaam, geest en ziel.</p>
-            <div class="footer-social">
-                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-                <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-                <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4>Pagina's</h4>
-            <ul>
-                <li><a href="over.html">Over Richard</a></li>
-                <li><a href="boeken.html">Boeken</a></li>
-                <li><a href="coaching.html">Coaching</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Diensten</h4>
-            <ul>
-                <li><a href="coaching.html">Intake Consult</a></li>
-                <li><a href="coaching.html">Coaching</a></li>
-                <li><a href="coaching.html">Leefstijladvies</a></li>
-                <li><a href="consult.html">Online Consult</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Contact</h4>
-            <ul>
-                <li><a href="mailto:info@dokterrichard.nl">info@dokterrichard.nl</a></li>
-                <li><span>Den Bosch, Nederland</span></li>
-                <li><span>Medische Praktijk Mondesir</span></li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Dokter Richard Hoofs. Alle rechten voorbehouden.</p>
-        <p>Ontworpen met zorg voor gezondheid</p>
-    </div>
-</footer>
-
+<script src="nav.js"></script>
 <script>
-function openMobileNav(){document.getElementById('mobileNav').classList.add('open');document.body.style.overflow='hidden'}
-function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
 var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
 </script>
+<script src="footer.js"></script>
 </body>
 </html>

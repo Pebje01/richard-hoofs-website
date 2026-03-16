@@ -348,6 +348,9 @@
             padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06);
         }
         .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.3); }
+        .footer-seed-watermark { position: absolute; right: -80px; bottom: -80px; width: 500px; height: 500px; fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 0.3; pointer-events: none; }
+        .footer-bottom a { color: rgba(255,255,255,0.5); text-decoration: underline; }
+        .footer-bottom a:hover { color: #fff; }
 
         /* ===== ANIMATIONS ===== */
         .fade-in { opacity: 0; transform: translateY(14px); transition: opacity 0.35s ease, transform 0.35s ease; }
@@ -386,7 +389,7 @@
             .cta-inner { flex-direction: column; text-align: center; padding: 40px 32px; }
             .cta-content p { max-width: 100%; }
             .footer-newsletter { grid-template-columns: 1fr; gap: 24px; }
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
         }
 
         @media (max-width: 768px) {
@@ -403,7 +406,7 @@
             .cta-inner { padding: 32px 20px; }
             .cta-buttons { flex-direction: column; width: 100%; }
             .cta-buttons a { text-align: center; justify-content: center; }
-            .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 20px; font-size: 13px; }
             .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
             .newsletter-form { flex-direction: column; }
         }
@@ -415,177 +418,19 @@
 </head>
 <body>
 
-<!-- Mobile Nav -->
-<div class="mobile-nav" id="mobileNav">
-    <button class="mobile-nav-close" onclick="closeMobileNav()">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <a href="over.html" onclick="closeMobileNav()">Over Richard</a>
-    <a href="boeken.html" onclick="closeMobileNav()">Boeken</a>
-    <a href="coaching.html" onclick="closeMobileNav()">Coaching</a>
-    <a href="blog.html" onclick="closeMobileNav()">Blog</a>
-    <a href="events.html" onclick="closeMobileNav()">Events</a>
-    <a href="contact.html" onclick="closeMobileNav()">Contact</a>
-    <a href="consult.html" onclick="closeMobileNav()" class="mobile-nav-cta">Consult aanvragen</a>
-</div>
+<div id="nav-placeholder"></div>
 
-<!-- NAV -->
-<nav class="nav">
-    <a href="index.html" class="nav-logo">
-        <svg class="seed-of-life" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="20" cy="20" r="9"/>
-            <circle cx="20" cy="11" r="9"/>
-            <circle cx="20" cy="29" r="9"/>
-            <circle cx="27.794" cy="15.5" r="9"/>
-            <circle cx="27.794" cy="24.5" r="9"/>
-            <circle cx="12.206" cy="15.5" r="9"/>
-            <circle cx="12.206" cy="24.5" r="9"/>
-        </svg>
-        Dokter Richard
-    </a>
-    <div class="nav-center">
-        <a href="index.html">Home</a>
-        <a href="over.html">Over Richard</a>
-        <a href="boeken.html">Boeken</a>
-        <a href="coaching.html">Coaching</a>
-        <a href="blog.html">Blog</a>
-        <a href="events.html" class="active">Events</a>
-        <a href="contact.html">Contact</a>
-    </div>
-    <a href="consult.html" class="nav-cta">Consult aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-    <button class="hamburger" onclick="openMobileNav()" aria-label="Menu">
-        <svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-</nav>
-
-<!-- PAGE HERO -->
-<section class="page-hero fade-in">
-    <div class="label"><span class="label-dot"></span> Events & Lezingen</div>
-    <h1>Events & Lezingen</h1>
-    <p>Lezingen, workshops en evenementen over holistische gezondheid en bezield leven.</p>
-</section>
-
-<!-- UPCOMING EVENTS -->
-<section class="agenda-section">
-    <div class="agenda-container">
-        <div class="section-head fade-in">
-            <div class="label"><span class="label-dot"></span> Komende events</div>
-            <h2>Aankomende events</h2>
-        </div>
-        <div class="agenda-list">
-            <div class="agenda-item fade-in">
-                <span class="agenda-item-date">Binnenkort</span>
-                <span class="agenda-item-title">Nieuwe data worden binnenkort aangekondigd</span>
-                <span class="agenda-item-location">&mdash;</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- PAST EVENTS -->
-<section class="agenda-section" style="padding-top: 0;">
-    <div class="agenda-container">
-        <div class="section-head fade-in">
-            <div class="label"><span class="label-dot"></span> Vorige events</div>
-            <h2>Vorige events</h2>
-        </div>
-        <div class="agenda-list">
-            <div class="agenda-item past fade-in">
-                <span class="agenda-item-date">2025</span>
-                <span class="agenda-item-title">Lezing Bezield Leven</span>
-                <span class="agenda-item-location">Den Bosch</span>
-            </div>
-            <div class="agenda-item past fade-in fade-in-d1">
-                <span class="agenda-item-date">2024</span>
-                <span class="agenda-item-title">Workshop Vier Pijlers</span>
-                <span class="agenda-item-location">Online</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-    <div class="cta-inner fade-in has-seed-bg">
-        <svg class="seed-bg seed-bg-right" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
-        <svg class="seed-bg seed-bg-left" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
-        <div class="cta-content">
-            <h2>Wil je op de hoogte blijven van events?</h2>
-            <p>Schrijf je in voor de nieuwsbrief en ontvang als eerste uitnodigingen voor lezingen, workshops en andere events.</p>
-        </div>
-        <div class="cta-buttons">
-            <a href="#footer-newsletter" class="btn btn-white">Inschrijven nieuwsbrief <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-            <a href="contact.html" class="btn btn-outline-white">Contact <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        </div>
-    </div>
-</section>
+<!-- CONTENT -->
+<main style="min-height: 60vh;"></main>
 
 <!-- FOOTER -->
-<footer class="unified-footer has-seed-bg" id="footer-newsletter">
-    <svg class="seed-bg seed-bg-right" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
-    <svg class="seed-bg seed-bg-left" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
+<div id="footer-placeholder"></div>
 
-    <div class="footer-newsletter fade-in">
-        <div class="footer-newsletter-text">
-            <h2>Blijf op de hoogte</h2>
-            <p>Schrijf je in voor de nieuwsbrief en ontvang tips over holistische gezondheid, leefstijl en balans.</p>
-        </div>
-        <form class="newsletter-form" action="https://formspree.io/f/placeholder" method="POST">
-            <input type="email" name="email" placeholder="Je e-mailadres" required>
-            <button type="submit">Inschrijven</button>
-        </form>
-    </div>
-
-    <div class="footer-grid">
-        <div class="footer-brand">
-            <div class="footer-logo">Dokter Richard</div>
-            <p>Holistisch huisarts, leefstijlcoach en auteur. Begeleiding naar balans en gezondheid van lichaam, geest en ziel.</p>
-            <div class="footer-social">
-                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-                <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-                <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4>Pagina's</h4>
-            <ul>
-                <li><a href="over.html">Over Richard</a></li>
-                <li><a href="boeken.html">Boeken</a></li>
-                <li><a href="coaching.html">Coaching</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Diensten</h4>
-            <ul>
-                <li><a href="coaching.html">Intake Consult</a></li>
-                <li><a href="coaching.html">Coaching</a></li>
-                <li><a href="coaching.html">Leefstijladvies</a></li>
-                <li><a href="consult.html">Online Consult</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Contact</h4>
-            <ul>
-                <li><a href="mailto:info@dokterrichard.nl">info@dokterrichard.nl</a></li>
-                <li><span>Den Bosch, Nederland</span></li>
-                <li><span>Medische Praktijk Mondesir</span></li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Dokter Richard Hoofs. Alle rechten voorbehouden.</p>
-        <p>Ontworpen met zorg voor gezondheid</p>
-    </div>
-</footer>
-
+<script src="nav.js"></script>
 <script>
-function openMobileNav(){document.getElementById('mobileNav').classList.add('open');document.body.style.overflow='hidden'}
-function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
 var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
 </script>
+<script src="footer.js"></script>
 </body>
 </html>

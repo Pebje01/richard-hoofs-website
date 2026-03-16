@@ -638,6 +638,24 @@
             font-size: 12px;
             color: rgba(255,255,255,0.3);
         }
+        .footer-seed-watermark {
+            position: absolute;
+            right: -80px;
+            bottom: -80px;
+            width: 500px;
+            height: 500px;
+            fill: none;
+            stroke: rgba(255,255,255,0.06);
+            stroke-width: 0.3;
+            pointer-events: none;
+        }
+        .footer-bottom a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: underline;
+        }
+        .footer-bottom a:hover {
+            color: #fff;
+        }
 
         /* ===== ANIMATIONS ===== */
         .fade-in {
@@ -706,7 +724,7 @@
             .reviews-section { padding: 80px 32px; }
             .reviews-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-newsletter { grid-template-columns: 1fr; gap: 24px; }
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
         }
 
         @media (max-width: 768px) {
@@ -724,7 +742,7 @@
             .learn-grid { grid-template-columns: 1fr 1fr; }
             .reviews-section { padding-left: 20px; padding-right: 20px; }
             .reviews-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 20px; font-size: 13px; }
             .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
             .newsletter-form { flex-direction: column; }
         }
@@ -737,228 +755,19 @@
 </head>
 <body>
 
-<!-- Mobile Nav -->
-<div class="mobile-nav" id="mobileNav">
-    <button class="mobile-nav-close" onclick="closeMobileNav()">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <a href="index.html" onclick="closeMobileNav()">Home</a>
-    <a href="over.html" onclick="closeMobileNav()">Over Richard</a>
-    <a href="boeken.html" onclick="closeMobileNav()">Boeken</a>
-    <a href="coaching.html" onclick="closeMobileNav()">Coaching</a>
-    <a href="blog.html" onclick="closeMobileNav()">Blog</a>
-    <a href="events.html" onclick="closeMobileNav()">Events</a>
-    <a href="contact.html" onclick="closeMobileNav()">Contact</a>
-    <a href="consult.html" onclick="closeMobileNav()" class="mobile-nav-cta">Consult aanvragen</a>
-</div>
+<div id="nav-placeholder"></div>
 
-<!-- NAV -->
-<nav class="nav">
-    <a href="index.html" class="nav-logo">
-        <svg class="seed-of-life" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="20" cy="20" r="9"/>
-            <circle cx="20" cy="11" r="9"/>
-            <circle cx="20" cy="29" r="9"/>
-            <circle cx="27.794" cy="15.5" r="9"/>
-            <circle cx="27.794" cy="24.5" r="9"/>
-            <circle cx="12.206" cy="15.5" r="9"/>
-            <circle cx="12.206" cy="24.5" r="9"/>
-        </svg>
-        Dokter Richard
-    </a>
-    <div class="nav-center">
-        <a href="index.html">Home</a>
-        <a href="over.html">Over Richard</a>
-        <a href="boeken.html" class="active">Boeken</a>
-        <a href="coaching.html">Coaching</a>
-        <a href="blog.html">Blog</a>
-        <a href="events.html">Events</a>
-        <a href="contact.html">Contact</a>
-    </div>
-    <a href="consult.html" class="nav-cta">Consult aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-    <button class="hamburger" onclick="openMobileNav()" aria-label="Menu">
-        <svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-</nav>
-
-<!-- PAGE HERO -->
-<section class="page-hero">
-    <h1 class="fade-in">Bezield Leven op Doktersrecept</h1>
-    <p class="fade-in fade-in-d1">Het boek van Richard Hoofs over holistische gezondheid en de vier pijlers van een bezield leven.</p>
-</section>
-
-<!-- BOOK SECTION -->
-<section class="book-section">
-    <div class="book-grid">
-        <div class="book-image fade-in">
-            <img src="images/Web-boek.avif" alt="Bezield Leven op Doktersrecept" loading="eager">
-        </div>
-        <div class="book-content fade-in fade-in-d1">
-            <div class="label"><span class="label-dot"></span> Het boek</div>
-            <h2>Bezield Leven op Doktersrecept</h2>
-            <p>In dit boek neemt Richard Hoofs je mee op een reis naar holistische gezondheid. Als huisarts en leefstijlcoach deelt hij zijn unieke visie op genezing, waarbij lichaam, geest en ziel samenkomen.</p>
-            <p>Een praktische gids voor iedereen die op zoek is naar balans en duurzaam welzijn.</p>
-            <a href="#" class="btn btn-accent">Bestel het boek &mdash; &euro;24,99 <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        </div>
-    </div>
-</section>
-
-<!-- WHAT YOU'LL LEARN -->
-<section class="learn-section has-seed-bg">
-    <svg class="seed-bg seed-bg-right" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
-    <svg class="seed-bg seed-bg-left" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
-    <div class="learn-container">
-        <div class="learn-header fade-in">
-            <div class="label" style="color: rgba(255,255,255,0.7); justify-content: center;"><span class="label-dot" style="background: rgba(255,255,255,0.5);"></span> Wat je leert</div>
-            <h2>Wat je ontdekt in dit boek</h2>
-            <p>Een praktische gids met inzichten uit meer dan 25 jaar ervaring als huisarts en coach.</p>
-        </div>
-        <div class="learn-grid">
-            <div class="learn-card fade-in">
-                <div class="learn-card-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <h3>De vier pijlers</h3>
-                <p>SES, Body, Mind en Soul uitgelegd</p>
-            </div>
-            <div class="learn-card fade-in fade-in-d1">
-                <div class="learn-card-icon">
-                    <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                </div>
-                <h3>Praktische oefeningen</h3>
-                <p>Direct toepasbare technieken voor dagelijks leven</p>
-            </div>
-            <div class="learn-card fade-in fade-in-d2">
-                <div class="learn-card-icon">
-                    <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                </div>
-                <h3>Wetenschappelijk onderbouwd</h3>
-                <p>Combinatie van reguliere en complementaire geneeskunde</p>
-            </div>
-            <div class="learn-card fade-in fade-in-d3">
-                <div class="learn-card-icon">
-                    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                </div>
-                <h3>Persoonlijke verhalen</h3>
-                <p>Ervaringen uit 25+ jaar huisartsenpraktijk</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- REVIEWS -->
-<section class="reviews-section">
-    <div class="reviews-container">
-        <div class="reviews-header fade-in">
-            <div class="label" style="justify-content: center; margin: 0 auto 16px;"><span class="label-dot"></span> Recensies</div>
-            <h2>Wat lezers zeggen</h2>
-        </div>
-        <div class="reviews-grid">
-            <div class="review-card fade-in">
-                <div class="review-stars">
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-                <blockquote>&ldquo;Een eye-opener. Richard laat op een heldere manier zien hoe lichaam en geest onlosmakelijk met elkaar verbonden zijn. Een must-read voor iedereen die meer wil dan alleen symptoombestrijding.&rdquo;</blockquote>
-                <div class="review-author">Marieke de V. &mdash; Lezer</div>
-            </div>
-            <div class="review-card fade-in fade-in-d1">
-                <div class="review-stars">
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-                <blockquote>&ldquo;Praktisch, warm en inspirerend. De oefeningen zijn direct toepasbaar en de persoonlijke verhalen maken het boek heel toegankelijk. Eindelijk een arts die het hele plaatje ziet.&rdquo;</blockquote>
-                <div class="review-author">Peter K. &mdash; Lezer</div>
-            </div>
-            <div class="review-card fade-in fade-in-d2">
-                <div class="review-stars">
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-                <blockquote>&ldquo;Dit boek heeft mijn kijk op gezondheid veranderd. De vier pijlers geven een duidelijk framework om aan je welzijn te werken. Aanrader voor jong en oud.&rdquo;</blockquote>
-                <div class="review-author">Sandra B. &mdash; Lezer</div>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- CONTENT -->
+<main style="min-height: 60vh;"></main>
 
 <!-- FOOTER -->
-<footer class="unified-footer has-seed-bg">
-    <svg class="seed-bg seed-bg-right" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
-    <svg class="seed-bg seed-bg-left" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
+<div id="footer-placeholder"></div>
 
-    <!-- Newsletter -->
-    <div class="footer-newsletter fade-in">
-        <div class="footer-newsletter-text">
-            <h2>Blijf op de hoogte</h2>
-            <p>Schrijf je in voor de nieuwsbrief en ontvang tips over holistische gezondheid, leefstijl en balans.</p>
-        </div>
-        <form class="newsletter-form" action="https://formspree.io/f/placeholder" method="POST">
-            <input type="email" name="email" placeholder="Je e-mailadres" required>
-            <button type="submit">Inschrijven</button>
-        </form>
-    </div>
-
-    <!-- Footer links -->
-    <div class="footer-grid">
-        <div class="footer-brand">
-            <div class="footer-logo">Dokter Richard</div>
-            <p>Holistisch huisarts, leefstijlcoach en auteur. Begeleiding naar balans en gezondheid van lichaam, geest en ziel.</p>
-            <div class="footer-social">
-                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-                <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-                <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4>Pagina's</h4>
-            <ul>
-                <li><a href="over.html">Over Richard</a></li>
-                <li><a href="boeken.html">Boeken</a></li>
-                <li><a href="coaching.html">Coaching</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Diensten</h4>
-            <ul>
-                <li><a href="coaching.html">Intake Consult</a></li>
-                <li><a href="coaching.html">Coaching</a></li>
-                <li><a href="coaching.html">Leefstijladvies</a></li>
-                <li><a href="consult.html">Online Consult</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Contact</h4>
-            <ul>
-                <li><a href="mailto:info@dokterrichard.nl">info@dokterrichard.nl</a></li>
-                <li><span>Den Bosch, Nederland</span></li>
-                <li><span>Medische Praktijk Mondesir</span></li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Dokter Richard Hoofs. Alle rechten voorbehouden.</p>
-        <p>Ontworpen met zorg voor gezondheid</p>
-    </div>
-</footer>
-
+<script src="nav.js"></script>
 <script>
-function openMobileNav(){document.getElementById('mobileNav').classList.add('open');document.body.style.overflow='hidden'}
-function closeMobileNav(){document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
 var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
 </script>
+<script src="footer.js"></script>
 </body>
 </html>
