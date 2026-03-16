@@ -64,6 +64,14 @@
             background: var(--green);
             border-color: var(--green);
             color: #fff;
+            cursor: pointer;
+        }
+        .progress-step.completed .progress-step-dot:hover {
+            transform: scale(1.15);
+            box-shadow: 0 2px 8px rgba(122,139,130,0.3);
+        }
+        .progress-step.completed .progress-step-label {
+            cursor: pointer;
         }
         .progress-step-label {
             font-size: 10px;
@@ -941,15 +949,19 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
             var cls = '';
             if (i + 1 === currentStep) cls = 'active';
             else if (i + 1 < currentStep) cls = 'completed';
+            var clickAttr = '';
+            if (i + 1 < currentStep) {
+                clickAttr = ' onclick="window.zelfscanGoToStep(' + (i + 1) + ')"';
+            }
             html += '<div class="progress-step ' + cls + '">';
-            html += '<div class="progress-step-dot">';
+            html += '<div class="progress-step-dot"' + clickAttr + '>';
             if (i + 1 < currentStep) {
                 html += '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
             } else {
                 html += (i + 1);
             }
             html += '</div>';
-            html += '<div class="progress-step-label">' + stepNames[i] + '</div>';
+            html += '<div class="progress-step-label"' + clickAttr + '>' + stepNames[i] + '</div>';
             html += '</div>';
             if (i < stepNames.length - 1) {
                 html += '<div class="progress-line' + (i + 1 < currentStep ? ' filled' : '') + '"></div>';
@@ -1099,7 +1111,11 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
     // Laposta subscribe via hidden iframe (geen redirect, geen CORS)
     function subscribeLaposta(naam, email) {
         var apiKey = 'FqSl0KJvMZ0a69BuMyfR';
-        var listId = 'pzqhbu8wwj';
+        var listId = '9h6jmkaah0'; // Gezondheid Zelfscan lijst
+
+        var geboortejaar = document.getElementById('geboortejaar').value || '';
+        var geslachtEl = document.querySelector('input[name="geslacht"]:checked');
+        var geslacht = geslachtEl ? geslachtEl.value : '';
 
         var body = new URLSearchParams();
         body.append('list_id', listId);
@@ -1108,6 +1124,8 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
         body.append('source_url', window.location.href);
         body.append('custom_fields[voornaam]', naam.split(' ')[0]);
         body.append('custom_fields[achternaam]', naam.split(' ').slice(1).join(' '));
+        body.append('custom_fields[geboortejaar]', geboortejaar);
+        body.append('custom_fields[geslacht]', geslacht);
 
         fetch('https://api.laposta.nl/v2/member', {
             method: 'POST',
@@ -1132,7 +1150,7 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
             form.target = 'laposta-iframe';
             form.acceptCharset = 'utf-8';
 
-            var fields = {'a':'szg9g1odij','l':'pzqhbu8wwj','6Gw9jS4cU3':email,'zdQEcmorrk':naam.split(' ')[0],'Rlr1KfNFwu':naam.split(' ').slice(1).join(' '),'next':''};
+            var fields = {'a':'szg9g1odij','l':'9h6jmkaah0','6Gw9jS4cU3':email,'zdQEcmorrk':naam.split(' ')[0],'Rlr1KfNFwu':naam.split(' ').slice(1).join(' '),'next':''};
             for (var key in fields) {
                 var input = document.createElement('input');
                 input.type = 'hidden';
@@ -1168,6 +1186,16 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
                 }
             }
             showStep(currentStep - 1);
+        }
+    };
+
+    // Navigeer naar een eerder voltooide stap via de progress dots
+    window.zelfscanGoToStep = function(step) {
+        if (step >= 1 && step < currentStep) {
+            if (step >= 2 && step <= 5) {
+                renderQuestionStep(step);
+            }
+            showStep(step);
         }
     };
 
@@ -1327,44 +1355,84 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
 
         container.innerHTML = html;
 
-        // Stuur resultaten per e-mail
-        sendResultsEmail(results, naam);
+        // Update Laposta contact met scores (triggert automation mail)
+        updateLapostaScores(results);
+
+        // Stuur kopie naar Richard via Web3Forms
+        sendResultsToRichard(results, naam);
     }
 
-    function sendResultsEmail(results, naam) {
+    function updateLapostaScores(results) {
+        var apiKey = 'FqSl0KJvMZ0a69BuMyfR';
+        var listId = '9h6jmkaah0';
+        var email = document.getElementById('email').value.trim();
+
+        // Zoek scores per categorie
+        var scores = {};
+        results.forEach(function(cat) {
+            scores[cat.key] = cat.score.toFixed(1);
+        });
+
+        var body = new URLSearchParams();
+        body.append('list_id', listId);
+        body.append('email', email);
+        body.append('custom_fields[scoreses]', scores.ses || '');
+        body.append('custom_fields[scorebody]', scores.body || '');
+        body.append('custom_fields[scoremind]', scores.mind || '');
+        body.append('custom_fields[scoresoul]', scores.soul || '');
+
+        // Eerst member_id ophalen, dan updaten
+        fetch('https://api.laposta.nl/v2/member?list_id=' + listId + '&email=' + encodeURIComponent(email), {
+            method: 'GET',
+            headers: { 'Authorization': 'Basic ' + btoa(apiKey + ':') }
+        }).then(function(r) { return r.json(); }).then(function(data) {
+            if (data.member && data.member.member_id) {
+                var updateBody = new URLSearchParams();
+                updateBody.append('list_id', listId);
+                updateBody.append('custom_fields[scoreses]', scores.ses || '');
+                updateBody.append('custom_fields[scorebody]', scores.body || '');
+                updateBody.append('custom_fields[scoremind]', scores.mind || '');
+                updateBody.append('custom_fields[scoresoul]', scores.soul || '');
+
+                return fetch('https://api.laposta.nl/v2/member/' + data.member.member_id, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(apiKey + ':'),
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: updateBody.toString()
+                });
+            }
+        }).then(function(r) {
+            if (r) return r.json();
+        }).then(function(data) {
+            console.log('Laposta scores bijgewerkt:', data ? 'ok' : 'geen data');
+        }).catch(function(e) {
+            console.log('Laposta scores update fout:', e);
+        });
+    }
+
+    function sendResultsToRichard(results, naam) {
         var email = document.getElementById('email').value.trim();
         var geboortejaar = document.getElementById('geboortejaar').value || '-';
         var geslacht = document.querySelector('input[name="geslacht"]:checked');
         geslacht = geslacht ? geslacht.value : '-';
 
-        // Bouw overzichtelijke e-mail body
-        var body = '<h2>Gezondheid Zelfscan — Resultaten voor ' + naam + '</h2>';
-        body += '<p><strong>E-mail:</strong> ' + email + ' | <strong>Geboortejaar:</strong> ' + geboortejaar + ' | <strong>Geslacht:</strong> ' + geslacht + '</p>';
-        body += '<hr style="border:1px solid #eee;margin:20px 0">';
+        var body = 'Gezondheid Zelfscan resultaten voor ' + naam + '\n\n';
+        body += 'E-mail: ' + email + '\nGeboortejaar: ' + geboortejaar + '\nGeslacht: ' + geslacht + '\n\n';
 
         results.forEach(function(cat) {
-            var kleur = cat.score >= 8 ? '#4a7c59' : (cat.score >= 5 ? '#c1944f' : '#c15a4f');
-            body += '<h3 style="color:' + kleur + '">' + cat.fullTitle + ' — <strong>' + cat.score.toFixed(1) + '/10</strong></h3>';
-            body += '<table style="width:100%;border-collapse:collapse;margin-bottom:16px">';
+            body += cat.fullTitle + ': ' + cat.score.toFixed(1) + '/10\n';
             cat.subcategories.forEach(function(sub) {
-                var sk = sub.score >= 8 ? '#4a7c59' : (sub.score >= 5 ? '#c1944f' : '#c15a4f');
-                body += '<tr><td style="padding:4px 8px;border-bottom:1px solid #f0f0f0">' + sub.name + '</td>';
-                body += '<td style="padding:4px 8px;border-bottom:1px solid #f0f0f0;text-align:right;font-weight:700;color:' + sk + '">' + sub.score.toFixed(1) + '</td></tr>';
+                body += '  - ' + sub.name + ': ' + sub.score.toFixed(1) + '\n';
             });
-            body += '</table>';
+            body += '\n';
         });
 
-        body += '<hr style="border:1px solid #eee;margin:20px 0">';
-        body += '<p>Wil je hier verder mee aan de slag? Bekijk de mogelijkheden op <a href="https://dokterrichard.nl">dokterrichard.nl</a> of vraag een <a href="https://dokterrichard.nl/consult.html">consult aan</a>.</p>';
-        body += '<p>Hartelijke groet,<br>Richard Hoofs</p>';
-
-        // Verstuur via Web3Forms
         var formData = new FormData();
         formData.append('access_key', '4ba3a29f-d163-4a82-aed2-3ead1397f7e0');
-        formData.append('subject', 'Je Gezondheid Zelfscan resultaten');
-        formData.append('from_name', 'Dokter Richard');
-        formData.append('replyto', 'medischepraktijkmondesir@live.nl');
-        formData.append('cc', email);
+        formData.append('subject', 'Zelfscan resultaten — ' + naam);
+        formData.append('from_name', 'Dokter Richard Website');
         formData.append('name', naam);
         formData.append('email', email);
         formData.append('message', body);
@@ -1373,9 +1441,9 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
             method: 'POST',
             body: formData
         }).then(function(r) { return r.json(); }).then(function(data) {
-            console.log('Resultaten e-mail:', data.success ? 'verstuurd' : 'fout');
+            console.log('Kopie naar Richard:', data.success ? 'verstuurd' : 'fout');
         }).catch(function(e) {
-            console.log('E-mail versturen mislukt:', e);
+            console.log('Web3Forms fout:', e);
         });
     }
 

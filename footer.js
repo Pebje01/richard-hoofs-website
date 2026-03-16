@@ -21,7 +21,7 @@ function footerNewsletterSubmit(form) {
     if (!email) return false;
 
     var apiKey = 'FqSl0KJvMZ0a69BuMyfR';
-    var listId = 'pzqhbu8wwj';
+    var listId = 'ugzsfbuj18'; // Nieuwsbrief lijst
 
     var body = new URLSearchParams();
     body.append('list_id', listId);
