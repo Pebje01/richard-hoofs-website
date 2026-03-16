@@ -1206,7 +1206,7 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
 
     // ===== RADAR CHART (SVG) =====
     function renderRadarChart(results) {
-        var size = 420;
+        var size = 540;
         var cx = size / 2;
         var cy = size / 2;
         var maxR = 140;
@@ -1326,6 +1326,57 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
         html += '</div></div>';
 
         container.innerHTML = html;
+
+        // Stuur resultaten per e-mail
+        sendResultsEmail(results, naam);
+    }
+
+    function sendResultsEmail(results, naam) {
+        var email = document.getElementById('email').value.trim();
+        var geboortejaar = document.getElementById('geboortejaar').value || '-';
+        var geslacht = document.querySelector('input[name="geslacht"]:checked');
+        geslacht = geslacht ? geslacht.value : '-';
+
+        // Bouw overzichtelijke e-mail body
+        var body = '<h2>Gezondheid Zelfscan — Resultaten voor ' + naam + '</h2>';
+        body += '<p><strong>E-mail:</strong> ' + email + ' | <strong>Geboortejaar:</strong> ' + geboortejaar + ' | <strong>Geslacht:</strong> ' + geslacht + '</p>';
+        body += '<hr style="border:1px solid #eee;margin:20px 0">';
+
+        results.forEach(function(cat) {
+            var kleur = cat.score >= 8 ? '#4a7c59' : (cat.score >= 5 ? '#c1944f' : '#c15a4f');
+            body += '<h3 style="color:' + kleur + '">' + cat.fullTitle + ' — <strong>' + cat.score.toFixed(1) + '/10</strong></h3>';
+            body += '<table style="width:100%;border-collapse:collapse;margin-bottom:16px">';
+            cat.subcategories.forEach(function(sub) {
+                var sk = sub.score >= 8 ? '#4a7c59' : (sub.score >= 5 ? '#c1944f' : '#c15a4f');
+                body += '<tr><td style="padding:4px 8px;border-bottom:1px solid #f0f0f0">' + sub.name + '</td>';
+                body += '<td style="padding:4px 8px;border-bottom:1px solid #f0f0f0;text-align:right;font-weight:700;color:' + sk + '">' + sub.score.toFixed(1) + '</td></tr>';
+            });
+            body += '</table>';
+        });
+
+        body += '<hr style="border:1px solid #eee;margin:20px 0">';
+        body += '<p>Wil je hier verder mee aan de slag? Bekijk de mogelijkheden op <a href="https://dokterrichard.nl">dokterrichard.nl</a> of vraag een <a href="https://dokterrichard.nl/consult.html">consult aan</a>.</p>';
+        body += '<p>Hartelijke groet,<br>Richard Hoofs</p>';
+
+        // Verstuur via Web3Forms
+        var formData = new FormData();
+        formData.append('access_key', '4ba3a29f-d163-4a82-aed2-3ead1397f7e0');
+        formData.append('subject', 'Je Gezondheid Zelfscan resultaten');
+        formData.append('from_name', 'Dokter Richard');
+        formData.append('replyto', 'medischepraktijkmondesir@live.nl');
+        formData.append('cc', email);
+        formData.append('name', naam);
+        formData.append('email', email);
+        formData.append('message', body);
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+        }).then(function(r) { return r.json(); }).then(function(data) {
+            console.log('Resultaten e-mail:', data.success ? 'verstuurd' : 'fout');
+        }).catch(function(e) {
+            console.log('E-mail versturen mislukt:', e);
+        });
     }
 
     window.zelfscanToggleCard = function(idx) {
