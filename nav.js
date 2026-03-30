@@ -19,6 +19,17 @@
                     link.classList.add('active');
                 }
             });
+            // Scroll detection for subpage nav
+            if (page !== 'index.html' && page !== '') {
+                var navEl = document.querySelector('.nav');
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 80) {
+                        navEl.classList.add('scrolled');
+                    } else {
+                        navEl.classList.remove('scrolled');
+                    }
+                });
+            }
         });
 })();
 

@@ -3,19 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coaching — Dokter Richard</title>
-    <meta name="description" content="Persoonlijke coaching en begeleiding door Richard Hoofs.">
+    <title>Consulten & Coaching  Dokter Richard</title>
+    <meta name="description" content="Consulten en coaching door Richard Hoofs. Leven vanuit bezieling, persoonlijke begeleiding op praktisch-spirituele wijze.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="shared.css">
+    <style>
+        /* ===== PAGE HERO ===== */
+        .coaching-hero {
+            background: linear-gradient(180deg, #eef0ed 0%, #dfe7e0 60%, var(--bg) 100%);
+            padding: 180px 48px 160px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .coaching-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: -5%;
+            right: -5%;
+            height: 80px;
+            background: var(--bg);
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        }
+        .coaching-hero-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .coaching-hero h1 {
+            margin-bottom: 8px;
+        }
+        .coaching-hero .subtitle {
+            font-family: var(--font-heading);
+            font-size: clamp(18px, 2vw, 24px);
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: 28px;
+        }
+        .coaching-hero .hero-intro {
+            font-size: 16px;
+            color: var(--text-body);
+            line-height: 1.8;
+            max-width: 680px;
+            margin: 0 auto 32px;
+        }
+        .coaching-hero .hero-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ===== TWO-COL SECTION ===== */
+        .two-col {
+            padding: 0 48px 100px;
+            max-width: calc(var(--max-width) + 96px);
+            margin: 0 auto;
+        }
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+        .two-col-grid.reversed .two-col-image { order: -1; }
+        .two-col-image {
+            padding-top: 0;
+        }
+        .two-col-image img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 50px rgba(58, 61, 50, 0.1);
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+        .two-col-content h2 {
+            margin-bottom: 20px;
+        }
+        .two-col-content p {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        /* ===== DETAIL CARDS ===== */
+        .details-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+        .detail-item {
+            border-radius: var(--radius-lg);
+            padding: 18px 24px;
+            min-width: 140px;
+        }
+        .detail-item.green {
+            background: var(--green);
+        }
+        .detail-item.accent {
+            background: var(--accent);
+        }
+        .detail-item .detail-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 4px;
+        }
+        .detail-item .detail-value {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .detail-item .detail-sub {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.55);
+        }
+
+        /* ===== CTA BUTTON ===== */
+        .section-cta {
+            margin-top: 32px;
+        }
+
+        /* ===== CONTACT LINE ===== */
+        .contact-line {
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .contact-line a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .contact-line a:hover {
+            color: var(--green-dark);
+        }
+
+        /* ===== DIVIDER ===== */
+        .section-divider {
+            max-width: var(--max-width);
+            margin: 0 auto 100px;
+            padding: 0 48px;
+        }
+        .section-divider hr {
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ===== CTA BANNER ===== */
+        .cta-banner {
+            background: var(--green);
+            padding: 60px 48px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .cta-banner-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+        .cta-banner h3 {
+            font-family: var(--font-heading);
+            font-size: clamp(22px, 2.5vw, 28px);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .cta-banner p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 24px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .coaching-hero { padding: 120px 24px 80px; }
+            .two-col { padding: 0 24px 60px; }
+            .two-col-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .two-col-grid.reversed .two-col-image { order: -1; }
+            .two-col-image img { aspect-ratio: 3/2; }
+            .section-divider { padding: 0 24px; margin-bottom: 60px; }
+            .details-row { gap: 10px; }
+            .detail-item { padding: 14px 18px; min-width: 120px; }
+            .cta-banner { padding: 48px 24px; }
+        }
+    </style>
 </head>
 <body>
 
 <div id="nav-placeholder"></div>
 
-<!-- CONTENT -->
-<main style="min-height: 60vh;"></main>
+<!-- PAGE HERO -->
+<section class="coaching-hero fade-in">
+    <div class="coaching-hero-inner">
+        <h1>Consulten & Coaching</h1>
+        <p class="hero-intro">Wil je weer in verbinding komen met jezelf? Bekijk hieronder welke vorm bij je past en vraag direct een consult of coaching traject aan.</p>
+        <div class="hero-actions">
+            <a href="#consult" class="btn btn-accent">Consult aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            <a href="#coaching" class="btn btn-outline">Coaching traject <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+        </div>
+    </div>
+</section>
+
+<!-- CONSULT: tekst links, foto rechts -->
+<section class="two-col fade-in" id="consult">
+    <div class="two-col-grid">
+        <div class="two-col-content">
+            <h2>Consult</h2>
+            <p>In een consult staan we stil bij wat er werkelijk in jou leeft. Wat vraagt aandacht? Waar wil jouw ziel naartoe bewegen? Jij staat centraal. Ik stem mij af op wie jij bent, en werk op een praktische spirituele manier waarbij ik mede gebruik maak van mijn ervaringen en kennis van o.a. westerse geneeskunde, ayurveda, acupunctuur en mindfulness.</p>
+            <p>Het consult nodigt je uit om weer in verbinding te komen met je essentie, met je bezieling. Je krijgt inzicht, richting en praktische handvatten om jouw weg verder te bewandelen. We werken via het lichaam en je energie.</p>
+            <p>Daarbij is er veel aandacht voor jouw lichaamsbesef, aarding en energie, waaronder het chakra- en aurasysteem. We maken hierbij gebruik van eenvoudige energetische oefeningen die je concreet kunt toepassen in je dagelijks leven.</p>
+            <p>Soms dragen we oude patronen, beperkende overtuigingen, angsten en emoties met ons mee, die ons beperken om vrijuit te leven. Samen onderzoeken we wat nog klopt en wat losgelaten mag worden. We kijken hierbij naar invloeden vanuit je vroege jeugd in dit leven, en wanneer dat zich aandient ook naar diepere lagen en aansturende patronen die je ziel meedraagt vanuit vorige levens.</p>
+            <p>Zo kan er ruimte ontstaan voor zachtheid, eigenwaarde, veiligheid en zelfliefde. Kwaliteiten die van nature in jou aanwezig zijn.</p>
+            <div class="details-row">
+                <div class="detail-item accent">
+                    <div class="detail-label">Duur</div>
+                    <div class="detail-value">75 min</div>
+                </div>
+                <div class="detail-item green">
+                    <div class="detail-label">Kosten</div>
+                    <div class="detail-value">&euro;140 <span class="detail-sub">per consult</span></div>
+                </div>
+            </div>
+            <div class="section-cta">
+                <a href="consult.html" class="btn btn-accent">Consult aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            </div>
+        </div>
+        <div class="two-col-image">
+            <img src="images/Richard_Hoofs-13.jpg" alt="Richard Hoofs consult" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="section-divider"><hr></div>
+
+<!-- COACHING: foto links, tekst rechts -->
+<section class="two-col fade-in" id="coaching">
+    <div class="two-col-grid reversed">
+        <div class="two-col-content">
+            <h2>Coaching traject</h2>
+            <p>In een traject van 5-7 consulten neem je bewust de tijd om te groeien, op jouw tempo. Zoals in de natuur krijgt wat aandacht krijgt, ruimte om zich te ontvouwen.</p>
+            <p>We kijken naar patronen die jouw energie vastzetten en onderzoeken wat daarin gezien en gevoeld wil worden. Vaak ligt daar oude, onverwerkte pijn onder die onbewust doorwerkt in hoe je leeft en kiest, vanuit je jeugd of vanuit diepere lagen die je met je meedraagt. Door hier met aandacht naartoe te gaan, kan er beweging ontstaan. Wat vastzat, mag weer stromen.</p>
+            <p>Vanuit die ruimte ontstaat er een nieuwe verbinding met jezelf, met je lichaam, je keuzes en je ziel. Je leert belemmerende gedachten en overtuigingen te verzachten en om te buigen naar iets dat je ondersteunt in plaats van belemmert.</p>
+            <div class="details-row">
+                <div class="detail-item accent">
+                    <div class="detail-label">Duur consult</div>
+                    <div class="detail-value">75 min</div>
+                </div>
+                <div class="detail-item green">
+                    <div class="detail-label">Kosten</div>
+                    <div class="detail-value">&euro;120 <span class="detail-sub">per consult</span></div>
+                </div>
+                <div class="detail-item accent">
+                    <div class="detail-label">Traject</div>
+                    <div class="detail-value">5-7 consulten</div>
+                </div>
+            </div>
+            <div class="section-cta">
+                <a href="consult.html" class="btn btn-accent">Coaching aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            </div>
+            <p class="contact-line">Afspraak & info: <a href="mailto:info@dokterrichard.nl">info@dokterrichard.nl</a></p>
+        </div>
+        <div class="two-col-image">
+            <img src="images/Richard_Hoofs-15.jpg" alt="Richard Hoofs coaching" loading="lazy">
+        </div>
+    </div>
+</section>
 
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>

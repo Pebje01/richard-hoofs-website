@@ -3,23 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consult Aanvragen — Dokter Richard</title>
-    <meta name="description" content="Vraag een consult aan bij Dokter Richard Hoofs — huisarts, leefstijlcoach en auteur. Vul het formulier in en ontvang binnen 2 werkdagen een reactie.">
+    <title>Consult Aanvragen  Dokter Richard</title>
+    <meta name="description" content="Vraag een consult aan bij Richard Hoofs, arts & coach. Vul het formulier in en ontvang binnen 2 werkdagen een reactie.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="shared.css">
     <style>
-        /* ===== PAGE HERO override ===== */
-        .page-hero { background: var(--bg-alt); }
+        /* ===== HERO SPLIT ===== */
+        .consult-hero {
+            background: linear-gradient(180deg, #eef0ed 0%, #dfe7e0 60%, var(--bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .consult-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: -5%;
+            right: -5%;
+            height: 80px;
+            background: var(--bg);
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        }
+        .consult-hero-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 160px 48px 120px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .consult-hero-text h1 {
+            margin-bottom: 16px;
+        }
+        .consult-hero-text p {
+            font-size: 16px;
+            color: var(--text-body);
+            line-height: 1.8;
+            margin-bottom: 28px;
+            max-width: 480px;
+        }
+        .scroll-arrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50%;
+            transition: transform 0.3s ease, background 0.2s;
+        }
+        .scroll-arrow:hover {
+            transform: translateY(4px);
+            background: #d4885e;
+        }
+        .consult-hero-image img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 50px rgba(58, 61, 50, 0.12);
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
 
         /* ===== CONSULT FORM ===== */
         .consult-section {
-            padding: var(--section-padding) 48px;
+            padding: 60px 48px var(--section-padding);
         }
         .consult-container {
             max-width: 600px;
             margin: 0 auto;
+        }
+        .consult-section-title {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .consult-section-sub {
+            font-size: 15px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 40px;
         }
         .consult-form {
             display: flex;
@@ -76,11 +144,15 @@
         }
         .consult-submit:hover { background: #d4885e; }
 
-        @media (max-width: 1024px) {
-            .consult-section { padding: 80px 32px; }
-        }
         @media (max-width: 768px) {
-            .consult-section { padding-left: 20px; padding-right: 20px; }
+            .consult-hero-inner {
+                grid-template-columns: 1fr;
+                padding: 120px 24px 100px;
+                gap: 32px;
+            }
+            .consult-hero-image { order: -1; }
+            .consult-hero-image img { aspect-ratio: 3/2; }
+            .consult-section { padding: 40px 20px 80px; }
         }
     </style>
 </head>
@@ -88,15 +160,25 @@
 
 <div id="nav-placeholder"></div>
 
-<!-- PAGE HERO -->
-<section class="page-hero">
-    <h1 class="fade-in">Consult aanvragen</h1>
-    <p class="fade-in fade-in-d1">Vul onderstaand formulier in zodat ik me kan voorbereiden op ons gesprek. Je ontvangt binnen 2 werkdagen een reactie.</p>
+<!-- HERO -->
+<section class="consult-hero">
+    <div class="consult-hero-inner fade-in">
+        <div class="consult-hero-text">
+            <h1>Consult aanvragen</h1>
+            <p>Wil je een consult of coaching traject starten? Vul onderstaand formulier in zodat ik me kan voorbereiden op ons gesprek. Je ontvangt binnen 2 werkdagen een reactie.</p>
+            <a href="#formulier" class="scroll-arrow" aria-label="Naar formulier"><svg viewBox="0 0 24 24" width="32" height="32"><polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="consult-hero-image">
+            <img src="images/Richard_Hoofs-9.jpg" alt="Richard Hoofs" loading="eager">
+        </div>
+    </div>
 </section>
 
 <!-- CONSULT FORM -->
-<section class="consult-section">
+<section class="consult-section" id="formulier">
     <div class="consult-container">
+        <h2 class="consult-section-title fade-in">Vertel iets over jezelf</h2>
+        <p class="consult-section-sub fade-in">Zo kan ik me voorbereiden op ons eerste gesprek.</p>
         <form class="consult-form fade-in" action="https://api.web3forms.com/submit" method="POST">
             <!-- Web3Forms hidden fields -->
             <input type="hidden" name="access_key" value="4ba3a29f-d163-4a82-aed2-3ead1397f7e0">

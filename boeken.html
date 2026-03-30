@@ -4,18 +4,308 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boeken — Dokter Richard</title>
-    <meta name="description" content="Bezield Leven op Doktersrecept — het boek van Richard Hoofs over holistische gezondheid.">
+    <meta name="description" content="Bezield Leven op Doktersrecept — het boek van Richard Hoofs over holistische gezondheid, bezieling en de verbinding tussen lichaam, geest en ziel.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="shared.css">
+    <style>
+        /* ===== BOOK PAGE ===== */
+        .book-page {
+            padding: 140px 48px 80px;
+            max-width: calc(var(--max-width) + 96px);
+            margin: 0 auto;
+        }
+        .book-page-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: start;
+        }
+
+        /* LEFT: Cover */
+        .book-cover-wrap {
+            background: #eef0ed;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 56px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 120px;
+        }
+        .book-cover-wrap img {
+            max-width: 300px;
+            width: 100%;
+            aspect-ratio: 2/3;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            box-shadow: 0 24px 64px rgba(58, 61, 50, 0.12), 0 6px 20px rgba(58, 61, 50, 0.06);
+        }
+
+        /* RIGHT: Info */
+        .book-info .book-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .book-info h1 {
+            margin-bottom: 4px;
+        }
+        .book-info .book-subtitle {
+            font-family: var(--font-heading);
+            font-size: clamp(16px, 1.8vw, 20px);
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+        .book-info .book-price {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 6px;
+        }
+        .book-info .book-price-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+        .book-info .book-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        /* Meta pills */
+        .book-meta-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+        .book-meta-pill {
+            background: #eef0ed;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            padding: 8px 18px;
+            font-size: 13px;
+            color: var(--text-body);
+            font-weight: 500;
+        }
+
+        /* Author card */
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: #eef0ed;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            margin-bottom: 40px;
+            transition: box-shadow 0.2s;
+        }
+        .author-card:hover {
+            box-shadow: 0 4px 16px rgba(58, 61, 50, 0.06);
+        }
+        .author-card img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .author-card-text {
+            flex: 1;
+        }
+        .author-card-name {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--green-dark);
+        }
+        .author-card-role {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .author-card-link {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .author-card-link:hover { text-decoration: underline; }
+
+        /* Synopsis */
+        .book-synopsis h2 {
+            margin-bottom: 16px;
+        }
+        .book-synopsis p {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        /* Chapter list */
+        .chapter-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            margin-top: 40px;
+        }
+        .chapter-list-title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 16px;
+        }
+        .chapter-list li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.5;
+        }
+        .chapter-list li:first-child {
+            border-top: 1px solid var(--border);
+        }
+        .chapter-num {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 36px;
+        }
+
+        /* Quote */
+        .book-quote {
+            background: var(--green);
+            padding: 80px 48px;
+            border-radius: 24px;
+            margin: 60px 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .book-quote-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .book-quote blockquote {
+            font-family: var(--font-heading);
+            font-size: clamp(22px, 2.5vw, 30px);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.4;
+            letter-spacing: -0.02em;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .book-page { padding: 120px 32px 60px; }
+            .book-page-grid { gap: 48px; }
+            .book-cover-wrap { position: static; }
+        }
+        @media (max-width: 768px) {
+            .book-page { padding: 120px 20px 48px; }
+            .book-page-grid { grid-template-columns: 1fr; gap: 40px; }
+            .book-cover-wrap { padding: 32px; }
+            .book-cover-wrap img { max-width: 260px; }
+            .book-quote { padding: 60px 24px; margin: 40px 20px; }
+        }
+    </style>
 </head>
 <body>
 
 <div id="nav-placeholder"></div>
 
-<!-- CONTENT -->
-<main style="min-height: 60vh;"></main>
+<section class="book-page">
+    <div class="book-page-grid">
+
+        <!-- LEFT: Cover -->
+        <div class="book-cover-wrap fade-in">
+            <img src="images/Boek-foto-afb.jpg" alt="Bezield Leven op Doktersrecept">
+        </div>
+
+        <!-- RIGHT: Info -->
+        <div class="book-info fade-in">
+            <div class="book-label">Boek</div>
+            <h1>Bezield Leven op Doktersrecept</h1>
+            <p class="book-subtitle">Activeer je zelfhelende vermogen met inzichten uit het oude Egypte</p>
+
+            <div class="book-meta-row">
+                <span class="book-meta-pill">256 pagina's</span>
+                <span class="book-meta-pill">Paperback</span>
+                <span class="book-meta-pill">2e herziene druk</span>
+            </div>
+
+            <div class="book-price">&euro;29,95</div>
+            <div class="book-price-note">Exclusief verzendkosten</div>
+
+            <div class="book-actions">
+                <a href="#" class="btn btn-accent">Bestel nu <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+                <a href="mailto:info@dokterrichard.nl" class="btn btn-outline">Vraag stellen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            </div>
+
+            <!-- Author card -->
+            <div class="author-card">
+                <img src="images/Richard_Hoofs-13.jpg" alt="Richard Hoofs">
+                <div class="author-card-text">
+                    <div class="author-card-name">Richard Hoofs</div>
+                    <div class="author-card-role">Arts & Coach</div>
+                </div>
+                <a href="over.html" class="author-card-link">Over de auteur &rarr;</a>
+            </div>
+
+            <!-- Synopsis -->
+            <div class="book-synopsis">
+                <h2>Over het boek</h2>
+                <p>In dit boek deel ik mijn visie op gezondheid, waarin ik de westerse geneeskunde verbind met oosterse wijsheid. Een praktische gids voor iedereen die op zoek is naar meer balans, bezieling en vitaliteit.</p>
+                <p>Met een combinatie van persoonlijke verhalen, praktische oefeningen en diepgaande inzichten laat ik zien dat echte genezing begint bij het hervinden van je bezieling. Niet alleen het lichaam, maar ook de geest en de ziel verdienen aandacht.</p>
+            </div>
+
+            <!-- Chapters -->
+            <h3 class="chapter-list-title">Hoofdstukken</h3>
+            <ul class="chapter-list">
+                <li><span class="chapter-num">01</span> De verbinding tussen lichaam, geest en ziel</li>
+                <li><span class="chapter-num">02</span> Hoe je energie weer in balans brengt</li>
+                <li><span class="chapter-num">03</span> Praktische oefeningen voor dagelijks gebruik</li>
+                <li><span class="chapter-num">04</span> Inzichten uit de westerse en oosterse geneeskunde</li>
+                <li><span class="chapter-num">05</span> Het loslaten van beperkende patronen</li>
+                <li><span class="chapter-num">06</span> Leven vanuit je eigen bezieling</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- QUOTE -->
+<section class="book-quote has-seed-bg fade-in">
+    <svg class="seed-bg seed-bg-center" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="60"/>
+        <circle cx="100" cy="40" r="60"/>
+        <circle cx="152" cy="70" r="60"/>
+        <circle cx="152" cy="130" r="60"/>
+        <circle cx="100" cy="160" r="60"/>
+        <circle cx="48" cy="130" r="60"/>
+        <circle cx="48" cy="70" r="60"/>
+    </svg>
+    <div class="book-quote-inner">
+        <blockquote>&ldquo;Het maakt niet uit of je uit balans raakt, als je de weg terug maar weet te vinden.&rdquo;</blockquote>
+    </div>
+</section>
 
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>
