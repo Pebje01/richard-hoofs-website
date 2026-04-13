@@ -576,9 +576,9 @@
         }
         .bk-editions-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 24px;
-            max-width: 780px;
+            max-width: 1100px;
             margin: 0 auto;
             text-align: left;
         }
@@ -979,7 +979,7 @@
             .bk-inside-grid { grid-template-columns: 1fr; gap: 40px; }
 
             .bk-editions { padding: 72px 32px; }
-            .bk-editions-grid { grid-template-columns: 1fr; }
+            .bk-editions-grid { grid-template-columns: 1fr 1fr; }
 
             .bk-faq { padding: 72px 32px; }
 
@@ -1009,6 +1009,7 @@
 
             .bk-inside { padding: 60px 20px; }
             .bk-editions { padding: 60px 24px; }
+            .bk-editions-grid { grid-template-columns: 1fr; }
             .bk-edition { padding: 28px 24px; }
 
             .bk-faq { padding: 60px 20px; }
@@ -1284,7 +1285,7 @@
      ============================================ -->
 <section class="bk-editions fade-in">
     <h2>Kies jouw editie</h2>
-    <p>Bestel het boek los of ga voor een persoonlijke editie met opdracht van Richard zelf.</p>
+    <p>Paperback, e-book of een gesigneerd exemplaar - kies wat bij jou past.</p>
 
     <div class="bk-editions-grid">
         <div class="bk-edition">
@@ -1305,6 +1306,26 @@
                 <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Verzending binnen 2 werkdagen</li>
             </ul>
             <a href="#" onclick="openBestelModal(event)" class="bk-edition-cta">Bestel nu</a>
+        </div>
+
+        <div class="bk-edition">
+            <div class="bk-edition-icon">
+                <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
+            </div>
+            <h3>E-book</h3>
+            <div class="bk-edition-sub">Direct digitaal beschikbaar</div>
+            <div class="bk-edition-price">
+                <span class="bk-edition-currency">&euro;</span>
+                <span class="bk-edition-amount">14,95</span>
+                <span class="bk-edition-unit">/ boek</span>
+            </div>
+            <ul class="bk-edition-list">
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> PDF &amp; ePub formaat</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Direct na betaling beschikbaar</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Lees op elk apparaat</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Geen verzendkosten</li>
+            </ul>
+            <a href="#" onclick="openBestelModal(event)" class="bk-edition-cta">Bestel e-book</a>
         </div>
 
         <div class="bk-edition bk-edition--featured">
