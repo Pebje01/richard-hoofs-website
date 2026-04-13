@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gezondheid Zelfscan — Dokter Richard</title>
+    <title>Gezondheid Zelfscan | Dokter Richard</title>
     <meta name="description" content="Breng je gezondheid in kaart met de Zelfscan van Dokter Richard. Ontdek hoe je scoort op sociaal, lichamelijk, mentaal en spiritueel vlak.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1018,7 +1018,7 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
             var answered = getAnsweredCount(currentStep);
             var overallProgress = ((currentStep - 2) * 25) + (answered / total * 25);
             fill.style.width = overallProgress + '%';
-            text.textContent = 'Vraag ' + answered + ' van ' + total + ' — ' + cat.fullTitle;
+            text.textContent = 'Vraag ' + answered + ' van ' + total + ' - ' + cat.fullTitle;
         }
     }
 
@@ -1465,7 +1465,7 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
 
         var formData = new FormData();
         formData.append('access_key', '4ba3a29f-d163-4a82-aed2-3ead1397f7e0');
-        formData.append('subject', 'Zelfscan resultaten — ' + naam);
+        formData.append('subject', 'Zelfscan resultaten - ' + naam);
         formData.append('from_name', 'Dokter Richard Website');
         formData.append('name', naam);
         formData.append('email', email);
