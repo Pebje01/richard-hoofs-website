@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulten & Coaching  Dokter Richard</title>
-    <meta name="description" content="Consulten en coaching door Richard Hoofs. Leven vanuit bezieling, persoonlijke begeleiding op praktisch-spirituele wijze.">
+    <title>Trajecten & Coaching  Dokter Richard</title>
+    <meta name="description" content="Persoonlijke trajecten en groepstraining door Richard Hoofs. Van vastzitten naar stromen, lichaam en energie lezen, en bezield leven.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -184,6 +184,527 @@
             margin-bottom: 24px;
         }
 
+        /* ===== SKILL CARDS ===== */
+        .skill-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 20px 0 24px;
+        }
+        .skill-card {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: #eef0ed;
+            border-radius: 16px;
+            padding: 20px 22px;
+        }
+        .skill-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .skill-icon.accent { background: rgba(193, 119, 79, 0.12); }
+        .skill-icon.green { background: rgba(76, 100, 67, 0.12); }
+        .skill-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+        .skill-icon.accent svg { stroke: var(--accent); }
+        .skill-icon.green svg { stroke: var(--green); }
+        .skill-card-text strong {
+            font-family: var(--font-heading);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--green-dark);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .skill-card-text span {
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+
+        /* ===== ICON LIST ===== */
+        .icon-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .icon-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+        .icon-list li::before {
+            content: '';
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            margin-top: 1px;
+            background: var(--accent);
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 11.08V12a10 10 0 1 1-5.93-9.14'/%3E%3Cpolyline points='22 4 12 14.01 9 11.01'/%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 11.08V12a10 10 0 1 1-5.93-9.14'/%3E%3Cpolyline points='22 4 12 14.01 9 11.01'/%3E%3C/svg%3E");
+            mask-size: contain;
+            -webkit-mask-size: contain;
+        }
+
+        /* ===== TRAINING TIMELINE ===== */
+        .training-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 16px 0 24px;
+            position: relative;
+            padding-left: 28px;
+        }
+        .training-timeline::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 12px;
+            bottom: 12px;
+            width: 2px;
+            background: var(--border);
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 8px 0;
+            position: relative;
+        }
+        .timeline-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: absolute;
+            left: -28px;
+            z-index: 1;
+        }
+        .timeline-dot.final {
+            background: var(--green);
+            width: 24px;
+            height: 24px;
+        }
+        .timeline-dot.final svg {
+            width: 14px;
+            height: 14px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .timeline-label {
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.5;
+        }
+        .timeline-label strong {
+            color: var(--green-dark);
+        }
+
+        /* ===== QUOTE BLOCK ===== */
+        .traject-quote {
+            border-left: 3px solid var(--accent);
+            padding: 14px 20px;
+            margin: 20px 0 24px;
+            background: rgba(193, 119, 79, 0.04);
+            border-radius: 0 12px 12px 0;
+            font-size: 14px;
+            font-style: italic;
+            color: var(--text-body);
+            line-height: 1.7;
+        }
+
+        /* ===== TRAJECT HERO BLOCK ===== */
+        .traject-hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            border-radius: 24px;
+            overflow: hidden;
+            margin: 0 48px 0;
+            min-height: 420px;
+        }
+        .traject-hero--accent { background: var(--accent); }
+        .traject-hero--green  { background: var(--green); }
+        .traject-hero--reverse { direction: rtl; }
+        .traject-hero--reverse > * { direction: ltr; }
+        .traject-hero--centered {
+            grid-template-columns: 1fr;
+        }
+        .traject-hero--centered .traject-hero-text {
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
+            align-items: center;
+        }
+        .traject-hero--centered .th-bullets { text-align: left; }
+        /* Right panel (details side) */
+        .traject-hero-side {
+            padding: 64px 52px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 24px;
+            background: rgba(0,0,0,0.18);
+        }
+        .traject-hero-side .th-details {
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 0;
+        }
+        .traject-hero-side .th-detail {
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .traject-hero-side .th-detail-label { margin-bottom: 0; }
+        .traject-hero-side .th-divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            margin: 0;
+        }
+        .traject-hero-side .th-side-note {
+            font-size: 13px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.6;
+        }
+        .traject-hero--light {
+            background: var(--cream);
+            border: 1px solid var(--border);
+        }
+        .traject-hero--light .th-label { color: var(--accent); }
+        .traject-hero--light h2, .traject-hero--light .th-detail-value { color: var(--green-dark); }
+        .traject-hero--light .th-subtitle { color: var(--text-muted); }
+        .traject-hero--light .th-bullets li { color: var(--text-body); }
+        .traject-hero--light .th-bullets li svg { stroke: var(--accent); }
+        .traject-hero--light .th-detail-label { color: var(--text-muted); }
+        .traject-hero--light .th-detail { background: rgba(58,61,50,0.05); border-color: var(--border); }
+
+        .traject-intro-text {
+            padding: 40px 48px 0;
+            max-width: calc(var(--max-width) + 96px);
+            margin: 0 auto;
+        }
+        .traject-intro-text p {
+            font-size: 16px;
+            color: var(--text-body);
+            line-height: 1.8;
+            margin-bottom: 12px;
+            max-width: 760px;
+        }
+        .traject-intro-text p:last-child { margin-bottom: 0; }
+        
+        /* ===== INFO BLOCKS ===== */
+        .info-blocks {
+            padding: 32px 48px 0;
+            max-width: calc(var(--max-width) + 96px);
+            margin: 0 auto;
+        }
+        .iblocks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            align-items: stretch;
+        }
+        .iblock {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            gap: 10px;
+            transition: all 0.25s;
+        }
+        .iblock:hover {
+            box-shadow: 0 12px 40px rgba(58, 61, 50, 0.08);
+            transform: translateY(-3px);
+        }
+        .iblock--accent { background: #fff; border-color: var(--border); }
+        .iblock--green  { background: #fff; border-color: var(--border); }
+        .iblock--span2  { grid-column: span 2; }
+        .iblock--span3  { grid-column: span 3; }
+        /* Colored header band */
+        .iblock-header {
+            background: var(--green);
+            padding: 20px 24px 18px;
+        }
+        .iblock-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 4px;
+        }
+        .iblock--green .iblock-label { color: rgba(255,255,255,0.7); }
+        .iblock h3 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.3;
+            margin: 0;
+        }
+        /* Body of the card (below the header) */
+        .iblock > *:not(.iblock-header) {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+        .iblock > *:not(.iblock-header):first-of-type { padding-top: 20px; }
+        .iblock > *:not(.iblock-header):last-child { padding-bottom: 24px; }
+        .iblock p {
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.7;
+            margin: 0;
+        }
+        .iblock ul {
+            list-style: none;
+            padding: 0;
+            margin: 4px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            flex: 1;
+        }
+        .iblock ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+        .iblock ul li svg {
+            width: 16px; height: 16px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2.5;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .iblock--green ul li svg { stroke: var(--green); }
+        .iblock ul li::before { display: none; }
+        .iblock .iblock-quote {
+            font-family: var(--font-heading);
+            font-size: 13px;
+            font-style: italic;
+            color: var(--text-muted);
+            border-left: 3px solid var(--accent);
+            padding-left: 12px;
+            margin-top: 4px;
+        }
+        .iblock--green .iblock-quote { border-left-color: var(--green); }
+        .iblock .timeline-list {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .iblock .timeline-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+        .iblock .timeline-list li::before { content: none; display: none; }
+        .iblock .tl-num {
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: rgba(58,61,50,0.1);
+            color: var(--green-dark);
+            font-size: 11px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .iblock .iblock-cta {
+            margin-top: 12px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        @media (max-width: 1024px) {
+            .info-blocks { padding: 28px 32px 0; }
+            .iblocks-grid { grid-template-columns: repeat(2, 1fr); }
+            .iblock--span2, .iblock--span3 { grid-column: span 2; }
+        }
+        @media (max-width: 768px) {
+            .info-blocks { padding: 20px 20px 0; }
+            .iblocks-grid { grid-template-columns: 1fr; }
+            .iblock--span2, .iblock--span3 { grid-column: span 1; }
+        }
+
+        .traject-hero-text {
+            padding: 64px 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .traject-hero-text .th-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 14px;
+        }
+        .traject-hero-text h2 {
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .traject-hero-text .th-subtitle {
+            font-size: 15px;
+            font-style: italic;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+        .th-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .th-bullets li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.4;
+        }
+        .th-bullets li svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 2.5;
+            padding: 3px;
+            margin-top: 1px;
+        }
+        .th-details {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+        .th-detail {
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 10px 16px;
+        }
+        .th-detail-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 2px;
+        }
+        .th-detail-value {
+            font-family: var(--font-heading);
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .traject-hero-image {
+            position: relative;
+            overflow: hidden;
+        }
+        .traject-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        /* Detail content below hero */
+        .traject-body {
+            padding: 64px 48px 80px;
+            max-width: calc(var(--max-width) + 96px);
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .traject-hero { margin: 0 32px; }
+        }
+        @media (max-width: 768px) {
+            .traject-hero { grid-template-columns: 1fr; margin: 0 20px; }
+            .traject-hero-image { height: 260px; }
+            .traject-hero-text { padding: 40px 28px; }
+            .traject-hero-side { padding: 36px 28px; }
+            .traject-body { padding: 40px 20px 60px; }
+        }
+
+        /* ===== DARK SECTION ===== */
+        .two-col--dark {
+            background: var(--green);
+            border-radius: 24px;
+            margin: 0 48px 40px;
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        .two-col--dark h2,
+        .two-col--dark .skill-card-text strong,
+        .two-col--dark p strong { color: #fff; }
+        .two-col--dark p,
+        .two-col--dark .icon-list li,
+        .two-col--dark .traject-quote { color: rgba(255,255,255,0.8); }
+        .two-col--dark .traject-quote {
+            background: rgba(255,255,255,0.08);
+            border-left-color: rgba(255,255,255,0.4);
+        }
+        .two-col--dark .skill-card {
+            background: rgba(255,255,255,0.1);
+        }
+        .two-col--dark .skill-card-text span { color: rgba(255,255,255,0.7); }
+        .two-col--dark .skill-icon.accent { background: rgba(255,255,255,0.12); }
+        .two-col--dark .skill-icon.green { background: rgba(255,255,255,0.12); }
+        .two-col--dark .skill-icon.accent svg,
+        .two-col--dark .skill-icon.green svg { stroke: rgba(255,255,255,0.85); }
+        .two-col--dark .icon-list li::before { background: rgba(255,255,255,0.7); }
+        .two-col--dark .detail-item.green { background: rgba(255,255,255,0.15); }
+        .two-col--dark .detail-item.accent { background: rgba(193,119,79,0.5); }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .coaching-hero { padding: 120px 24px 80px; }
@@ -199,6 +720,8 @@
             .detail-item { padding: 14px 18px; min-width: 120px; }
             .cta-banner { padding: 48px 24px; }
         }
+    
+        .split-hero-content { background: #f7f0eb; }
     </style>
 </head>
 <body>
@@ -206,82 +729,380 @@
 <div id="nav-placeholder"></div>
 
 <!-- PAGE HERO -->
-<section class="coaching-hero fade-in">
-    <div class="coaching-hero-inner">
-        <h1>Consulten & Coaching</h1>
-        <p class="hero-intro">Wil je weer in verbinding komen met jezelf? Bekijk hieronder welke vorm bij je past en vraag direct een consult of coaching traject aan.</p>
-        <div class="hero-actions">
-            <a href="#consult" class="btn btn-accent">Consult aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-            <a href="#coaching" class="btn btn-outline">Coaching traject <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+<section class="split-hero-section fade-in">
+    <div class="split-hero-grid">
+        <div class="split-hero-content">
+            <h1>Trajecten &amp; Coaching</h1>
+            <p class="hero-intro">Ik bied twee persoonlijke trajecten en een groepstraining aan. Elk traject begint met een consult waarin we samen kijken wat bij jou past.</p>
+            <div class="hero-actions">
+                <a href="#van-vast-naar-stroming" class="btn btn-accent">Persoonlijke trajecten <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+                <a href="#groepstraining" class="btn btn-outline">Groepstraining <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            </div>
+        </div>
+        <div class="split-hero-right">
+            <div class="split-hero-image">
+                <img src="images/Richard_Hoofs-13.jpg" alt="Trajecten &amp; Coaching" loading="eager">
+            </div>
+            <a href="consult.html" class="split-hero-card">
+                <div class="split-hero-card-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <div class="split-hero-card-text">
+                    <strong>Vrijblijvend kennismaken</strong>
+                    <span>Start met een persoonlijk intakegesprek</span>
+                </div>
+            </a>
         </div>
     </div>
 </section>
 
-<!-- CONSULT: tekst links, foto rechts -->
-<section class="two-col fade-in" id="consult">
-    <div class="two-col-grid">
-        <div class="two-col-content">
-            <h2>Consult</h2>
-            <p>In een consult staan we stil bij wat er werkelijk in jou leeft. Wat vraagt aandacht? Waar wil jouw ziel naartoe bewegen? Jij staat centraal. Ik stem mij af op wie jij bent, en werk op een praktische spirituele manier waarbij ik mede gebruik maak van mijn ervaringen en kennis van o.a. westerse geneeskunde, ayurveda, acupunctuur en mindfulness.</p>
-            <p>Het consult nodigt je uit om weer in verbinding te komen met je essentie, met je bezieling. Je krijgt inzicht, richting en praktische handvatten om jouw weg verder te bewandelen. We werken via het lichaam en je energie.</p>
-            <p>Daarbij is er veel aandacht voor jouw lichaamsbesef, aarding en energie, waaronder het chakra- en aurasysteem. We maken hierbij gebruik van eenvoudige energetische oefeningen die je concreet kunt toepassen in je dagelijks leven.</p>
-            <p>Soms dragen we oude patronen, beperkende overtuigingen, angsten en emoties met ons mee, die ons beperken om vrijuit te leven. Samen onderzoeken we wat nog klopt en wat losgelaten mag worden. We kijken hierbij naar invloeden vanuit je vroege jeugd in dit leven, en wanneer dat zich aandient ook naar diepere lagen en aansturende patronen die je ziel meedraagt vanuit vorige levens.</p>
-            <p>Zo kan er ruimte ontstaan voor zachtheid, eigenwaarde, veiligheid en zelfliefde. Kwaliteiten die van nature in jou aanwezig zijn.</p>
-            <div class="details-row">
-                <div class="detail-item accent">
-                    <div class="detail-label">Duur</div>
-                    <div class="detail-value">75 min</div>
+<!-- TRAJECT 1: Van Vast naar Stroming -->
+<div id="van-vast-naar-stroming" style="padding-top: 40px;">
+
+    <!-- Hero blok -->
+    <div class="traject-hero traject-hero--accent fade-in">
+        <div class="traject-hero-text">
+            <div class="th-label">Persoonlijk traject · 1-op-1</div>
+            <h2>Van Vast naar Stroming</h2>
+            <p class="th-subtitle">Een persoonlijk traject voor herstel en innerlijke beweging</p>
+            <ul class="th-bullets">
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Inzicht in patronen die jou tegenhouden</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Ruimte maken voor wat er werkelijk gevoeld wil worden</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Nieuwe keuzes, meer beweging en innerlijke vrijheid</li>
+            </ul>
+            <div class="th-details">
+                <div class="th-detail">
+                    <div class="th-detail-label">Duur</div>
+                    <div class="th-detail-value">75 min</div>
                 </div>
-                <div class="detail-item green">
-                    <div class="detail-label">Kosten</div>
-                    <div class="detail-value">&euro;140 <span class="detail-sub">per consult</span></div>
+                <div class="th-detail">
+                    <div class="th-detail-label">Kosten</div>
+                    <div class="th-detail-value">&euro;862,50</div>
+                </div>
+                <div class="th-detail">
+                    <div class="th-detail-label">Traject</div>
+                    <div class="th-detail-value">6 consulten</div>
                 </div>
             </div>
-            <div class="section-cta">
-                <a href="consult.html" class="btn btn-accent">Consult aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-            </div>
+            <a href="inschrijven-vast-stroming.html" class="btn btn-white">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
         </div>
-        <div class="two-col-image">
-            <img src="images/Richard_Hoofs-13.jpg" alt="Richard Hoofs consult" loading="lazy">
+        <div class="traject-hero-image">
+            <img src="images/Richard_Hoofs-13.jpg" alt="Van Vast naar Stroming traject" loading="lazy">
         </div>
     </div>
-</section>
+
+    <!-- Intro tekst -->
+    <div class="traject-intro-text fade-in">
+        <p>Voel je dat je ergens vastzit, maar krijg je er geen grip op?</p>
+        <p>Veel mensen blijven rondlopen met patronen die energie kosten. Ze begrijpen vaak wel dát er iets speelt, maar niet waar het vandaan komt of hoe ze het kunnen doorbreken.</p>
+        <p>In dit traject neem je bewust de tijd om te vertragen en te verdiepen. We onderzoeken samen waar jouw energie vastloopt, welke patronen daaronder liggen en wat daarin gezien en gevoeld wil worden. Vaak ligt er oude, onverwerkte pijn onder die nog steeds doorwerkt. Door daar met aandacht naartoe te gaan, ontstaat er beweging. Wat vastzat, mag weer stromen.</p>
+    </div>
+
+    <!-- Info blokken -->
+    <div class="info-blocks fade-in">
+        <div class="iblocks-grid">
+
+            <!-- Wat je ontwikkelt -->
+            <div class="iblock iblock--accent">
+                <div class="iblock-header">
+                <div class="iblock-label">Wat je ontwikkelt</div>
+                <h3>Drie kernvaardigheden</h3>
+                </div>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> <strong>Inzicht:</strong> je ziet waar patronen vandaan komen en waarom ze terugkeren</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> <strong>Doorvoelen:</strong> ruimte maken voor wat er werkelijk gevoeld wil worden</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> <strong>Verandering:</strong> doorbreken van oude overtuigingen en nieuwe keuzes</li>
+                </ul>
+            </div>
+
+            <!-- Waarom anders -->
+            <div class="iblock">
+                <div class="iblock-header">
+                <div class="iblock-label">Waarom dit traject anders is</div>
+                <h3>Echte verdieping</h3>
+                </div>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 1-op-1 begeleiding, volledig op jouw proces</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Geen snelle oplossingen, maar duurzame groei</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Aandacht voor zowel lichaam als innerlijke beleving</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Groei op jouw eigen tempo</li>
+                </ul>
+            </div>
+
+            <!-- Voor wie -->
+            <div class="iblock iblock--green">
+                <div class="iblock-header">
+                <div class="iblock-label">Voor wie</div>
+                <h3>Herken jij dit?</h3>
+                </div>
+                <p>Voor wie voelt dat er meer mogelijk is, maar merkt dat iets blokkeert. Voor wie bereid is eerlijk naar binnen te kijken en verantwoordelijkheid te nemen voor verandering.</p>
+                <div class="iblock-quote">Dit traject is een proces waarin je leert begrijpen wat er in jou speelt en hoe je daarmee kunt bewegen.</div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 <!-- DIVIDER -->
 <div class="section-divider"><hr></div>
 
-<!-- COACHING: foto links, tekst rechts -->
-<section class="two-col fade-in" id="coaching">
-    <div class="two-col-grid reversed">
-        <div class="two-col-content">
-            <h2>Coaching traject</h2>
-            <p>In een traject van 5-7 consulten neem je bewust de tijd om te groeien, op jouw tempo. Zoals in de natuur krijgt wat aandacht krijgt, ruimte om zich te ontvouwen.</p>
-            <p>We kijken naar patronen die jouw energie vastzetten en onderzoeken wat daarin gezien en gevoeld wil worden. Vaak ligt daar oude, onverwerkte pijn onder die onbewust doorwerkt in hoe je leeft en kiest, vanuit je jeugd of vanuit diepere lagen die je met je meedraagt. Door hier met aandacht naartoe te gaan, kan er beweging ontstaan. Wat vastzat, mag weer stromen.</p>
-            <p>Vanuit die ruimte ontstaat er een nieuwe verbinding met jezelf, met je lichaam, je keuzes en je ziel. Je leert belemmerende gedachten en overtuigingen te verzachten en om te buigen naar iets dat je ondersteunt in plaats van belemmert.</p>
-            <div class="details-row">
-                <div class="detail-item accent">
-                    <div class="detail-label">Duur consult</div>
-                    <div class="detail-value">75 min</div>
+<!-- TRAJECT 2: Lezen van Lichaam en Energie -->
+<div id="lezen-lichaam-energie" style="padding-top: 40px;">
+
+    <!-- Hero blok -->
+    <div class="traject-hero traject-hero--green traject-hero--reverse fade-in">
+        <div class="traject-hero-text">
+            <div class="th-label">Persoonlijk traject · 1-op-1</div>
+            <h2>Lezen van Lichaam en Energie</h2>
+            <p class="th-subtitle">Leer je eigen systeem begrijpen, verdiepen en toepassen, voor jezelf én in je werk met anderen</p>
+            <ul class="th-bullets">
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Zelfinzicht: begrijp waarom je voelt wat je voelt</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Je energetisch systeem (chakra's, aura) leren lezen</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Regie: keuzes vanuit inzicht en gevoel</li>
+            </ul>
+            <div class="th-details">
+                <div class="th-detail">
+                    <div class="th-detail-label">Duur</div>
+                    <div class="th-detail-value">75 min</div>
                 </div>
-                <div class="detail-item green">
-                    <div class="detail-label">Kosten</div>
-                    <div class="detail-value">&euro;120 <span class="detail-sub">per consult</span></div>
+                <div class="th-detail">
+                    <div class="th-detail-label">Kosten</div>
+                    <div class="th-detail-value">&euro;1.007</div>
                 </div>
-                <div class="detail-item accent">
-                    <div class="detail-label">Traject</div>
-                    <div class="detail-value">5-7 consulten</div>
+                <div class="th-detail">
+                    <div class="th-detail-label">Traject</div>
+                    <div class="th-detail-value">7 bijeenkomsten</div>
                 </div>
             </div>
-            <div class="section-cta">
-                <a href="consult.html" class="btn btn-accent">Coaching aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-            </div>
-            <p class="contact-line">Afspraak & info: <a href="mailto:info@dokterrichard.nl">info@dokterrichard.nl</a></p>
+            <a href="inschrijven-lichaam-energie.html" class="btn btn-white">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
         </div>
-        <div class="two-col-image">
-            <img src="images/Richard_Hoofs-15.jpg" alt="Richard Hoofs coaching" loading="lazy">
+        <div class="traject-hero-image">
+            <img src="images/Richard_Hoofs-15.jpg" alt="Lezen van Lichaam en Energie" loading="lazy">
         </div>
     </div>
-</section>
+
+    <!-- Intro tekst -->
+    <div class="traject-intro-text fade-in">
+        <p>Voel je dat er meer in je zit, maar weet je niet hoe je daar bij komt?</p>
+        <p>De meeste mensen proberen hun leven te begrijpen met hun hoofd. Maar jouw lichaam en energie vertellen een veel eerlijker verhaal. In dit traject leer je die signalen herkennen en begrijpen: waar je energie vastloopt, welke patronen daaronder liggen en wat er nodig is om weer in beweging te komen. Deze kennis is concreet, voelbaar en direct toepasbaar in je dagelijks leven.</p>
+    </div>
+
+    <!-- Info blokken -->
+    <div class="info-blocks fade-in">
+        <div class="iblocks-grid">
+
+            <!-- Wat je ontwikkelt -->
+            <div class="iblock iblock--green">
+                <div class="iblock-header">
+                <div class="iblock-label">Wat je ontwikkelt</div>
+                <h3>Drie kernvaardigheden</h3>
+                </div>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> <strong>Zelfinzicht:</strong> begrijpen waarom je voelt wat je voelt en waarom je reageert zoals je reageert</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> <strong>Vaardigheid:</strong> je energetisch systeem lezen en signalen herkennen in jezelf en anderen</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> <strong>Regie:</strong> keuzes vanuit inzicht en gevoel, in plaats van twijfel</li>
+                </ul>
+            </div>
+
+            <!-- Waarom anders -->
+            <div class="iblock iblock--accent">
+                <div class="iblock-header">
+                <div class="iblock-label">Waarom dit traject anders is</div>
+                <h3>Een vaardigheid voor het leven</h3>
+                </div>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 1-op-1, volledig afgestemd op jouw proces</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Geen trucjes, maar een echte vaardigheid voor het leven</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Praktische oefeningen die je direct toepast</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Verdieping in waarneming en bewustzijn</li>
+                </ul>
+            </div>
+
+            <!-- Voor wie -->
+            <div class="iblock">
+                <div class="iblock-header">
+                <div class="iblock-label">Voor wie</div>
+                <h3>Openheid en nieuwsgierigheid</h3>
+                </div>
+                <p>Voor wie bereid is naar binnen te kijken, met openheid en nieuwsgierigheid. En voor wie verdieping zoekt, in zichzelf en eventueel in het werken met anderen.</p>
+                <div class="iblock-quote">Dit traject is een investering in hoe jij jezelf begrijpt en keuzes maakt.</div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- DIVIDER -->
+<div class="section-divider"><hr></div>
+
+<!-- GROEPSTRAINING -->
+<div id="groepstraining" style="padding-top: 40px;">
+
+    <!-- Hero blok -->
+    <div class="traject-hero traject-hero--accent fade-in">
+        <div class="traject-hero-text">
+            <div class="th-label">Groepstraining · Max. 6 deelnemers · Den Bosch</div>
+            <h2>Groepstraining Bezield Leven</h2>
+            <p class="th-subtitle">Verdiepend traject in lichaamsbewustzijn en energetisch werk, voor jezelf én voor je werk met cliënten</p>
+            <ul class="th-bullets">
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Lichaamsbewustzijn, energetisch systeem en chakra's</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Patronen herkennen en zingeving verdiepen</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Toepasbaar in je eigen werk met cliënten</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Kleine groep: persoonlijke aandacht gegarandeerd</li>
+            </ul>
+        </div>
+        <div class="traject-hero-side">
+            <div class="th-details" style="display:flex; flex-direction:column; gap:12px; margin-bottom:0;">
+                <div class="th-detail">
+                    <div class="th-detail-label">Start</div>
+                    <div class="th-detail-value">September 2026</div>
+                </div>
+                <div class="th-detail">
+                    <div class="th-detail-label">Investering</div>
+                    <div class="th-detail-value">&euro;1.350</div>
+                </div>
+                <div class="th-detail">
+                    <div class="th-detail-label">Bijeenkomsten</div>
+                    <div class="th-detail-value">6 middagen + nascholing</div>
+                </div>
+                <div class="th-detail">
+                    <div class="th-detail-label">Locatie</div>
+                    <div class="th-detail-value">Den Bosch</div>
+                </div>
+            </div>
+            <hr class="th-divider">
+            <a href="inschrijven-groepstraining.html" class="btn btn-white" style="text-align:center; justify-content:center;">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            <p class="th-side-note">Inclusief studiemateriaal &amp; koffie/thee. Aantal plaatsen beperkt.</p>
+        </div>
+    </div>
+
+    <!-- Introductie als tekst -->
+    <div class="traject-intro-text fade-in">
+        <p>Soms voel je dat er méér in je zit: je functioneert wel, maar je leeft niet volledig vanuit wie je werkelijk bent. De groepstraining is een verdiepend traject waarin je aan je eigen ontwikkeling werkt én leert hoe je op een diepere laag kunt waarnemen in je werk met anderen.</p>
+    </div>
+
+    <!-- Info blokken: 2 rijen van 3 -->
+    <div class="info-blocks fade-in">
+        <div class="iblocks-grid">
+
+            <!-- Rij 1 -->
+            <div class="iblock iblock--accent">
+                <div class="iblock-header">
+                <div class="iblock-label">Herken je dit ook?</div>
+                <h3>In je werk met mensen</h3>
+                </div>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Je voelt dat er méér speelt dan het verhaal dat ze vertellen</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Je pikt signalen op, maar weet nog niet hoe ze te duiden</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Je verlangt naar een diepere manier van werken</li>
+                </ul>
+            </div>
+
+            <div class="iblock">
+                <div class="iblock-header">
+                <div class="iblock-label">Wat je leert</div>
+                <h3>Lezen van lichaam &amp; energie</h3>
+                </div>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Je eigen lichaam en energie begrijpen</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Spanning, blokkades en patronen herkennen</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Subtiele signalen bij anderen waarnemen</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Onderscheiden wat van jou is en wat van de ander</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Contact met innerlijke richting en zingeving</li>
+                </ul>
+            </div>
+
+            <div class="iblock iblock--green">
+                <div class="iblock-header">
+                <div class="iblock-label">Wat dit traject anders maakt</div>
+                <h3>Ervaringsgericht, niet theoretisch</h3>
+                </div>
+                <p>Geen losse training en geen theoretische opleiding. Een ervaringsgericht traject waarin je jezelf leert kennen op een diepere laag en van daaruit leert werken met anderen.</p>
+                <p>Je leert niet alleen wát je waarneemt, maar ook hóé je daarmee werkt.</p>
+            </div>
+
+            <!-- Rij 2 -->
+            <div class="iblock iblock--green">
+                <div class="iblock-header">
+                <div class="iblock-label">Voor wie</div>
+                <h3>Voor mensen die verdieping zoeken</h3>
+                </div>
+                <p>Voor mensen die verdieping zoeken in zichzelf. En voor professionals die met mensen werken en hun waarneming willen verdiepen.</p>
+                <div class="iblock-quote">Geen snelle oplossing, maar een weg naar binnen en naar een diepere manier van leven en werken.</div>
+                <div class="iblock-cta">
+                    <a href="inschrijven-groepstraining.html" class="btn btn-accent">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+                </div>
+            </div>
+
+            <div class="iblock">
+                <div class="iblock-header">
+                <div class="iblock-label">Werkwijze</div>
+                <h3>We werken met</h3>
+                </div>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Lichaamsbewustzijn en ademhaling</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Meditatie en innerlijke afstemming</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Lezen en verzorgen van het energiesysteem</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Bewustwording van patronen</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Verbinding met innerlijke kwaliteiten</li>
+                </ul>
+                <p style="font-size:13px; color:var(--text-muted); padding: 0 0 4px;">Tussen de bijeenkomsten werk je met praktische oefeningen.</p>
+            </div>
+
+            <div class="iblock iblock--accent">
+                <div class="iblock-header">
+                <div class="iblock-label">Opbouw van het traject</div>
+                <h3>6 middagen + integratie</h3>
+                </div>
+                <ul class="timeline-list">
+                    <li><span class="tl-num">1</span> Lichaam en bewustzijn</li>
+                    <li><span class="tl-num">2</span> Het energetisch systeem</li>
+                    <li><span class="tl-num">3</span> Chakra's en energiebalans</li>
+                    <li><span class="tl-num">4</span> Patronen en het innerlijk kind</li>
+                    <li><span class="tl-num">5</span> Relaties en energetische dynamiek</li>
+                    <li><span class="tl-num">6</span> Levenslijn en zielsrichting</li>
+                    <li><span class="tl-num">✓</span> Integratie en nascholing</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- DIVIDER -->
+<div class="section-divider"><hr></div>
+
+<!-- LOS HOLISTISCH CONSULT -->
+<div id="los-consult" style="padding-top: 40px; padding-bottom: 80px;">
+    <div class="traject-hero traject-hero--light traject-hero--centered fade-in">
+        <div class="traject-hero-text">
+            <div class="th-label">Losse afspraak · Geen traject nodig</div>
+            <h2>Los holistisch consult</h2>
+            <p class="th-subtitle">Een praktisch-spiritueel consult met aandacht voor lichaam, energie en bezieling</p>
+            <ul class="th-bullets">
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> We staan stil bij wat er werkelijk in jou leeft</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Inzicht, richting en concrete handvatten</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Werken via lichaam en energetische afstemming</li>
+            </ul>
+            <div class="th-details">
+                <div class="th-detail">
+                    <div class="th-detail-label">Duur</div>
+                    <div class="th-detail-value">75 min</div>
+                </div>
+                <div class="th-detail">
+                    <div class="th-detail-label">Kosten</div>
+                    <div class="th-detail-value">&euro;140</div>
+                </div>
+                <div class="th-detail">
+                    <div class="th-detail-label">Locatie</div>
+                    <div class="th-detail-value">Den Bosch</div>
+                </div>
+            </div>
+            <a href="inschrijven-consult.html" class="btn btn-accent">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+        </div>
+    </div>
+</div>
 
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>

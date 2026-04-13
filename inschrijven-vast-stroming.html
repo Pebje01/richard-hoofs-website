@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aanmelden: Van Vast naar Stroming | Dokter Richard</title>
+    <meta name="description" content="Schrijf je in voor het traject Van Vast naar Stroming bij Dokter Richard.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<section class="inschrijf-section">
+    <div class="inschrijf-container">
+
+        <a href="coaching.html#van-vast-naar-stroming" class="inschrijf-back">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+            Coaching &amp; Trajecten
+        </a>
+
+        <div class="inschrijf-label">Persoonlijk traject &middot; 1-op-1</div>
+        <h1 class="inschrijf-title">Van Vast naar Stroming</h1>
+
+        <div class="inschrijf-summary">
+            <div class="inschrijf-detail">
+                <div class="inschrijf-detail-label">Per sessie</div>
+                <div class="inschrijf-detail-value">75 min</div>
+            </div>
+            <div class="inschrijf-detail">
+                <div class="inschrijf-detail-label">Kosten</div>
+                <div class="inschrijf-detail-value">&euro;862,50</div>
+            </div>
+            <div class="inschrijf-detail">
+                <div class="inschrijf-detail-label">Traject</div>
+                <div class="inschrijf-detail-value">6 consulten</div>
+            </div>
+        </div>
+
+        <form class="inschrijf-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="4ba3a29f-d163-4a82-aed2-3ead1397f7e0">
+            <input type="hidden" name="subject" value="Aanmelding: Van Vast naar Stroming">
+            <input type="hidden" name="traject" value="Van Vast naar Stroming">
+            <input type="hidden" name="redirect" value="https://web3forms.com/success">
+
+            <div class="form-group">
+                <label for="naam">Naam <span>*</span></label>
+                <input type="text" id="naam" name="naam" placeholder="Je volledige naam" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mailadres <span>*</span></label>
+                <input type="email" id="email" name="email" placeholder="je@voorbeeld.nl" required>
+            </div>
+            <div class="form-group">
+                <label for="telefoon">Telefoonnummer <span>(optioneel)</span></label>
+                <input type="tel" id="telefoon" name="telefoon" placeholder="06 - 12345678">
+            </div>
+            <div class="form-group">
+                <label for="opmerking">Vraag of opmerking <span>(optioneel)</span></label>
+                <textarea id="opmerking" name="opmerking" placeholder="Iets wat je wilt doorgeven..."></textarea>
+            </div>
+
+            <button type="submit" class="inschrijf-submit">Aanmelding versturen</button>
+            <p class="inschrijf-note">Je ontvangt binnen 2 werkdagen een bevestiging.</p>
+        </form>
+
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="nav.js"></script>
+<script>var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.classList.add("visible")})},{threshold:0.08,rootMargin:"0px 0px -30px 0px"});document.querySelectorAll(".fade-in").forEach(function(el){obs.observe(el)});</script>
+<script src="footer.js"></script>
+</body>
+</html>

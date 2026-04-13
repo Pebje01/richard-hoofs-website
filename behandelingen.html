@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marma Massage | Dokter Richard</title>
+    <meta name="description" content="Marma Ayurvedische Massage bij Dokter Richard. Diepgaande lichaamsbehandeling die de energiestroom herstelt en lichaam en geest in balans brengt.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
+    <style>
+        /* ===== TRAJECT HERO BLOCK ===== */
+        .traject-hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            border-radius: 24px;
+            overflow: hidden;
+            margin: 0 48px 0;
+            min-height: 420px;
+        }
+        .traject-hero--accent { background: var(--accent); }
+        .traject-hero--green  { background: var(--green); }
+        .traject-hero--reverse { direction: rtl; }
+        .traject-hero--reverse > * { direction: ltr; }
+        .traject-hero-text {
+            padding: 64px 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .traject-hero-text .th-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 14px;
+        }
+        .traject-hero-text h2 {
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .traject-hero-text .th-subtitle {
+            font-size: 15px;
+            font-style: italic;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+        .th-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .th-bullets li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.4;
+        }
+        .th-bullets li svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 2.5;
+            padding: 3px;
+            margin-top: 1px;
+        }
+        .th-details {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+        .th-detail {
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 10px 16px;
+        }
+        .th-detail-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 2px;
+        }
+        .th-detail-value {
+            font-family: var(--font-heading);
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .traject-hero-image {
+            position: relative;
+            overflow: hidden;
+        }
+        .traject-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        /* ===== INTRO TEXT ===== */
+        .traject-intro-text {
+            padding: 40px 48px 0;
+            max-width: calc(var(--max-width) + 96px);
+            margin: 0 auto;
+        }
+        .traject-intro-text p {
+            font-size: 16px;
+            color: var(--text-body);
+            line-height: 1.8;
+            margin-bottom: 12px;
+            max-width: 760px;
+        }
+        .traject-intro-text p:last-child { margin-bottom: 0; }
+
+        /* ===== INFO BLOCKS ===== */
+        .info-blocks {
+            padding: 32px 48px 80px;
+            max-width: calc(var(--max-width) + 96px);
+            margin: 0 auto;
+        }
+        .iblocks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            align-items: stretch;
+        }
+        .iblock {
+            position: relative;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            overflow: hidden;
+        }
+        .iblock::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--green);
+            z-index: 2;
+        }
+        .iblock--accent::before { background: var(--accent); }
+        .iblock--green::before  { background: var(--green-dark); }
+        .iblock:hover {
+            box-shadow: 0 18px 50px rgba(58, 61, 50, 0.10);
+            transform: translateY(-4px);
+        }
+        .iblock--span2  { grid-column: span 2; }
+        .iblock--span3  { grid-column: span 3; }
+        /* Colored header band */
+        .iblock-header {
+            position: relative;
+            background: var(--green);
+            padding: 28px 28px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .iblock--accent .iblock-header { background: var(--accent); }
+        .iblock--green  .iblock-header { background: var(--green-dark); }
+        .iblock-header::after {
+            content: '';
+            position: absolute;
+            left: 28px;
+            right: 28px;
+            bottom: 0;
+            height: 1px;
+            background: rgba(255,255,255,0.18);
+        }
+        .iblock-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            flex-shrink: 0;
+        }
+        .iblock-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .iblock-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 4px;
+        }
+        .iblock h3 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.25;
+            margin: 0;
+        }
+        /* Body padding */
+        .iblock-body {
+            padding: 24px 28px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            flex: 1;
+        }
+        .iblock p {
+            font-size: 14.5px;
+            color: var(--text-body);
+            line-height: 1.75;
+            margin: 0;
+        }
+        .iblock ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            flex: 1;
+        }
+        .iblock ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13.5px;
+            color: var(--text-body);
+            line-height: 1.55;
+            padding: 11px 0;
+            border-bottom: 1px dashed rgba(136, 140, 121, 0.18);
+        }
+        .iblock ul li:first-child { padding-top: 4px; }
+        .iblock ul li:last-child { border-bottom: none; padding-bottom: 2px; }
+        .iblock ul li strong {
+            color: var(--green-dark);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .iblock ul li .li-text {
+            flex: 1;
+        }
+        .iblock ul li svg {
+            width: 18px; height: 18px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 3;
+            flex-shrink: 0;
+            margin-top: 2px;
+            background: var(--green);
+            border-radius: 50%;
+            padding: 3px;
+            box-sizing: border-box;
+        }
+        .iblock--accent ul li svg { background: var(--accent); }
+        .iblock--green  ul li svg { background: var(--green-dark); }
+        .iblock ul li::before { display: none; }
+        .iblock .iblock-quote {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-style: italic;
+            color: var(--text-body);
+            background: #f7f0eb;
+            border-left: 3px solid var(--green);
+            padding: 14px 16px;
+            border-radius: 0 8px 8px 0;
+            margin-top: auto;
+            line-height: 1.5;
+        }
+        .iblock--accent .iblock-quote { border-left-color: var(--accent); }
+        .iblock--green  .iblock-quote { border-left-color: var(--green-dark); }
+        .iblock .timeline-list {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .iblock .timeline-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+        .iblock .timeline-list li::before { content: none; display: none; }
+        .iblock .tl-num {
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: rgba(58,61,50,0.1);
+            color: var(--green-dark);
+            font-size: 11px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .iblock .iblock-cta {
+            margin-top: 12px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        @media (max-width: 1024px) {
+            .info-blocks { padding: 24px 32px 64px; }
+            .iblocks-grid { grid-template-columns: repeat(2, 1fr); }
+            .iblock--span2, .iblock--span3 { grid-column: span 2; }
+        }
+        @media (max-width: 768px) {
+            .info-blocks { padding: 20px 20px 48px; }
+            .iblocks-grid { grid-template-columns: 1fr; }
+            .iblock--span2, .iblock--span3 { grid-column: span 1; }
+        }
+
+        /* ===== RESPONSIVE TRAJECT HERO ===== */
+        @media (max-width: 1024px) {
+            .traject-hero { margin: 0 32px; grid-template-columns: 1fr; }
+            .traject-hero-image { min-height: 300px; }
+            .traject-intro-text { padding: 32px 32px 0; }
+        }
+        @media (max-width: 768px) {
+            .traject-hero { margin: 0 20px; }
+            .traject-hero-text { padding: 40px 28px; }
+            .traject-intro-text { padding: 24px 20px 0; }
+        }
+
+        .split-hero-content { background: #e8edea; }
+        .split-hero-card {
+            background: var(--green-dark);
+            border-color: var(--green-dark);
+        }
+        .split-hero-card-icon { background: rgba(255,255,255,0.15); }
+        .split-hero-card-text strong { color: #fff; }
+        .split-hero-card-text span { color: rgba(255,255,255,0.7); }
+    </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- PAGE HERO -->
+<section class="split-hero-section fade-in">
+    <div class="split-hero-grid split-hero-grid--reverse">
+        <div class="split-hero-content">
+            <h1>Marma Ayurvedische Massage</h1>
+            <p>Een diepgaande lichaamsbehandeling die verder gaat dan ontspanning. Herstel de natuurlijke energiestroom en breng lichaam en geest weer in balans.</p>
+            <div class="hero-actions">
+                <a href="inschrijven-marma.html" class="btn btn-accent">Boek sessie <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            </div>
+        </div>
+        <div class="split-hero-right">
+            <div class="split-hero-image">
+                <img src="images/Richard_Hoofs-15.jpg" alt="Marma Ayurvedische Massage" loading="eager">
+            </div>
+            <div class="split-hero-card">
+                <div class="split-hero-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <div class="split-hero-card-text">
+                    <strong>Sessie van 1,5 uur &nbsp;&middot;&nbsp; &euro;145</strong>
+                    <span>Locatie: Den Bosch</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MARMA MASSAGE -->
+<div id="massage" style="padding-top: 40px;">
+
+    <!-- Hero blok -->
+    <div class="traject-hero traject-hero--accent fade-in">
+        <div class="traject-hero-text">
+            <div class="th-label">Lichaamsbehandeling &middot; Ayurveda</div>
+            <h2>Marma Ayurvedische Massage</h2>
+            <p class="th-subtitle">Herstel je innerlijke balans via 107 vitale knooppunten</p>
+            <ul class="th-bullets">
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Diepe ontspanning: lichaam en geest loslaten</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Vastgelopen energie vrijmaken en laten stromen</li>
+                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Pijnverlichting, mentale helderheid en nieuwe energie</li>
+            </ul>
+            <div class="th-details">
+                <div class="th-detail">
+                    <div class="th-detail-label">Duur</div>
+                    <div class="th-detail-value">1,5 uur</div>
+                </div>
+                <div class="th-detail">
+                    <div class="th-detail-label">Kosten</div>
+                    <div class="th-detail-value">&euro;145</div>
+                </div>
+                <div class="th-detail">
+                    <div class="th-detail-label">Locatie</div>
+                    <div class="th-detail-value">Den Bosch</div>
+                </div>
+            </div>
+        </div>
+        <div class="traject-hero-image">
+            <img src="images/Richard_Hoofs-15.jpg" alt="Marma Ayurvedische Massage" loading="lazy">
+        </div>
+    </div>
+
+    <!-- Intro tekst -->
+    <div class="traject-intro-text fade-in">
+        <p>Voel je je vaak uitgeblust, ervaar je fysieke ongemakken of zit je hoofd simpelweg 'te vol'?</p>
+        <p>Soms heeft je lichaam een krachtig zetje nodig om de natuurlijke energiestroom weer op gang te brengen. Marma-punten zijn de vitale knooppunten van je lichaam, de 'toegangspoorten' tot je prana (levensenergie). Er zijn 107 van deze punten waar spieren, aderen, botten en gewrichten samenkomen. Tijdens de massage worden deze punten met uiterste precisie gestimuleerd door middel van zachte druk, warme medicinale oliën en ritmische bewegingen.</p>
+    </div>
+
+    <!-- Info blokken -->
+    <div class="info-blocks fade-in">
+        <div class="iblocks-grid">
+
+            <!-- Herken je dit? -->
+            <div class="iblock iblock--accent">
+                <div class="iblock-header">
+                    <div class="iblock-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.5" fill="#fff"/></svg>
+                    </div>
+                    <div class="iblock-label">Herken je dit?</div>
+                    <h3>Klachten waar Marma bij helpt</h3>
+                </div>
+                <div class="iblock-body">
+                    <ul>
+                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="li-text"><strong>Chronische vermoeidheid</strong>fysiek en mentaal opgebrand</span></li>
+                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="li-text"><strong>Stress en angst</strong>een overactief zenuwstelsel dat niet tot rust komt</span></li>
+                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="li-text"><strong>Fysieke pijn</strong>rugpijn, stijve gewrichten of spanningshoofdpijn</span></li>
+                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="li-text"><strong>Slaapproblemen</strong>moeite met inslapen of onrustige nachtrust</span></li>
+                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="li-text"><strong>Emotionele blokkades</strong>spanning die vastzit in je lichaam</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Hoe het werkt -->
+            <div class="iblock">
+                <div class="iblock-header">
+                    <div class="iblock-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 0-4 4c0 1.5.8 2.8 2 3.5V13h4V9.5c1.2-.7 2-2 2-3.5a4 4 0 0 0-4-4z"/><path d="M10 13v3M14 13v3M8 18h8"/><path d="M9 22h6"/></svg>
+                    </div>
+                    <div class="iblock-label">Hoe het werkt</div>
+                    <h3>Eeuwenoude Ayurvedische techniek</h3>
+                </div>
+                <div class="iblock-body">
+                    <p>De 107 Marma-punten zijn de plaatsen waar prana samenkomt. Door ze te stimuleren met warme medicinale oliën en zachte, ritmische druk worden vastgelopen energiepatronen losgemaakt. De behandeling brengt je dosha's (Vata, Pitta, Kapha) weer in harmonie en zet je zelfhelende vermogen aan.</p>
+                    <div class="iblock-quote">&ldquo;Elke sessie is een volledig op jouw lichaam afgestemde behandeling.&rdquo;</div>
+                </div>
+            </div>
+
+            <!-- Wat levert het op? -->
+            <div class="iblock iblock--green">
+                <div class="iblock-header">
+                    <div class="iblock-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div class="iblock-label">Wat levert het op</div>
+                    <h3>Voelbaar resultaat</h3>
+                </div>
+                <div class="iblock-body">
+                    <ul>
+                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="li-text"><strong>Diepe ontspanning</strong>zenuwstelsel schakelt naar ruststand</span></li>
+                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="li-text"><strong>Nieuwe energie</strong>blokkades verdwijnen, prana stroomt vrij</span></li>
+                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="li-text"><strong>Pijnverlichting</strong>spanning in spieren en gewrichten vermindert</span></li>
+                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="li-text"><strong>Mentale helderheid</strong>scherper en gefocust</span></li>
+                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="li-text"><strong>Versterkte weerstand</strong>zelfgenezend vermogen gestimuleerd</span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+
+<script src="nav.js"></script>
+<script>
+var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
+</script>
+<script src="footer.js"></script>
+</body>
+</html>

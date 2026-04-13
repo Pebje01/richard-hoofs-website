@@ -59,7 +59,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 25%;
+            object-position: center 38%;
             display: block;
             aspect-ratio: 3/2;
         }
@@ -255,6 +255,59 @@
             .photo-trio-grid .photo-large { grid-row: auto; }
             .photo-trio-grid img { aspect-ratio: 4/3; height: auto; }
         }
+
+        /* ===== MAP ===== */
+        .map-section {
+            padding: 0 48px 100px;
+            max-width: calc(var(--max-width) + 96px);
+            margin: 0 auto;
+        }
+        .map-wrapper {
+            background: #eef0ed;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        .map-info {
+            padding: 32px 36px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .map-info-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: rgba(193, 119, 79, 0.1);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .map-info-icon svg {
+            width: 22px; height: 22px;
+            stroke: var(--accent); fill: none;
+            stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .map-info h3 {
+            font-family: var(--font-heading);
+            font-size: 16px; font-weight: 700;
+            color: var(--green-dark); margin-bottom: 2px;
+        }
+        .map-info p {
+            font-size: 13px; color: var(--text-muted); line-height: 1.5;
+        }
+        .map-embed {
+            width: 100%;
+            height: 380px;
+            border: none;
+            display: block;
+        }
+        @media (max-width: 1024px) {
+            .map-section { padding: 0 32px 80px; }
+        }
+        @media (max-width: 768px) {
+            .map-section { padding: 0 20px 60px; }
+            .map-info { padding: 24px 20px; }
+            .map-embed { height: 300px; }
+        }
     </style>
 </head>
 <body>
@@ -268,7 +321,7 @@
             <h1>Over mij</h1>
             <p>Arts en coach, gevestigd aan de Vughterstraat in 's-Hertogenbosch. Ik begeleid mensen die weer in verbinding willen komen met zichzelf, hun lichaam en hun bezieling.</p>
             <div class="hero-actions">
-                <a href="coaching.html" class="btn btn-accent">Consulten & coaching <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+                <a href="coaching.html" class="btn btn-accent">Trajecten & coaching <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
                 <a href="contact.html" class="btn btn-outline">Contact <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
             </div>
         </div>
@@ -321,12 +374,14 @@
         <div class="visie-content">
             <div style="margin-bottom: 32px;">
                 <h4 style="font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px;">Visie</h4>
+                <p>Holistisch komt van het oud-Griekse woord &lsquo;holos&rsquo; &mdash; geheel. Je bent lichaam, persoon &eacute;n ziel, samen als &eacute;&eacute;n eenheid. En we staan onlosmakelijk in verbinding met onze leefwereld: zorg je goed voor de natuur en de mensen om je heen, dan zorg je goed voor jezelf.</p>
                 <p>Ieder mens draagt van nature de kwaliteiten in zich om in balans te leven. Soms raken we die verbinding kwijt door oude patronen, stress of onverwerkte ervaringen. Ik geloof dat genezing begint bij het weer voelen van wat er werkelijk leeft.</p>
             </div>
             <hr style="border: none; border-top: 1px solid var(--border); margin-bottom: 32px;">
             <div>
                 <h4 style="font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px;">Werkwijze</h4>
-                <p>Ik werk op een praktisch-spirituele manier, waarbij ik put uit westerse geneeskunde, ayurveda, acupunctuur, mindfulness, reiki en marma. Geen enkele benadering staat op zichzelf, alles komt samen in een persoonlijke aanpak.</p>
+                <p>Ik werk vanuit een en/en-benadering: regulier &eacute;n complementair, praktisch &eacute;n spiritueel. Ik put uit westerse geneeskunde, ayurveda, acupunctuur, antroposofie, mindfulness, reiki en marma. Deze benaderingen hoeven elkaar niet te bijten &mdash; ze vullen elkaar juist aan in een persoonlijke aanpak.</p>
+                <p>In een consult of coaching kijk ik ook vanuit een andere taal naar je lichaam: de energetische. Hoe sta je in je energie, hoe stroomt het door je chakra&rsquo;s en aura? Klachten zie ik niet als iets dat weg moet, maar als een roep van de ziel &mdash; een uitnodiging tot bewustwording en innerlijke groei.</p>
             </div>
         </div>
     </div>
@@ -349,11 +404,28 @@
         </div>
         <div class="bio-content">
             <h2>Richard Hoofs</h2>
-            <p>Ik ben al meer dan 25 jaar werkzaam als arts. Naast mijn reguliere achtergrond heb ik me verdiept in ayurveda, acupunctuur, mindfulness, reiki en marma-therapie.</p>
-            <p>Deze combinatie van westerse en oosterse kennis vormt de basis van mijn consulten en coaching. Ik richt me op het hele plaatje: lichaam, geest en ziel.</p>
-            <p>Naast mijn praktijk ben ik auteur van het boek "Bezield Leven op Doktersrecept", waarin ik mijn visie op holistische gezondheid deel met een breder publiek.</p>
-            <a href="coaching.html" class="btn btn-accent">Bekijk consulten & coaching <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            <p>Ik ben al meer dan 25 jaar werkzaam als arts. Na mijn studie tot huisarts heb ik me verdiept in diverse holistische geneeswijzen: acupunctuur, antroposofie, ayurveda, spirituele therapie en Egyptische heelkunde.</p>
+            <p>Deze zoektocht bracht me ook naar India en Egypte. In India werkte ik een tijd als arts mee aan een gezondheidsproject op het platteland van Maharashtra. Daar werd ik geraakt door de diepe wijsheid van de Oosterse esoterie, maar ervoer ik tegelijk het praktische nut van de Westerse geneeskunde.</p>
+            <p>De verbinding tussen Oost en West &mdash; met behoud van het beste van beiden &mdash; vormt de basis van mijn werk als coach, acupuncturist en auteur. Naast mijn werk op Mon Desir werk ik nog parttime als huisarts.</p>
+            <p>Ik ben auteur van het boek &ldquo;Bezield Leven op Doktersrecept&rdquo;, waarin ik mijn visie op holistische gezondheid deel met een breder publiek.</p>
+            <a href="coaching.html" class="btn btn-accent">Bekijk trajecten & coaching <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
         </div>
+    </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section fade-in">
+    <div class="map-wrapper">
+        <div class="map-info">
+            <div class="map-info-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+                <h3>Medische Praktijk Mondesir</h3>
+                <p>Vughterstraat, 's-Hertogenbosch</p>
+            </div>
+        </div>
+        <iframe class="map-embed" src="https://maps.google.com/maps?q=Vughterstraat+s-Hertogenbosch&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </section>
 

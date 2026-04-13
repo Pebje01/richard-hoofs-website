@@ -3,68 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact — Dokter Richard</title>
-    <meta name="description" content="Neem contact op met Dokter Richard Hoofs — huisarts, leefstijlcoach en auteur. Medische Praktijk Mondesir, Den Bosch.">
+    <title>Contact | Dokter Richard</title>
+    <meta name="description" content="Neem contact op met Dokter Richard Hoofs, huisarts, leefstijlcoach en auteur. Medische Praktijk Mondesir, Den Bosch.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="shared.css">
     <style>
-        /* ===== CONTACT SECTION ===== */
-        .contact-section {
-            padding: var(--section-padding) 48px;
-            max-width: calc(var(--max-width) + 96px);
+        /* ===== CONTACT FORM ===== */
+        .contact-form-section {
+            padding: 72px 48px var(--section-padding);
+        }
+        .contact-form-container {
+            max-width: 600px;
             margin: 0 auto;
         }
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 56px;
-            align-items: start;
+        .contact-form-title {
+            text-align: center;
+            margin-bottom: 8px;
         }
-        .contact-info h3 {
-            font-family: var(--font-heading);
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--green-dark);
-            margin-bottom: 24px;
+        .contact-form-sub {
+            font-size: 15px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 40px;
         }
-        .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            margin-bottom: 20px;
-        }
-        .contact-info-icon {
-            width: 40px; height: 40px;
-            border-radius: var(--radius-sm);
-            background: rgba(193, 119, 79, 0.1);
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-        }
-        .contact-info-icon svg {
-            width: 20px; height: 20px;
-            stroke: var(--accent); fill: none;
-            stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
-        }
-        .contact-info-item h4 {
-            font-family: var(--font-heading);
-            font-size: 14px; font-weight: 700;
-            color: var(--green-dark); margin-bottom: 2px;
-        }
-        .contact-info-item p {
-            font-size: 13px; color: var(--text-muted); line-height: 1.5;
-        }
-
-        /* ===== CONSULT FORM ===== */
-        .consult-form {
+        .contact-form {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
         .form-group label {
             display: block;
-            font-family: var(--font-body);
             font-size: 13px;
             font-weight: 600;
             color: var(--green-dark);
@@ -94,7 +64,7 @@
         .form-group input:focus,
         .form-group select:focus { border-color: var(--green); }
         .form-group textarea { min-height: 120px; }
-        .consult-submit {
+        .contact-submit {
             display: block;
             width: 100%;
             padding: 14px;
@@ -106,20 +76,64 @@
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: background 0.2s;
             margin-top: 4px;
         }
-        .consult-submit:hover { background: #a8623d; }
+        .contact-submit:hover { background: #d4885e; }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .contact-section { padding: 80px 32px; }
-            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+        /* ===== MAP ===== */
+        .map-section {
+            padding: 0 48px 100px;
+            max-width: calc(var(--max-width) + 96px);
+            margin: 0 auto;
+        }
+        .map-wrapper {
+            background: #eef0ed;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        .map-info {
+            padding: 32px 36px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .map-info-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: rgba(193, 119, 79, 0.1);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .map-info-icon svg {
+            width: 22px; height: 22px;
+            stroke: var(--accent); fill: none;
+            stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .map-info h3 {
+            font-family: var(--font-heading);
+            font-size: 16px; font-weight: 700;
+            color: var(--green-dark); margin-bottom: 2px;
+        }
+        .map-info p {
+            font-size: 13px; color: var(--text-muted); line-height: 1.5;
+        }
+        .map-embed {
+            width: 100%;
+            height: 380px;
+            border: none;
+            display: block;
         }
 
+        @media (max-width: 1024px) {
+            .map-section { padding: 0 32px 80px; }
+        }
         @media (max-width: 768px) {
-            .contact-section { padding-left: 20px; padding-right: 20px; }
-            .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+            .contact-form-section { padding: 48px 20px 80px; }
+            .map-section { padding: 0 20px 60px; }
+            .map-info { padding: 24px 20px; }
+            .map-embed { height: 300px; }
         }
     </style>
 </head>
@@ -127,86 +141,75 @@
 
 <div id="nav-placeholder"></div>
 
-<!-- PAGE HERO -->
-<section class="page-hero">
-    <h1 class="fade-in">Neem contact op</h1>
-    <p class="fade-in fade-in-d1">Heb je een vraag of wil je meer weten over coaching, leefstijlgeneeskunde of andere diensten? Neem gerust contact op.</p>
-</section>
-
-<!-- CONTACT -->
-<section class="contact-section">
-    <div class="contact-grid">
-        <!-- LEFT: Contact Info -->
-        <div class="contact-info fade-in">
-            <h3>Contactgegevens</h3>
-
-            <div class="contact-info-item">
-                <div class="contact-info-icon">
-                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                </div>
-                <div>
-                    <h4>E-mail</h4>
-                    <p><a href="mailto:info@dokterrichard.nl" style="color: var(--accent);">info@dokterrichard.nl</a></p>
-                </div>
-            </div>
-
-            <div class="contact-info-item">
-                <div class="contact-info-icon">
-                    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                </div>
-                <div>
-                    <h4>Locatie</h4>
-                    <p>Den Bosch, Nederland</p>
-                </div>
-            </div>
-
-            <div class="contact-info-item">
-                <div class="contact-info-icon">
-                    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                </div>
-                <div>
-                    <h4>Praktijk</h4>
-                    <p>Medische Praktijk Mondesir</p>
-                </div>
-            </div>
+<!-- HERO -->
+<div class="hero-wrap">
+    <div class="hero-wrap-inner fade-in">
+        <div class="hero-wrap-text">
+            <h1>Neem<br>contact op</h1>
+            <p>Heb je een vraag of wil je meer weten over coaching, leefstijlgeneeskunde of andere diensten? Neem gerust contact op.</p>
         </div>
-
-        <!-- RIGHT: Contact Form -->
-        <div class="fade-in fade-in-d1">
-            <form class="consult-form" id="contactForm" method="POST">
-                <input type="hidden" name="access_key" value="4ba3a29f-d163-4a82-aed2-3ead1397f7e0">
-
-                <div class="form-group">
-                    <label for="name">Naam <span>(verplicht)</span></label>
-                    <input type="text" id="name" name="name" placeholder="Je volledige naam" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">E-mailadres <span>(verplicht)</span></label>
-                    <input type="email" id="email" name="email" placeholder="Je e-mailadres" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Telefoonnummer</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Je telefoonnummer">
-                </div>
-
-                <div class="form-group">
-                    <label for="subject">Onderwerp <span>(verplicht)</span></label>
-                    <input type="text" id="subject" name="subject" placeholder="Waar gaat je bericht over?" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Bericht <span>(verplicht)</span></label>
-                    <textarea id="message" name="message" placeholder="Schrijf hier je bericht..." required></textarea>
-                </div>
-
-                <button type="submit" class="consult-submit">Verstuur bericht</button>
-                <div id="form-status" style="margin-top:16px;padding:14px 20px;border-radius:8px;font-size:14px;display:none;"></div>
-            </form>
+        <div class="hero-info-grid">
+            <div>
+                <div class="hero-info-label">e-mail</div>
+                <div class="hero-info-value"><a href="mailto:info@dokterrichard.nl">info@dokterrichard.nl</a></div>
+            </div>
+            <div>
+                <div class="hero-info-label">praktijk</div>
+                <div class="hero-info-value">Medische Praktijk Mondesir</div>
+            </div>
+            <div>
+                <div class="hero-info-label">adres</div>
+                <div class="hero-info-value">Vughterstraat 187</div>
+                <div class="hero-info-sub">5211 GC 's-Hertogenbosch</div>
+            </div>
+            <div>
+                <div class="hero-info-label">consult aanvragen</div>
+                <div class="hero-info-value"><a href="consult.html">Naar het formulier &rarr;</a></div>
+            </div>
         </div>
     </div>
+</div>
+
+<!-- CONTACT FORM -->
+<section class="contact-form-section" id="formulier">
+    <div class="contact-form-container">
+        <h2 class="contact-form-title fade-in">Stuur een bericht</h2>
+        <p class="contact-form-sub fade-in">Stel je vraag en ik neem zo snel mogelijk contact met je op.</p>
+        <form class="contact-form fade-in" id="contactForm" method="POST">
+            <input type="hidden" name="access_key" value="4ba3a29f-d163-4a82-aed2-3ead1397f7e0">
+
+            <div class="form-group">
+                <label for="name">Naam <span>*</span></label>
+                <input type="text" id="name" name="name" placeholder="Je volledige naam" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mailadres <span>*</span></label>
+                <input type="email" id="email" name="email" placeholder="Je e-mailadres" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Telefoonnummer <span>(optioneel)</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="Je telefoonnummer">
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Onderwerp <span>*</span></label>
+                <input type="text" id="subject" name="subject" placeholder="Waar gaat je bericht over?" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Bericht <span>*</span></label>
+                <textarea id="message" name="message" placeholder="Schrijf hier je bericht..." required></textarea>
+            </div>
+
+            <button type="submit" class="contact-submit">Verstuur bericht</button>
+            <div id="form-status" style="margin-top:16px;padding:14px 20px;border-radius:8px;font-size:14px;display:none;"></div>
+        </form>
+    </div>
 </section>
+
+
 
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>
@@ -220,7 +223,7 @@ document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     var form = e.target;
-    var btn = form.querySelector('.consult-submit');
+    var btn = form.querySelector('.contact-submit');
     var status = document.getElementById('form-status');
     btn.disabled = true;
     btn.textContent = 'Versturen...';
