@@ -398,16 +398,24 @@
             line-height: 1.6;
         }
         .traject-hero--light {
+            background: #fff;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 24px rgba(58,61,50,0.07);
+        }
+        .traject-hero--light .traject-hero-text .th-label { color: var(--accent) !important; }
+        .traject-hero--light .traject-hero-text h2 { color: var(--green-dark) !important; }
+        .traject-hero--light .th-detail-value { color: var(--green-dark) !important; }
+        .traject-hero--light .traject-hero-text .th-subtitle { color: var(--text-muted) !important; }
+        .traject-hero--light .th-bullets li { color: var(--text-body) !important; }
+        .traject-hero--light .th-bullets li svg {
+            background: rgba(193,119,79,0.12) !important;
+            stroke: var(--accent) !important;
+        }
+        .traject-hero--light .th-detail-label { color: var(--text-muted) !important; }
+        .traject-hero--light .th-detail {
             background: var(--cream);
             border: 1px solid var(--border);
         }
-        .traject-hero--light .th-label { color: var(--accent); }
-        .traject-hero--light h2, .traject-hero--light .th-detail-value { color: var(--green-dark); }
-        .traject-hero--light .th-subtitle { color: var(--text-muted); }
-        .traject-hero--light .th-bullets li { color: var(--text-body); }
-        .traject-hero--light .th-bullets li svg { stroke: var(--accent); }
-        .traject-hero--light .th-detail-label { color: var(--text-muted); }
-        .traject-hero--light .th-detail { background: rgba(58,61,50,0.05); border-color: var(--border); }
 
         .traject-intro-text {
             padding: 40px 48px 0;
@@ -512,7 +520,13 @@
             fill: none;
             stroke-width: 2.5;
             flex-shrink: 0;
-            margin-top: 1px;
+            margin-top: 2px;
+        }
+        .iblock ul li strong {
+            display: inline-block;
+            min-width: 110px;
+            flex-shrink: 0;
+            color: var(--text-heading);
         }
         .iblock--green ul li svg { stroke: var(--green); }
         .iblock ul li::before { display: none; }
@@ -573,6 +587,13 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+        }
+        .traject-hero-text .btn {
+            align-self: flex-start;
+            width: fit-content;
+        }
+        .traject-hero--centered .traject-hero-text .btn {
+            align-self: center;
         }
         .traject-hero-text .th-label {
             font-size: 11px;
@@ -722,6 +743,243 @@
         }
     
         .split-hero-content { background: #f7f0eb; }
+
+        /* ===== GEKLEURDE LABEL + TITEL, WIT VLAK ===== */
+        .iblock--color-accent,
+        .iblock--color-green,
+        .iblock--color-dark {
+            background: #fff;
+            border-color: var(--border);
+        }
+        .iblock--color-accent .iblock-header,
+        .iblock--color-green .iblock-header,
+        .iblock--color-dark .iblock-header {
+            background: transparent;
+        }
+        .iblock--color-accent .iblock-label { color: var(--accent); }
+        .iblock--color-accent h3 { color: var(--accent); }
+
+        .iblock--color-green .iblock-label { color: var(--green); }
+        .iblock--color-green h3 { color: var(--green); }
+
+        .iblock--color-dark .iblock-label { color: var(--green-dark); }
+        .iblock--color-dark h3 { color: var(--green-dark); }
+
+        /* Body tekst uitlijning */
+        .iblock--color-accent p, .iblock--color-accent ul li,
+        .iblock--color-green p, .iblock--color-green ul li,
+        .iblock--color-dark p, .iblock--color-dark ul li {
+            color: var(--text-body);
+        }
+        .iblock--color-accent ul li svg { stroke: var(--accent); }
+        .iblock--color-green ul li svg { stroke: var(--green); }
+        .iblock--color-dark ul li svg { stroke: var(--green-dark); }
+        .iblock--color-accent .iblock-quote { border-left-color: var(--accent); }
+        .iblock--color-green .iblock-quote { border-left-color: var(--green); }
+        .iblock--color-dark .iblock-quote { border-left-color: var(--green-dark); }
+
+        /* ===== GROEPSTRAINING REDESIGN ===== */
+        .gt-blocks {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .gt-card-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .gt-check {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .gt-check li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+        .gt-check li svg {
+            width: 16px; height: 16px;
+            stroke: var(--accent); fill: none;
+            stroke-width: 2.5; flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .gt-check li::before { display: none; }
+
+        /* Herken + Ervaringsgericht 2-col warm callout */
+        .gt-herken {
+            background: rgba(193,119,79,0.06);
+            border: 1px solid rgba(193,119,79,0.18);
+            border-radius: 20px;
+            padding: 40px 44px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+        .gt-herken h3 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            color: var(--green-dark);
+            margin: 8px 0 18px;
+            line-height: 1.3;
+        }
+        .gt-herken p {
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+        .gt-herken p:last-child { margin-bottom: 0; }
+        .gt-divider-line {
+            width: 1px;
+            background: rgba(193,119,79,0.2);
+            align-self: stretch;
+        }
+
+        /* Wat je leert + Werkwijze */
+        .gt-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .gt-clean-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+        }
+        .gt-clean-card h3 {
+            font-family: var(--font-heading);
+            font-size: 19px;
+            color: var(--green-dark);
+            margin: 10px 0 18px;
+            line-height: 1.3;
+        }
+        .gt-icon-box {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: rgba(76,100,67,0.1);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 16px;
+        }
+        .gt-icon-box svg {
+            width: 22px; height: 22px;
+            stroke: var(--green); fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+        .gt-icon-box.accent-icon { background: rgba(193,119,79,0.1); }
+        .gt-icon-box.accent-icon svg { stroke: var(--accent); }
+
+        /* Programma steps */
+        .gt-program {
+            background: var(--green);
+            border-radius: 20px;
+            padding: 40px 44px;
+        }
+        .gt-program .gt-card-label { color: rgba(255,255,255,0.55); }
+        .gt-program h3 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            color: #fff;
+            margin: 8px 0 28px;
+        }
+        .gt-steps {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+        .gt-step {
+            background: rgba(255,255,255,0.09);
+            border-radius: 14px;
+            padding: 18px 10px 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .gt-step-num {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.18);
+            color: #fff;
+            font-size: 12px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .gt-step-num.final {
+            background: var(--accent);
+        }
+        .gt-step-num.final svg {
+            width: 14px; height: 14px;
+            stroke: #fff; fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+        .gt-step-text {
+            font-size: 12px;
+            color: rgba(255,255,255,0.72);
+            line-height: 1.4;
+        }
+
+        /* Voor wie + CTA */
+        .gt-voor-wie {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px 44px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 48px;
+            align-items: center;
+        }
+        .gt-voor-wie h3 {
+            font-family: var(--font-heading);
+            font-size: 19px;
+            color: var(--green-dark);
+            margin: 8px 0 12px;
+        }
+        .gt-voor-wie p {
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .gt-quote {
+            font-family: var(--font-heading);
+            font-size: 15px;
+            font-style: italic;
+            color: var(--green-dark);
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .gt-cta { flex-shrink: 0; }
+
+        @media (max-width: 1024px) {
+            .gt-steps { grid-template-columns: repeat(4, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .gt-herken { grid-template-columns: 1fr; gap: 28px; padding: 28px 24px; }
+            .gt-two-col { grid-template-columns: 1fr; }
+            .gt-clean-card { padding: 28px 24px; }
+            .gt-program { padding: 32px 24px; }
+            .gt-steps { grid-template-columns: repeat(4, 1fr); }
+            .gt-voor-wie { grid-template-columns: 1fr; gap: 24px; padding: 28px 24px; }
+        }
     </style>
 </head>
 <body>
@@ -746,9 +1004,10 @@
             <a href="consult.html" class="split-hero-card">
                 <div class="split-hero-card-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
                 <div class="split-hero-card-text">
-                    <strong>Vrijblijvend kennismaken</strong>
-                    <span>Start met een persoonlijk intakegesprek</span>
+                    <strong>Kennismaken? Boek een consult</strong>
+                    <span>75 minuten &middot; &euro;140</span>
                 </div>
+                <svg viewBox="0 0 24 24" style="width:16px;height:16px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;margin-left:auto;opacity:0.5;"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
             </a>
         </div>
     </div>
@@ -760,7 +1019,7 @@
     <!-- Hero blok -->
     <div class="traject-hero traject-hero--accent fade-in">
         <div class="traject-hero-text">
-            <div class="th-label">Persoonlijk traject · 1-op-1</div>
+            <div class="th-label">Persoonlijk Holistisch Traject · 1-op-1</div>
             <h2>Van Vast naar Stroming</h2>
             <p class="th-subtitle">Een persoonlijk traject voor herstel en innerlijke beweging</p>
             <ul class="th-bullets">
@@ -782,10 +1041,10 @@
                     <div class="th-detail-value">6 consulten</div>
                 </div>
             </div>
-            <a href="inschrijven-vast-stroming.html" class="btn btn-white">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            <a href="inschrijven-vast-stroming.html" class="btn btn-white btn-sm">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
         </div>
         <div class="traject-hero-image">
-            <img src="images/Richard_Hoofs-13.jpg" alt="Van Vast naar Stroming traject" loading="lazy">
+            <img src="images/richard-bank.jpg" alt="Van Vast naar Stroming traject" loading="lazy">
         </div>
     </div>
 
@@ -801,7 +1060,7 @@
         <div class="iblocks-grid">
 
             <!-- Wat je ontwikkelt -->
-            <div class="iblock iblock--accent">
+            <div class="iblock iblock--color-accent">
                 <div class="iblock-header">
                 <div class="iblock-label">Wat je ontwikkelt</div>
                 <h3>Drie kernvaardigheden</h3>
@@ -814,7 +1073,7 @@
             </div>
 
             <!-- Waarom anders -->
-            <div class="iblock">
+            <div class="iblock iblock--color-green">
                 <div class="iblock-header">
                 <div class="iblock-label">Waarom dit traject anders is</div>
                 <h3>Echte verdieping</h3>
@@ -828,7 +1087,7 @@
             </div>
 
             <!-- Voor wie -->
-            <div class="iblock iblock--green">
+            <div class="iblock iblock--color-dark">
                 <div class="iblock-header">
                 <div class="iblock-label">Voor wie</div>
                 <h3>Herken jij dit?</h3>
@@ -851,7 +1110,7 @@
     <!-- Hero blok -->
     <div class="traject-hero traject-hero--green traject-hero--reverse fade-in">
         <div class="traject-hero-text">
-            <div class="th-label">Persoonlijk traject · 1-op-1</div>
+            <div class="th-label">Persoonlijk Holistisch Traject · 1-op-1</div>
             <h2>Lezen van Lichaam en Energie</h2>
             <p class="th-subtitle">Leer je eigen systeem begrijpen, verdiepen en toepassen, voor jezelf én in je werk met anderen</p>
             <ul class="th-bullets">
@@ -873,10 +1132,10 @@
                     <div class="th-detail-value">7 bijeenkomsten</div>
                 </div>
             </div>
-            <a href="inschrijven-lichaam-energie.html" class="btn btn-white">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            <a href="inschrijven-lichaam-energie.html" class="btn btn-white btn-sm">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
         </div>
         <div class="traject-hero-image">
-            <img src="images/Richard_Hoofs-15.jpg" alt="Lezen van Lichaam en Energie" loading="lazy">
+            <img src="images/richard-ses.jpg" alt="Lezen van Lichaam en Energie" loading="lazy">
         </div>
     </div>
 
@@ -891,7 +1150,7 @@
         <div class="iblocks-grid">
 
             <!-- Wat je ontwikkelt -->
-            <div class="iblock iblock--green">
+            <div class="iblock iblock--color-accent">
                 <div class="iblock-header">
                 <div class="iblock-label">Wat je ontwikkelt</div>
                 <h3>Drie kernvaardigheden</h3>
@@ -904,7 +1163,7 @@
             </div>
 
             <!-- Waarom anders -->
-            <div class="iblock iblock--accent">
+            <div class="iblock iblock--color-green">
                 <div class="iblock-header">
                 <div class="iblock-label">Waarom dit traject anders is</div>
                 <h3>Een vaardigheid voor het leven</h3>
@@ -918,7 +1177,7 @@
             </div>
 
             <!-- Voor wie -->
-            <div class="iblock">
+            <div class="iblock iblock--color-dark">
                 <div class="iblock-header">
                 <div class="iblock-label">Voor wie</div>
                 <h3>Openheid en nieuwsgierigheid</h3>
@@ -950,29 +1209,28 @@
                 <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Toepasbaar in je eigen werk met cliënten</li>
                 <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Kleine groep: persoonlijke aandacht gegarandeerd</li>
             </ul>
-        </div>
-        <div class="traject-hero-side">
-            <div class="th-details" style="display:flex; flex-direction:column; gap:12px; margin-bottom:0;">
+            <div class="th-details" style="flex-wrap: nowrap;">
                 <div class="th-detail">
                     <div class="th-detail-label">Start</div>
-                    <div class="th-detail-value">September 2026</div>
+                    <div class="th-detail-value">Sept. 2026</div>
                 </div>
                 <div class="th-detail">
                     <div class="th-detail-label">Investering</div>
                     <div class="th-detail-value">&euro;1.350</div>
                 </div>
                 <div class="th-detail">
-                    <div class="th-detail-label">Bijeenkomsten</div>
-                    <div class="th-detail-value">6 middagen + nascholing</div>
+                    <div class="th-detail-label">Sessies</div>
+                    <div class="th-detail-value">6 + nascholing</div>
                 </div>
                 <div class="th-detail">
                     <div class="th-detail-label">Locatie</div>
                     <div class="th-detail-value">Den Bosch</div>
                 </div>
             </div>
-            <hr class="th-divider">
-            <a href="inschrijven-groepstraining.html" class="btn btn-white" style="text-align:center; justify-content:center;">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-            <p class="th-side-note">Inclusief studiemateriaal &amp; koffie/thee. Aantal plaatsen beperkt.</p>
+            <a href="inschrijven-groepstraining.html" class="btn btn-white btn-sm">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+        </div>
+        <div class="traject-hero-image">
+            <img src="images/Richard_Hoofs-17-final.jpg" alt="Groepstraining Bezield Leven" loading="lazy">
         </div>
     </div>
 
@@ -981,24 +1239,12 @@
         <p>Soms voel je dat er méér in je zit: je functioneert wel, maar je leeft niet volledig vanuit wie je werkelijk bent. De groepstraining is een verdiepend traject waarin je aan je eigen ontwikkeling werkt én leert hoe je op een diepere laag kunt waarnemen in je werk met anderen.</p>
     </div>
 
-    <!-- Info blokken: 2 rijen van 3 -->
+    <!-- Info blokken -->
     <div class="info-blocks fade-in">
         <div class="iblocks-grid">
 
-            <!-- Rij 1 -->
-            <div class="iblock iblock--accent">
-                <div class="iblock-header">
-                <div class="iblock-label">Herken je dit ook?</div>
-                <h3>In je werk met mensen</h3>
-                </div>
-                <ul>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Je voelt dat er méér speelt dan het verhaal dat ze vertellen</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Je pikt signalen op, maar weet nog niet hoe ze te duiden</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Je verlangt naar een diepere manier van werken</li>
-                </ul>
-            </div>
-
-            <div class="iblock">
+            <!-- Wat je leert -->
+            <div class="iblock iblock--color-accent">
                 <div class="iblock-header">
                 <div class="iblock-label">Wat je leert</div>
                 <h3>Lezen van lichaam &amp; energie</h3>
@@ -1012,57 +1258,30 @@
                 </ul>
             </div>
 
-            <div class="iblock iblock--green">
+            <!-- Werkwijze & Programma -->
+            <div class="iblock iblock--color-green">
                 <div class="iblock-header">
-                <div class="iblock-label">Wat dit traject anders maakt</div>
-                <h3>Ervaringsgericht, niet theoretisch</h3>
+                <div class="iblock-label">Werkwijze &amp; programma</div>
+                <h3>6 middagen + integratie</h3>
                 </div>
-                <p>Geen losse training en geen theoretische opleiding. Een ervaringsgericht traject waarin je jezelf leert kennen op een diepere laag en van daaruit leert werken met anderen.</p>
-                <p>Je leert niet alleen wát je waarneemt, maar ook hóé je daarmee werkt.</p>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Lichaamsbewustzijn en ademhaling</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Meditatie en innerlijke afstemming</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Lezen en verzorgen van het energiesysteem</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Bewustwording van patronen en het innerlijk kind</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Relaties en energetische dynamiek</li>
+                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Levenslijn, zielsrichting en nascholing</li>
+                </ul>
             </div>
 
-            <!-- Rij 2 -->
-            <div class="iblock iblock--green">
+            <!-- Voor wie -->
+            <div class="iblock iblock--color-dark">
                 <div class="iblock-header">
                 <div class="iblock-label">Voor wie</div>
                 <h3>Voor mensen die verdieping zoeken</h3>
                 </div>
                 <p>Voor mensen die verdieping zoeken in zichzelf. En voor professionals die met mensen werken en hun waarneming willen verdiepen.</p>
                 <div class="iblock-quote">Geen snelle oplossing, maar een weg naar binnen en naar een diepere manier van leven en werken.</div>
-                <div class="iblock-cta">
-                    <a href="inschrijven-groepstraining.html" class="btn btn-accent">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-                </div>
-            </div>
-
-            <div class="iblock">
-                <div class="iblock-header">
-                <div class="iblock-label">Werkwijze</div>
-                <h3>We werken met</h3>
-                </div>
-                <ul>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Lichaamsbewustzijn en ademhaling</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Meditatie en innerlijke afstemming</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Lezen en verzorgen van het energiesysteem</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Bewustwording van patronen</li>
-                    <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Verbinding met innerlijke kwaliteiten</li>
-                </ul>
-                <p style="font-size:13px; color:var(--text-muted); padding: 0 0 4px;">Tussen de bijeenkomsten werk je met praktische oefeningen.</p>
-            </div>
-
-            <div class="iblock iblock--accent">
-                <div class="iblock-header">
-                <div class="iblock-label">Opbouw van het traject</div>
-                <h3>6 middagen + integratie</h3>
-                </div>
-                <ul class="timeline-list">
-                    <li><span class="tl-num">1</span> Lichaam en bewustzijn</li>
-                    <li><span class="tl-num">2</span> Het energetisch systeem</li>
-                    <li><span class="tl-num">3</span> Chakra's en energiebalans</li>
-                    <li><span class="tl-num">4</span> Patronen en het innerlijk kind</li>
-                    <li><span class="tl-num">5</span> Relaties en energetische dynamiek</li>
-                    <li><span class="tl-num">6</span> Levenslijn en zielsrichting</li>
-                    <li><span class="tl-num">✓</span> Integratie en nascholing</li>
-                </ul>
             </div>
 
         </div>
@@ -1077,7 +1296,7 @@
 <div id="los-consult" style="padding-top: 40px; padding-bottom: 80px;">
     <div class="traject-hero traject-hero--light traject-hero--centered fade-in">
         <div class="traject-hero-text">
-            <div class="th-label">Losse afspraak · Geen traject nodig</div>
+            <div class="th-label">Intake</div>
             <h2>Los holistisch consult</h2>
             <p class="th-subtitle">Een praktisch-spiritueel consult met aandacht voor lichaam, energie en bezieling</p>
             <ul class="th-bullets">
@@ -1099,7 +1318,7 @@
                     <div class="th-detail-value">Den Bosch</div>
                 </div>
             </div>
-            <a href="inschrijven-consult.html" class="btn btn-accent">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            <a href="inschrijven-consult.html" class="btn btn-accent btn-sm">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
         </div>
     </div>
 </div>

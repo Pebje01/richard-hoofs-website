@@ -9,13 +9,50 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="shared.css">
+    <style>
+        .blog-hero {
+            background: var(--green-dark);
+            padding: 160px 48px 80px;
+            text-align: center;
+        }
+        .blog-hero-inner {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .blog-hero h1 {
+            color: #fff;
+            margin-bottom: 16px;
+        }
+        .blog-hero p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.72);
+            line-height: 1.8;
+        }
+        @media (max-width: 768px) {
+            .blog-hero { padding: 120px 24px 60px; }
+        }
+    </style>
 </head>
 <body>
 
 <div id="nav-placeholder"></div>
 
+<!-- HERO -->
+<section class="blog-hero fade-in">
+    <div class="blog-hero-inner">
+        <h1>Blog</h1>
+        <p>Richard deelt binnenkort zijn inzichten, ervaringen en verhalen over gezondheid, bewustzijn en holistische geneeskunde.</p>
+    </div>
+</section>
+
 <!-- CONTENT -->
-<main style="min-height: 60vh;"></main>
+<main>
+    <section style="min-height: 40vh; display: flex; align-items: center; justify-content: center; padding: 80px 24px; text-align: center;">
+        <div style="max-width: 440px;">
+            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7;">Hier komt nog een blogpagina — kom binnenkort terug.</p>
+        </div>
+    </section>
+</main>
 
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>

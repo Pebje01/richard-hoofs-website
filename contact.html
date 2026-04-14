@@ -126,14 +126,65 @@
             display: block;
         }
 
+        /* ===== HERO TALLER ===== */
+        .hero-wrap { padding-bottom: 200px; }
+
+        /* ===== CONTACT SPLIT ===== */
+        .contact-split {
+            padding: 0 48px 100px;
+            max-width: calc(var(--max-width) + 96px);
+            margin: -160px auto 0;
+            position: relative;
+            z-index: 2;
+        }
+        .contact-split-grid {
+            display: grid;
+            grid-template-columns: 0.55fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+        .contact-split-photo {
+            position: sticky;
+            top: 100px;
+        }
+        .contact-split-photo img {
+            width: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            aspect-ratio: 3/4;
+            display: block;
+            box-shadow: 0 28px 64px rgba(58,61,50,0.16);
+        }
+        .contact-split-form {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 52px rgba(58,61,50,0.08);
+        }
+        .contact-split-form h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(22px, 2.5vw, 28px);
+            color: var(--green-dark);
+            margin-bottom: 8px;
+        }
+        .contact-split-form .form-sub {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
         @media (max-width: 1024px) {
-            .map-section { padding: 0 32px 80px; }
+            .hero-wrap { padding-bottom: 160px; }
+            .contact-split { margin-top: -120px; padding: 0 32px 80px; }
         }
         @media (max-width: 768px) {
-            .contact-form-section { padding: 48px 20px 80px; }
-            .map-section { padding: 0 20px 60px; }
-            .map-info { padding: 24px 20px; }
-            .map-embed { height: 300px; }
+            .hero-wrap { padding-bottom: 120px; }
+            .contact-split { margin-top: -80px; padding: 0 20px 60px; }
+            .contact-split-grid { grid-template-columns: 1fr; gap: 24px; }
+            .contact-split-photo { position: static; }
+            .contact-split-photo img { aspect-ratio: 4/3; }
+            .contact-split-form { padding: 28px; }
         }
     </style>
 </head>
@@ -170,42 +221,57 @@
     </div>
 </div>
 
-<!-- CONTACT FORM -->
-<section class="contact-form-section" id="formulier">
-    <div class="contact-form-container">
-        <h2 class="contact-form-title fade-in">Stuur een bericht</h2>
-        <p class="contact-form-sub fade-in">Stel je vraag en ik neem zo snel mogelijk contact met je op.</p>
-        <form class="contact-form fade-in" id="contactForm" method="POST">
-            <input type="hidden" name="access_key" value="4ba3a29f-d163-4a82-aed2-3ead1397f7e0">
+<!-- CONTACT SPLIT: foto links, formulier rechts -->
+<section class="contact-split" id="formulier">
+    <div class="contact-split-grid fade-in">
+        <div class="contact-split-photo">
+            <img src="images/Richard_Hoofs-12-final.jpg" alt="Richard Hoofs in zijn praktijk" loading="lazy">
+        </div>
+        <div class="contact-split-form">
+            <h2>Stuur een bericht</h2>
+            <p class="form-sub">Stel je vraag en ik neem zo snel mogelijk contact met je op.</p>
+            <form class="contact-form" id="contactForm" method="POST">
+                <input type="hidden" name="access_key" value="4ba3a29f-d163-4a82-aed2-3ead1397f7e0">
 
-            <div class="form-group">
-                <label for="name">Naam <span>*</span></label>
-                <input type="text" id="name" name="name" placeholder="Je volledige naam" required>
-            </div>
+                <div class="form-group">
+                    <label for="name">Naam <span>*</span></label>
+                    <input type="text" id="name" name="name" placeholder="Je volledige naam" required>
+                </div>
 
-            <div class="form-group">
-                <label for="email">E-mailadres <span>*</span></label>
-                <input type="email" id="email" name="email" placeholder="Je e-mailadres" required>
-            </div>
+                <div class="form-group">
+                    <label for="email">E-mailadres <span>*</span></label>
+                    <input type="email" id="email" name="email" placeholder="Je e-mailadres" required>
+                </div>
 
-            <div class="form-group">
-                <label for="phone">Telefoonnummer <span>(optioneel)</span></label>
-                <input type="tel" id="phone" name="phone" placeholder="Je telefoonnummer">
-            </div>
+                <div class="form-group">
+                    <label for="phone">Telefoonnummer <span>(optioneel)</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="Je telefoonnummer">
+                </div>
 
-            <div class="form-group">
-                <label for="subject">Onderwerp <span>*</span></label>
-                <input type="text" id="subject" name="subject" placeholder="Waar gaat je bericht over?" required>
-            </div>
+                <div class="form-group">
+                    <label for="traject">Interesse <span>(optioneel)</span></label>
+                    <select id="traject" name="traject">
+                        <option value="" disabled selected>Waar ben je in geïnteresseerd?</option>
+                        <option value="Persoonlijk holistisch trainingstraject">Persoonlijk holistisch trainingstraject</option>
+                        <option value="Persoonlijk trainingstraject">Persoonlijk trainingstraject</option>
+                        <option value="Anders">Anders</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="message">Bericht <span>*</span></label>
-                <textarea id="message" name="message" placeholder="Schrijf hier je bericht..." required></textarea>
-            </div>
+                <div class="form-group">
+                    <label for="subject">Onderwerp <span>*</span></label>
+                    <input type="text" id="subject" name="subject" placeholder="Waar gaat je bericht over?" required>
+                </div>
 
-            <button type="submit" class="contact-submit">Verstuur bericht</button>
-            <div id="form-status" style="margin-top:16px;padding:14px 20px;border-radius:8px;font-size:14px;display:none;"></div>
-        </form>
+                <div class="form-group">
+                    <label for="message">Bericht <span>*</span></label>
+                    <textarea id="message" name="message" placeholder="Schrijf hier je bericht..." required></textarea>
+                </div>
+
+                <button type="submit" class="contact-submit">Verstuur bericht</button>
+                <div id="form-status" style="margin-top:16px;padding:14px 20px;border-radius:8px;font-size:14px;display:none;"></div>
+            </form>
+        </div>
     </div>
 </section>
 

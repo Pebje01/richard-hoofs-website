@@ -41,7 +41,7 @@
         /* LEFT: panel with burst + cover */
         .bk-hero-left {
             position: relative;
-            background: #eef0ed;
+            background: var(--accent);
             padding: 72px 56px;
             display: flex;
             align-items: center;
@@ -56,12 +56,12 @@
             pointer-events: none;
         }
         .bk-hero-burst svg {
-            width: 120%;
-            height: 120%;
+            width: 600px;
+            height: 600px;
             position: absolute;
-            top: -10%;
-            left: -10%;
-            opacity: 0.55;
+            top: -220px;
+            left: -220px;
+            opacity: 0.12;
         }
         .bk-hero-cover {
             position: relative;
@@ -199,8 +199,39 @@
             font-size: 16px;
             line-height: 1.7;
             color: var(--text-body);
-            margin: 0 0 32px;
+            margin: 0 0 24px;
             max-width: 460px;
+        }
+        .bk-hero-price {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 0 0 28px;
+        }
+        .bk-hero-price-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .bk-hero-price-type {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .bk-hero-price-val {
+            font-family: var(--font-heading);
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--green-dark);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+        .bk-hero-price-divider {
+            width: 1px;
+            height: 40px;
+            background: var(--border);
         }
         .bk-hero-cta {
             display: flex;
@@ -576,9 +607,9 @@
         }
         .bk-editions-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 24px;
-            max-width: 1100px;
+            max-width: 780px;
             margin: 0 auto;
             text-align: left;
         }
@@ -595,8 +626,8 @@
             transform: translateY(-3px);
         }
         .bk-edition--featured {
-            background: var(--green-dark);
-            border-color: var(--green-dark);
+            background: var(--accent);
+            border-color: var(--accent);
             color: #fff;
         }
         .bk-edition-badge {
@@ -623,7 +654,7 @@
             margin-bottom: 24px;
         }
         .bk-edition--featured .bk-edition-icon {
-            background: rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.18);
         }
         .bk-edition-icon svg {
             width: 22px; height: 22px;
@@ -979,7 +1010,7 @@
             .bk-inside-grid { grid-template-columns: 1fr; gap: 40px; }
 
             .bk-editions { padding: 72px 32px; }
-            .bk-editions-grid { grid-template-columns: 1fr 1fr; }
+            .bk-editions-grid { grid-template-columns: 1fr; }
 
             .bk-faq { padding: 72px 32px; }
 
@@ -1023,6 +1054,112 @@
             .bk-library-card { grid-template-columns: 100px 1fr; gap: 18px; padding: 18px; }
             .bk-library-card h3 { font-size: 18px; }
         }
+
+        /* ===== BESTEL MODAL ===== */
+        .bestel-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(42,45,36,0.55);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            padding: 20px;
+        }
+        .bestel-modal-overlay.active { display: flex; }
+        .bestel-modal {
+            background: #fff;
+            border-radius: 24px;
+            padding: 44px 40px 40px;
+            max-width: 460px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 32px 80px rgba(42,45,36,0.18);
+            animation: modalIn 0.22s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(14px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .bestel-modal-close {
+            position: absolute;
+            top: 14px; right: 14px;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: #eef0ed;
+            border: none;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--green-dark);
+            font-size: 16px;
+            line-height: 1;
+        }
+        .bestel-modal-close:hover { background: #dfe7e0; }
+        .bestel-modal h3 {
+            font-family: var(--font-heading);
+            font-size: 21px;
+            color: var(--green-dark);
+            margin-bottom: 6px;
+        }
+        .bestel-modal-sub {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+        .bestel-modal-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .bestel-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            border-radius: 14px;
+            padding: 18px 20px;
+            text-decoration: none;
+            transition: opacity 0.18s, transform 0.18s;
+            cursor: pointer;
+        }
+        .bestel-option:hover { opacity: 0.88; transform: translateY(-1px); }
+        .bestel-option--primary { background: var(--accent); }
+        .bestel-option--secondary { background: #f5f0eb; border: 1.5px solid var(--border); }
+        .bestel-option-left {}
+        .bestel-option-type {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 3px;
+        }
+        .bestel-option--secondary .bestel-option-type { color: var(--text-muted); }
+        .bestel-option-name {
+            font-family: var(--font-heading);
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .bestel-option--secondary .bestel-option-name { color: var(--green-dark); }
+        .bestel-option-detail {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 2px;
+        }
+        .bestel-option--secondary .bestel-option-detail { color: var(--text-muted); }
+        .bestel-option-price {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .bestel-option--secondary .bestel-option-price { color: var(--green-dark); }
+        @media (max-width: 480px) {
+            .bestel-modal { padding: 36px 24px 28px; }
+        }
     </style>
 </head>
 <body>
@@ -1037,29 +1174,17 @@
 
         <!-- LEFT: Book cover -->
         <div class="bk-hero-left">
-            <!-- Decorative radial burst -->
+            <!-- Decorative Seed of Life emblem -->
             <div class="bk-hero-burst">
                 <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <radialGradient id="bkBurstG" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stop-color="#7A8B82" stop-opacity="0.32"/>
-                            <stop offset="100%" stop-color="#7A8B82" stop-opacity="0"/>
-                        </radialGradient>
-                    </defs>
-                    <circle cx="400" cy="400" r="320" fill="url(#bkBurstG)"/>
-                    <g fill="#7A8B82" fill-opacity="0.14">
-                        <path d="M400 80 L440 400 L400 400 Z"/>
-                        <path d="M400 80 L360 400 L400 400 Z"/>
-                        <path d="M720 400 L400 440 L400 400 Z"/>
-                        <path d="M720 400 L400 360 L400 400 Z"/>
-                        <path d="M400 720 L440 400 L400 400 Z"/>
-                        <path d="M400 720 L360 400 L400 400 Z"/>
-                        <path d="M80 400 L400 360 L400 400 Z"/>
-                        <path d="M80 400 L400 440 L400 400 Z"/>
-                        <path d="M626 174 L420 400 L400 380 Z"/>
-                        <path d="M174 174 L380 400 L400 380 Z"/>
-                        <path d="M626 626 L400 420 L420 400 Z"/>
-                        <path d="M174 626 L380 400 L400 420 Z"/>
+                    <g fill="none" stroke="#fff" stroke-width="5" opacity="0.18">
+                        <circle cx="400" cy="400" r="184"/>
+                        <circle cx="400" cy="216" r="184"/>
+                        <circle cx="400" cy="584" r="184"/>
+                        <circle cx="559.4" cy="308" r="184"/>
+                        <circle cx="559.4" cy="492" r="184"/>
+                        <circle cx="240.6" cy="308" r="184"/>
+                        <circle cx="240.6" cy="492" r="184"/>
                     </g>
                 </svg>
             </div>
@@ -1097,12 +1222,25 @@
                 <span class="bk-pill-emoji">
                     <svg viewBox="0 0 24 24"><path d="M12 2c2 4 6 6 6 11a6 6 0 01-12 0c0-5 4-7 6-11z"/></svg>
                 </span>
+                Voorbij je klachten.
             </div>
             <h1>Bezield Leven <span class="soft">op</span><br>Doktersrecept</h1>
             <p>Activeer je zelfhelende vermogen met eeuwenoude inzichten uit het oude Egypte, oosterse wijsheid en de westerse huisartsgeneeskunde - in één toegankelijk boek.</p>
 
+            <div class="bk-hero-price">
+                <div class="bk-hero-price-item">
+                    <span class="bk-hero-price-type">Paperback</span>
+                    <span class="bk-hero-price-val">&euro;29,95</span>
+                </div>
+                <div class="bk-hero-price-divider"></div>
+                <div class="bk-hero-price-item">
+                    <span class="bk-hero-price-type">E-book</span>
+                    <span class="bk-hero-price-val">&euro;16,95</span>
+                </div>
+            </div>
+
             <div class="bk-hero-cta">
-                <a href="#" onclick="openBestelModal(event)" class="btn btn-accent">Bestel nu <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+                <button onclick="bsOpen()" class="btn btn-accent">Bestel nu <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
                 <a href="#over-het-boek" class="btn btn-outline">Meer lezen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
             </div>
 
@@ -1236,11 +1374,11 @@
                 </div>
             </div>
 
-            <a href="#" onclick="openBestelModal(event)" class="btn btn-accent">Bestel nu <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            <button onclick="bsOpen()" class="btn btn-accent">Bestel nu <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
         </div>
 
         <div class="bk-about-right">
-            <a href="#" onclick="openBestelModal(event)" class="bk-shop-seal">
+            <a href="https://www.medischepraktijkmondesir.nl/product/bezield-leven-op-doktersrecept/" target="_blank" class="bk-shop-seal">
                 Koop<br><strong>nu</strong>
             </a>
             <img src="images/Boek-foto-afb.jpg" alt="Bezield Leven op Doktersrecept" class="bk-about-img">
@@ -1285,7 +1423,7 @@
      ============================================ -->
 <section class="bk-editions fade-in">
     <h2>Kies jouw editie</h2>
-    <p>Paperback, e-book of een gesigneerd exemplaar - kies wat bij jou past.</p>
+    <p>Paperback of e-book - kies wat bij jou past.</p>
 
     <div class="bk-editions-grid">
         <div class="bk-edition">
@@ -1305,7 +1443,7 @@
                 <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Direct uit voorraad leverbaar</li>
                 <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Verzending binnen 2 werkdagen</li>
             </ul>
-            <a href="#" onclick="openBestelModal(event)" class="bk-edition-cta">Bestel nu</a>
+            <a href="https://www.medischepraktijkmondesir.nl/product/bezield-leven-op-doktersrecept/" target="_blank" class="btn btn-accent" style="width:100%; justify-content:center;">Bestel nu <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
         </div>
 
         <div class="bk-edition">
@@ -1316,7 +1454,7 @@
             <div class="bk-edition-sub">Direct digitaal beschikbaar</div>
             <div class="bk-edition-price">
                 <span class="bk-edition-currency">&euro;</span>
-                <span class="bk-edition-amount">14,95</span>
+                <span class="bk-edition-amount">16,95</span>
                 <span class="bk-edition-unit">/ boek</span>
             </div>
             <ul class="bk-edition-list">
@@ -1325,62 +1463,12 @@
                 <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Lees op elk apparaat</li>
                 <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Geen verzendkosten</li>
             </ul>
-            <a href="#" onclick="openBestelModal(event)" class="bk-edition-cta">Bestel e-book</a>
+            <button onclick="bsOpen()" class="btn btn-outline" style="width:100%; justify-content:center;">Bestel e-book <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
         </div>
 
-        <div class="bk-edition bk-edition--featured">
-            <span class="bk-edition-badge">Populair</span>
-            <div class="bk-edition-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.3l-4.8 2.6.9-5.4L4.2 7.7l5.4-.8z"/></svg>
-            </div>
-            <h3>Gesigneerde editie</h3>
-            <div class="bk-edition-sub">Met persoonlijke opdracht van Richard</div>
-            <div class="bk-edition-price">
-                <span class="bk-edition-currency">&euro;</span>
-                <span class="bk-edition-amount">39,95</span>
-                <span class="bk-edition-unit">/ boek</span>
-            </div>
-            <ul class="bk-edition-list">
-                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Alles uit de standaardeditie</li>
-                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Handgeschreven opdracht</li>
-                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Persoonlijke handtekening</li>
-                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Ideaal als cadeau</li>
-            </ul>
-            <a href="#" onclick="openBestelModal(event)" class="bk-edition-cta">Bestel gesigneerd</a>
-        </div>
     </div>
 </section>
 
-<!-- ============================================
-     FAQ
-     ============================================ -->
-<section class="bk-faq fade-in">
-    <h2>Veelgestelde vragen</h2>
-    <p>Antwoorden op wat lezers vooraf willen weten.</p>
-
-    <div class="bk-faq-list">
-        <details class="bk-faq-item">
-            <summary>Voor wie is dit boek bedoeld?</summary>
-            <p>Voor iedereen die op zoek is naar meer dan een medische diagnose. Of je nu een professional in de zorg bent, worstelt met een klacht, of simpelweg meer betekenis wilt geven aan je gezondheid - dit boek biedt concrete handvatten voor bezieling in het dagelijks leven.</p>
-        </details>
-        <details class="bk-faq-item">
-            <summary>Heb ik medische voorkennis nodig?</summary>
-            <p>Nee. Het boek is toegankelijk geschreven, zonder vakjargon. Richard gebruikt praktijkvoorbeelden en heldere uitleg om complexe inzichten begrijpelijk te maken voor iedereen.</p>
-        </details>
-        <details class="bk-faq-item">
-            <summary>Wat maakt dit boek anders dan andere gezondheidsboeken?</summary>
-            <p>De combinatie van westerse huisartsgeneeskunde met oosterse energetische wijsheid en de Mysteriescholen van Egypte is uniek. Richard schrijft vanuit 25+ jaar praktijkervaring en verbindt wetenschap met spiritualiteit op een onderbouwde, warme manier.</p>
-        </details>
-        <details class="bk-faq-item">
-            <summary>Kan ik het boek signeren laten door Richard?</summary>
-            <p>Ja - kies voor de gesigneerde editie. Richard voorziet elk exemplaar persoonlijk van een handgeschreven opdracht en zijn handtekening. Een bijzonder cadeau voor jezelf of iemand anders.</p>
-        </details>
-        <details class="bk-faq-item">
-            <summary>Hoe snel wordt mijn boek verzonden?</summary>
-            <p>Standaardedities worden binnen 2 werkdagen verzonden. Gesigneerde exemplaren nemen iets meer tijd (5-7 werkdagen) omdat Richard ze persoonlijk signeert.</p>
-        </details>
-    </div>
-</section>
 
 <!-- ============================================
      FINAL CTA
@@ -1397,14 +1485,14 @@
             </svg>
         </div>
         <div class="bk-final-img">
-            <img src="images/Boek-foto-afb.jpg" alt="Bezield Leven op Doktersrecept">
+            <img src="images/Richard_Hoofs-59.jpg" alt="Richard Hoofs met zijn boek" loading="lazy">
         </div>
         <div class="bk-final-content">
             <h2>Begin vandaag aan jouw <span class="soft">bezielde reis</span></h2>
             <p>Neem de eerste stap richting een gezondheid die verder gaat dan symptomen - een leven met betekenis, bezieling en je eigen kompas.</p>
             <div class="bk-final-actions">
-                <a href="#" onclick="openBestelModal(event)" class="btn btn-accent">Bestel het boek <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-                <a href="over.html" class="btn btn-outline">Over Richard <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+                <button onclick="bsOpen()" class="btn btn-accent">Bestel het boek <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+                <a href="contact.html" class="btn btn-outline">Contact opnemen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
             </div>
         </div>
     </div>
@@ -1442,6 +1530,33 @@
     </div>
 </section>
 
+<!-- BESTEL MODAL -->
+<div id="bestelModal" class="bestel-modal-overlay" onclick="bsClose(event)">
+    <div class="bestel-modal">
+        <button class="bestel-modal-close" onclick="bsClose()" aria-label="Sluiten">✕</button>
+        <h3>Bezield Leven op Doktersrecept</h3>
+        <p class="bestel-modal-sub">Kies jouw editie en ga direct naar de betaalpagina.</p>
+        <div class="bestel-modal-options">
+            <a href="MOLLIE_PAPERBACK_LINK" target="_blank" class="bestel-option bestel-option--primary">
+                <div class="bestel-option-left">
+                    <div class="bestel-option-type">Paperback</div>
+                    <div class="bestel-option-name">Standaardeditie</div>
+                    <div class="bestel-option-detail">256 pagina's · 2e herziene druk</div>
+                </div>
+                <div class="bestel-option-price">&euro;29,95</div>
+            </a>
+            <a href="MOLLIE_EBOOK_LINK" target="_blank" class="bestel-option bestel-option--secondary">
+                <div class="bestel-option-left">
+                    <div class="bestel-option-type">E-book</div>
+                    <div class="bestel-option-name">Digitale editie</div>
+                    <div class="bestel-option-detail">PDF &amp; ePub · Direct beschikbaar</div>
+                </div>
+                <div class="bestel-option-price">&euro;16,95</div>
+            </a>
+        </div>
+    </div>
+</div>
+
 <!-- FOOTER -->
 <div id="footer-placeholder"></div>
 
@@ -1449,36 +1564,19 @@
 <script>
 var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.fade-in').forEach(function(el){obs.observe(el)});
+
+function bsOpen() {
+    document.getElementById('bestelModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function bsClose(e) {
+    if (!e || e.target === document.getElementById('bestelModal')) {
+        document.getElementById('bestelModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') bsClose(); });
 </script>
 <script src="footer.js"></script>
-
-<!-- Bestel modal -->
-<div id="bestel-modal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(22,48,41,0.55); backdrop-filter:blur(4px); align-items:center; justify-content:center;">
-    <div style="background:#fff; border-radius:20px; padding:40px 36px; max-width:420px; width:90%; text-align:center; box-shadow:0 24px 60px rgba(22,48,41,0.25); position:relative;">
-        <button onclick="closeBestelModal()" style="position:absolute; top:16px; right:18px; background:none; border:none; font-size:22px; cursor:pointer; color:#999; line-height:1;">&times;</button>
-        <div style="width:52px; height:52px; background:#eef0ed; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#3a7d5c" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        </div>
-        <h3 style="font-size:1.2rem; font-weight:700; color:#1a2e1f; margin:0 0 10px;">Bestellen</h3>
-        <p style="color:#6b7c6e; font-size:0.95rem; line-height:1.6; margin:0;">Op deze knop komt een Mollie betaallink.</p>
-    </div>
-</div>
-
-<script>
-function openBestelModal(e) {
-    e.preventDefault();
-    var modal = document.getElementById('bestel-modal');
-    modal.style.display = 'flex';
-}
-function closeBestelModal() {
-    document.getElementById('bestel-modal').style.display = 'none';
-}
-document.getElementById('bestel-modal').addEventListener('click', function(e) {
-    if (e.target === this) closeBestelModal();
-});
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeBestelModal();
-});
-</script>
 </body>
 </html>

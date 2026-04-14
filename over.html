@@ -23,7 +23,7 @@
             align-items: stretch;
         }
         .about-hero-text {
-            background: #eef0ed;
+            background: #f7f0eb;
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 40px 40px;
@@ -31,6 +31,7 @@
             flex-direction: column;
             justify-content: center;
         }
+        .about-hero-text h1 { color: var(--green-dark); }
         .about-hero-text p {
             font-size: 16px;
             color: var(--text-body);
@@ -150,8 +151,14 @@
         }
         .visie-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 48px;
+            align-items: start;
+        }
+        .visie-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
             align-items: start;
         }
         .visie-content p {
@@ -193,9 +200,26 @@
 
         /* ===== BIO ===== */
         .bio-section {
-            padding: 140px 48px;
-            max-width: calc(var(--max-width) + 96px);
-            margin: 0 auto;
+            padding: 80px 48px;
+            margin: 0 48px 80px;
+            background: var(--green-dark);
+            border-radius: 28px;
+            max-width: var(--max-width);
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .bio-seed-watermark {
+            position: absolute;
+            right: -60px;
+            bottom: -60px;
+            width: 380px;
+            height: 380px;
+            fill: none;
+            stroke: rgba(255,255,255,0.07);
+            stroke-width: 1.5;
+            pointer-events: none;
         }
         .bio-grid {
             display: grid;
@@ -214,9 +238,10 @@
             object-position: center center;
             box-shadow: 0 20px 50px rgba(58, 61, 50, 0.1);
         }
+        .bio-section h2 { color: #fff; }
         .bio-content p {
             font-size: 15px;
-            color: var(--text-body);
+            color: rgba(255,255,255,0.82);
             line-height: 1.75;
             margin-bottom: 16px;
         }
@@ -235,6 +260,7 @@
             .stat-item:nth-child(2) { border-right: none; }
             .visie-section { padding: 80px 32px; }
             .visie-grid { grid-template-columns: 1fr; }
+            .visie-content { grid-template-columns: 1fr; gap: 24px; }
             .photo-trio { padding: 0 32px; }
             .photo-trio-grid { grid-template-rows: 200px 200px; }
             .bio-section { padding: 80px 32px; }
@@ -321,7 +347,7 @@
             <h1>Over mij</h1>
             <p>Arts en coach, gevestigd aan de Vughterstraat in 's-Hertogenbosch. Ik begeleid mensen die weer in verbinding willen komen met zichzelf, hun lichaam en hun bezieling.</p>
             <div class="hero-actions">
-                <a href="coaching.html" class="btn btn-accent">Trajecten & coaching <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+                <a href="coaching.html" class="btn btn-white">Trajecten & coaching <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
                 <a href="contact.html" class="btn btn-outline">Contact <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
             </div>
         </div>
@@ -329,7 +355,7 @@
             <div class="about-hero-image">
                 <img src="images/Richard_Hoofs-3.jpg" alt="Richard Hoofs">
             </div>
-            <a href="coaching.html" class="about-hero-card">
+            <a href="contact.html" class="about-hero-card">
                 <img class="about-hero-card-avatar" src="images/Richard_Hoofs-13.jpg" alt="Richard Hoofs">
                 <div class="about-hero-card-info">
                     <div class="about-hero-card-name">Richard Hoofs</div>
@@ -348,19 +374,15 @@
     <div class="stats-inner">
         <div class="stat-item">
             <div class="stat-number" style="color: #5c6e62;">25+</div>
-            <div class="stat-label">Jaar ervaring als arts</div>
+            <div class="stat-label">Jaar werkzaam als arts</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number" style="color: var(--accent);">1600+</div>
-            <div class="stat-label">Boeken verkocht</div>
+            <div class="stat-number" style="color: var(--accent);">3</div>
+            <div class="stat-label">Gepubliceerde boeken</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number" style="color: #5c6e62;">20+</div>
-            <div class="stat-label">Publicaties in nationale media</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number" style="color: var(--accent);">6</div>
-            <div class="stat-label">Disciplines gecombineerd</div>
+            <div class="stat-number" style="color: #5c6e62;">8</div>
+            <div class="stat-label">Holistische disciplines</div>
         </div>
     </div>
 </div>
@@ -372,32 +394,31 @@
             <h2>Waar bezield leven centraal staat</h2>
         </div>
         <div class="visie-content">
-            <div style="margin-bottom: 32px;">
+            <div>
                 <h4 style="font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px;">Visie</h4>
-                <p>Holistisch komt van het oud-Griekse woord &lsquo;holos&rsquo; - geheel. Je bent lichaam, persoon &eacute;n ziel, samen als &eacute;&eacute;n eenheid. En we staan onlosmakelijk in verbinding met onze leefwereld: zorg je goed voor de natuur en de mensen om je heen, dan zorg je goed voor jezelf.</p>
-                <p>Ieder mens draagt van nature de kwaliteiten in zich om in balans te leven. Soms raken we die verbinding kwijt door oude patronen, stress of onverwerkte ervaringen. Ik geloof dat genezing begint bij het weer voelen van wat er werkelijk leeft.</p>
+                <p>Holistisch komt van het oud-Griekse woord &lsquo;holos&rsquo; - geheel. Holistisch wil zeggen dat je jezelf als &eacute;&eacute;n geheel ziet. Jij bent lichaam, persoon &eacute;n ziel. Samen. Als &eacute;&eacute;n eenheid. We staan onlosmakelijk in verbinding met onze leefwereld: zorg je goed voor de natuur, de dieren en de mensen om je heen, dan zorg je goed voor jezelf.</p>
+                <p>Onze omgeving is een weerspiegeling van onszelf. De meeste Oosterse geneeswijzen - zoals acupunctuur, ayurveda, yoga en Traditional Chinese Medicine - zien ziekte als een teken van het uit balans zijn van een mens. Ziekte en medische aandoeningen worden gezien als het signaal van het lichaam om de verbinding tussen persoon en ziel te herstellen. Een klacht of een crisis is te zien als een aanwijzing om opnieuw in balans te komen.</p>
+                <p>Lichamelijke klachten en ziekten worden gezien als een uitnodiging tot groei en innerlijke bewustwording. Ziekte is een roep van de ziel. De klacht nodigt je uit te kijken naar jezelf. Op deze manier kun je ook echt verbinding krijgen en invloed uitoefenen op je eigen klachten.</p>
             </div>
-            <hr style="border: none; border-top: 1px solid var(--border); margin-bottom: 32px;">
             <div>
                 <h4 style="font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px;">Werkwijze</h4>
-                <p>Ik werk vanuit een en/en-benadering: regulier &eacute;n complementair, praktisch &eacute;n spiritueel. Ik put uit westerse geneeskunde, ayurveda, acupunctuur, antroposofie, mindfulness, reiki en marma. Deze benaderingen hoeven elkaar niet te bijten - ze vullen elkaar juist aan in een persoonlijke aanpak.</p>
-                <p>In een consult of coaching kijk ik ook vanuit een andere taal naar je lichaam: de energetische. Hoe sta je in je energie, hoe stroomt het door je chakra&rsquo;s en aura? Klachten zie ik niet als iets dat weg moet, maar als een roep van de ziel - een uitnodiging tot bewustwording en innerlijke groei.</p>
+                <p>Alles begint met een <strong>los holistisch consult</strong>. In een consult staan we stil bij wat er werkelijk in jou leeft. Wat vraagt aandacht? Waar wil jouw ziel naartoe bewegen? Jij staat centraal. Samen kijken we of een traject bij je past - en zo ja, welk het beste aansluit bij waar jij nu staat.</p>
+                <p>Vanuit het consult zijn er twee persoonlijke trajecten mogelijk. In het traject <strong>Van Vast naar Stroming</strong> neem je bewust de tijd om te groeien, op jouw tempo. We kijken naar patronen die jouw energie vastzetten en onderzoeken wat daarin gezien en gevoeld wil worden. In het traject <strong>Lezen van Lichaam en Energie</strong> leer je de signalen van je lichaam en energie herkennen en begrijpen - als ingang naar jezelf en jouw bezieling.</p>
+                <p>Daarnaast bied ik <strong>Marma Ayurvedische Massage</strong> aan: een lichaamsbehandeling via de 107 vitale knooppunten, waarbij vastgelopen energie vrijkomt en je zelfhelende vermogen wordt aangesproken. En voor wie in groepsverband wil verdiepen, is er de <strong>Groepstraining Bezield Leven</strong> - een traject voor je eigen ontwikkeling én voor wie werkt met mensen.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FOTO'S -->
-<section class="photo-trio fade-in">
-    <div class="photo-trio-grid">
-        <img class="photo-large" src="images/Richard_Hoofs-15.jpg" alt="Richard Hoofs in de praktijk" loading="lazy">
-        <img class="photo-small-top" src="images/Richard_Hoofs-8.jpg" alt="Richard Hoofs op straat" loading="lazy">
-        <img class="photo-small-bottom" src="images/Richard_Hoofs-11.jpg" alt="Richard Hoofs" loading="lazy">
-    </div>
+<!-- FOTO -->
+<section class="photo-trio fade-in" style="padding: 0 48px; max-width: calc(var(--max-width) + 96px); margin: 0 auto;">
+    <img src="images/Richard_Hoofs-11.jpg" alt="Richard Hoofs" loading="lazy" style="width: 100%; max-height: 620px; object-fit: cover; object-position: center 15%; border-radius: 20px; display: block; transform: scale(1.08); transform-origin: center 20%;">
+
 </section>
 
 <!-- BIO -->
 <section class="bio-section">
+    <svg class="bio-seed-watermark" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
     <div class="bio-grid fade-in">
         <div class="bio-image">
             <img src="images/Richard Sekhmet.jpg" alt="Richard Hoofs" loading="lazy">
@@ -408,7 +429,7 @@
             <p>Deze zoektocht bracht me ook naar India en Egypte. In India werkte ik een tijd als arts mee aan een gezondheidsproject op het platteland van Maharashtra. Daar werd ik geraakt door de diepe wijsheid van de Oosterse esoterie, maar ervoer ik tegelijk het praktische nut van de Westerse geneeskunde.</p>
             <p>De verbinding tussen Oost en West - met behoud van het beste van beiden - vormt de basis van mijn werk als coach, acupuncturist en auteur. Naast mijn werk op Mon Desir werk ik nog parttime als huisarts.</p>
             <p>Ik ben auteur van het boek &ldquo;Bezield Leven op Doktersrecept&rdquo;, waarin ik mijn visie op holistische gezondheid deel met een breder publiek.</p>
-            <a href="coaching.html" class="btn btn-accent">Bekijk trajecten & coaching <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            <a href="coaching.html" class="btn btn-white">Bekijk trajecten & coaching <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
         </div>
     </div>
 </section>

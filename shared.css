@@ -307,6 +307,14 @@ img { max-width: 100%; display: block; }
 }
 .btn .btn-arrow svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
+/* --- Small button variant --- */
+.btn-sm {
+    padding: 7px 16px;
+    font-size: 12px;
+    gap: 8px;
+}
+.btn-sm .btn-arrow { width: 20px; height: 20px; }
+
 /* --- White button (light bg, dark text) --- */
 .btn-white {
     background: #fff;
@@ -704,7 +712,7 @@ img { max-width: 100%; display: block; }
     align-items: stretch;
 }
 .split-hero-content {
-    background: #eef0ed;
+    background: #f7f0eb;
     border: 1px solid var(--border);
     border-radius: 24px;
     padding: 48px 44px;
@@ -714,7 +722,7 @@ img { max-width: 100%; display: block; }
 }
 .split-hero-content h1 {
     font-family: var(--font-heading);
-    font-size: clamp(30px, 4.5vw, 52px);
+    font-size: clamp(26px, 3vw, 36px);
     font-weight: 800;
     color: var(--green-dark);
     letter-spacing: -0.03em;
@@ -812,7 +820,7 @@ img { max-width: 100%; display: block; }
 
 /* ===== FULL-WIDTH HERO WRAP (consult, contact) ===== */
 .hero-wrap {
-    background: #eef0ed;
+    background: #f7f0eb;
     border-radius: 0 0 40px 40px;
     padding-top: 100px;
 }
@@ -826,8 +834,8 @@ img { max-width: 100%; display: block; }
     align-items: start;
 }
 .hero-wrap-text h1 {
-    font-size: clamp(34px, 4.5vw, 56px);
-    line-height: 1.05;
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.1;
     margin-bottom: 20px;
 }
 .hero-wrap-text p {
