@@ -452,20 +452,15 @@
         /* right: image + seal */
         .bk-about-right {
             position: relative;
-            background: #fff;
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            border: 1px solid var(--border);
-            min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .bk-about-img {
             width: 100%;
-            max-width: 300px;
-            aspect-ratio: 2/3;
-            border-radius: 8px;
+            max-width: 340px;
+            aspect-ratio: 3/4;
+            border-radius: var(--radius-lg);
             object-fit: cover;
             box-shadow: 0 30px 60px -20px rgba(58,61,50,0.25);
             transform: rotate(-1.5deg);
@@ -583,35 +578,52 @@
            EDITIONS — pricing cards
            ============================================ */
         .bk-editions {
-            padding: 96px 48px;
+            padding: 64px 48px;
             max-width: calc(var(--max-width) + 96px);
             margin: 0 auto;
-            background: #eef0ed;
+            background: var(--green-dark);
             border-radius: 28px;
             text-align: center;
         }
         .bk-editions h2 {
             font-family: var(--font-heading);
-            font-size: clamp(32px, 3.6vw, 48px);
+            font-size: clamp(26px, 2.8vw, 36px);
             font-weight: 700;
-            color: var(--green-dark);
+            color: #fff;
             line-height: 1.1;
-            margin: 0 0 12px;
+            margin: 0 0 40px;
             letter-spacing: -0.02em;
         }
         .bk-editions > p {
             font-size: 15px;
-            color: var(--text-muted);
+            color: rgba(255,255,255,0.65);
             margin: 0 auto 56px;
             max-width: 520px;
         }
         .bk-editions-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 24px;
-            max-width: 780px;
+            max-width: 680px;
             margin: 0 auto;
             text-align: left;
+        }
+        .bk-edition-inner {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 36px;
+            align-items: center;
+        }
+        .bk-edition-book-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+        }
+        .bk-edition-book-img img {
+            width: 100%;
+            display: block;
+            aspect-ratio: 3/4;
+            object-fit: cover;
         }
         .bk-edition {
             background: #fff;
@@ -760,6 +772,35 @@
         .bk-edition--featured .bk-edition-cta:hover {
             background: #d4885e;
             border-color: #d4885e;
+        }
+
+        /* ============================================
+           EDITIONS — two-col layout
+           ============================================ */
+        .bk-editions h2 .soft { color: var(--accent); }
+        .bk-editions-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            max-width: 900px;
+            margin: 0 auto;
+            align-items: center;
+            text-align: left;
+        }
+        .bk-editions-photo {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px -20px rgba(0,0,0,0.45);
+        }
+        .bk-editions-photo img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            display: block;
+        }
+        .bk-editions-body .bk-editions-grid {
+            max-width: 100%;
+            margin: 0;
         }
 
         /* ============================================
@@ -1011,6 +1052,7 @@
 
             .bk-editions { padding: 72px 32px; }
             .bk-editions-grid { grid-template-columns: 1fr; }
+            .bk-editions-body { grid-template-columns: 1fr; }
 
             .bk-faq { padding: 72px 32px; }
 
@@ -1036,7 +1078,7 @@
             .bk-about { padding: 40px 20px; }
             .bk-about-wrap { padding: 36px 24px; }
             .bk-features { grid-template-columns: 1fr; }
-            .bk-about-right { padding: 32px 24px; min-height: 320px; }
+            .bk-about-right { padding: 0; min-height: 0; }
 
             .bk-inside { padding: 60px 20px; }
             .bk-editions { padding: 60px 24px; }
@@ -1212,7 +1254,7 @@
 
             <!-- Cover -->
             <div class="bk-hero-cover">
-                <img src="images/Boek-foto-afb.jpg" alt="Bezield Leven op Doktersrecept">
+                <img src="images/Foto-bezieldlevenboek.jpg" alt="Bezield Leven op Doktersrecept">
             </div>
         </div>
 
@@ -1373,10 +1415,7 @@
         </div>
 
         <div class="bk-about-right">
-            <a href="https://www.medischepraktijkmondesir.nl/product/bezield-leven-op-doktersrecept/" target="_blank" class="bk-shop-seal">
-                Koop<br><strong>nu</strong>
-            </a>
-            <img src="images/Boek-foto-afb.jpg" alt="Bezield Leven op Doktersrecept" class="bk-about-img">
+            <img src="images/Richard_Hoofs-19.jpg" alt="Richard Hoofs" class="bk-about-img">
         </div>
     </div>
 </section>
@@ -1417,59 +1456,33 @@
      EDITIONS — pricing cards
      ============================================ -->
 <section class="bk-editions fade-in">
-    <h2>Bestel het boek</h2>
+    <h2>Begin vandaag aan jouw <span class="soft">bezielde reis</span></h2>
+    <p>Neem de eerste stap richting een gezondheid die verder gaat dan symptomen, een leven met betekenis, bezieling en je eigen kompas.</p>
 
     <div class="bk-editions-grid">
         <div class="bk-edition">
-            <div class="bk-edition-icon">
-                <svg viewBox="0 0 24 24"><path d="M4 4h12a4 4 0 014 4v12H8a4 4 0 01-4-4V4z"/><path d="M4 4v16"/></svg>
-            </div>
-            <h3>Paperback</h3>
-            <div class="bk-edition-sub">De reguliere paperback, nieuwste druk</div>
-            <div class="bk-edition-price">
-                <span class="bk-edition-currency">&euro;</span>
-                <span class="bk-edition-amount">29,95</span>
-                <span class="bk-edition-unit">/ boek</span>
-            </div>
-            <ul class="bk-edition-list">
-                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 256 pagina's, paperback</li>
-                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 2<sup>e</sup> herziene druk</li>
-                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Direct uit voorraad leverbaar</li>
-                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Verzending binnen 2 werkdagen</li>
-            </ul>
-            <a href="https://www.medischepraktijkmondesir.nl/product/bezield-leven-op-doktersrecept/" target="_blank" class="btn btn-accent" style="width:100%; justify-content:center;">Bestel nu <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ============================================
-     FINAL CTA
-     ============================================ -->
-<section class="bk-final fade-in">
-    <div class="bk-final-card">
-        <div class="bk-final-burst">
-            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-                <g fill="#7A8B82" fill-opacity="0.18">
-                    <circle cx="200" cy="300" r="180"/>
-                    <circle cx="200" cy="140" r="140"/>
-                    <circle cx="200" cy="460" r="140"/>
-                </g>
-            </svg>
-        </div>
-        <div class="bk-final-img">
-            <img src="images/Richard_Hoofs-59.jpg" alt="Richard Hoofs met zijn boek" loading="lazy">
-        </div>
-        <div class="bk-final-content">
-            <h2>Begin vandaag aan jouw <span class="soft">bezielde reis</span></h2>
-            <p>Neem de eerste stap richting een gezondheid die verder gaat dan symptomen - een leven met betekenis, bezieling en je eigen kompas.</p>
-            <div class="bk-final-actions">
-                <button onclick="bsOpen()" class="btn btn-accent">Bestel het boek <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
-                <a href="contact.html" class="btn btn-outline">Contact opnemen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            <div class="bk-edition-inner">
+                <div class="bk-edition-book-img">
+                    <img src="images/Richard_Hoofs-59.jpg" alt="Richard Hoofs met zijn boek" loading="lazy">
+                </div>
+                    <div>
+                        <h3>Paperback</h3>
+                        <div class="bk-edition-sub">De reguliere paperback, 2e herziene druk</div>
+                        <div class="bk-edition-price">
+                            <span class="bk-edition-currency">&euro;</span>
+                            <span class="bk-edition-amount">29,95</span>
+                            <span class="bk-edition-unit">/ boek</span>
+                        </div>
+                        <ul class="bk-edition-list">
+                            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 256 pagina's, paperback</li>
+                            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Direct uit voorraad leverbaar</li>
+                            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Verzending binnen 2 werkdagen</li>
+                        </ul>
+                        <a href="https://www.medischepraktijkmondesir.nl/product/bezield-leven-op-doktersrecept/" target="_blank" class="btn btn-accent">Bestel nu <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 </section>
 
 <!-- ============================================

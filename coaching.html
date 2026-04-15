@@ -669,13 +669,19 @@
         .traject-hero-image {
             position: relative;
             overflow: hidden;
+            min-height: 0;
         }
         .traject-hero-image img {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center top;
             display: block;
+        }
+        #van-vast-naar-stroming .traject-hero-image img {
+            object-position: center 40%;
         }
 
         /* Detail content below hero */
@@ -1017,7 +1023,7 @@
 <div id="van-vast-naar-stroming" style="padding-top: 40px;">
 
     <!-- Hero blok -->
-    <div class="traject-hero traject-hero--accent fade-in">
+    <div class="traject-hero traject-hero--accent traject-hero--reverse fade-in">
         <div class="traject-hero-text">
             <div class="th-label">Persoonlijk Holistisch Traject · 1-op-1</div>
             <h2>Van Vast naar Stroming</h2>
@@ -1044,7 +1050,7 @@
             <a href="inschrijven-vast-stroming.html" class="btn btn-white btn-sm">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
         </div>
         <div class="traject-hero-image">
-            <img src="images/richard-bank.jpg" alt="Van Vast naar Stroming traject" loading="lazy">
+            <img src="images/Richard_Hoofs-7.jpg" alt="Van Vast naar Stroming traject" loading="lazy">
         </div>
     </div>
 
@@ -1108,7 +1114,7 @@
 <div id="lezen-lichaam-energie" style="padding-top: 40px;">
 
     <!-- Hero blok -->
-    <div class="traject-hero traject-hero--green traject-hero--reverse fade-in">
+    <div class="traject-hero traject-hero--green fade-in">
         <div class="traject-hero-text">
             <div class="th-label">Persoonlijk Holistisch Traject · 1-op-1</div>
             <h2>Lezen van Lichaam en Energie</h2>
@@ -1135,7 +1141,7 @@
             <a href="inschrijven-lichaam-energie.html" class="btn btn-white btn-sm">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
         </div>
         <div class="traject-hero-image">
-            <img src="images/richard-ses.jpg" alt="Lezen van Lichaam en Energie" loading="lazy">
+            <img src="images/Richard_Hoofs-26.jpg" alt="Lezen van Lichaam en Energie" loading="lazy">
         </div>
     </div>
 
@@ -1198,7 +1204,7 @@
 <div id="groepstraining" style="padding-top: 40px;">
 
     <!-- Hero blok -->
-    <div class="traject-hero traject-hero--accent fade-in">
+    <div class="traject-hero traject-hero--accent traject-hero--reverse fade-in">
         <div class="traject-hero-text">
             <div class="th-label">Groepstraining · Max. 6 deelnemers · Den Bosch</div>
             <h2>Groepstraining Bezield Leven</h2>
@@ -1230,7 +1236,7 @@
             <a href="inschrijven-groepstraining.html" class="btn btn-white btn-sm">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
         </div>
         <div class="traject-hero-image">
-            <img src="images/Richard_Hoofs-17-final.jpg" alt="Groepstraining Bezield Leven" loading="lazy">
+            <img src="images/praktijkruimte.jpg" alt="Praktijkruimte groepstraining Bezield Leven" loading="lazy">
         </div>
     </div>
 
@@ -1294,7 +1300,7 @@
 
 <!-- LOS HOLISTISCH CONSULT -->
 <div id="los-consult" style="padding-top: 40px; padding-bottom: 80px;">
-    <div class="traject-hero traject-hero--light traject-hero--centered fade-in">
+    <div class="traject-hero traject-hero--light fade-in">
         <div class="traject-hero-text">
             <div class="th-label">Intake</div>
             <h2>Los holistisch consult</h2>
@@ -1319,6 +1325,9 @@
                 </div>
             </div>
             <a href="inschrijven-consult.html" class="btn btn-accent btn-sm">Aanmelden <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+        </div>
+        <div class="traject-hero-image">
+            <img src="images/Richard-hoofs-praktijk.jpg" alt="Los holistisch consult in de praktijk" loading="lazy">
         </div>
     </div>
 </div>
