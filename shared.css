@@ -134,7 +134,7 @@ img { max-width: 100%; display: block; }
     align-items: center;
     gap: 10px;
     font-family: 'Bosten', Georgia, serif;
-    font-size: 28px;
+    font-size: 34px;
     font-weight: 400;
     color: #5c6e62;
     letter-spacing: 0.02em;
@@ -143,11 +143,12 @@ img { max-width: 100%; display: block; }
     left: 48px;
 }
 .nav-logo-icon {
-    width: 36px;
-    height: 36px;
+    width: 50px;
+    height: 50px;
     flex-shrink: 0;
     color: inherit;
     transition: color 0.3s;
+    filter: hue-rotate(-25deg) saturate(27%) brightness(1.15);
 }
 .nav-center {
     display: flex;
@@ -438,7 +439,7 @@ img { max-width: 100%; display: block; }
 
 /* ===== UNIFIED FOOTER ===== */
 .unified-footer {
-    background: var(--green);
+    background: #5e6e66;
     border-radius: 40px 40px 0 0;
     padding: 56px 48px 32px;
     position: relative;

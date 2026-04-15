@@ -21,7 +21,7 @@
             position: relative;
             z-index: 1;
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
+            grid-template-columns: 0.85fr 1.15fr;
             gap: 32px;
             align-items: stretch;
         }
@@ -29,7 +29,7 @@
             background: #eef0ed;
             border: 1px solid var(--border);
             border-radius: 24px;
-            padding: 64px 56px;
+            padding: 64px 112px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -46,7 +46,7 @@
             color: var(--green-dark);
         }
         .hero-text {
-            max-width: 520px;
+            max-width: 100%;
         }
         .hero .label {
             color: var(--text-muted);
@@ -59,7 +59,7 @@
             font-size: 17px;
             color: var(--text-body);
             line-height: 1.7;
-            max-width: 480px;
+            max-width: 100%;
             margin-bottom: 36px;
         }
         .hero-actions {
@@ -249,6 +249,40 @@
             color: #fff;
             line-height: 1.6;
             font-style: italic;
+        }
+        .visie-banner--split .visie-banner-inner {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 64px;
+            align-items: start;
+            max-width: var(--max-width);
+            text-align: left;
+        }
+        .visie-banner--split .visie-photo {
+            border-radius: 18px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            max-width: 260px;
+            justify-self: start;
+        }
+        .visie-banner--split .visie-photo img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .visie-banner--split .visie-quote-mark,
+        .visie-banner--split .visie-quote-mark-close { text-align: left; }
+        .visie-banner--split .visie-cite {
+            display: block;
+            margin-top: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-style: normal;
+        }
+        @media (max-width: 768px) {
+            .visie-banner--split .visie-banner-inner { grid-template-columns: 1fr; }
+            .visie-banner--split .visie-photo { aspect-ratio: 16/9; max-height: 300px; }
         }
 
         /* ===== ABOUT + QUOTE ===== */
@@ -490,7 +524,7 @@
             width: 100%;
             height: 580px;
             object-fit: cover;
-            object-position: center top;
+            object-position: center 5%;
             border-radius: var(--radius-lg);
         }
         .media-articles-col {
@@ -1307,6 +1341,154 @@
             .stats-cards { flex-direction: column; }
             .stat-card { min-width: auto; }
         }
+
+        /* ===== COMPACT CONSULTEN & TRAJECTEN ===== */
+        .compact-section {
+            padding: var(--section-padding) 48px;
+            background: var(--bg-alt);
+            margin: 40px 48px 0;
+            border-radius: 24px;
+        }
+        .compact-section-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+        .compact-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            padding-top: 20px;
+        }
+        .compact-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 0 0 18px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            transition: all 0.25s;
+            overflow: hidden;
+        }
+        .compact-card .compact-image {
+            width: 100%;
+            aspect-ratio: 5 / 4;
+            overflow: hidden;
+            background: #f2f2ef;
+        }
+        .compact-card .compact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .compact-card:hover .compact-image img { transform: scale(1.05); }
+        .compact-card .compact-body {
+            padding: 18px 18px 0;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .compact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 32px rgba(58,61,50,0.08);
+            border-color: transparent;
+        }
+        .compact-card .compact-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .compact-card h4 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            line-height: 1.25;
+            color: var(--green-dark);
+            margin: 0 0 8px;
+            min-height: 40px;
+        }
+        .compact-card .compact-desc {
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--text-body);
+            margin: 0 0 10px;
+        }
+        .compact-card .compact-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .compact-card .compact-bullets li {
+            font-size: 11px;
+            color: var(--text-body);
+            line-height: 1.4;
+            padding-left: 14px;
+            position: relative;
+        }
+        .compact-card .compact-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .compact-card .compact-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            margin-bottom: 14px;
+        }
+        .compact-card .compact-price {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--green-dark);
+        }
+        .compact-card .compact-duration {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .compact-card .compact-btn {
+            margin: 0 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            background: var(--green-dark);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .compact-card .compact-btn:hover { background: #2a2d1e; }
+        .compact-card--dark .compact-btn { background: var(--accent); }
+        .compact-card--dark .compact-btn:hover { background: #a8623d; }
+        .compact-card .compact-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+        @media (max-width: 1200px) {
+            .compact-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 820px) {
+            .compact-grid { grid-template-columns: repeat(2, 1fr); }
+            .compact-section { padding: 60px 20px 80px; }
+        }
+        @media (max-width: 480px) {
+            .compact-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -1324,7 +1506,7 @@
                     <div class="stat-label">Jaar ervaring</div>
                 </div>
                 <div class="stat-card" style="background: rgba(90, 107, 96, 0.9);">
-                    <div class="stat-number">1600+</div>
+                    <div class="stat-number">2500+</div>
                     <div class="stat-label">Boeken verkocht</div>
                 </div>
                 <div class="stat-card" style="background: rgba(122, 139, 130, 0.88);">
@@ -1336,9 +1518,10 @@
         <div class="hero-text-wrap fade-in">
         <svg class="seed-watermark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="23" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="50" cy="27" r="23" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="50" cy="73" r="23" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="69.9" cy="38.5" r="23" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="69.9" cy="61.5" r="23" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="30.1" cy="38.5" r="23" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="30.1" cy="61.5" r="23" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
         <div class="hero-text">
-            <div class="label"><span class="label-dot"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="23" fill="currentColor" opacity="0.25"/><circle cx="50" cy="27" r="23" fill="currentColor" opacity="0.25"/><circle cx="50" cy="73" r="23" fill="currentColor" opacity="0.25"/><circle cx="69.9" cy="38.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="69.9" cy="61.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="30.1" cy="38.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="30.1" cy="61.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="50" cy="50" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="50" cy="27" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="50" cy="73" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="69.9" cy="38.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="69.9" cy="61.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="30.1" cy="38.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="30.1" cy="61.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span> Voor als je verder wilt kijken dan je klacht</div>
+            <div class="label"><span class="label-dot"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="23" fill="currentColor" opacity="0.25"/><circle cx="50" cy="27" r="23" fill="currentColor" opacity="0.25"/><circle cx="50" cy="73" r="23" fill="currentColor" opacity="0.25"/><circle cx="69.9" cy="38.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="69.9" cy="61.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="30.1" cy="38.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="30.1" cy="61.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="50" cy="50" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="50" cy="27" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="50" cy="73" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="69.9" cy="38.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="69.9" cy="61.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="30.1" cy="38.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="30.1" cy="61.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span> Voor als je verder wil kijken dan je klacht</div>
             <h1>Bezield Leven op Doktersrecept</h1>
-            <p class="hero-desc">De holistische wijsheid van oud Egypte vormde onze geneeskunde, maar we zijn haar kwijtgeraakt. In dit boek breng ik haar terug. Met ruim twintig jaar praktijkervaring, wetenschappelijke inzichten en hands-on oefeningen laat ik je zien hoe je échte balans vindt. Geen snelle fix, maar een weg naar duurzaam welzijn.</p>
+            <p class="hero-desc">In dit boek neemt Richard Hoofs je mee op een reis naar holistische gezondheid. Als huisarts, arts leefstijlgeneeskunde, spiritueel coach en acupuncturist deelt hij zijn unieke visie op genezing, waarbij lichaam, persoon en ziel samenkomen. Een praktische gids voor iedereen die op zoek is naar balans, gezondheid en duurzaam welzijn.</p>
+            <p class="hero-desc" style="font-style: italic; border-left: 2px solid var(--accent); padding-left: 14px; margin-top: 14px;">&lsquo;Met ruim 25 jaar praktijkervaring, wetenschappelijke inzichten en hands-on oefeningen laat ik je zien hoe je &eacute;chte balans vindt. Geen snelle fix, maar een weg naar duurzaam welzijn.&rsquo;</p>
             <div class="hero-actions">
                 <a href="boeken.html" class="btn btn-accent">Bestel het boek <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
                 <a href="coaching.html" class="btn btn-green">Trajecten & coaching <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
@@ -1361,7 +1544,7 @@
 </div>
 
 <!-- VISIE QUOTE -->
-<section class="visie-banner fade-in" id="over">
+<section class="visie-banner visie-banner--split fade-in" id="over">
     <svg class="visie-seed-bg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <circle cx="50" cy="50" r="23" fill="none" stroke="currentColor" stroke-width="0.8"/>
         <circle cx="50" cy="27" r="23" fill="none" stroke="currentColor" stroke-width="0.8"/>
@@ -1372,9 +1555,14 @@
         <circle cx="30.1" cy="61.5" r="23" fill="none" stroke="currentColor" stroke-width="0.8"/>
     </svg>
     <div class="visie-banner-inner">
-        <span class="visie-quote-mark">&ldquo;</span>
-        <blockquote>Terug naar wie je werkelijk bent.</blockquote>
-        <span class="visie-quote-mark visie-quote-mark-close">&rdquo;</span>
+        <div class="visie-photo">
+            <img src="images/richard-visie.jpeg" alt="Richard Hoofs" loading="lazy">
+        </div>
+        <div>
+            <span class="visie-quote-mark">&ldquo;</span>
+            <blockquote>Het maakt niet uit of je uit balans raakt,<br>als je de weg terug maar weet te vinden.<br>Balans in jezelf, balans in je leven.</blockquote>
+            <span class="visie-quote-mark visie-quote-mark-close">&rdquo;</span>
+        </div>
     </div>
 </section>
 
@@ -1394,74 +1582,101 @@
     </div>
 </section>
 
-<!-- PRICING -->
-<section class="pricing-section" id="tarieven">
-    <div class="pricing-container">
-        <div class="pricing-header fade-in">
-            <div class="label" style="justify-content:center; margin:0 auto 16px;"><span class="label-dot"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="23" fill="currentColor" opacity="0.25"/><circle cx="50" cy="27" r="23" fill="currentColor" opacity="0.25"/><circle cx="50" cy="73" r="23" fill="currentColor" opacity="0.25"/><circle cx="69.9" cy="38.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="69.9" cy="61.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="30.1" cy="38.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="30.1" cy="61.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="50" cy="50" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="50" cy="27" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="50" cy="73" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="69.9" cy="38.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="69.9" cy="61.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="30.1" cy="38.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="30.1" cy="61.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span> Trajecten</div>
-            <h2>Kies het traject dat bij je past</h2>
-            <p>Transparante tarieven voor elke stap op je pad naar holistische gezondheid.</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card pricing-card--accent featured fade-in fade-in-d1">
-                <div class="pricing-top">
-                    <p class="pricing-label">Persoonlijk holistisch coachingstraject</p>
-                    <h3>Van Vast naar Stroming</h3>
-                    <p class="pricing-desc">Van blokkades naar stromende levensenergie. In zes consulten neem je bewust de tijd om te groeien, op jouw tempo.</p>
-                </div>
-                <div class="pricing-body">
-                    <div class="pricing-price">&euro;862,50</div>
-                    <div class="pricing-duration">6 consulten van 75 minuten</div>
-                    <ul class="pricing-features">
-                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Persoonlijke 1-op-1 begeleiding</li>
-                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Patronen en blokkades onderzoeken</li>
-                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Groei op jouw tempo</li>
-                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Verbinding met lichaam en ziel</li>
-                    </ul>
-                    <a href="coaching.html#van-vast-naar-stroming" class="pricing-btn pricing-btn-outline">Coaching aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+<!-- CONSULTEN & TRAJECTEN -->
+<section class="compact-section" id="tarieven">
+    <div class="compact-section-inner">
+    <div class="pricing-header fade-in">
+        <div class="label" style="justify-content:center; margin:0 auto 16px;"><span class="label-dot"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="23" fill="currentColor" opacity="0.25"/><circle cx="50" cy="27" r="23" fill="currentColor" opacity="0.25"/><circle cx="50" cy="73" r="23" fill="currentColor" opacity="0.25"/><circle cx="69.9" cy="38.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="69.9" cy="61.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="30.1" cy="38.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="30.1" cy="61.5" r="23" fill="currentColor" opacity="0.25"/><circle cx="50" cy="50" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="50" cy="27" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="50" cy="73" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="69.9" cy="38.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="69.9" cy="61.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="30.1" cy="38.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="30.1" cy="61.5" r="23" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span> Wat mijn praktijk je te bieden heeft</div>
+        <h2>Consulten &amp; trajecten</h2>
+        <p>Van een eerste kennismaking tot een volledig traject &mdash; kies wat bij jou past.</p>
+    </div>
+    <div class="compact-grid">
+        <a href="coaching.html#van-vast-naar-stroming" class="compact-card fade-in">
+            <div class="compact-image"><img src="images/richard-soul.jpg" alt="Van Vast naar Stroming" loading="lazy"></div>
+            <div class="compact-body">
+                <div class="compact-label">Traject</div>
+                <h4>Van Vast naar Stroming</h4>
+                <p class="compact-desc">Van blokkades naar stromende levensenergie, op jouw tempo.</p>
+                <ul class="compact-bullets">
+                    <li>Persoonlijke 1-op-1 begeleiding</li>
+                    <li>Patronen en blokkades onderzoeken</li>
+                </ul>
+                <div class="compact-price-row">
+                    <span class="compact-price">&euro;862,50</span>
+                    <span class="compact-duration">6 consulten</span>
                 </div>
             </div>
-            <div class="pricing-card fade-in fade-in-d2">
-                <div class="pricing-top">
-                    <p class="pricing-label">Persoonlijk Holistisch Traject</p>
-                    <h3>Lezen van Lichaam en Energie</h3>
-                    <p class="pricing-desc">Vergroot je kennis van het energetisch systeem. Leer de signalen van je lichaam lezen en je eigen energie begrijpen, voor jezelf &eacute;n in je werk met anderen.</p>
-                </div>
-                <div class="pricing-body">
-                    <div class="pricing-price">&euro;1.007</div>
-                    <div class="pricing-duration">7 bijeenkomsten van 75 minuten</div>
-                    <ul class="pricing-features">
-                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Lichaamsbewustzijn & aarding</li>
-                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Lezen van chakra's en aura</li>
-                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 1-op-1, volledig op jouw proces</li>
-                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Toepasbaar in eigen werk met cliënten</li>
-                    </ul>
-                    <a href="coaching.html#lezen-lichaam-energie" class="pricing-btn pricing-btn-outline">Meer informatie <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-                </div>
-            </div>
-            <div class="pricing-card pricing-card--green-dark fade-in fade-in-d3">
-                <div class="pricing-card-badge-top" style="position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--accent); border-radius:999px; padding:6px 18px; font-size:10px; font-weight:800; color:#fff; text-transform:uppercase; letter-spacing:0.12em; white-space:nowrap; box-shadow:0 4px 12px rgba(193,119,79,0.3); z-index:10;">Nieuw</div>
-                <div class="pricing-top">
-                    <p class="pricing-label">Groepstraining</p>
-                    <h3>Bezield Leven op Doktersrecept</h3>
-                    <p class="pricing-desc">In een kleine groep werken we gedurende meerdere maanden aan bewustwording, verdieping en integratie. Dichter bij wie je werkelijk bent.</p>
-                </div>
-                <div class="pricing-body">
-                    <div class="pricing-price">&euro;1350</div>
-                    <div class="pricing-duration">6 trainingsmiddagen + nascholing</div>
-                    <ul class="pricing-features">
-                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Max. 6 deelnemers</li>
-                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Locatie Den Bosch</li>
-                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Certificaat van deelname</li>
-                        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Studiemateriaal & koffie/thee inbegrepen</li>
-                    </ul>
-                    <div style="display:inline-flex; align-items:center; gap:7px; background: var(--accent); border-radius: 20px; padding: 8px 16px; margin-bottom: 16px; font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 0.02em;">
-                        🗓 Start september 2026, aantal plaatsen beperkt!
-                    </div>
-                    <a href="inschrijven.html?traject=groepstraining" class="pricing-btn pricing-btn-outline">Meld je alvast aan <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            <span class="compact-btn">Meer info <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+        <a href="coaching.html#lezen-lichaam-energie" class="compact-card fade-in fade-in-d1">
+            <div class="compact-image"><img src="images/Richard_Hoofs-85.jpg" alt="Lezen van Lichaam en Energie" loading="lazy"></div>
+            <div class="compact-body">
+                <div class="compact-label">Traject</div>
+                <h4>Lezen van Lichaam en Energie</h4>
+                <p class="compact-desc">Leer het energetische systeem lezen, voor jezelf en in je werk.</p>
+                <ul class="compact-bullets">
+                    <li>Lichaamsbewustzijn &amp; aarding</li>
+                    <li>Chakra&rsquo;s en aura lezen</li>
+                </ul>
+                <div class="compact-price-row">
+                    <span class="compact-price">&euro;1.007</span>
+                    <span class="compact-duration">7 bijeenkomsten</span>
                 </div>
             </div>
-        </div>
+            <span class="compact-btn">Meer info <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+        <a href="coaching.html#groepstraining" class="compact-card fade-in fade-in-d2">
+            <div class="compact-image"><img src="images/Richard_Hoofs-111.jpg" alt="Bezield Leven op Doktersrecept" loading="lazy"></div>
+            <div class="compact-body">
+                <div class="compact-label">Groepstraining</div>
+                <h4>Bezield Leven op Doktersrecept</h4>
+                <p class="compact-desc">Verdiepend traject in een kleine groep rond bewustwording en integratie.</p>
+                <ul class="compact-bullets">
+                    <li>Max. 6 deelnemers</li>
+                    <li>Certificaat van deelname</li>
+                </ul>
+                <div class="compact-price-row">
+                    <span class="compact-price">&euro;1.350</span>
+                    <span class="compact-duration">6 middagen</span>
+                </div>
+            </div>
+            <span class="compact-btn">Meer info <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+        <a href="behandelingen.html" class="compact-card fade-in fade-in-d3">
+            <div class="compact-image"><img src="images/massage-room.jpg" alt="Marma Ayurvedische Massage" loading="lazy"></div>
+            <div class="compact-body">
+                <div class="compact-label">Behandeling</div>
+                <h4>Marma Ayurvedische Massage</h4>
+                <p class="compact-desc">Diepgaande lichaamsbehandeling die de energiestroom herstelt.</p>
+                <ul class="compact-bullets">
+                    <li>Warme medicinale oli&euml;n</li>
+                    <li>Dosha&rsquo;s in balans</li>
+                </ul>
+                <div class="compact-price-row">
+                    <span class="compact-price">&euro;145</span>
+                    <span class="compact-duration">1,5 uur</span>
+                </div>
+            </div>
+            <span class="compact-btn">Meer info <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+        <a href="consult.html" class="compact-card compact-card--dark fade-in fade-in-d4">
+            <div class="compact-image"><img src="images/richard-huisarts.jpg" alt="Los consult" loading="lazy" style="object-position: center top;"></div>
+            <div class="compact-body">
+                <div class="compact-label">Consult</div>
+                <h4>Los consult</h4>
+                <p class="compact-desc">Een &eacute;&eacute;n-op-&eacute;&eacute;n kennismakingsgesprek waarin we kijken wat er speelt.</p>
+                <ul class="compact-bullets">
+                    <li>Holistische intake</li>
+                    <li>Advies op maat</li>
+                </ul>
+                <div class="compact-price-row">
+                    <span class="compact-price">&euro;140</span>
+                    <span class="compact-duration">75 minuten</span>
+                </div>
+            </div>
+            <span class="compact-btn">Consult aanvragen <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+    </div>
     </div>
 </section>
 
@@ -1475,7 +1690,7 @@
         </div>
         <div class="media-photo-grid">
             <div class="media-photo-col fade-in">
-                <img src="images/richard-media.jpg" alt="Richard Hoofs in Den Bosch">
+                <img src="images/Richard_Hoofs-9.jpg" alt="Richard Hoofs">
             </div>
             <div class="media-articles-col fade-in fade-in-d1">
                 <div class="media-article-card">
@@ -1497,33 +1712,8 @@
         <div class="reviews-carousel fade-in fade-in-d1" id="reviewsCarousel">
             <div class="review-card active">
                 <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>"Richard heeft me geholpen om weer in balans te komen. Zijn holistische aanpak gaat verder dan alleen het lichamelijke, hij kijkt echt naar het hele plaatje."</blockquote>
-                <div class="review-author">M. de Vries, cliënt</div>
-            </div>
-            <div class="review-card">
-                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>"Het boek is een eye-opener. Eindelijk een arts die uitlegt hoe je zelf aan je gezondheid kunt werken, zonder meteen naar medicijnen te grijpen."</blockquote>
-                <div class="review-author">J. Bakker, lezer</div>
-            </div>
-            <div class="review-card">
-                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>"De zelfscan opende mijn ogen. Ik dacht dat ik gezond leefde, maar ontdekte dat er op het gebied van mind en soul nog zoveel te winnen viel."</blockquote>
-                <div class="review-author">S. Jansen, cliënt</div>
-            </div>
-            <div class="review-card">
-                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-                <blockquote>"Inspirerend boek met praktische handvatten. Richard schrijft vanuit het hart en dat merk je op elke pagina."</blockquote>
-                <div class="review-author">A. van den Berg, lezer</div>
-            </div>
-            <div class="reviews-nav">
-                <button class="review-nav-btn" onclick="changeReview(-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
-                <div class="reviews-dots">
-                    <button class="review-dot active" onclick="goToReview(0)"></button>
-                    <button class="review-dot" onclick="goToReview(1)"></button>
-                    <button class="review-dot" onclick="goToReview(2)"></button>
-                    <button class="review-dot" onclick="goToReview(3)"></button>
-                </div>
-                <button class="review-nav-btn" onclick="changeReview(1)"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+                <blockquote>"Een verdieping van mijn eigen ik. Voelen met je hart en niet met je hoofd &mdash; ik ben het waard, tot rust komen bij jezelf. Veel oud verdriet komt naar boven dat je los mag laten. Zo komt er ruimte voor vreugde, liefde en innerlijke vrijheid."</blockquote>
+                <div class="review-author">Mirjam Brouwels, cliënt</div>
             </div>
         </div>
     </div>
