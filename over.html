@@ -37,7 +37,6 @@
             color: var(--text-body);
             line-height: 1.8;
             margin-top: 20px;
-            max-width: 480px;
         }
         .about-hero-text .hero-actions {
             display: flex;
@@ -200,8 +199,8 @@
 
         /* ===== BIO ===== */
         .bio-section {
-            padding: 80px 48px;
-            margin: 0 48px 80px;
+            padding: 80px 56px;
+            margin: 0 16px 80px;
             background: var(--green-dark);
             border-radius: 28px;
             max-width: var(--max-width);
@@ -223,11 +222,11 @@
         }
         .bio-grid {
             display: grid;
-            grid-template-columns: 0.5fr 0.8fr;
-            gap: 80px;
+            grid-template-columns: 0.5fr 1fr;
+            gap: 56px;
             align-items: center;
             justify-content: center;
-            max-width: 900px;
+            max-width: 100%;
             margin: 0 auto;
         }
         .bio-image img {
@@ -248,6 +247,163 @@
         .bio-content p:last-of-type {
             margin-bottom: 28px;
         }
+
+        /* ===== MEDIA SECTIE ===== */
+        .over-media-section {
+            padding: 80px 48px;
+            max-width: calc(var(--max-width) + 96px);
+            margin: 0 auto;
+        }
+        .over-media-section h2 {
+            color: var(--green-dark);
+            margin-bottom: 8px;
+        }
+        .over-media-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .over-media-intro {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.75;
+            max-width: 620px;
+            margin-bottom: 48px;
+        }
+        .over-media-block-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            margin-top: 40px;
+        }
+        .over-media-block-title:first-of-type { margin-top: 0; }
+        .over-pub-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .over-pub-item {
+            display: grid;
+            grid-template-columns: 140px 1fr auto;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 24px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: background 0.15s;
+            text-decoration: none;
+        }
+        .over-pub-item:hover { background: #faf7f5; }
+        .over-pub-year {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        .over-pub-name {
+            font-family: var(--font-heading);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 2px;
+        }
+        .over-pub-title {
+            font-size: 13px;
+            color: var(--text-body);
+        }
+        .over-pub-arrow {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: var(--green-dark);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.15s;
+        }
+        .over-pub-arrow:hover { background: var(--accent); }
+        .over-pub-arrow svg {
+            width: 13px; height: 13px;
+            stroke: #fff; fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .over-press-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+        }
+        .over-press-item {
+            padding: 18px 22px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+        .over-press-item a { text-decoration: none; }
+        .over-press-name {
+            font-family: var(--font-heading);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--green-dark);
+            transition: color 0.15s;
+        }
+        .over-press-item a:hover .over-press-name { color: var(--accent); }
+        .over-press-year { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+        .over-press-arrow { font-size: 11px; color: var(--accent); margin-left: 3px; }
+        .over-podcast-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+        }
+        .over-podcast-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 20px 24px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+        .over-podcast-icon {
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            background: rgba(193,119,79,0.1);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .over-podcast-icon svg {
+            width: 18px; height: 18px;
+            stroke: var(--accent); fill: none;
+            stroke-width: 1.8; stroke-linecap: round;
+        }
+        .over-podcast-year { font-size: 11px; font-weight: 600; color: var(--accent); margin-bottom: 3px; }
+        .over-podcast-name {
+            font-family: var(--font-heading);
+            font-size: 14px; font-weight: 700;
+            color: var(--green-dark); margin-bottom: 3px;
+        }
+        .over-podcast-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+        .over-media-cta {
+            margin-top: 40px;
+            background: #eef0ed;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+        .over-media-cta p {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.6;
+        }
+        .over-media-cta a { color: var(--accent); font-weight: 600; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
@@ -280,6 +436,214 @@
             .photo-trio-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
             .photo-trio-grid .photo-large { grid-row: auto; }
             .photo-trio-grid img { aspect-ratio: 4/3; height: auto; }
+        }
+
+        /* ===== IN DE MEDIA ===== */
+        .about-media-section {
+            padding: 80px 48px;
+            max-width: calc(var(--max-width) + 96px);
+            margin: 0 auto;
+        }
+        .section-label-sm {
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .about-media-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            gap: 24px;
+        }
+        .about-media-header h2 { color: var(--green-dark); }
+        .about-podcast-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            margin-bottom: 20px;
+        }
+        .about-podcast-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 24px 28px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+        .about-podcast-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(193, 119, 79, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .about-podcast-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .about-podcast-year {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+        .about-podcast-name {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 2px;
+        }
+        .about-podcast-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .press-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            align-items: center;
+            margin-top: 32px;
+        }
+        .press-chip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 72px;
+            text-decoration: none;
+        }
+        .press-chip img {
+            max-height: 28px;
+            max-width: 80%;
+            width: auto;
+            display: block;
+            filter: grayscale(1) opacity(0.25);
+            transition: filter 0.2s;
+        }
+        .press-chip:hover img { filter: grayscale(0) opacity(1); }
+        .press-chip span {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-family: var(--font-heading);
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+        .press-chip:hover span { opacity: 0.85; }
+
+        /* ===== SPREKER CTA ===== */
+        .about-speaker-cta {
+            padding: 0 48px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .about-speaker-inner {
+            background: var(--accent);
+            border-radius: 28px;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 0;
+            align-items: stretch;
+            position: relative;
+            overflow: hidden;
+            min-height: 320px;
+        }
+        .speaker-photo {
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .speaker-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .speaker-content {
+            padding: 40px 48px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .about-speaker-seed {
+            position: absolute;
+            right: -60px;
+            bottom: -60px;
+            width: 320px;
+            height: 320px;
+            fill: none;
+            stroke: rgba(255,255,255,0.04);
+            stroke-width: 0.5;
+            pointer-events: none;
+        }
+        .about-speaker-inner h2 { color: #fff; position: relative; }
+        .about-speaker-inner p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.75;
+            margin-top: 12px;
+            position: relative;
+        }
+        .about-speaker-inner ul {
+            margin: 10px 0 14px 20px;
+            position: relative;
+        }
+        .cta-pill {
+            display: inline-block;
+            background: rgba(255,255,255,0.18);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 7px 18px;
+            border-radius: 100px;
+            letter-spacing: 0.01em;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .about-speaker-inner ul li {
+            font-size: 15px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+        }
+        .speaker-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        /* ===== MEDIA MET FOTO ===== */
+        .about-media-with-photo {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 24px;
+            align-items: start;
+        }
+        .about-media-photo {
+            border-radius: 20px;
+            width: 100%;
+            height: 100%;
+            max-height: 380px;
+            min-height: 480px;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
         }
 
         /* ===== MAP ===== */
@@ -328,11 +692,23 @@
         }
         @media (max-width: 1024px) {
             .map-section { padding: 0 32px 80px; }
+            .about-media-section { padding: 60px 32px; }
+            .about-speaker-cta { padding: 0 32px 80px; }
+            .about-speaker-inner { grid-template-columns: 1fr 200px; }
+            .about-podcast-grid { grid-template-columns: 1fr; }
+            .about-media-with-photo { grid-template-columns: 1fr; }
+            .about-media-photo { max-height: 320px; }
         }
         @media (max-width: 768px) {
             .map-section { padding: 0 20px 60px; }
             .map-info { padding: 24px 20px; }
             .map-embed { height: 300px; }
+            .about-media-section { padding: 48px 20px; }
+            .about-speaker-cta { padding: 0 20px 64px; }
+            .about-speaker-inner { grid-template-columns: 1fr; }
+            .about-speaker-inner .speaker-photo { display: none; }
+            .speaker-content { padding: 40px 28px; }
+            .about-media-header { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -344,8 +720,9 @@
 <section class="about-hero">
     <div class="about-hero-grid fade-in">
         <div class="about-hero-text">
+            <p style="font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0; margin-bottom: 10px;">Huisarts &middot; Arts leefstijlgeneeskunde &middot; Spiritueel coach &middot; Acupuncturist</p>
             <h1>Over mij</h1>
-            <p>Arts en coach, gevestigd aan de Vughterstraat in 's-Hertogenbosch. Ik begeleid mensen die weer in verbinding willen komen met zichzelf, hun lichaam en hun bezieling.</p>
+            <p>Als (huis)-arts en spiritueel coach verbind ik 26 jaar geneeskunde met holistische disciplines als acupunctuur, ayurveda &amp; marma, reiki en spirituele therapie. Auteur van &lsquo;Bezield leven op doktersrecept&rsquo; en regelmatig te gast in media en podcasts over zingeving en bewust leven.</p>
             <div class="hero-actions">
                 <a href="coaching.html" class="btn btn-white">Trajecten & coaching <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
                 <a href="contact.html" class="btn btn-outline">Contact <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
@@ -355,16 +732,6 @@
             <div class="about-hero-image">
                 <img src="images/Richard_Hoofs-3.jpg" alt="Richard Hoofs">
             </div>
-            <a href="contact.html" class="about-hero-card">
-                <img class="about-hero-card-avatar" src="images/Richard_Hoofs-13.jpg" alt="Richard Hoofs">
-                <div class="about-hero-card-info">
-                    <div class="about-hero-card-name">Richard Hoofs</div>
-                    <div class="about-hero-card-role">Arts & Coach</div>
-                </div>
-                <div class="about-hero-card-arrow">
-                    <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                </div>
-            </a>
         </div>
     </div>
 </section>
@@ -392,27 +759,6 @@
 </div>
 
 <!-- VISIE & WERKWIJZE -->
-<section class="visie-section">
-    <div class="visie-grid fade-in">
-        <div>
-            <h2>Waar bezield leven centraal staat</h2>
-        </div>
-        <div class="visie-content">
-            <div>
-                <h4 style="font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px;">Visie</h4>
-                <p>Holistisch komt van het oud-Griekse woord &lsquo;holos&rsquo; - geheel. Holistisch wil zeggen dat je jezelf als &eacute;&eacute;n geheel ziet. Jij bent lichaam, persoon &eacute;n ziel. Samen. Als &eacute;&eacute;n eenheid. We staan onlosmakelijk in verbinding met onze leefwereld: zorg je goed voor de natuur, de dieren en de mensen om je heen, dan zorg je goed voor jezelf.</p>
-                <p>Onze omgeving is een weerspiegeling van onszelf. De meeste Oosterse geneeswijzen - zoals acupunctuur, ayurveda, yoga en Traditional Chinese Medicine - zien ziekte als een teken van het uit balans zijn van een mens. Ziekte en medische aandoeningen worden gezien als het signaal van het lichaam om de verbinding tussen persoon en ziel te herstellen. Een klacht of een crisis is te zien als een aanwijzing om opnieuw in balans te komen.</p>
-                <p>Lichamelijke klachten en ziekten worden gezien als een uitnodiging tot groei en innerlijke bewustwording. Ziekte is een roep van de ziel. De klacht nodigt je uit te kijken naar jezelf. Op deze manier kun je ook echt verbinding krijgen en invloed uitoefenen op je eigen klachten.</p>
-            </div>
-            <div>
-                <h4 style="font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px;">Werkwijze</h4>
-                <p>Alles begint met een <strong>los holistisch consult</strong>. In een consult staan we stil bij wat er werkelijk in jou leeft. Wat vraagt aandacht? Waar wil jouw ziel naartoe bewegen? Jij staat centraal. Samen kijken we of een traject bij je past - en zo ja, welk het beste aansluit bij waar jij nu staat.</p>
-                <p>Vanuit het consult zijn er twee persoonlijke trajecten mogelijk. In het traject <strong>Van Vast naar Stroming</strong> neem je bewust de tijd om te groeien, op jouw tempo. We kijken naar patronen die jouw energie vastzetten en onderzoeken wat daarin gezien en gevoeld wil worden. In het traject <strong>Lezen van Lichaam en Energie</strong> leer je de signalen van je lichaam en energie herkennen en begrijpen - als ingang naar jezelf en jouw bezieling.</p>
-                <p>Daarnaast bied ik <strong>Marma Ayurvedische Massage</strong> aan: een lichaamsbehandeling via de 107 vitale knooppunten, waarbij vastgelopen energie vrijkomt en je zelfhelende vermogen wordt aangesproken. En voor wie in groepsverband wil verdiepen, is er de <strong>Groepstraining Bezield Leven</strong> - een traject voor je eigen ontwikkeling én voor wie werkt met mensen.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- FOTO -->
 <section class="photo-trio fade-in" style="padding: 0 48px; max-width: calc(var(--max-width) + 96px); margin: 0 auto;">
@@ -423,20 +769,115 @@
 <!-- BIO -->
 <section class="bio-section">
     <svg class="bio-seed-watermark" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
-    <div class="bio-grid fade-in">
-        <div class="bio-image">
-            <img src="images/Richard Sekhmet.jpg" alt="Richard Hoofs" loading="lazy">
-        </div>
+    <div class="bio-grid fade-in" style="grid-template-columns: 1fr;">
         <div class="bio-content">
             <h2>Richard Hoofs</h2>
-            <p>Ik ben al meer dan 25 jaar werkzaam als arts. Na mijn studie tot huisarts heb ik me verdiept in diverse holistische geneeswijzen: acupunctuur, antroposofie, ayurveda, spirituele therapie en Egyptische heelkunde.</p>
-            <p>Deze zoektocht bracht me ook naar India en Egypte. In India werkte ik een tijd als arts mee aan een gezondheidsproject op het platteland van Maharashtra. Daar werd ik geraakt door de diepe wijsheid van de Oosterse esoterie, maar ervoer ik tegelijk het praktische nut van de Westerse geneeskunde.</p>
-            <p>De verbinding tussen Oost en West - met behoud van het beste van beiden - vormt de basis van mijn werk als coach, acupuncturist en auteur. Naast mijn werk op Mon Desir werk ik nog parttime als huisarts.</p>
-            <p>Ik ben auteur van het boek &ldquo;Bezield Leven op Doktersrecept&rdquo;, waarin ik mijn visie op holistische gezondheid deel met een breder publiek.</p>
-            <a href="coaching.html" class="btn btn-white">Bekijk trajecten & coaching <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            <p>Mijn naam is Richard Hoofs. Ik werk als spiritueel coach en (huis)-arts en ben auteur van het boek &lsquo;Bezield leven op doktersrecept&rsquo;.</p>
+            <p>Na mijn studie geneeskunde heb ik mij gespecialiseerd in huisartsgeneeskunde en werk inmiddels al weer 26 jaar als huisarts. Tevens volgde ik opleidingen in tropen chirurgie, militair arts en justitieel geneeskundige. Daarnaast heb ik mij verdiept in verschillende holistische geneeswijzen, waaronder acupunctuur, ayurveda &amp; marma, antroposofie, reiki, spirituele therapie en Oud Egyptische heelkunde. Hierbij maakte ik meerdere studiereizen naar India en Egypte.</p>
+            <p>In India werkte ik als arts mee aan een gezondheidsproject op het platteland van Maharashtra. Daar ervoer ik zowel de diepe wijsheid van de Oosterse esoterische tradities als het praktische nut van de Westerse geneeskunde. De verbinding tussen Oosterse wijsheid en Westerse geneeskunde vormt zo de basis van mijn werk.</p>
+            <p>In mijn coaching en consulten werk ik vanuit een holistische visie op gezondheid. Het woord holistisch komt van het Griekse holos, wat &lsquo;geheel&rsquo; betekent. Een mens is namelijk meer dan alleen een lichaam: wij zijn een samenhangend geheel van lichaam, persoonlijkheid en ziel. Veel lichamelijke, emotionele en psychische klachten ontstaan wanneer deze balans verstoord raakt. In mijn begeleiding kijken we daarom niet alleen naar de klacht zelf, maar ook naar de diepere oorzaak en betekenis ervan.</p>
+            <p>In mijn werk en boeken combineer ik het beste van twee werelden: praktisch &eacute;n spiritueel, complementair en regulier. Mijn missie is mensen te helpen weer in verbinding te komen met hun eigen bezieling, innerlijke kracht en zelfhelende vermogens.</p>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px;">
+                <a href="consult.html" class="btn btn-white">Consult aanvragen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+                <a href="contact.html" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: #fff;">Contact <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            </div>
         </div>
     </div>
 </section>
+
+<!-- IN DE MEDIA -->
+<section class="about-media-section fade-in">
+    <div class="about-media-with-photo">
+        <img src="images/Richard_Hoofs-29.jpg" alt="Richard Hoofs" class="about-media-photo" loading="lazy">
+        <div>
+            <div class="section-label-sm">In de media</div>
+            <h2>Publicaties &amp; podcasts</h2>
+            <div class="about-podcast-grid" style="margin-bottom: 32px;">
+                <a href="https://www.trouw.nl/opinie/opinie-zingeving-is-de-pijler-voor-gezondheid-in-de-gevangenis-en-daarbuiten~bb2d406c/" target="_blank" rel="noopener" class="about-podcast-item" style="text-decoration:none;">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div>
+                    <div>
+                        <div class="about-podcast-year">Trouw &middot; 2026</div>
+                        <div class="about-podcast-name">Zingeving is de pijler voor gezondheid</div>
+                    </div>
+                </a>
+                <a href="https://www.medischcontact.nl/actueel/laatste-nieuws/nieuwsartikel/zingeving-verdient-plek-in-de-spreekkamer" target="_blank" rel="noopener" class="about-podcast-item" style="text-decoration:none;">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div>
+                    <div>
+                        <div class="about-podcast-year">Medisch Contact &middot; 2026</div>
+                        <div class="about-podcast-name">Zingeving verdient plek in de spreekkamer</div>
+                    </div>
+                </a>
+                <a href="https://www.bd.nl/opinie/zingeving-is-de-vergeten-leefstijlpil-en-misschien-wel-de-belangrijkste~a24a9378/" target="_blank" rel="noopener" class="about-podcast-item" style="text-decoration:none;">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div>
+                    <div>
+                        <div class="about-podcast-year">Brabants Dagblad &middot; 2025</div>
+                        <div class="about-podcast-name">Zingeving is de vergeten leefstijlpil</div>
+                    </div>
+                </a>
+                <div class="about-podcast-item">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div>
+                    <div>
+                        <div class="about-podcast-year">Medisch Contact Podcast &middot; 2026</div>
+                        <div class="about-podcast-name">Zingeving hoort een plek in de spreekkamer</div>
+                    </div>
+                </div>
+                <div class="about-podcast-item">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div>
+                    <div>
+                        <div class="about-podcast-year">Patrick Kicken Podcast &middot; 2025</div>
+                        <div class="about-podcast-name">Bezielde geneeskunde en spiritualiteit</div>
+                    </div>
+                </div>
+                <div class="about-podcast-item">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div>
+                    <div>
+                        <div class="about-podcast-year">Positiviteitspodcast &middot; 2025</div>
+                        <div class="about-podcast-name">Bewust leven en je innerlijke kompas</div>
+                    </div>
+                </div>
+            </div>
+            <div class="press-strip">
+                <a href="https://www.trouw.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-trouw.svg" alt="Trouw"></a>
+                <a href="https://www.medischcontact.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-medischcontact.svg" alt="Medisch Contact"></a>
+                <a href="https://www.bd.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-bd.svg" alt="Brabants Dagblad"></a>
+                <a href="https://www.lc.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-lc.svg" alt="Leeuwarder Courant"></a>
+                <a href="https://www.gelderlander.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-gelderlander.png" alt="De Gelderlander"></a>
+                <a href="https://www.limburger.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-limburger.svg" alt="De Limburger"></a>
+                <a href="https://www.henw.org" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-henw.svg" alt="Huisarts &amp; Wetenschap"></a>
+                <a href="https://www.ntvg.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-ntvg.svg" alt="NTvG"></a>
+                <a href="https://www.spiegelbeeld.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-spiegelbeeld.webp" alt="Spiegelbeeld"></a>
+                <a href="https://edicola.nl/product/paravisie-april-2025/" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-paravisie.jpg" alt="Paravisie"></a>
+                <span class="press-chip">Bloom</span>
+                <span class="press-chip">HX Magazine</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MEDIA OF PODCAST / SPREKER -->
+<div class="about-speaker-cta fade-in">
+    <div class="about-speaker-inner">
+        <div class="speaker-content">
+            <svg class="about-speaker-seed" viewBox="0 0 40 40"><circle cx="20" cy="20" r="9"/><circle cx="20" cy="11" r="9"/><circle cx="20" cy="29" r="9"/><circle cx="27.794" cy="15.5" r="9"/><circle cx="27.794" cy="24.5" r="9"/><circle cx="12.206" cy="15.5" r="9"/><circle cx="12.206" cy="24.5" r="9"/></svg>
+            <h2>Spreker nodig voor media, podcast of een lezing?</h2>
+            <p>Richard Hoofs is huisarts, arts leefstijlgeneeskunde en spiritueel coach. Vanuit 26 jaar praktijkervaring spreekt hij op toegankelijke wijze over de verbinding tussen lichaam, ziel en gezondheid.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 8px;">
+                <span class="cta-pill">Holistische geneeskunde</span>
+                <span class="cta-pill">Zingeving en gezondheid</span>
+                <span class="cta-pill">Bewust leven</span>
+                <span class="cta-pill">Wetenschap en spiritualiteit</span>
+                <span class="cta-pill">Zelfhelend vermogen van de mens</span>
+            </div>
+            <p>Voor boekingen en media-aanvragen: <a href="mailto:info@dokterrichard.nl" style="color:#fff; text-decoration: underline;">info@dokterrichard.nl</a></p>
+            <div style="margin-top: 24px;">
+                <a href="contact.html" class="btn btn-white">Contact opnemen <span class="btn-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
+            </div>
+        </div>
+        <div class="speaker-photo">
+            <img src="images/Richard Sekhmet.jpg" alt="Richard Hoofs">
+        </div>
+    </div>
+</div>
 
 <!-- MAP -->
 <section class="map-section fade-in">

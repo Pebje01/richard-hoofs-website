@@ -4,3 +4,8 @@ __pycache__/
 *.pyc
 .DS_Store
 .vercel
+
+# CMS
+.env
+node_modules/
+cms/backups/

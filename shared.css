@@ -54,6 +54,7 @@ h3 { font-size: clamp(18px, 2vw, 24px); letter-spacing: -0.02em; }
     --section-padding: 120px;
 }
 
+html, body { overflow-x: hidden; }
 html { scroll-behavior: smooth; }
 
 body {
@@ -1021,4 +1022,12 @@ img { max-width: 100%; display: block; }
     .inschrijf-section { padding: 48px 20px 80px; }
     .inschrijf-summary { flex-direction: column; gap: 12px; }
 }
+
+/* ===== ELEMENTOR COLUMN CSS COMPATIBILITY ===== */
+/* HTML classes designed for CSS-grid cells (e.g. about-hero-text, stat-item) are
+   applied to Elementor columns. These classes often set display:flex + justify-content:center,
+   which centers the 268px widget-wrap inside a 1700px+ tall column — pushing content
+   off-screen. Fix: reset justify-content on all Elementor columns so Elementor's own
+   widget-wrap alignment takes over (controlled via vertical_align setting). */
+.elementor-column { justify-content: flex-start !important; }
 
