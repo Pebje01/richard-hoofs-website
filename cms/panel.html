@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beheer · Dokter Richard</title>
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #4a6741;
+      --green-dark:  #2c3d26;
+      --green-light: #eef2ec;
+      --accent:      #c1774f;
+      --bg:          #f0ede8;
+      --white:       #ffffff;
+      --border:      #e0dcd6;
+      --text:        #2c3322;
+      --muted:       #7a7a6a;
+      --red:         #c0392b;
+      --sidebar-w:   260px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 56px;
+      background: var(--green-dark);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 16px;
+    }
+    .topbar-logo { color: #fff; font-weight: 700; font-size: 14px; letter-spacing: 0.04em; flex: 1; }
+    .topbar-logo span { opacity: 0.5; font-weight: 400; margin-left: 6px; }
+    .topbar-link {
+      color: rgba(255,255,255,0.65);
+      font-size: 13px;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .topbar-link:hover { color: #fff; }
+
+    .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--white);
+      border-right: 1px solid var(--border);
+      position: fixed;
+      top: 56px; bottom: 0; left: 0;
+      overflow-y: auto;
+      padding: 24px 0 80px;
+    }
+    .sidebar-section {
+      padding: 14px 20px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.15s;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      text-decoration: none;
+    }
+    .sidebar-item:hover { background: var(--green-light); }
+    .sidebar-item.active {
+      background: var(--green-light);
+      color: var(--green);
+      font-weight: 600;
+      border-left: 3px solid var(--green);
+      padding-left: 17px;
+    }
+    .sidebar-item svg {
+      width: 16px; height: 16px;
+      stroke: currentColor; fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .sidebar-add {
+      background: none; border: none; cursor: pointer;
+      color: var(--green); font-size: 18px; font-weight: 700;
+      padding: 0 6px; line-height: 1;
+    }
+    .sidebar-add:hover { color: var(--green-dark); }
+
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      padding: 32px 40px 120px;
+      max-width: 960px;
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 4px;
+    }
+    .page-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .section-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .section-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      background: var(--green-light);
+    }
+    .section-body { padding: 20px; display: flex; flex-direction: column; gap: 18px; }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .field input, .field textarea, .field select {
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text);
+      background: #faf9f7;
+      outline: none;
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--green); background: #fff; }
+    .field textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+
+    .image-field { display: flex; flex-direction: column; gap: 8px; }
+    .image-preview {
+      width: 220px; height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--green-light);
+    }
+    .upload-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px;
+      background: var(--green-light);
+      color: var(--green);
+      border: 1.5px solid var(--green);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      width: fit-content;
+    }
+    .upload-btn:hover { background: #dde9da; }
+    .upload-btn input { display: none; }
+
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background 0.15s, transform 0.1s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--green); color: #fff; }
+    .btn-primary:hover { background: var(--green-dark); }
+    .btn-secondary { background: var(--white); color: var(--text); border: 1.5px solid var(--border); }
+    .btn-secondary:hover { background: var(--bg); }
+    .btn-danger { background: var(--white); color: var(--red); border: 1.5px solid var(--red); }
+    .btn-danger:hover { background: #fdf0ee; }
+
+    .save-bar {
+      position: fixed;
+      bottom: 0; left: var(--sidebar-w); right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 50;
+    }
+    .toast {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      display: none;
+    }
+    .toast.ok  { background: #e8f5e2; color: #2d6a2d; }
+    .toast.err { background: #fdf0ee; color: var(--red); }
+
+    .loader {
+      display: flex; align-items: center; gap: 12px;
+      color: var(--muted); font-size: 14px; padding: 40px 0;
+    }
+    .spinner {
+      width: 20px; height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Blog lijst */
+    .blog-list { display: flex; flex-direction: column; gap: 12px; }
+    .blog-row {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .blog-row:hover { border-color: var(--green); }
+    .blog-row-cover {
+      width: 80px; height: 56px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: var(--green-light);
+      flex-shrink: 0;
+    }
+    .blog-row-info { flex: 1; min-width: 0; }
+    .blog-row-info h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin-bottom: 4px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .blog-row-info .meta {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .badge-draft { background: #f5e6d5; color: #8a5a2a; }
+    .badge-live { background: #e8f5e2; color: #2d6a2d; }
+
+    /* Quill editor */
+    .ql-toolbar.ql-snow {
+      border: 1.5px solid var(--border);
+      border-radius: 8px 8px 0 0;
+      background: var(--white);
+    }
+    .ql-container.ql-snow {
+      border: 1.5px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      background: #faf9f7;
+      min-height: 300px;
+      font-family: inherit;
+      font-size: 15px;
+    }
+    .ql-editor { min-height: 300px; line-height: 1.7; }
+    .ql-editor h2 { color: var(--green-dark); margin: 16px 0 8px; }
+    .ql-editor h3 { color: var(--green-dark); margin: 14px 0 6px; }
+    .ql-editor blockquote { border-left: 3px solid var(--green); padding-left: 16px; font-style: italic; color: var(--muted); }
+    .ql-editor img { border-radius: 8px; max-width: 100%; height: auto; }
+
+    /* Image library modal */
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      display: none; align-items: center; justify-content: center;
+      z-index: 200;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      background: var(--white);
+      border-radius: 12px;
+      width: min(900px, 92vw);
+      max-height: 85vh;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .modal-header h3 { font-size: 15px; color: var(--green-dark); }
+    .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--muted); }
+    .modal-body { padding: 20px; overflow-y: auto; flex: 1; }
+    .img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+    .img-tile {
+      aspect-ratio: 1;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--green-light);
+      position: relative;
+    }
+    .img-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-tile:hover { border-color: var(--green); }
+    .img-tile.selected { border-color: var(--green); box-shadow: 0 0 0 2px var(--green); }
+    .img-tile-name {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 4px 6px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 10px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .modal-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; gap: 10px;
+    }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 20px;
+    }
+    @media (max-width: 960px) {
+      .editor-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo">Dokter Richard <span>Beheer</span></div>
+  <a href="/" target="_blank" class="topbar-link">Website bekijken ↗</a>
+  <a href="/beheer/uitloggen" class="topbar-link">Uitloggen</a>
+</div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">Pagina's</div>
+    <button class="sidebar-item active" data-view="page" data-page="index">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Homepage
+    </button>
+    <button class="sidebar-item" data-view="page" data-page="over">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"/></svg>
+      Over Richard
+    </button>
+    <button class="sidebar-item" data-view="page" data-page="coaching">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+      Trajecten
+    </button>
+    <button class="sidebar-item" data-view="page" data-page="behandelingen">
+      <svg viewBox="0 0 24 24"><path d="M3 12h3l3-9 4 18 3-9h5"/></svg>
+      Behandelingen
+    </button>
+    <button class="sidebar-item" data-view="page" data-page="boeken">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Boeken
+    </button>
+    <button class="sidebar-item" data-view="page" data-page="contact">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Contact
+    </button>
+
+    <div class="sidebar-section">
+      <span>Blog</span>
+      <button class="sidebar-add" title="Nieuwe post" onclick="nieuwePost()">+</button>
+    </div>
+    <div id="blog-nav"></div>
+
+    <div class="sidebar-section">Afbeeldingen</div>
+    <button class="sidebar-item" data-view="images">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Bibliotheek
+    </button>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="loader"><div class="spinner"></div>Laden…</div>
+  </main>
+</div>
+
+<div class="save-bar" id="saveBar" style="display:none;">
+  <button class="btn btn-primary" id="opslaanBtn" onclick="opslaan()">Wijzigingen opslaan</button>
+  <button class="btn btn-secondary" id="annuleerBtn" onclick="annuleer()" style="display:none;">Annuleren</button>
+  <button class="btn btn-danger" id="verwijderBtn" onclick="verwijderPost()" style="display:none;margin-left:auto;">Post verwijderen</button>
+  <div class="toast ok" id="toastOk">✓ Opgeslagen</div>
+  <div class="toast err" id="toastErr">✗ Er ging iets mis</div>
+</div>
+
+<!-- Image library modal -->
+<div class="modal-backdrop" id="imgModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Afbeelding kiezen</h3>
+      <button class="modal-close" onclick="sluitImgModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <label class="upload-btn" style="margin-bottom:16px;">
+        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+        Nieuwe uploaden
+        <input type="file" accept="image/*" id="modalUploadInput">
+      </label>
+      <div class="img-grid" id="imgGrid"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="sluitImgModal()">Annuleren</button>
+      <button class="btn btn-primary" id="imgKiesBtn" onclick="kiesGeselecteerdeImg()" disabled>Kies afbeelding</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+<script>
+  let huidigeView = 'page';
+  let huidigePagina = 'index';
+  let huidigePost = null;
+  let velden = [];
+  let quill = null;
+  let imgModalResolve = null;
+  let geselecteerdeImg = null;
+
+  // ── Sidebar handlers ──────────────────────────────────────────────────────────
+  document.querySelectorAll('.sidebar-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.view === 'page') laadPagina(btn.dataset.page);
+      else if (btn.dataset.view === 'images') toonBibliotheek();
+    });
+  });
+
+  function zetActief(predicate) {
+    document.querySelectorAll('.sidebar-item').forEach(b => {
+      b.classList.toggle('active', predicate(b));
+    });
+  }
+
+  // ── Pagina bewerken ──────────────────────────────────────────────────────────
+  async function laadPagina(pagina) {
+    huidigeView = 'page';
+    huidigePagina = pagina;
+    huidigePost = null;
+    zetActief(b => b.dataset.view === 'page' && b.dataset.page === pagina);
+
+    const main = document.getElementById('main');
+    main.innerHTML = '<div class="loader"><div class="spinner"></div>Pagina laden…</div>';
+    toonSaveBar(true, false, false);
+
+    try {
+      const res = await fetch(`/api/content/${pagina}`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+
+      velden = [];
+      let html = `<h1 class="page-title">${data.label}</h1>
+                  <p class="page-subtitle">Pas hieronder teksten en afbeeldingen aan en klik op "Wijzigingen opslaan".</p>`;
+
+      for (const sectie of data.sections) {
+        html += `<div class="section-card">
+          <div class="section-header">${sectie.label}</div>
+          <div class="section-body">`;
+
+        for (const veld of sectie.fields) {
+          velden.push(veld);
+          const waarde = (veld.value || '').replace(/"/g, '&quot;');
+
+          if (veld.type === 'textarea') {
+            html += `<div class="field">
+              <label>${veld.label}</label>
+              <textarea id="veld_${veld.id}" rows="3">${veld.value || ''}</textarea>
+            </div>`;
+          } else if (veld.type === 'image') {
+            html += `<div class="field image-field">
+              <label>${veld.label}</label>
+              <img src="${veld.value}" class="image-preview" id="preview_${veld.id}" onerror="this.style.display='none'">
+              <div class="btn-row">
+                <label class="upload-btn">
+                  Uploaden
+                  <input type="file" accept="image/*" onchange="uploadAfbeelding(this, '${veld.id}')">
+                </label>
+                <button class="btn btn-secondary" onclick="kiesUitBibliotheek('${veld.id}')">Uit bibliotheek</button>
+              </div>
+              <input type="hidden" id="veld_${veld.id}" value="${waarde}">
+            </div>`;
+          } else {
+            html += `<div class="field">
+              <label>${veld.label}</label>
+              <input type="text" id="veld_${veld.id}" value="${waarde}">
+            </div>`;
+          }
+        }
+        html += `</div></div>`;
+      }
+
+      main.innerHTML = html;
+    } catch (err) {
+      main.innerHTML = `<p style="color:var(--red);padding:20px">Fout: ${err.message}</p>`;
+    }
+  }
+
+  // ── Blog lijst in sidebar ────────────────────────────────────────────────────
+  async function laadBlogNav() {
+    const nav = document.getElementById('blog-nav');
+    try {
+      const res = await fetch('/api/blog/list');
+      const posts = await res.json();
+      if (!posts.length) {
+        nav.innerHTML = '<div style="padding:6px 20px;font-size:12px;color:var(--muted);">Nog geen posts</div>';
+        return;
+      }
+      nav.innerHTML = posts.map(p => `
+        <button class="sidebar-item" data-view="post" data-slug="${p.slug}" onclick="laadPost('${p.slug}')">
+          <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/></svg>
+          <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.title}</span>
+          ${!p.published ? '<span class="badge badge-draft">concept</span>' : ''}
+        </button>
+      `).join('');
+    } catch {
+      nav.innerHTML = '<div style="padding:6px 20px;font-size:12px;color:var(--red);">Fout bij laden</div>';
+    }
+  }
+
+  // ── Blog post bewerken ────────────────────────────────────────────────────────
+  async function laadPost(slug) {
+    huidigeView = 'post';
+    huidigePost = slug;
+    zetActief(b => b.dataset.view === 'post' && b.dataset.slug === slug);
+
+    const main = document.getElementById('main');
+    main.innerHTML = '<div class="loader"><div class="spinner"></div>Post laden…</div>';
+
+    try {
+      const res = await fetch(`/api/blog/post/${slug}`);
+      const post = await res.json();
+      if (!res.ok) throw new Error(post.error);
+
+      renderPostEditor(post, false);
+    } catch (err) {
+      main.innerHTML = `<p style="color:var(--red);padding:20px">Fout: ${err.message}</p>`;
+    }
+  }
+
+  function nieuwePost() {
+    huidigeView = 'post';
+    huidigePost = null;
+    zetActief(() => false);
+
+    const emptyPost = {
+      slug: '',
+      title: '',
+      date: new Date().toISOString().split('T')[0],
+      excerpt: '',
+      cover: '',
+      body_html: '',
+      published: true,
+      _new: true
+    };
+    renderPostEditor(emptyPost, true);
+  }
+
+  function renderPostEditor(post, isNew) {
+    const main = document.getElementById('main');
+    main.innerHTML = `
+      <h1 class="page-title">${isNew ? 'Nieuwe blogpost' : 'Post bewerken'}</h1>
+      <p class="page-subtitle">Schrijf je artikel. Voeg afbeeldingen in via de 📷-knop in de toolbar.</p>
+
+      <div class="editor-grid">
+        <div>
+          <div class="section-card">
+            <div class="section-body">
+              <div class="field">
+                <label>Titel *</label>
+                <input type="text" id="post_title" value="${escHtml(post.title)}" placeholder="De koptitel van je artikel">
+              </div>
+              <div class="field">
+                <label>Korte intro (samenvatting)</label>
+                <textarea id="post_excerpt" rows="2" placeholder="Eén of twee zinnen die op de blog-overzicht verschijnen">${escHtml(post.excerpt)}</textarea>
+              </div>
+              <div class="field">
+                <label>Artikel</label>
+                <div id="post_body_editor"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-card">
+            <div class="section-header">Publiceren</div>
+            <div class="section-body">
+              <div class="field">
+                <label>Datum</label>
+                <input type="date" id="post_date" value="${post.date}">
+              </div>
+              <div class="field">
+                <label>URL (slug)</label>
+                <input type="text" id="post_slug" value="${escHtml(post.slug)}" placeholder="automatisch-vanuit-titel">
+                <small style="font-size:12px;color:var(--muted);">/blog/<span id="slug_preview">${post.slug || 'jouw-post'}</span>.html</small>
+              </div>
+              <div class="field">
+                <label>Status</label>
+                <select id="post_published">
+                  <option value="true" ${post.published !== false ? 'selected' : ''}>Gepubliceerd</option>
+                  <option value="false" ${post.published === false ? 'selected' : ''}>Concept (niet zichtbaar)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <div class="section-header">Cover-afbeelding</div>
+            <div class="section-body">
+              <div class="field image-field">
+                <img src="${post.cover || ''}" class="image-preview" id="cover_preview" style="${post.cover ? '' : 'display:none;'}">
+                <div class="btn-row">
+                  <label class="upload-btn">
+                    Uploaden
+                    <input type="file" accept="image/*" onchange="uploadCover(this)">
+                  </label>
+                  <button class="btn btn-secondary" onclick="kiesCoverUitBibliotheek()">Uit bibliotheek</button>
+                  ${post.cover ? '<button class="btn btn-danger" onclick="verwijderCover()">Weg</button>' : ''}
+                </div>
+                <input type="hidden" id="post_cover" value="${escHtml(post.cover)}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Init Quill
+    quill = new Quill('#post_body_editor', {
+      theme: 'snow',
+      placeholder: 'Begin hier met schrijven…',
+      modules: {
+        toolbar: {
+          container: [
+            [{ 'header': [2, 3, false] }],
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            ['blockquote', 'link', 'image'],
+            ['clean']
+          ],
+          handlers: {
+            image: quillImageHandler
+          }
+        }
+      }
+    });
+    if (post.body_html) quill.clipboard.dangerouslyPasteHTML(post.body_html);
+
+    // Slug preview update
+    const slugInput = document.getElementById('post_slug');
+    const titleInput = document.getElementById('post_title');
+    const slugPreview = document.getElementById('slug_preview');
+    titleInput.addEventListener('input', () => {
+      if (isNew && !slugInput.value) {
+        slugPreview.textContent = slugify(titleInput.value) || 'jouw-post';
+      }
+    });
+    slugInput.addEventListener('input', () => {
+      slugPreview.textContent = slugify(slugInput.value) || 'jouw-post';
+    });
+
+    toonSaveBar(true, true, !isNew);
+  }
+
+  // ── Quill image upload handler ────────────────────────────────────────────────
+  async function quillImageHandler() {
+    const pad = await kiesAfbeelding();
+    if (!pad) return;
+    const range = quill.getSelection(true);
+    quill.insertEmbed(range.index, 'image', pad, 'user');
+    quill.setSelection(range.index + 1);
+  }
+
+  // ── Image library modal ──────────────────────────────────────────────────────
+  function kiesAfbeelding() {
+    return new Promise(async (resolve) => {
+      imgModalResolve = resolve;
+      geselecteerdeImg = null;
+      document.getElementById('imgKiesBtn').disabled = true;
+
+      const grid = document.getElementById('imgGrid');
+      grid.innerHTML = '<div class="loader"><div class="spinner"></div>Laden…</div>';
+      document.getElementById('imgModal').classList.add('open');
+
+      try {
+        const res = await fetch('/api/images');
+        const images = await res.json();
+        grid.innerHTML = images.map(img => `
+          <div class="img-tile" data-pad="${img.pad}" onclick="selecteerImg(this)">
+            <img src="${img.pad}" alt="${img.naam}" loading="lazy">
+            <div class="img-tile-name">${img.naam}</div>
+          </div>
+        `).join('');
+      } catch {
+        grid.innerHTML = '<p>Fout bij laden van bibliotheek.</p>';
+      }
+    });
+  }
+
+  function selecteerImg(el) {
+    document.querySelectorAll('.img-tile').forEach(t => t.classList.remove('selected'));
+    el.classList.add('selected');
+    geselecteerdeImg = el.dataset.pad;
+    document.getElementById('imgKiesBtn').disabled = false;
+  }
+
+  function kiesGeselecteerdeImg() {
+    if (imgModalResolve) imgModalResolve(geselecteerdeImg);
+    sluitImgModal();
+  }
+
+  function sluitImgModal() {
+    document.getElementById('imgModal').classList.remove('open');
+    if (imgModalResolve) {
+      imgModalResolve(null);
+      imgModalResolve = null;
+    }
+  }
+
+  document.getElementById('modalUploadInput').addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const pad = await uploadBestand(file);
+    if (pad) {
+      if (imgModalResolve) imgModalResolve(pad);
+      sluitImgModal();
+    }
+  });
+
+  // ── Upload helpers ────────────────────────────────────────────────────────────
+  async function uploadBestand(file) {
+    const form = new FormData();
+    form.append('afbeelding', file);
+    try {
+      const res = await fetch('/api/upload', { method: 'POST', body: form });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      return data.pad;
+    } catch (err) {
+      alert('Upload mislukt: ' + err.message);
+      return null;
+    }
+  }
+
+  async function uploadAfbeelding(input, veldId) {
+    const file = input.files[0];
+    if (!file) return;
+    const pad = await uploadBestand(file);
+    if (pad) {
+      document.getElementById(`veld_${veldId}`).value = pad;
+      const preview = document.getElementById(`preview_${veldId}`);
+      if (preview) { preview.src = pad; preview.style.display = ''; }
+    }
+  }
+
+  async function kiesUitBibliotheek(veldId) {
+    const pad = await kiesAfbeelding();
+    if (!pad) return;
+    document.getElementById(`veld_${veldId}`).value = pad;
+    const preview = document.getElementById(`preview_${veldId}`);
+    if (preview) { preview.src = pad; preview.style.display = ''; }
+  }
+
+  async function uploadCover(input) {
+    const file = input.files[0];
+    if (!file) return;
+    const pad = await uploadBestand(file);
+    if (pad) zetCover(pad);
+  }
+
+  async function kiesCoverUitBibliotheek() {
+    const pad = await kiesAfbeelding();
+    if (pad) zetCover(pad);
+  }
+
+  function zetCover(pad) {
+    document.getElementById('post_cover').value = pad;
+    const preview = document.getElementById('cover_preview');
+    preview.src = pad;
+    preview.style.display = '';
+  }
+
+  function verwijderCover() {
+    document.getElementById('post_cover').value = '';
+    document.getElementById('cover_preview').style.display = 'none';
+    // Re-render zodat de knop weg is
+    const post = verzamelPost();
+    renderPostEditor({ ...post, cover: '' }, !huidigePost);
+  }
+
+  // ── Opslaan ──────────────────────────────────────────────────────────────────
+  function verzamelPost() {
+    return {
+      slug: document.getElementById('post_slug').value.trim(),
+      title: document.getElementById('post_title').value.trim(),
+      date: document.getElementById('post_date').value,
+      excerpt: document.getElementById('post_excerpt').value.trim(),
+      cover: document.getElementById('post_cover').value,
+      body_html: quill ? quill.getSemanticHTML() : '',
+      published: document.getElementById('post_published').value === 'true',
+      originalSlug: huidigePost || undefined
+    };
+  }
+
+  async function opslaan() {
+    const btn = document.getElementById('opslaanBtn');
+    btn.disabled = true;
+    btn.textContent = 'Opslaan…';
+
+    try {
+      if (huidigeView === 'post') {
+        const body = verzamelPost();
+        if (!body.title) throw new Error('Titel is verplicht');
+        const res = await fetch('/api/blog/post', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Onbekende fout');
+        huidigePost = data.slug;
+        await laadBlogNav();
+        toonToast('ok');
+      } else {
+        const body = {};
+        for (const veld of velden) {
+          const el = document.getElementById(`veld_${veld.id}`);
+          if (el) body[veld.id] = el.value || el.innerHTML || '';
+        }
+        const res = await fetch(`/api/content/${huidigePagina}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if (!res.ok) throw new Error();
+        toonToast('ok');
+      }
+    } catch (err) {
+      toonToast('err', err.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Wijzigingen opslaan';
+    }
+  }
+
+  function annuleer() {
+    if (huidigeView === 'post' && huidigePost) {
+      laadPost(huidigePost);
+    } else {
+      laadPagina('index');
+    }
+  }
+
+  async function verwijderPost() {
+    if (!huidigePost) return;
+    if (!confirm('Deze post permanent verwijderen?')) return;
+    try {
+      const res = await fetch(`/api/blog/post/${huidigePost}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error();
+      huidigePost = null;
+      await laadBlogNav();
+      laadPagina('index');
+    } catch {
+      toonToast('err', 'Verwijderen mislukt');
+    }
+  }
+
+  // ── Bibliotheek als view ──────────────────────────────────────────────────────
+  async function toonBibliotheek() {
+    huidigeView = 'images';
+    zetActief(b => b.dataset.view === 'images');
+    toonSaveBar(false, false, false);
+
+    const main = document.getElementById('main');
+    main.innerHTML = `
+      <h1 class="page-title">Afbeeldingenbibliotheek</h1>
+      <p class="page-subtitle">Alle geüploade afbeeldingen. Klik op een afbeelding om de URL te kopiëren.</p>
+      <label class="upload-btn" style="margin-bottom:20px;">
+        Nieuwe uploaden
+        <input type="file" accept="image/*" id="libUploadInput">
+      </label>
+      <div class="img-grid" id="libGrid"><div class="loader"><div class="spinner"></div>Laden…</div></div>
+    `;
+    document.getElementById('libUploadInput').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      await uploadBestand(file);
+      toonBibliotheek();
+    });
+    try {
+      const res = await fetch('/api/images');
+      const images = await res.json();
+      document.getElementById('libGrid').innerHTML = images.map(img => `
+        <div class="img-tile" onclick="kopieerPad('${img.pad}')" title="Klik om pad te kopiëren">
+          <img src="${img.pad}" alt="${img.naam}" loading="lazy">
+          <div class="img-tile-name">${img.naam}</div>
+        </div>
+      `).join('');
+    } catch {
+      document.getElementById('libGrid').innerHTML = '<p>Fout bij laden.</p>';
+    }
+  }
+
+  function kopieerPad(pad) {
+    navigator.clipboard.writeText(pad);
+    toonToast('ok', '✓ URL gekopieerd');
+  }
+
+  // ── UI helpers ────────────────────────────────────────────────────────────────
+  function toonSaveBar(show, showAnnuleer, showVerwijder) {
+    document.getElementById('saveBar').style.display = show ? 'flex' : 'none';
+    document.getElementById('annuleerBtn').style.display = showAnnuleer ? '' : 'none';
+    document.getElementById('verwijderBtn').style.display = showVerwijder ? '' : 'none';
+  }
+
+  function toonToast(type, msg) {
+    const ok = document.getElementById('toastOk');
+    const err = document.getElementById('toastErr');
+    ok.style.display = err.style.display = 'none';
+    const el = type === 'ok' ? ok : err;
+    if (msg) el.textContent = msg;
+    else el.textContent = type === 'ok' ? '✓ Opgeslagen' : '✗ Er ging iets mis';
+    el.style.display = 'block';
+    setTimeout(() => el.style.display = 'none', 3000);
+  }
+
+  function escHtml(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function slugify(s) {
+    return String(s || '').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim().replace(/\s+/g, '-').slice(0, 80);
+  }
+
+  // ── Init ──────────────────────────────────────────────────────────────────────
+  laadBlogNav();
+  laadPagina('index');
+</script>
+
+</body>
+</html>

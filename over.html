@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Over mij | Dokter Richard</title>
     <meta name="description" content="Leer meer over Richard Hoofs, arts, coach en auteur in 's-Hertogenbosch.">
+    <link rel="canonical" href="https://dokterrichard.nl/over.html">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Richard Hoofs">
+    <meta name="theme-color" content="#2d5a3d">
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://dokterrichard.nl/over.html">
+    <meta property="og:title" content="Over mij | Dokter Richard">
+    <meta property="og:description" content="Leer meer over Richard Hoofs, arts, coach en auteur in 's-Hertogenbosch.">
+    <meta property="og:image" content="https://dokterrichard.nl/images/Richard_Hoofs-29.webp">
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:site_name" content="Dokter Richard">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Over mij | Dokter Richard">
+    <meta name="twitter:description" content="Leer meer over Richard Hoofs, arts, coach en auteur in 's-Hertogenbosch.">
+    <meta name="twitter:image" content="https://dokterrichard.nl/images/Richard_Hoofs-29.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -508,6 +525,57 @@
             color: var(--green-dark);
             margin-bottom: 2px;
         }
+        .about-podcast-item[href]:hover {
+            background: #fafaf7;
+            transition: background 0.2s;
+        }
+        details.media-more {
+            margin-top: 2px;
+        }
+        details.media-more[open] {
+            display: flex;
+            flex-direction: column;
+        }
+        details.media-more > summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 10px 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+            transition: color 0.2s;
+            user-select: none;
+        }
+        details.media-more > summary::-webkit-details-marker { display: none; }
+        details.media-more > summary::marker { display: none; content: ''; }
+        details.media-more > summary:hover {
+            color: var(--green-dark);
+        }
+        details.media-more[open] > summary {
+            order: 2;
+            margin-top: 2px;
+        }
+        details.media-more[open] > summary .label-open { display: none; }
+        details.media-more:not([open]) > summary .label-close { display: none; }
+        details.media-more .about-podcast-grid {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        details.media-more[open] > .about-podcast-grid {
+            order: 1;
+        }
+        .about-media-section .about-podcast-grid {
+            margin-bottom: 0;
+        }
+        .about-media-subheading {
+            font-family: var(--font-heading);
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 40px 0 14px;
+            font-weight: 700;
+        }
+        .about-media-subheading:first-of-type { margin-top: 24px; }
         .about-podcast-desc {
             font-size: 13px;
             color: var(--text-muted);
@@ -718,6 +786,32 @@
             .about-media-header { flex-direction: column; align-items: flex-start; }
         }
     </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "url": "https://dokterrichard.nl/over.html",
+  "name": "Over Richard Hoofs",
+  "description": "Leer meer over Richard Hoofs, arts, coach en auteur in 's-Hertogenbosch.",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Richard Hoofs",
+    "alternateName": "Dokter Richard",
+    "url": "https://dokterrichard.nl/",
+    "jobTitle": "Huisarts, leefstijlcoach en auteur",
+    "image": "https://dokterrichard.nl/images/Richard_Hoofs-29.webp",
+    "description": "Richard Hoofs combineert westerse huisartsgeneeskunde met holistische coaching en acupunctuur.",
+    "workLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "'s-Hertogenbosch",
+        "addressCountry": "NL"
+      }
+    }
+  }
+}
+    </script>
 </head>
 <body>
 
@@ -737,7 +831,7 @@
         </div>
         <div class="about-hero-right">
             <div class="about-hero-image">
-                <img src="images/Richard_Hoofs-3.jpg" alt="Richard Hoofs">
+                <img src="images/Richard_Hoofs-3.webp" alt="Richard Hoofs" loading="lazy">
             </div>
         </div>
     </div>
@@ -769,7 +863,7 @@
 
 <!-- FOTO -->
 <section class="photo-trio fade-in" style="padding: 0 48px; max-width: calc(var(--max-width) + 96px); margin: 0 auto;">
-    <img src="images/Richard_Hoofs-11.jpg" alt="Richard Hoofs" loading="lazy" style="width: 100%; max-height: 620px; object-fit: cover; object-position: center 15%; border-radius: 20px; display: block; transform: scale(1.08); transform-origin: center 20%;">
+    <img src="images/Richard_Hoofs-11.webp" alt="Richard Hoofs" loading="lazy" style="width: 100%; max-height: 620px; object-fit: cover; object-position: center 15%; border-radius: 20px; display: block; transform: scale(1.08); transform-origin: center 20%;">
 
 </section>
 
@@ -793,13 +887,16 @@
 </section>
 
 <!-- IN DE MEDIA -->
-<section class="about-media-section fade-in">
+<section class="about-media-section fade-in" id="media">
     <div class="about-media-with-photo">
-        <img src="images/Richard_Hoofs-29.jpg" alt="Richard Hoofs" class="about-media-photo" loading="lazy">
+        <img src="images/Richard_Hoofs-29.webp" alt="Richard Hoofs" class="about-media-photo" loading="lazy">
         <div>
             <div class="section-label-sm">In de media</div>
-            <h2>Publicaties &amp; podcasts</h2>
-            <div class="about-podcast-grid" style="margin-top: 28px; margin-bottom: 32px;">
+            <h2>Artikelen, podcasts &amp; boeken</h2>
+
+            <!-- ARTIKELEN -->
+            <h3 class="about-media-subheading">Artikelen &amp; publicaties</h3>
+            <div class="about-podcast-grid">
                 <a href="https://www.trouw.nl/opinie/opinie-zingeving-is-de-pijler-voor-gezondheid-in-de-gevangenis-en-daarbuiten~bb2d406c/" target="_blank" rel="noopener" class="about-podcast-item" style="text-decoration:none;">
                     <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div>
                     <div>
@@ -822,12 +919,57 @@
                     </div>
                 </a>
                 <div class="about-podcast-item">
-                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div>
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div>
                     <div>
-                        <div class="about-podcast-year">Medisch Contact Podcast &middot; 2026</div>
-                        <div class="about-podcast-name">Zingeving hoort een plek in de spreekkamer</div>
+                        <div class="about-podcast-year">Zorginstituut Magazine &middot; 2026</div>
+                        <div class="about-podcast-name">Over holistische geneeskunde en bewust leven</div>
                     </div>
                 </div>
+            </div>
+            <details class="media-more">
+                <summary>
+                    <span class="label-open">meer&hellip;</span>
+                    <span class="label-close">minder tonen</span>
+                </summary>
+                <div class="about-podcast-grid">
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div><div><div class="about-podcast-year">Leeuwarder Courant &middot; 2025</div><div class="about-podcast-name">Interview over bezieling en gezondheid</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div><div><div class="about-podcast-year">De Gelderlander &middot; 2025</div><div class="about-podcast-name">Zingeving in de spreekkamer</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div><div><div class="about-podcast-year">De Limburger &middot; 2025</div><div class="about-podcast-name">Bezielde geneeskunde</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div><div><div class="about-podcast-year">Bloom &middot; 2025</div><div class="about-podcast-name">Holistisch leven en gezondheid</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div><div><div class="about-podcast-year">HX Magazine &middot; 2025</div><div class="about-podcast-name">Bewust leven en zingeving</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div><div><div class="about-podcast-year">Vruchtbare Aarde &middot; 2025</div><div class="about-podcast-name">Zelfhelend vermogen en bezieling</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div><div><div class="about-podcast-year">Spiegelbeeld &middot; 2024, 2025, 2026</div><div class="about-podcast-name">Spiritualiteit en holistische geneeskunde</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div><div><div class="about-podcast-year">Paravisie &middot; 2024, 2025</div><div class="about-podcast-name">Holistisch leven en bezieling</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div><div><div class="about-podcast-year">Huisarts &amp; Wetenschap &middot; 2000&ndash;heden</div><div class="about-podcast-name">Diverse wetenschappelijke artikelen en boekbesprekingen</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div><div><div class="about-podcast-year">Medisch Contact &middot; 2000&ndash;heden</div><div class="about-podcast-name">Publicaties en opiniestukken over huisartsenzorg</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg></div><div><div class="about-podcast-year">Nederlands Tijdschrift voor Geneeskunde &middot; 2000&ndash;heden</div><div class="about-podcast-name">Bijdragen en recensies</div></div></div>
+                </div>
+            </details>
+
+            <!-- PODCASTS -->
+            <h3 class="about-media-subheading">Podcasts</h3>
+            <div class="about-podcast-grid">
+                <a href="https://open.spotify.com/episode/7h4bFvKe2nKIwNdbOZBa1F" target="_blank" rel="noopener" class="about-podcast-item" style="text-decoration:none;">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div>
+                    <div>
+                        <div class="about-podcast-year">Medisch Contact Podcast &middot; 22 jan 2026</div>
+                        <div class="about-podcast-name">Zingeving hoort een plek in de spreekkamer</div>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=q3_q3RZJPfI" target="_blank" rel="noopener" class="about-podcast-item" style="text-decoration:none;">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div>
+                    <div>
+                        <div class="about-podcast-year">YouTube Podcast &middot; #154</div>
+                        <div class="about-podcast-name">Over bezieling, Egyptische wijsheid en holistische geneeskunde</div>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/watch?v=qZwO9hlpkzw" target="_blank" rel="noopener" class="about-podcast-item" style="text-decoration:none;">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div>
+                    <div>
+                        <div class="about-podcast-year">De Positiviteits Podcast &middot; #122</div>
+                        <div class="about-podcast-name">Bezield leven op doktersrecept</div>
+                    </div>
+                </a>
                 <div class="about-podcast-item">
                     <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div>
                     <div>
@@ -835,26 +977,78 @@
                         <div class="about-podcast-name">Bezielde geneeskunde en spiritualiteit</div>
                     </div>
                 </div>
-                <div class="about-podcast-item">
-                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div>
+            </div>
+            <details class="media-more">
+                <summary>
+                    <span class="label-open">meer&hellip;</span>
+                    <span class="label-close">minder tonen</span>
+                </summary>
+                <div class="about-podcast-grid">
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div><div><div class="about-podcast-year">Univibes Podcast &middot; 2025</div><div class="about-podcast-name">Holistische leefstijl en innerlijke groei</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div><div><div class="about-podcast-year">Sanae Orchi Podcast &middot; 2025</div><div class="about-podcast-name">Bewustzijn en de spirituele dimensie van gezondheid</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div><div><div class="about-podcast-year">Podcast of Hope &middot; 2025</div><div class="about-podcast-name">Hoop, zelfhelend vermogen en gezondheid</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div><div><div class="about-podcast-year">Truemanshow &middot; Jorn Luka &middot; 2024</div><div class="about-podcast-name">Spiritualiteit, zingeving en holistische gezondheid</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M6.343 6.343a8 8 0 1 0 11.314 11.314A8 8 0 0 0 6.343 6.343"/><path d="M9.172 9.172a4 4 0 1 0 5.656 5.656A4 4 0 0 0 9.172 9.172"/></svg></div><div><div class="about-podcast-year">V for Valentine Podcast &middot; 2024</div><div class="about-podcast-name">Zelfhelend vermogen en holistische visie</div></div></div>
+                </div>
+            </details>
+
+            <!-- BOEKEN -->
+            <h3 class="about-media-subheading">Boeken</h3>
+            <div class="about-podcast-grid">
+                <a href="boeken.html" class="about-podcast-item" style="text-decoration:none;">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5zm0 0A2.5 2.5 0 0 1 6.5 17H20"/></svg></div>
                     <div>
-                        <div class="about-podcast-year">Positiviteitspodcast &middot; 2025</div>
-                        <div class="about-podcast-name">Bewust leven en je innerlijke kompas</div>
+                        <div class="about-podcast-year">S2 Uitgevers &middot; 2024</div>
+                        <div class="about-podcast-name">Bezield leven op doktersrecept</div>
+                    </div>
+                </a>
+                <div class="about-podcast-item">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5zm0 0A2.5 2.5 0 0 1 6.5 17H20"/></svg></div>
+                    <div>
+                        <div class="about-podcast-year">Obelisk Boeken &middot; 2018</div>
+                        <div class="about-podcast-name">Als de sluier wordt opgelicht</div>
                     </div>
                 </div>
+                <a href="cafe-noir.html" class="about-podcast-item" style="text-decoration:none;">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5zm0 0A2.5 2.5 0 0 1 6.5 17H20"/></svg></div>
+                    <div>
+                        <div class="about-podcast-year">Frontier Publishing &middot; 2015</div>
+                        <div class="about-podcast-name">Caf&eacute; Noir</div>
+                    </div>
+                </a>
+                <a href="nieuwe-geneeskunde.html" class="about-podcast-item" style="text-decoration:none;">
+                    <div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5zm0 0A2.5 2.5 0 0 1 6.5 17H20"/></svg></div>
+                    <div>
+                        <div class="about-podcast-year">Frontier Publishing &middot; 2013</div>
+                        <div class="about-podcast-name">Nieuwe Geneeskunde</div>
+                    </div>
+                </a>
             </div>
+            <details class="media-more">
+                <summary>
+                    <span class="label-open">meer&hellip;</span>
+                    <span class="label-close">minder tonen</span>
+                </summary>
+                <div class="about-podcast-grid">
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5zm0 0A2.5 2.5 0 0 1 6.5 17H20"/></svg></div><div><div class="about-podcast-year">Uitgeverij Schors &middot; 2010</div><div class="about-podcast-name">Cirkel van Leven</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5zm0 0A2.5 2.5 0 0 1 6.5 17H20"/></svg></div><div><div class="about-podcast-year">Uitgeverij Schors &middot; 2009 &middot; herziene editie 2022</div><div class="about-podcast-name">Zelfgenezing op doktersrecept</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5zm0 0A2.5 2.5 0 0 1 6.5 17H20"/></svg></div><div><div class="about-podcast-year">Elsevier Gezondheidszorg &middot; 2004</div><div class="about-podcast-name">Aandoeningen bij kinderen</div></div></div>
+                    <div class="about-podcast-item"><div class="about-podcast-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5zm0 0A2.5 2.5 0 0 1 6.5 17H20"/></svg></div><div><div class="about-podcast-year">Swets &amp; Zeitlinger &middot; 2002 &middot; herziene editie 2021</div><div class="about-podcast-name">Dokter, is het ADHD?</div></div></div>
+                </div>
+            </details>
+            <div style="margin: 32px 0;"></div>
             <div class="press-strip">
-                <a href="https://www.trouw.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-trouw.svg" alt="Trouw"></a>
-                <a href="https://www.medischcontact.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-medischcontact.svg" alt="Medisch Contact"></a>
-                <a href="https://www.bd.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-bd.svg" alt="Brabants Dagblad"></a>
-                <a href="https://www.lc.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-lc.svg" alt="Leeuwarder Courant"></a>
-                <a href="https://www.gelderlander.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-gelderlander.png" alt="De Gelderlander"></a>
-                <a href="https://www.henw.org" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-henw.svg" alt="Huisarts &amp; Wetenschap"></a>
-                <a href="https://www.ntvg.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-ntvg.svg" alt="NTvG"></a>
-                <a href="https://www.spiegelbeeld.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-spiegelbeeld.webp" alt="Spiegelbeeld"></a>
-                <a href="https://edicola.nl/product/paravisie-april-2025/" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-paravisie.jpg" alt="Paravisie"></a>
-                <span class="press-chip">Bloom</span>
-                <span class="press-chip">HX Magazine</span>
+                <a href="https://www.trouw.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-trouw.svg" alt="Trouw" loading="lazy"></a>
+                <a href="https://www.medischcontact.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-medischcontact.svg" alt="Medisch Contact" loading="lazy"></a>
+                <a href="https://www.bd.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-bd.svg" alt="Brabants Dagblad" loading="lazy"></a>
+                <a href="https://www.lc.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-lc.svg" alt="Leeuwarder Courant" loading="lazy"></a>
+                <a href="https://www.gelderlander.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-gelderlander.png" alt="De Gelderlander" loading="lazy"></a>
+                <a href="https://www.henw.org" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-henw.svg" alt="Huisarts &amp; Wetenschap" loading="lazy"></a>
+                <a href="https://www.ntvg.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-ntvg.svg" alt="NTvG" loading="lazy"></a>
+                <a href="https://www.spiegelbeeld.nl" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-spiegelbeeld.webp" alt="Spiegelbeeld" loading="lazy"></a>
+                <a href="https://edicola.nl/product/paravisie-april-2025/" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-paravisie.jpg" alt="Paravisie" loading="lazy"></a>
+                <a href="https://www.bloom.be" target="_blank" rel="noopener" class="press-chip"><img src="images/logo-bloom.png" alt="Bloom" loading="lazy"></a>
+                <a href="https://www.wild-wisdom.nl/" target="_blank" rel="noopener" class="press-chip">HX Magazine</a>
             </div>
         </div>
     </div>
@@ -880,7 +1074,7 @@
             </div>
         </div>
         <div class="speaker-photo">
-            <img src="images/Richard Sekhmet.jpg" alt="Richard Hoofs">
+            <img src="images/Richard Sekhmet.jpg" alt="Richard Hoofs" loading="lazy">
         </div>
     </div>
 </div>

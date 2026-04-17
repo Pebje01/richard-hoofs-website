@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /beheer
+Disallow: /cms/
+Disallow: /api/
+
+Sitemap: https://dokterrichard.nl/sitemap.xml

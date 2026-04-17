@@ -9,3 +9,21 @@ __pycache__/
 .env
 node_modules/
 cms/backups/
+
+# Privé info-documenten die nooit naar GitHub mogen
+Niet-pushen (info documenten)/
+_drafts/
+
+# SSH deploy keys — nooit committen
+deploy_key
+deploy_key.pub
+id_ed25519
+id_ed25519.pub
+id_rsa
+id_rsa.pub
+
+# Source files & backups
+*.psd
+*.ai
+backup-*.html
+images/optimized/

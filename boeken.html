@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bezield Leven op Doktersrecept | Dokter Richard</title>
     <meta name="description" content="Bezield Leven op Doktersrecept, het boek van Richard Hoofs over holistische gezondheid, bezieling en de verbinding tussen lichaam, geest en ziel.">
+    <link rel="canonical" href="https://dokterrichard.nl/boeken.html">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Richard Hoofs">
+    <meta name="theme-color" content="#2d5a3d">
+    <!-- Open Graph -->
+    <meta property="og:type" content="book">
+    <meta property="og:url" content="https://dokterrichard.nl/boeken.html">
+    <meta property="og:title" content="Bezield Leven op Doktersrecept | Dokter Richard">
+    <meta property="og:description" content="Bezield Leven op Doktersrecept, het boek van Richard Hoofs over holistische gezondheid, bezieling en de verbinding tussen lichaam, geest en ziel.">
+    <meta property="og:image" content="https://dokterrichard.nl/images/Foto-bezieldlevenboek.webp">
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:site_name" content="Dokter Richard">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bezield Leven op Doktersrecept | Dokter Richard">
+    <meta name="twitter:description" content="Bezield Leven op Doktersrecept, het boek van Richard Hoofs over holistische gezondheid, bezieling en de verbinding tussen lichaam, geest en ziel.">
+    <meta name="twitter:image" content="https://dokterrichard.nl/images/Foto-bezieldlevenboek.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -969,6 +986,65 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 24px;
         }
+        .bk-bibliography {
+            margin-top: 64px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border);
+        }
+        .bk-bibliography h3 {
+            font-family: var(--font-heading);
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin: 0 0 24px;
+        }
+        .bk-bib-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 20px;
+        }
+        .bk-bib-list li {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 24px;
+            padding: 20px 0;
+            border-top: 1px solid var(--border);
+        }
+        .bk-bib-list li:first-child { border-top: none; padding-top: 0; }
+        .bk-bib-year {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--green-dark);
+        }
+        .bk-bib-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 4px;
+        }
+        .bk-bib-meta {
+            font-size: 12px;
+            letter-spacing: 0.04em;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .bk-bib-body p {
+            font-size: 14px;
+            color: var(--text-body);
+            line-height: 1.6;
+            margin: 0;
+        }
+        @media (max-width: 640px) {
+            .bk-bib-list li { grid-template-columns: 1fr; gap: 8px; }
+        }
         .bk-library-card {
             display: grid;
             grid-template-columns: 130px 1fr;
@@ -1203,6 +1279,67 @@
             .bestel-modal { padding: 36px 24px 28px; }
         }
     </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Boeken van Richard Hoofs",
+  "url": "https://dokterrichard.nl/boeken.html",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Book",
+        "name": "Bezield Leven op Doktersrecept",
+        "author": {
+          "@type": "Person",
+          "name": "Richard Hoofs",
+          "alternateName": "Dokter Richard",
+          "url": "https://dokterrichard.nl/",
+          "jobTitle": "Huisarts, leefstijlcoach en auteur"
+        },
+        "inLanguage": "nl",
+        "url": "https://dokterrichard.nl/boeken.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Book",
+        "name": "Nieuwe Geneeskunde",
+        "author": {
+          "@type": "Person",
+          "name": "Richard Hoofs",
+          "alternateName": "Dokter Richard",
+          "url": "https://dokterrichard.nl/",
+          "jobTitle": "Huisarts, leefstijlcoach en auteur"
+        },
+        "inLanguage": "nl",
+        "url": "https://dokterrichard.nl/nieuwe-geneeskunde.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Book",
+        "name": "Classic Café Noir",
+        "author": {
+          "@type": "Person",
+          "name": "Richard Hoofs",
+          "alternateName": "Dokter Richard",
+          "url": "https://dokterrichard.nl/",
+          "jobTitle": "Huisarts, leefstijlcoach en auteur"
+        },
+        "inLanguage": "nl",
+        "url": "https://dokterrichard.nl/cafe-noir.html"
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 
@@ -1254,7 +1391,7 @@
 
             <!-- Cover -->
             <div class="bk-hero-cover">
-                <img src="images/Foto-bezieldlevenboek.jpg" alt="Bezield Leven op Doktersrecept">
+                <img src="images/Foto-bezieldlevenboek.webp" alt="Bezield Leven op Doktersrecept" loading="lazy">
             </div>
         </div>
 
@@ -1415,7 +1552,7 @@
         </div>
 
         <div class="bk-about-right">
-            <img src="images/Richard_Hoofs-19.jpg" alt="Richard Hoofs" class="bk-about-img">
+            <img src="images/Richard_Hoofs-19.webp" alt="Richard Hoofs" class="bk-about-img" loading="lazy">
         </div>
     </div>
 </section>
@@ -1463,7 +1600,7 @@
         <div class="bk-edition">
             <div class="bk-edition-inner">
                 <div class="bk-edition-book-img">
-                    <img src="images/Richard_Hoofs-59.jpg" alt="Richard Hoofs met zijn boek" loading="lazy">
+                    <img src="images/Richard_Hoofs-59.webp" alt="Richard Hoofs met zijn boek" loading="lazy">
                 </div>
                     <div>
                         <h3>Paperback</h3>
@@ -1496,9 +1633,9 @@
 
     <div class="bk-library-grid">
         <a href="nieuwe-geneeskunde.html" class="bk-library-card">
-            <img src="https://www.medischepraktijkmondesir.nl/wp-content/uploads/2024/10/voorkant-nieuwe-geneeskunde.jpg" alt="Nieuwe Geneeskunde">
+            <img src="https://www.medischepraktijkmondesir.nl/wp-content/uploads/2024/10/voorkant-nieuwe-geneeskunde.jpg" alt="Nieuwe Geneeskunde" loading="lazy">
             <div>
-                <span class="bk-library-card-type">Non-fictie</span>
+                <span class="bk-library-card-type">Non-fictie &middot; 2013</span>
                 <h3>Nieuwe Geneeskunde</h3>
                 <p>Verbindt de westerse huisartsgeneeskunde met de oosterse energetische wijsheid van het chakra- en aurasysteem.</p>
                 <span class="bk-library-card-price">&euro;15,00<s>&euro;24,90</s></span>
@@ -1506,14 +1643,60 @@
         </a>
 
         <a href="cafe-noir.html" class="bk-library-card">
-            <img src="https://www.medischepraktijkmondesir.nl/wp-content/uploads/2024/10/Cafe-Noir-Voorkant-3.jpg" alt="Classic Café Noir">
+            <img src="https://www.medischepraktijkmondesir.nl/wp-content/uploads/2024/10/Cafe-Noir-Voorkant-3.jpg" alt="Classic Café Noir" loading="lazy">
             <div>
-                <span class="bk-library-card-type">Roman</span>
+                <span class="bk-library-card-type">Roman &middot; 2015</span>
                 <h3>Classic Café Noir</h3>
                 <p>Een roman over liefde, vriendschap en bezieling. Drie levens verweven in een verhaal over lot en levensbestemming.</p>
                 <span class="bk-library-card-price">&euro;15,00<s>&euro;23,99</s></span>
             </div>
         </a>
+    </div>
+
+    <div class="bk-bibliography">
+        <h3>Eerdere publicaties</h3>
+        <ul class="bk-bib-list">
+            <li>
+                <div class="bk-bib-year">2018</div>
+                <div class="bk-bib-body">
+                    <div class="bk-bib-title">Als de sluier wordt opgelicht</div>
+                    <div class="bk-bib-meta">Obelisk Boeken</div>
+                    <p>Een beschouwend boek over bewustwording, spiritualiteit en de verborgen lagen van de werkelijkheid.</p>
+                </div>
+            </li>
+            <li>
+                <div class="bk-bib-year">2010</div>
+                <div class="bk-bib-body">
+                    <div class="bk-bib-title">Cirkel van Leven</div>
+                    <div class="bk-bib-meta">Uitgeverij Schors</div>
+                    <p>Een reflectie op de spirituele dimensie van het leven en de ontwikkeling van bewustzijn.</p>
+                </div>
+            </li>
+            <li>
+                <div class="bk-bib-year">2009</div>
+                <div class="bk-bib-body">
+                    <div class="bk-bib-title">Zelfgenezing op doktersrecept</div>
+                    <div class="bk-bib-meta">Uitgeverij Schors &middot; herziene editie 2022, Obelisk Boeken</div>
+                    <p>Over hoe mensen hun eigen innerlijke kracht en zelfhelend vermogen kunnen aanspreken om gezondheid en balans te herstellen.</p>
+                </div>
+            </li>
+            <li>
+                <div class="bk-bib-year">2004</div>
+                <div class="bk-bib-body">
+                    <div class="bk-bib-title">Aandoeningen bij kinderen</div>
+                    <div class="bk-bib-meta">Elsevier Gezondheidszorg</div>
+                    <p>Een praktisch en informatief boek over veel voorkomende medische klachten en aandoeningen bij kinderen.</p>
+                </div>
+            </li>
+            <li>
+                <div class="bk-bib-year">2002</div>
+                <div class="bk-bib-body">
+                    <div class="bk-bib-title">Dokter, is het ADHD?</div>
+                    <div class="bk-bib-meta">Swets &amp; Zeitlinger &middot; herziene editie 2021, Obelisk Boeken</div>
+                    <p>Een boek over ADHD bij kinderen met praktische inzichten voor ouders en zorgverleners vanuit de huisartspraktijk.</p>
+                </div>
+            </li>
+        </ul>
     </div>
 </section>
 
