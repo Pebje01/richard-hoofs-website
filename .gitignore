@@ -27,3 +27,8 @@ id_rsa.pub
 *.ai
 backup-*.html
 images/optimized/
+
+# Lokale tooling
+.claude/launch.json
+.claude/launch.json.bak
+.playwright-mcp/
